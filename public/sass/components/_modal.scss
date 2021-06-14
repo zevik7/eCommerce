@@ -1,0 +1,111 @@
+// @charset "UTF-8";
+// .modal{
+//     .modal-header {
+//         border-bottom: none;
+//     }
+//     .modal-footer{
+//         border-top: none;
+//     }
+// }
+// .social {
+//     margin: 0 auto 20px;
+//     text-align: center;
+//     .fab{
+//         font-size: 20px;
+//     }
+//     a{
+//         color: var(--white-color);
+//     }
+// }
+// .facebook{
+//     background-color: var(--facebook-color);
+// }
+// .google{
+//     background-color: var(--google-color);
+// }
+// .facebook:hover{
+//     background-color: #6E83CD;
+// }
+// .google:hover{
+//     background-color: #FF7566;
+// }
+// .division {
+//     float: none;
+//     margin: 0 auto 18px;
+//     overflow: hidden;
+//     position: relative;
+//     text-align: center;
+//     width: 100%;
+//     .line {
+//         border-top: 2px solid var(--border-light-color);
+//         position: absolute;
+//         top: 10px;
+//         width: 34%;
+//     }
+//     .line.l {
+//         left: 0;
+//     }
+//     .line.r {
+//         right: 0;
+//     }
+//     span {
+//         color: var(--text-disable-color);
+//         font-size: 17px;
+//     }
+// }
+// .circle{
+//     margin: 0 10px;
+//     height: 50px;
+//     width: 50px;
+//     line-height: 55px;
+//     border-radius: 40px;
+//     display: inline-block;
+// }
+// .forgot {
+//     color: #797979;
+//     margin-left: 0;
+//     overflow: hidden;
+//     text-align: center;
+//     width: 100%;
+// }
+// .btn-login, .btn-register{
+//     border-width: 0;
+//     display: block;
+//     margin: 0 auto;
+//     padding: 15px 50px;
+//     text-transform: uppercase;
+//     width: 100%;
+// }
+// .btn-block{
+//     height: 100%;
+// }
+// .form-control{
+//     height: 45px;
+//     margin-bottom: 10px;
+//     border-radius: 3px;
+//     color:var(--text-dark-color);
+// }
+// // .form-control:hover{
+// //     background-color: var(--hover-input-color);
+// // }
+// // .form-control:focus{
+// //     background-color: var(--white-color);
+// //     color: var(--text-dark-color);
+// //     box-shadow: 0 0 0 0.2rem var(--third-color);
+// // }
+// .modal-error{
+//     border-radius: 0;
+// }
+// .switch-link{
+//     color: var(--primary-color);
+//     text-decoration: underline;
+// }
+// .errorTxt{
+//     color: red;
+// }
+// @media (max-width:400px){
+//     .modal-dialog{
+//         width: 100%;
+//     }
+// }
+// //Css for Jquery validation

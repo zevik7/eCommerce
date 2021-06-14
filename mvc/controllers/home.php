@@ -1,15 +1,19 @@
 <?php
-    class home extends controller{
-        function hello(){
-            //get model
-            $Item=$this->model("itemModel");
-            //get data for view
-            $itemData=$Item->getItem();
-            //get view and
-            $this->view("homeView2", [
-                "Page"=>"news",
-                "item"=>$itemData
-            ]);
-        }
+class Home extends Controller{
+    protected $userModel;
+    protected $productModel;
+    protected $shopModel;
+
+    function __construct(){
+        $this->userModel = $this->model('User');
+        $this->productModel = $this->model('Product');
     }
+    function Main(){
+        $this->view('Main',[
+            'Page' => 'ItemList',
+            'User' => $this->userModel->getUserInfo(),
+            'Product' => $this->productModel->getProductInfo()
+        ]);
+    }
+}
 ?>
