@@ -1,6 +1,6 @@
 <div class="grid">
-    <div class="grid__row">
-        <div class="grid__column-10-2">
+    <div class="grid-row">
+        <div class="grid-column-10-2">
             <h3 class="footer__heading">Giới thiệu</h3>
             <ul class="footer__list">
                 <li class="footer-list__item">
@@ -17,7 +17,7 @@
                 </li>
             </ul>
         </div>
-        <div class="grid__column-10-2">
+        <div class="grid-column-10-2">
             <h3 class="footer__heading">Chăm sóc khách hàng</h3>
             <ul class="footer__list">
                 <li class="footer-list__item">
@@ -31,7 +31,7 @@
                 </li>
             </ul>
         </div>
-        <div class="grid__column-10-2">
+        <div class="grid-column-10-2">
             <h3 class="footer__heading">Điều khoản sử dụng</h3>
             <ul class="footer__list">
                 <li class="footer-list__item">
@@ -48,7 +48,7 @@
                 </li>
             </ul>
         </div>
-        <div class="grid__column-10-2">
+        <div class="grid-column-10-2">
             <h3 class="footer__heading">Liên hệ chúng tôi</h3>
             <ul class="footer__list">
                 <li class="footer-list__item">
@@ -68,7 +68,7 @@
                 </li>
             </ul>
         </div>
-        <div class="grid__column-10-2">
+        <div class="grid-column-10-2">
             <h3 class="footer__heading">Vào của hàng trên ứng dụng</h3>
             <ul class="footer__list">
                 <li class="footer-list__item">
@@ -86,7 +86,7 @@
     </div>
     <div class="grid-row">
         <h4 class="footer__text">
-            Bản quyền  thuộc về Nguyễn Hữu Thiên Phú B1805805
+        
         </h4>
     </div>
 </div>

@@ -1,6 +1,6 @@
-<div class="grid">
-    <div class="grid__row grid__row--alignment">
-        <div class="grid__column-2">
+<div class="grid grid--alignment-top">
+    <div class="grid-row">
+        <div class="grid-column-2">
             <nav class="category">
                 <h3 class="category__header">
                     <i class="far fa-list-alt category-header__icon"></i> Danh mục
@@ -16,7 +16,7 @@
                 </ul>
             </nav> 
         </div>
-        <div class="grid__column-10">
+        <div class="grid-column-10">
             <div class="navFilter">
                 <span class="navFilter__title">Sắp xếp theo</span>
                 <button class="navFilter__btn btn">Phổ biến</button>
@@ -53,14 +53,21 @@
                 </div>
             </div>
             <div class="product">
-                <div id= "product_listItem" class="grid__row">
-                    <div class="grid__column-10-2">
+                <div id= "product_listItem" class="grid-row">
+                    <?php
+                            if (isset($data['Product']))
+                            {
+                                $decode = json_decode($data['Product'], true);
+                                foreach($decode as $value)
+                                {
+                    ?>
+                    <div class="grid-column-10-2">
                         <a href="" class="product__item">
                             <div class="product-item__img" style="background-image: url(public/img/product/tinhchat.png);"></div>
-                            <h4 class="product-item__name">Tinh chất dưỡng da sffweweiofjwiefjwoefwoeifjwoisdfsdfsdfdsfsdefjwoifjwoiefjweoifj</h4>
+                            <h4 class="product-item__name"><?php echo $value['productName'] ?></h4>
                             <div class="product-item__priceBox">
-                                <span class="product-item-priceBox__old">200.000000đ</span>
-                                <span class="product-item-priceBox__new">2500.0000đ</span>
+                                <span class="product-item-priceBox__old"></span>
+                                <span class="product-item-priceBox__new"></span>
                             </div>
                             <div class="product-item__react">
                                 <!-- add product-item-react__like--liked when click icon like  -->
@@ -75,21 +82,25 @@
                                     <i class="product-item-reat-rating__fill fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <span class="product-item-react__sold">10 đã bán</span>
+                                <span class="product-item-react__sold"><?php echo $value['productSold']; ?> đã bán</span>
                             </div>
                             <div class="product-item__origin">
-                                <span class="product-item-origin__brand">Whoo</span>
-                                <span class="product-item-origin__originName">Nhật Bản</span>
+                                <span class="product-item-origin__brand"><?php echo $value['productBrand']; ?></span>
+                                <span class="product-item-origin__originName"><?php echo $value['productSource']; ?></span>
                             </div>
                             <div class="product-item__favourite">
                                 <i class="fas fa-check"></i>Yêu thích
                             </div>
                             <div class="product-item__saleOff">
-                                <span class="product-item-saleOff__percent">10%</span>
+                                <span class="product-item-saleOff__percent"><?php echo $value['productDiscount']*100; ?>%</span>
                                 <span class="product-item-saleOff__label">GIẢM</span>
                             </div>
                         </a>
                     </div>
+                    <?php
+                                }
+                            }
+                    ?>
                 </div>
             </div>
             <ul class="pagination pagination--home">

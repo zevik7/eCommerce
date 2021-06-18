@@ -1,0 +1,42 @@
+.grid{
+    width: 1400px;
+    max-width: 100%;
+    margin: 0 auto;
+}
+.grid--full-width{
+    width: 100%;
+}
+.grid-row{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: -12px;
+    margin-right: -12px;
+}
+.grid--alignment-top{
+    margin-top:25px;
+}
+.grid-column-4{
+    padding-left: 12px;
+    padding-right: 12px;
+    width: 33.3333%;
+}
+.grid-column-8{
+    padding-left:  12px;
+    padding-right: 12px;    
+    width:66.66667%;
+}
+.grid-column-2{
+    padding-left:  12px;
+    padding-right: 12px;
+    width: 16.6667%;
+}
+.grid-column-10-2{
+    padding-left:12px;
+    padding-right: 12px;
+    width: 20%; 
+}
+.grid-column-10{
+    padding-left:  12px;
+    padding-right: 12px;
+    width: 83.3333%;
+}

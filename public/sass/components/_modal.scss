@@ -1,111 +1,108 @@
-// @charset "UTF-8";
-// .modal{
-//     .modal-header {
-//         border-bottom: none;
-//     }
-//     .modal-footer{
-//         border-top: none;
-//     }
-// }
-// .social {
-//     margin: 0 auto 20px;
-//     text-align: center;
-//     .fab{
-//         font-size: 20px;
-//     }
-//     a{
-//         color: var(--white-color);
-//     }
-// }
-// .facebook{
-//     background-color: var(--facebook-color);
-// }
-// .google{
-//     background-color: var(--google-color);
-// }
-// .facebook:hover{
-//     background-color: #6E83CD;
-// }
-// .google:hover{
-//     background-color: #FF7566;
-// }
-// .division {
-//     float: none;
-//     margin: 0 auto 18px;
-//     overflow: hidden;
-//     position: relative;
-//     text-align: center;
-//     width: 100%;
-//     .line {
-//         border-top: 2px solid var(--border-light-color);
-//         position: absolute;
-//         top: 10px;
-//         width: 34%;
-//     }
-//     .line.l {
-//         left: 0;
-//     }
-//     .line.r {
-//         right: 0;
-//     }
-//     span {
-//         color: var(--text-disable-color);
-//         font-size: 17px;
-//     }
-// }
-// .circle{
-//     margin: 0 10px;
-//     height: 50px;
-//     width: 50px;
-//     line-height: 55px;
-//     border-radius: 40px;
-//     display: inline-block;
-// }
-// .forgot {
-//     color: #797979;
-//     margin-left: 0;
-//     overflow: hidden;
-//     text-align: center;
-//     width: 100%;
-// }
-// .btn-login, .btn-register{
-//     border-width: 0;
-//     display: block;
-//     margin: 0 auto;
-//     padding: 15px 50px;
-//     text-transform: uppercase;
-//     width: 100%;
-// }
-// .btn-block{
-//     height: 100%;
-// }
-// .form-control{
-//     height: 45px;
-//     margin-bottom: 10px;
-//     border-radius: 3px;
-//     color:var(--text-dark-color);
-// }
-// // .form-control:hover{
-// //     background-color: var(--hover-input-color);
-// // }
-// // .form-control:focus{
-// //     background-color: var(--white-color);
-// //     color: var(--text-dark-color);
-// //     box-shadow: 0 0 0 0.2rem var(--third-color);
-// // }
-// .modal-error{
-//     border-radius: 0;
-// }
-// .switch-link{
-//     color: var(--primary-color);
-//     text-decoration: underline;
-// }
-// .errorTxt{
-//     color: red;
-// }
-// @media (max-width:400px){
-//     .modal-dialog{
-//         width: 100%;
-//     }
-// }
-// //Css for Jquery validation
+/* Modal Popup */
+.modal{
+    position: fixed;
+    display: flex;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    display: none;
+}
+.modal__overlay{
+    position: absolute;
+    width:100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.3);
+}
+.modal__body{
+    margin: auto;
+    border-radius: 3px;
+    position: relative;
+    background-color:var(--white-color);
+    overflow: hidden;
+    animation: formAnimation ease-in 0.3s;
+}
+/* Signup */
+.modal-body__auth{
+    width: 450px;
+    padding:30px;
+}
+.auth-header{
+    height: 30px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.5rem;
+    color:var(--text-color);
+    border-bottom: 1px solid var(--border-color-dark);
+}
+.auth-header__title{
+    margin:0;
+}
+.auth-header__switch{
+    font-size: 1.4rem;
+    margin:0;
+    color: var(--primary-color);
+    cursor: pointer;
+}
+.auth-body{
+    padding: 0;
+}
+.auth-body__element{
+    position: relative;
+}
+.auth-policy{
+    text-align: center;
+    margin:20px 0;
+    font-size: 1.2rem;
+}
+.auth-policy__link{
+    color:var(--second-color);
+    text-decoration: none;
+}
+.auth-controls{
+    margin-top:40px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+    
+}
+.modal-body__socials{
+    display: flex;
+    justify-content: space-evenly;
+    height: 50px;
+}
+.modal-body-socials__facebook,.modal-body-socials__google{
+    width: 44%;
+}
+.modal-body-socials__google{
+    background-color: var(--google-color);
+    color:var(--text-color-white);
+}
+.modal-body-socials__facebook{
+    background-color: var(--facebook-color);
+    color:var(--text-color-white);
+}
+/* Forget pass */
+.modal-body-auth__forgetPass{
+    font-size:1.2rem;
+    text-align: right;
+    margin-top:10px;
+}
+.modal-body-auth-forgetPass__link{
+    color:var(--primary-color);
+    text-decoration: none;
+}
+/* Animation Form Signup and Login */
+@keyframes formAnimation {
+    0%{
+        transform: scale(0.5);
+        opacity: 0.5;
+        background-color: var(--third-color);
+    }
+    100%{
+        transform: scale(1);
+        opacity: 1;
+       
+    }
+}

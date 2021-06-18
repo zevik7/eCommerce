@@ -1,0 +1,27 @@
+/* Pagination */
+.pagination{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+}
+.pagination__item{
+    margin:0 8px;
+    cursor: pointer;
+}
+.pagination__link{
+    display: block;
+    height: 30px;
+    min-width: 40px;
+    font-size: 1.7rem;
+    text-decoration: none;
+    color: var(--text-color);
+    text-align: center;
+    line-height: 30px;
+    border-radius: 2px;
+}
+.pagination__item--active .pagination__link{
+    color: var(--white-color);
+    background-color: var(--primary-color);
+    cursor: default;
+}

@@ -1,0 +1,26 @@
+.btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 120px;
+    height: 40px;
+    padding: 0 10px;
+    color: var(--text-color);
+    text-decoration: none;
+    border: none;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    outline: none;
+    cursor: pointer;
+}
+.btn--primary{
+    color: var(--text-color-white);
+    background-color: var(--primary-color);
+}
+.btn--back{
+    color: var(--text-color-dark);
+    background-color: var(--third-color);
+}
+.btn--back:hover,.btn--auth:hover{
+    transform: scale(1.1);
+}
