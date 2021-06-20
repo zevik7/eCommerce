@@ -31,5 +31,12 @@
                 require_once './mvc/views/block/Modal.php';
         ?>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <!-- Slider -->
+    <script src="public/sliderengine/amazingslider.js"></script>
+    <script src="public/sliderengine/initslider-1.js"></script>
+    <!-- Slider -->
 </body>
 </html>
