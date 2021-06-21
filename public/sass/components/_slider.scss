@@ -741,3 +741,13 @@
 .as-btn-navy-small:focus {
     outline: 0;
 }
+
+//fix box-sizing
+#amazingslider-wrapper-1{
+    box-sizing: content-box !important;
+    max-width: 500px;
+}
+//custom arrow
+.amazingslider-car-left-arrow-1 {
+    cursor: pointer;
+}

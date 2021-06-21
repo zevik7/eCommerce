@@ -37,6 +37,7 @@
     <!-- Slider -->
     <script src="public/sliderengine/amazingslider.js"></script>
     <script src="public/sliderengine/initslider-1.js"></script>
+    <script src="public/js/customSlider.js"></script>
     <!-- Slider -->
 </body>
 </html>
