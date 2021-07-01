@@ -1,46 +1,60 @@
 <div class="grid">   
     <div class="productDetail grid-row grid--alignment-top">
         <div class="grid-column-4">
-             <!--the slider -->
-            <div class="amazingslider-wrapper" id="amazingslider-wrapper-1" style="display:block;position:relative;margin:0px auto 116px">
-                <div class="amazingslider" id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
-                    <ul class="amazingslider-slides" style="display:none;">
-                        <li><img src="public/img/product/aokhoac.jpg" alt="aokhoac"  title="aokhoac" data-description="ao anh" />
-                        </li>
-                        <li><img src="public/img/product/aosomi.jpg" alt="aosomi"  title="aosomi" data-description="day la mo ta so mi anh" />
-                        </li>
-                        <li><img src="public/img/product/chongnang.png" alt="chongnang"  title="chongnang" data-description="ao chong nang anh" />
-                        </li>
-                        <li><img src="public/img/product/1200px-Logo_Dai_hoc_Can_Tho.png" alt="cloud will beat"  title="cloud will beat" data-description="video" />
-                        <video preload="none" src="public/img/product/cloud%20will%20beat.mp4" ></video>
-                        </li>
-                        <li><img src="public/img/product/cocsac.jpg" alt="cocsac"  title="cocsac" />
-                        </li>
-                    </ul>
-                    <ul class="amazingslider-thumbnails" style="display:none;">
-                        <li><img src="public/img/product/aokhoac-tn.jpg" alt="aokhoac" title="aokhoac" /></li>
-                        <li><img src="public/img/product/aosomi-tn.jpg" alt="aosomi" title="aosomi" /></li>
-                        <li><img src="public/img/product/chongnang-tn.png" alt="chongnang" title="chongnang" /></li>
-                        <li><img src="public/img/product/1200px-Logo_Dai_hoc_Can_Tho-tn.png" alt="cloud will beat" title="cloud will beat" /></li>
-                        <li><img src="public/img/product/cocsac-tn.jpg" alt="cocsac" title="cocsac" /></li>
-                    </ul>
+             <div class="productDetail__imgBox">
+                 <!--the slider -->
+                <div class="amazingslider-wrapper" id="amazingslider-wrapper-1" style="display:block;position:relative;margin:0px auto 116px">
+                    <div class="amazingslider" id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+                        <ul class="amazingslider-slides" style="display:none;">
+                            <li><img src="public/img/product/aokhoac.jpg" alt="aokhoac"  title="aokhoac" data-description="ao anh" />
+                            </li>
+                            <li><img src="public/img/product/aosomi.jpg" alt="aosomi"  title="aosomi" data-description="day la mo ta so mi anh" />
+                            </li>
+                            <li><img src="public/img/product/chongnang.png" alt="chongnang"  title="chongnang" data-description="ao chong nang anh" />
+                            </li>
+                            <li><img src="public/img/product/1200px-Logo_Dai_hoc_Can_Tho.png" alt="cloud will beat"  title="cloud will beat" data-description="video" />
+                            <video preload="none" src="public/img/product/cloud%20will%20beat.mp4" ></video>
+                            </li>
+                            <li><img src="public/img/product/cocsac.jpg" alt="cocsac"  title="cocsac" />
+                            </li>
+                        </ul>
+                        <ul class="amazingslider-thumbnails" style="display:none;">
+                            <li><img src="public/img/product/aokhoac-tn.jpg" alt="aokhoac" title="aokhoac" /></li>
+                            <li><img src="public/img/product/aosomi-tn.jpg" alt="aosomi" title="aosomi" /></li>
+                            <li><img src="public/img/product/chongnang-tn.png" alt="chongnang" title="chongnang" /></li>
+                            <li><img src="public/img/product/1200px-Logo_Dai_hoc_Can_Tho-tn.png" alt="cloud will beat" title="cloud will beat" /></li>
+                            <li><img src="public/img/product/cocsac-tn.jpg" alt="cocsac" title="cocsac" /></li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            <!-- end of the slider -->
+                <!-- end of the slider -->
+             </div>
         </div>
         <div class=" grid-column-8">
             <div class="productDetail__inforBox">
                 <div class="productDetail__heading">
-                    <span class="productDetail-heading__favorite">Yêu thích</span>
-                    <span id="productId" name="<?php echo $_SESSION['itemCodeSelected']?>" class="productDetail-heading__title"><?php echo $_SESSION['itemNameSelected'] ?></span> 
+                    <span class="productDetail__favorite">
+                        Yêu thích
+                    </span>
+                    <span class="productDetail__title">
+                        Laptop HP Pavilion Gaming 15-dk1086TX 206R3PA i7-10750H 8G 512G 1650Ti W10 Laptop HP Pavilion Gaming 15-dk1086TX 206R3PA i7-10750H 8G 512G 1650Ti W10 Laptop HP Pavilion Gaming 15-dk1086TX 206R3PA i7-10750H 8G 512G 1650Ti W10
+                    </span> 
                 </div>
                 <div class="productDetail__rating">
-                        <h3 class="productDetail-rating__number">5.0</h3>
+                    <div class="productDetail-rating__none">
+                        Chưa có đánh giá
+                    </div>
+                    <div class="productDetail-rating__valid">
+                        <!-- <h3 class="productDetail-rating__number">5.0</h3>
                         <i class="productDetail-rating__star fas fa-star"></i>
                         <i class="productDetail-rating__star fas fa-star"></i>
                         <i class="productDetail-rating__star fas fa-star"></i>
                         <i class="productDetail-rating__star fas fa-star"></i>
-                        <i class="productDetail-rating__star fas fa-star"></i>
+                        <i class="productDetail-rating__star fas fa-star"></i> -->
+                    </div>
+                    <div class="productDetail__sold">
+                        0 Đã bán
+                    </div>
                 </div>
                 <div class="productDetail__type">
                     <div class="productDetail-type__heading">Chọn loại hàng</div>
