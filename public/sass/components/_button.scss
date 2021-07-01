@@ -1,16 +1,11 @@
 .btn{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: inline-block;
     min-width: 120px;
-    height: 40px;
-    padding: 0 10px;
-    color: var(--text-color);
-    text-decoration: none;
+    padding: 8 16px;
     border: none;
+    outline: none;
     border-radius: 2px;
     font-size: 1.4rem;
-    outline: none;
     cursor: pointer;
 }
 .btn--primary{
@@ -23,4 +18,4 @@
 }
 .btn--back:hover,.btn--auth:hover{
     transform: scale(1.1);
-}
+}   
