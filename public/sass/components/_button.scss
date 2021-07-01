@@ -1,0 +1,22 @@
+.btn{
+    display: inline-block;
+    min-width: 120px;
+    padding: 8 16px;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+    font-size: 1.4rem;
+    cursor: pointer;
+}
+.btn--primary{
+    color: var(--text-color-white);
+    background-color: var(--primary-color);
+}
+.btn--back{
+    color: var(--text-color-dark);
+    background-color: var(--third-color);
+}
+.btn--back:hover,.btn--auth:hover{
+    transform: scale(1.1);
+}
+// day la commit cua master
