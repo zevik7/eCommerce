@@ -36,6 +36,9 @@
 .nav-list__item--login,.nav-list__item--signup{
     font-weight: 600;
 }
+.nav-list__item--login:hover,.nav-list__item--signup:hover{
+    cursor: pointer;
+}
 .item--separate::after{
     content:"";
     display: block; 

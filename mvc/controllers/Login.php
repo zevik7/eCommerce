@@ -14,17 +14,24 @@ class Login extends Controller{
 
         ]);
     }
-    public function Auth(){
-        if (isset($_POST["login-btn"]))
+     // Đăng nhập bằng SDT
+    public function LoginUserPhone(){
+        if (isset($_POST["auth-controls__signinBtn"]))
         {  
-            $checkValid = $this->userModel->checkValidUser($_POST['login-email'],$_POST['login-pass']);
-            if ($checkValid){
-                $_SESSION['userEmail'] = $_POST['login-email'];
-                echo json_encode(["status" => "success", "message" => "Đăng kí thành công"]);
-            }
-            else {
-                echo json_encode(["status" => "error", "message" => "Tài khoản hoặc mật khẩu không đúng"]);
-            }
+            $userPhone      = $_POST["auth-body-signin__account"];
+            $userPassword   = $_POST["auth-body-signin__password"];
+            $result = $this->userModel->checkAccount( $userPhone, null, $userPassword);
+            echo json_encode($result);
+        }
+    }
+    // Đăng nhập bằng Email
+    public function LoginUserEmail(){
+        if (isset($_POST["auth-controls__signinBtn"]))
+        {  
+            $userEmail      = $_POST["auth-body-signin__account"];
+            $userPassword   = $_POST["auth-body-signin__password"];
+            $result = $this->userModel->checkAccount( null,  $userEmail , $userPassword);
+            echo json_encode($result);
         }
     }
     public function Logout(){

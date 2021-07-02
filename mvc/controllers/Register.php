@@ -9,29 +9,39 @@ class Register extends Controller{
         {
             header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat/Home/Chat');
             die();
-        }
+        }   
         $this->view('Register',[
 
         ]);
     }
     public function Auth(){
-        if (isset($_POST["register-btn"]))
+        if (isset($_POST["auth-controls__signupBtn"]))
         {
-            $checkValid = $this->userModel->checkValidUser($_POST['register-email']);
-            if ($checkValid){
-                echo json_encode(["status" => "error", "message" => "Tài khoản đã tồn tại"]);
+            $userEmail      = $_POST["auth-body__email"];
+            $userPhone      = $_POST["auth-body__phoneNumber"];
+            $userPassword   = $_POST["auth-body__password"];
+            $userName       = $_POST["auth-body__userName"];
+            $result = $this->userModel->insertUser( $userEmail, $userPhone, $userPassword, $userName);
+            if ($result) {
+                echo json_encode(['status' => 'success', 'message' => 'Đăng kí thành công']);
             }
-            else {
-                $result = $this->userModel->insertUser($_POST['register-email'],$_POST['register-pass'], $_POST['gender']);
-                if ($result)
-                {
-                    echo json_encode(["status" => "success", "message" => "Đăng ký thành công"]);
-                }
-                else {
-                    echo json_encode(["status" => "error", "message" => "Không thể thêm vào CSDL"]);
-                }
+            else{
+                echo json_encode(['status' => 'error', 'message' => 'Tài khoản đã tồn tại']);
             }
+            
         }
+    }
+    //Kiểm tra SDT đăng ký có tồn tại chưa
+    public function CheckUserPhone(){
+        $userPhone  = $_POST["validUserPhone"];
+        $result = $this->userModel->validuserPhone($userPhone);
+            echo json_encode($result);
+    }
+     //Kiểm tra email đăng ký có tồn tại chưa
+    public function CheckUserEmail(){
+        $userEmail  = $_POST["validUserEmail"];
+        $result = $this->userModel->validUserEmail($userEmail);
+            echo json_encode($result);
     }
 }
 ?>
