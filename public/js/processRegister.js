@@ -5,8 +5,12 @@ $(document).ready(function(){
 
     $("#nav-list__signinBtn").click(function(){
         getFormSignin()
-      });
-    
+    });
+
+    /*------Tui nghĩ là 2 cái check này nên làm chung luôn, gửi đến server xử lí sau
+        Tui có sửa controller ở model
+        Cái này nên nên check khi gửi form xong ă, đừng check khi nó gõ, vì mỗi lần gõ nó lại gửi lên server 1 lần, phải vậy không ta ??
+    */
     // Check xem SĐT đã được dùng hay chưa
     $("#modal-body-signup__phoneNumber").keyup(function(){
         var userPhone = $(this).val();
@@ -37,6 +41,8 @@ $(document).ready(function(){
     });
 });
 
+
+//Phần này thì quá xịn xò ời
 function getFormSignup(){
     document.getElementById('modal').style.display='flex';
     document.getElementById('modal-body__signup').style.display='block';
@@ -158,6 +164,7 @@ $(document).ready(function(){
         }
       });
     
+    //cái này khỏi cần, mình xửu lí backend luôn
     //*****Phân biệt SĐT với Email khi đăng nhập */
     $('#modal-body-signin__account').keyup(function(){
         var account = $('#modal-body-signin__account').val();
@@ -235,7 +242,6 @@ $(document).ready(function(){
     });
 
     function cleanForm(){
-
         validatorSignup.resetForm();
         validatorSignin.resetForm();
         document.getElementById('modal').style.display='none';

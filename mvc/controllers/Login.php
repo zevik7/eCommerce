@@ -14,6 +14,8 @@ class Login extends Controller{
 
         ]);
     }
+
+    // 2 cái này viết chung như bên user model luôn, so sánh chuỗi nếu có @ thì chắc chắn là email, còn lại là điện thoại
      // Đăng nhập bằng SDT
     public function LoginUserPhone(){
         if (isset($_POST["auth-controls__signinBtn"]))
@@ -35,9 +37,8 @@ class Login extends Controller{
         }
     }
     public function Logout(){
-        unset($_SESSION['userEmail']);
         session_destroy();
-        header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat');
+        //header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat');
         die();
     
     }

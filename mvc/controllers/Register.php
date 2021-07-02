@@ -43,5 +43,17 @@ class Register extends Controller{
         $result = $this->userModel->validUserEmail($userEmail);
             echo json_encode($result);
     }
+    // 2 hàm trên nên viết thành 1 hàm như này
+    public function CheckAccount(){
+        $userEmail  = $_POST["userAccount"];
+        $result = $this->userModel->checkValidAccount($userEmail);
+        if ($result != false){
+            echo json_encode(['status'=>'success','message'=>'Đăng nhập thành công']);
+        }
+        else{
+            echo json_encode(['status'=>'error','message'=>'Đăng nhập thất bại']);
+        }
+        // Không nên lấy json trả từ model
+    }
 }
 ?>
