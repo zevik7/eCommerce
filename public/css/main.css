@@ -1033,6 +1033,251 @@ html {
   cursor: default;
 }
 
+/* selection */
+.select-input {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 190px;
+  height: 30px;
+  padding: 0 12px;
+  border-radius: 2px;
+  background-color: white;
+}
+
+.select-input__list {
+  display: none;
+  position: absolute;
+  padding: 4px 0;
+  left: 0;
+  right: 0;
+  top: 18px;
+  border-radius: 2px;
+  background-color: white;
+  list-style: none;
+}
+
+.select-input__link {
+  display: block;
+  padding: 7px 12px;
+  font-size: 1.4rem;
+  color: #333;
+  text-decoration: none;
+}
+
+.select-input__link:hover {
+  color: #045762;
+}
+
+#amazingslider-wrapper-1 {
+  box-sizing: content-box !important;
+  max-width: 500px;
+}
+
+.amazingslider-car-left-arrow-1 {
+  cursor: pointer;
+}
+
+/* Modal Popup */
+.modal {
+  position: fixed;
+  display: flex;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+}
+
+.modal__overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.35);
+}
+
+.modal__body {
+  margin: auto;
+  border-radius: 3px;
+  position: relative;
+  background-color: white;
+  overflow: hidden;
+  animation: formAnimation ease-in 0.3s;
+}
+
+/* Signup */
+.modal-body__auth {
+  width: 450px;
+  padding: 30px;
+}
+
+.auth-header {
+  height: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  color: #333;
+  border-bottom: 1px solid #c7c7c7;
+}
+
+.auth-header__title {
+  margin: 0;
+}
+
+.auth-header__switch {
+  font-size: 1.4rem;
+  margin: 0;
+  color: #045762;
+  cursor: pointer;
+}
+
+.auth-body {
+  padding: 0;
+}
+
+.auth-body__element {
+  position: relative;
+}
+
+.auth-policy {
+  text-align: center;
+  margin: 20px 0;
+  font-size: 1.2rem;
+}
+
+.auth-policy__link {
+  color: #3f6f7e;
+  text-decoration: none;
+}
+
+.auth-controls {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.2rem;
+}
+
+.modal-body__socials {
+  display: flex;
+  justify-content: space-evenly;
+  height: 50px;
+}
+
+.modal-body-socials__facebook, .modal-body-socials__google {
+  width: 44%;
+}
+
+.modal-body-socials__google {
+  background-color: #F74933;
+  color: #fff;
+}
+
+.modal-body-socials__facebook {
+  background-color: #455CA8;
+  color: #fff;
+}
+
+/* Forget pass */
+.modal-body-auth__forgetPass {
+  font-size: 1.2rem;
+  text-align: right;
+  margin-top: 10px;
+}
+
+.modal-body-auth-forgetPass__link {
+  color: #045762;
+  text-decoration: none;
+}
+
+/* Animation Form Signup and Login */
+@keyframes formAnimation {
+  0% {
+    transform: scale(0.5);
+    opacity: 0.5;
+    background-color: #39A2DB;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+.auth-body__errorTxt {
+  color: red;
+  font-size: 1.4rem;
+  margin-top: 6px;
+  display: block;
+}
+
+.auth-body__showPassword {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.modal-body__showPassword {
+  margin: 0 4px;
+}
+
+.auth-body-lable__showPassword {
+  font-size: 1.4rem;
+  display: block;
+  margin-top: 2px;
+}
+
+.auth-body-lable__showPassword:hover, .auth-body-lable__showPassword:hover {
+  cursor: pointer;
+}
+
+.auth-header__switch {
+  text-decoration: none;
+}
+
+.input {
+  margin-top: 10px;
+  width: 100%;
+  height: 40px;
+  padding: 0 10px;
+  border-radius: 2px;
+  border: 1px solid #dfdfdf;
+  font-size: 1.4rem;
+}
+
+.input:hover {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.input:focus {
+  outline: none;
+  background-color: white;
+}
+
+.input ~ .underline {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: #045762;
+}
+
+.input:focus ~ .underline {
+  width: 100%;
+  transition: 0.5s;
+}
+
+#amazingslider-wrapper-1 {
+  box-sizing: content-box !important;
+  max-width: 500px;
+}
+
+.amazingslider-car-left-arrow-1 {
+  cursor: pointer;
+}
+
 .header {
   padding: 0 50px;
   height: 110px;
