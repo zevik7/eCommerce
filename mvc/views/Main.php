@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hevy Shop</title>
+    <title>Hevy Shop Origin</title>
     <base href="http://<?php echo $_SERVER['HTTP_HOST']?>/eCommerce/"/>
     <link rel="stylesheet" href="/eCommerce/public/icon/fontawesome/css/all.css">
     <link rel="stylesheet" href="/eCommerce/public/css/main.css">
@@ -31,12 +31,13 @@
                 require_once './mvc/views/block/Modal.php';
         ?>
     </div>
-
+    
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js" integrity="sha512-jIgckTOSEC6cW2syg/cJIueoB9V4DIWvipqMP5v+820ZHNPwYm7Qyxw4h7rMe58DL2ARxLb9FXji8Ur9pmIdzA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js" integrity="sha512-37T7leoNS06R80c8Ulq7cdCDU5MNQBwlYoy1TX/WUsLFC2eYNqtKlV0QjH7r8JpG/S0GUMZwebnVFLPd6SU5yg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <!-- Slider -->
     <script src="public/sliderengine/amazingslider.js"></script>
     <script src="public/sliderengine/initslider-1.js"></script>
     <!-- Slider -->
+    <script src="public/js/processRegister.js"></script>
 </body>
 </html>

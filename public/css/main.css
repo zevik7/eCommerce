@@ -744,6 +744,39 @@ html {
     opacity: 1;
   }
 }
+.auth-body__errorTxt {
+  color: red;
+  font-size: 1.4rem;
+  margin-top: 6px;
+  display: block;
+}
+
+.auth-body__showPassword {
+  display: flex;
+  align-items: center;
+  height: 20px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+.modal-body__showPassword {
+  margin: 0 4px;
+}
+
+.auth-body-lable__showPassword {
+  font-size: 1.4rem;
+  display: block;
+  margin-top: 2px;
+}
+
+.auth-body-lable__showPassword:hover, .auth-body-lable__showPassword:hover {
+  cursor: pointer;
+}
+
+.auth-header__switch {
+  text-decoration: none;
+}
+
 .input {
   margin-top: 10px;
   width: 100%;
@@ -1574,6 +1607,10 @@ html {
 
 .nav-list__item--login, .nav-list__item--signup {
   font-weight: 600;
+}
+
+.nav-list__item--login:hover, .nav-list__item--signup:hover {
+  cursor: pointer;
 }
 
 .item--separate::after {
