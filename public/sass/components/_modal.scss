@@ -10,15 +10,15 @@
 }
 .modal__overlay{
     position: absolute;
-    width:100%;
+    width: 100%;
     height: 100%;
-    background-color: rgba(0,0,0,0.3);
+    background-color: $background-color-transparent;
 }
 .modal__body{
     margin: auto;
     border-radius: 3px;
     position: relative;
-    background-color:var(--white-color);
+    background-color: $white-color;
     overflow: hidden;
     animation: formAnimation ease-in 0.3s;
 }
@@ -33,8 +33,8 @@
     display: flex;
     justify-content: space-between;
     font-size: 1.5rem;
-    color:var(--text-color);
-    border-bottom: 1px solid var(--border-color-dark);
+    color:$text-color;
+    border-bottom: 1px solid $border-color-dark;
 }
 .auth-header__title{
     margin:0;
@@ -42,7 +42,7 @@
 .auth-header__switch{
     font-size: 1.4rem;
     margin:0;
-    color: var(--primary-color);
+    color: $primary-color;
     cursor: pointer;
 }
 .auth-body{
@@ -57,7 +57,7 @@
     font-size: 1.2rem;
 }
 .auth-policy__link{
-    color:var(--second-color);
+    color:$second-color;
     text-decoration: none;
 }
 .auth-controls{
@@ -76,12 +76,12 @@
     width: 44%;
 }
 .modal-body-socials__google{
-    background-color: var(--google-color);
-    color:var(--text-color-white);
+    background-color: $google-color;
+    color:$text-color-white;
 }
 .modal-body-socials__facebook{
-    background-color: var(--facebook-color);
-    color:var(--text-color-white);
+    background-color: $facebook-color;
+    color:$text-color-white;
 }
 /* Forget pass */
 .modal-body-auth__forgetPass{
@@ -90,7 +90,7 @@
     margin-top:10px;
 }
 .modal-body-auth-forgetPass__link{
-    color:var(--primary-color);
+    color:$primary-color;
     text-decoration: none;
 }
 /* Animation Form Signup and Login */
@@ -98,7 +98,7 @@
     0%{
         transform: scale(0.5);
         opacity: 0.5;
-        background-color: var(--third-color);
+        background-color: $third-color;
     }
     100%{
         transform: scale(1);

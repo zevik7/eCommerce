@@ -1,32 +1,42 @@
-:root{
-    //System color
-    --primary-color:#045762;
-    --second-color:#3f6f7e;
-    --third-color:#dff3e3;
-    //Text
-    --text-color:#333;
-    --text-color-light:#666;
-    --text-color-dark:#212529;
-    --text-color-white:#fff;
-    --text-color-disable:rgba(0,0,0,.05);
+//System color
+$primary-color: #045762;
+$second-color: #3f6f7e;
+$third-color:  #39A2DB;
+$fourth-color: #A2DBFA;
+$fifth-color: #E8F0F2;
 
-    //Decoration color
-    --background-color-transparent:rgba(0,0,0,.35);
-    --hover-color-text:rgba(0,0,0,.03);
-    --hover-color-input:rgba(0,0,0,.03);
+//Text
+$text-color: #333;
+$text-color-light: #555;
+$text-color-dark: #111;
+$text-color-black: #000;
+$text-color-white: #fff;
+$text-color-disable: rgba(0,0,0,.05);
 
-    --shadow-color-dark:#3E5363;
-    --border-color-light:#dfdfdf;
-    --border-color-dark:#c7c7c7;
-    --border-color-white:#fff;
+//Background color
+$background-color-transparent: rgba(0,0,0,.35);
 
-    //Pure colors
-    --white-color:white;
-    --red-color:#cf2a2a;
-    --blue-color: #455CA8;
-    --yellow-color: #fdf253;
+//Hover color
+$hover-color-dark: rgba(0,0,0,.03);
+$hover-color-light: rgba(255, 255, 255, 0.05);
+$hover-color-text: rgba(0,0,0,.03);
+$hover-color-input: rgba(0,0,0,.03);
 
-    //Social 
-    --facebook-color:#455CA8;
-    --google-color:#F74933;
-}
+$shadow-color-dark: #3E5363;
+$border-color-light: #dfdfdf;
+$border-color-dark: #c7c7c7;
+$border-color-white: #fff;
+$background-color: rgba(0,0,0,.03);
+//Pure colors
+$white-color: white;
+$red-color: #cf2a2a;
+$orange-color: #cf822a;
+$blue-color: #455CA8;
+$yellow-color: #fdf253;
+
+//Social 
+$facebook-color: #455CA8;
+$google-color: #F74933;
+
+
+$primary: red;

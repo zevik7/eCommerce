@@ -1,23 +1,47 @@
 .btn{
     display: inline-block;
-    min-width: 120px;
-    padding: 8 16px;
+    padding: 8px 16px;
     border: none;
     outline: none;
     border-radius: 2px;
-    font-size: 1.4rem;
+    font-size: 1.5rem;
     cursor: pointer;
+    background-color: $fifth-color;
+    color: $text-color;
+
+    &--primary{
+        color: $text-color-white;
+        background-color: $primary-color;
+
+        &:hover{
+            background-color: $hover-color-light;
+        }
+    }
 }
-.btn--primary{
-    color: var(--text-color-white);
-    background-color: var(--primary-color);
+.btn-outline-primary {
+    color: #007bff;
+    border-color: #007bff;
 }
-.btn--back{
-    color: var(--text-color-dark);
-    background-color: var(--third-color);
+.btn-outline-primary:hover {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
 }
-.btn--back:hover,.btn--auth:hover{
-    transform: scale(1.1);
+.btn-outline-primary:focus, .btn-outline-primary.focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
 }
-// day la commit cua master
+.btn-outline-primary.disabled, .btn-outline-primary:disabled {
+    color: #007bff;
+    background-color: transparent;
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active, .btn-outline-primary:not(:disabled):not(.disabled).active,
+.show > .btn-outline-primary.dropdown-toggle {
+    color: #fff;
+    background-color: #007bff;
+    border-color: #007bff;
+}
+.btn-outline-primary:not(:disabled):not(.disabled):active:focus, .btn-outline-primary:not(:disabled):not(.disabled).active:focus,  
+.show > .btn-outline-primary.dropdown-toggle:focus {
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.5);
+}
 

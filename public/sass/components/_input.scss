@@ -4,15 +4,15 @@
     height: 40px;
     padding: 0 10px;
     border-radius:2px;
-    border: 1px solid var(--border-color-light);
+    border: 1px solid $border-color-light;
     font-size: 1.4rem;
 }
 .input:hover{
-    background-color: var(--hover-color-input);
+    background-color: $hover-color-input;
 }
 .input:focus{
     outline: none;
-    background-color: var(--white-color);
+    background-color: $white-color;
 }
 .input ~ .underline {
     position: absolute;
@@ -20,7 +20,7 @@
     left: 0;
     width: 0;
     height: 1px;
-    background-color: var(--primary-color);
+    background-color: $primary-color;
 }
 .input:focus ~ .underline {
     width: 100%;

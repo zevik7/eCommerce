@@ -9,7 +9,7 @@
     height: 30px;
     padding:0 12px;
     border-radius: 2px;
-    background-color: var(--white-color);
+    background-color: $white-color;
 }
 .select-input__list{
     display: none;
@@ -19,16 +19,16 @@
     right: 0;
     top:18px;
     border-radius: 2px;
-    background-color: var(--white-color);
+    background-color: $white-color;
     list-style:none;
 }
 .select-input__link{
     display:block;
     padding:7px 12px;
     font-size: 1.4rem;
-    color:var(--text-color);
+    color:$text-color;
     text-decoration: none;
 }
 .select-input__link:hover{
-    color: var(--primary-color);
+    color: $primary-color;
 }
