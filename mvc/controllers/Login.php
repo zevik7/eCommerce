@@ -15,25 +15,19 @@ class Login extends Controller{
         ]);
     }
 
-    // 2 cái này viết chung như bên user model luôn, so sánh chuỗi nếu có @ thì chắc chắn là email, còn lại là điện thoại
-     // Đăng nhập bằng SDT
-    public function LoginUserPhone(){
+    public function LoginUser(){
         if (isset($_POST["auth-controls__signinBtn"]))
-        {  
-            $userPhone      = $_POST["auth-body-signin__account"];
+        {   
+            $userAccount    = $_POST["auth-body-signin__account"];
             $userPassword   = $_POST["auth-body-signin__password"];
-            $result = $this->userModel->checkAccount( $userPhone, null, $userPassword);
-            echo json_encode($result);
-        }
-    }
-    // Đăng nhập bằng Email
-    public function LoginUserEmail(){
-        if (isset($_POST["auth-controls__signinBtn"]))
-        {  
-            $userEmail      = $_POST["auth-body-signin__account"];
-            $userPassword   = $_POST["auth-body-signin__password"];
-            $result = $this->userModel->checkAccount( null,  $userEmail , $userPassword);
-            echo json_encode($result);
+            $result = $this->userModel->loginUser( $userAccount, $userPassword);
+            if ($result) {
+                echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
+            }
+            else{
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy tài khoản']);
+            }
+            
         }
     }
     public function Logout(){

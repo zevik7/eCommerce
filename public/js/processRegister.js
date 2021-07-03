@@ -7,42 +7,9 @@ $(document).ready(function(){
         getFormSignin()
     });
 
-    /*------Tui nghĩ là 2 cái check này nên làm chung luôn, gửi đến server xử lí sau
-        Tui có sửa controller ở model
-        Cái này nên nên check khi gửi form xong ă, đừng check khi nó gõ, vì mỗi lần gõ nó lại gửi lên server 1 lần, phải vậy không ta ??
-    */
-    // Check xem SĐT đã được dùng hay chưa
-    $("#modal-body-signup__phoneNumber").keyup(function(){
-        var userPhone = $(this).val();
-        $.post('./Register/CheckUserPhone',{ validUserPhone : userPhone } ,function(data){
-            var result = JSON.parse(data);
-            if (result.localeCompare('false')){
-                $("#modal-body-signup__validUserPhone").html('Số điện thoại này đã được dùng');
-            }
-            else {
-                $("#modal-body-signup__validUserPhone").html('');
-            }
-            console.log(typeof data);
-        });
-    });
-    // Check xem SĐT đã được dùng hay chưa
-    $("#modal-body-signup__email").keyup(function(){
-        var userEmail = $(this).val();
-        $.post('./Register/CheckUserEmail',{ validUserEmail : userEmail } ,function(data){
-            var result = JSON.parse(data);
-            if (result.localeCompare('false')){
-                $("#modal-body-signup__validEmail").html('Email này đã được dùng');
-            }
-            else {
-                $("#modal-body-signup__validEmail").html('');
-            }
-            console.log(typeof data);
-        });
-    });
 });
 
 
-//Phần này thì quá xịn xò ời
 function getFormSignup(){
     document.getElementById('modal').style.display='flex';
     document.getElementById('modal-body__signup').style.display='block';
@@ -56,7 +23,6 @@ function getFormSignin(){
     document.getElementById('modal-body__signinSocial').style.display='flex';
     document.getElementById('modal-body__signup').style.display='none';
     document.getElementById('modal-body__signupSocial').style.display='none';
-    
 }
 
 
@@ -163,36 +129,20 @@ $(document).ready(function(){
             signupRePassword.attr('type', 'password');
         }
       });
-    
-    //cái này khỏi cần, mình xửu lí backend luôn
-    //*****Phân biệt SĐT với Email khi đăng nhập */
-    $('#modal-body-signin__account').keyup(function(){
-        var account = $('#modal-body-signin__account').val();
-        const pattern =/(84|0[3|5|7|8|9])+([0-9]{8})\b/;
-        if(pattern.test(account)){
-           $('#modal-body-signin__getLink').html('./Login/LoginUserPhone');
-           // Nếu là SĐT thì gán url cho thẻ có id = 'modal-body-signin__getLink'
-        }
-        else {
-          $('#modal-body-signin__getLink').html('./Login/LoginUserEmail');
-        }
-    });
-
 
     let validatorSignin = $("#modal-body__signin").validate({
 		rules: {
             "auth-body-signin__account" : {
                 required: true,
-                maxlength: 100
             },
             "auth-body-signin__password" : {
-                required: true
+                required: true,
+                validatePassword: true
             }
 		},
 		messages: {
             "auth-body-signin__account" : {
                 required: 'Vui lòng nhập số điện thoại hoặc email',
-                maxlength: 'Tối đa là 100 ký tự',
             },
             "auth-body-signin__password" : {
                 required: 'Vui lòng nhập mật khẩu'
@@ -208,20 +158,21 @@ $(document).ready(function(){
             }
         },
         submitHandler: function(form) {
-            var getLink = document.getElementById('modal-body-signin__getLink').innerHTML;
             $.ajax({
                 type:"POST",
-                url: getLink,
+                url: './Login/LoginUser',
                 data:  $(form).serialize(),
                 dataType: 'JSON',
                 success:function(feedback){
-                    if (feedback.localeCompare('false') != 0){
-                       alert('Đăng nhập thành công');
+                    if (feedback.status == 'success')
+                    {
+                        
+                        alert(feedback.message)
                     }
-                    else {
-                        alert('Đăng nhập thất bại');
+                    else{
+                       
+                       alert(feedback.message)  
                     }
-                    console.log(feedback);
                 },
                 error: function(feedback){
                    alert('Lỗi gửi dữ liệu lên server')
@@ -251,7 +202,6 @@ $(document).ready(function(){
         signupRePassword.attr('type', 'password');
         $('#modal-body__signup').trigger("reset");
         $('#modal-body__signin').trigger("reset");
-        $(".auth-body__errorTxt").html('');
 
     }
     $('#modal__overlay').on('click', function(){

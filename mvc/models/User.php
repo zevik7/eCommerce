@@ -4,42 +4,31 @@
             // $result = $this->read('SELECT * FROM user');
             // return json_encode($result);
         }
-        public function insertUser( $userEmail, $userPhone, $userPassword, $userName){
-            $query ='INSERT INTO user( userEmail, userPhone, userPassword, userName)  VALUES ( "'.$userEmail.'", "'.$userPhone.'", "'.$userPassword.'", "'.$userName.'")';
-            $result = $this->write($query);
-            return json_encode( $result);
-        }
-
-        //Nen lam 1 ham checkValidUser, so dien thoai hay email thi minh xu li chung, SELECT * FROM user WHERE userPhone = user or userEmail = user
-        public function checkValidUser($userAccount){
-            $query = "SELECT * FROM user WHERE userPhone = '$userAccount' or $userEmail = '$userAccount'";
-            $result = $this->read($query);
+        // Check xem tài khoản có tồn tại hay không
+        public function checkUser($userAccount){
+            $query = "SELECT * FROM user WHERE userEmail = '$userAccount' or userPhone = '$userAccount'";
+            $param = array ($userAccount);
+            $result = $this->read($query, $param);
             if ($result !== false){
                 return true;
             }
             else{
                 return false;
             }
-            //Gọn hơn đúng hơm kk
         }
-        // Nếu viết cái trên r k cần cái này
-        public function validuserPhone($userPhone){
-            $query = 'SELECT * FROM user WHERE userPhone = "'.$userPhone.'"';
-            $result = $this->read($query);
-            return json_encode($result);
+        public function insertNewUser( $userEmail, $userPhone, $userPassword, $userName){
+            if($this->checkUser($userEmail)) return false;
+            $query ='INSERT INTO user( userEmail, userPhone, userPassword, userName)  VALUES ( "'.$userEmail.'", "'.$userPhone.'", "'.$userPassword.'", "'.$userName.'")';
+            $param = array ($userEmail, $userPhone, $userPassword, $userName);
+            $result = $this->write($query, $param);
+            return $result;
         }
-       
-        public function validUserEmail($userEmail){
-            $query = 'SELECT * FROM user WHERE userEmail = "'.$userEmail.'"';
-            $result = $this->read($query);
-            return json_encode($result);
-        }
-        // Nên viết đối số như này, vì lớp db nó có sẵn
-        public function checkAccount($userPhone, $userEmail ,$userPassword){
-            //$query = 'SELECT * FROM user WHERE (userPhone = "'.$userPhone.'" OR userEmail = "'.$userEmail.'") AND userPassword = "'.$userPassword.'"';
-            // $param = array ($userPhone, $userEmail ,$userPassword);
-            // $result = $this->read($query, $param);
-           // Nên trả về true or false
+        public function loginUser($userAccount, $userPassword){
+            if($this->checkUser($userAccount) === false) return false;
+            $query = "SELECT * FROM user WHERE (userPhone = '$userAccount' OR userEmail = '$userAccount') AND userPassword = '$userPassword'";
+            $param = array ($userAccount, $userPassword);
+            $result = $this->read($query, $param);
+            return $result;
         }
     }
 ?>

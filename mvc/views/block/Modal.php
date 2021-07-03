@@ -17,13 +17,11 @@
                     <input id="modal-body-signup__phoneNumber" name="auth-body__phoneNumber"  data-error="#modal-body-signup__errorPhoneNumber"  type="text" class="auth-body-element__input input" placeholder="Nhập số điện thoại của bạn">
                     <span class="underline"></span>
                 </div>
-                <span class="auth-body__errorTxt" id="modal-body-signup__validUserPhone"></span>
                 <span class="auth-body__errorTxt" id="modal-body-signup__errorPhoneNumber"></span>
                 <div class="auth-body__element">
                     <input id="modal-body-signup__email" name="auth-body__email" data-error="#modal-body-signup__errorEmail" type="text" class="auth-body-element__input input" placeholder="Nhập email của bạn">
                     <span class="underline"></span>
                 </div>
-                <span class="auth-body__errorTxt" id="modal-body-signup__validEmail"></span>
                 <span class="auth-body__errorTxt" id="modal-body-signup__errorEmail"></span>
                 <div class="auth-body__element">
                     <input id="modal-body-signup__password" name="auth-body__password" data-error="#modal-body-signup__errorPassword" type="password" class="auth-body-element__input input" placeholder="Nhập mật khẩu của bạn">
