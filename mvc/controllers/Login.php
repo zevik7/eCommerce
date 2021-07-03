@@ -14,23 +14,25 @@ class Login extends Controller{
 
         ]);
     }
-    public function Auth(){
-        if (isset($_POST["login-btn"]))
-        {  
-            $checkValid = $this->userModel->checkValidUser($_POST['login-email'],$_POST['login-pass']);
-            if ($checkValid){
-                $_SESSION['userEmail'] = $_POST['login-email'];
-                echo json_encode(["status" => "success", "message" => "Đăng kí thành công"]);
+
+    public function LoginUser(){
+        if (isset($_POST["auth-controls__signinBtn"]))
+        {   
+            $userAccount    = $_POST["auth-body-signin__account"];
+            $userPassword   = $_POST["auth-body-signin__password"];
+            $result = $this->userModel->loginUser( $userAccount, $userPassword);
+            if ($result) {
+                echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
             }
-            else {
-                echo json_encode(["status" => "error", "message" => "Tài khoản hoặc mật khẩu không đúng"]);
+            else{
+                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy tài khoản']);
             }
+            
         }
     }
     public function Logout(){
-        unset($_SESSION['userEmail']);
         session_destroy();
-        header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat');
+        //header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat');
         die();
     
     }

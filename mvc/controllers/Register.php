@@ -9,28 +9,26 @@ class Register extends Controller{
         {
             header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat/Home/Chat');
             die();
-        }
+        }   
         $this->view('Register',[
 
         ]);
     }
     public function Auth(){
-        if (isset($_POST["register-btn"]))
+        if (isset($_POST["auth-controls__signupBtn"]))
         {
-            $checkValid = $this->userModel->checkValidUser($_POST['register-email']);
-            if ($checkValid){
-                echo json_encode(["status" => "error", "message" => "Tài khoản đã tồn tại"]);
+            $userEmail      = $_POST["auth-body__email"];
+            $userPhone      = $_POST["auth-body__phoneNumber"];
+            $userPassword   = $_POST["auth-body__password"];
+            $userName       = $_POST["auth-body__userName"];
+            $result = $this->userModel->insertNewUser( $userEmail, $userPhone, $userPassword, $userName);
+            if ($result) {
+                echo json_encode(['status' => 'success', 'message' => 'Đăng kí thành công']);
             }
-            else {
-                $result = $this->userModel->insertUser($_POST['register-email'],$_POST['register-pass'], $_POST['gender']);
-                if ($result)
-                {
-                    echo json_encode(["status" => "success", "message" => "Đăng ký thành công"]);
-                }
-                else {
-                    echo json_encode(["status" => "error", "message" => "Không thể thêm vào CSDL"]);
-                }
+            else{
+                echo json_encode(['status' => 'error', 'message' => 'Tài khoản đã tồn tại. Vui lòng đăng nhập.']);
             }
+            
         }
     }
 }

@@ -62,7 +62,7 @@
                                 {
                     ?>
                     <div class="grid-column-10-2">
-                        <a href="" class="product__item">
+                        <a href="./Item" class="product__item">
                             <div class="product-item__img" style="background-image: url(public/img/product/tinhchat.png);"></div>
                             <h4 class="product-item__name"><?php echo $value['productName'] ?></h4>
                             <div class="product-item__priceBox">
