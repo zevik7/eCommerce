@@ -32,7 +32,7 @@
         </div>
         <div class=" grid-column-8">
             <div class="productDetail__inforBox">
-                <button class="btn btn-primary disabled">Nút</button>
+                <button class="btn btn-primary">Nút</button>
                 <div class="productDetail__heading">
                     <span class=" productDetail__favorite">
                         Yêu thích
