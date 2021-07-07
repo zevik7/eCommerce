@@ -80,12 +80,12 @@
 .productDetail-type-list__item{
     margin:0 10px;
     padding:5px 10px;
-    border:2px solid $border-color-dark;
+    border:2px solid $border-dark;
     font-size: 1.4rem;
     cursor: pointer;
 }
 .productDetail-type-list__item:hover{
-    background-color: $hover-color-light;
+    background-color: $hover-color-text;
 }
 .productDetail__count{
     font-size: 1.7rem;

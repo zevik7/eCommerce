@@ -1,34 +1,17 @@
 
 /* selection */
-.select-input{
+.select{
     position: relative;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    min-width: 190px;
-    height: 30px;
-    padding:0 12px;
-    border-radius: 2px;
-    background-color: $white-color;
-}
-.select-input__list{
-    display: none;
-    position: absolute;
-    padding:4px 0;
-    left:0;
-    right: 0;
-    top:18px;
-    border-radius: 2px;
-    background-color: $white-color;
-    list-style:none;
-}
-.select-input__link{
-    display:block;
-    padding:7px 12px;
-    font-size: 1.4rem;
-    color:$text-color;
-    text-decoration: none;
-}
-.select-input__link:hover{
-    color: $primary-color;
+    padding: 5px 10px;
+    border: none;
+    outline: none;
+    border-radius: $border-radius;
+    ul{
+        z-index: 2;
+        position: absolute;
+        list-style: none;
+        top: 100%;
+        left: 0;
+    }
+
 }
