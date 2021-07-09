@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hevy Shop Origin</title>
+    <title>Hevy Shop</title>
     <base href="http://<?php echo $_SERVER['HTTP_HOST']?>/eCommerce/"/>
-    <link rel="stylesheet" href="/eCommerce/public/fontawesome/css/all.min.css" crossorigin="anonymous"/>
-    <link rel="stylesheet" type="text/css" href="/eCommerce/public/css/main.css">
+    <link rel="stylesheet" href="public/fontawesome/css/all.min.css" type="text/css" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="/eCommerce/public/css/main.css" type="text/css">
 </head>
 <body>
     <div class="webapp">

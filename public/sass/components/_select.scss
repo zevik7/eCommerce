@@ -2,16 +2,52 @@
 /* selection */
 .select{
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-width: 160px;
     padding: 5px 10px;
-    border: none;
-    outline: none;
     border-radius: $border-radius;
-    ul{
+    background-color: $background-color-white;
+    i{
+        padding-bottom: 5px;
+    }
+    &__title{
+        margin: 0;
+        font-weight: 400;
+    }
+    &__list{
         z-index: 2;
         position: absolute;
         list-style: none;
-        top: 100%;
+        min-width: 100%;
+        top: 110%;
         left: 0;
-    }
+        background-color: inherit;
+        box-shadow: $box-shadow-sm;
+        border: $border-light;
+        border-radius: $border-radius;
+        opacity: 0;
+        ::after{
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: 0;
+            height: 5px;
+            width: 100%;
+        }
 
+        li{
+            padding: 8px 16px;
+            font-size: 0.9em;
+            cursor: pointer;
+            &:hover{
+                background-color: $hover-color-bg;
+            }
+        }
+    }
+    &:hover > &__list{
+        opacity: 1;
+        transition: opacity 0.2s;
+    }
 }

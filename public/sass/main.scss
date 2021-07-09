@@ -10,25 +10,22 @@
 @import 'base/animation';
 @import 'base/custom';
 
-@import 'components/mixins';
+@import 'components/title';
 @import 'components/select';
 @import 'components/button';
 // @import 'components/carousel';
 @import 'components/slider';
 @import 'components/modal';
-@import 'components/search';
+//@import 'components/search';
 @import 'components/input';
-@import 'components/slider';
 
 @import 'layout/grid';
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/pagination';
-@import 'layout/manager';
+//@import 'layout/manager';
 // @import 'layout/sidebar';
 // @import 'layout/forms';
-
-
 
 @import 'page/home';
 @import 'page/product';
