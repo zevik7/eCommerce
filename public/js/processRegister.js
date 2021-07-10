@@ -10,21 +10,16 @@ $(document).ready(function(){
 
 
 function getFormSignup(){
-    $('.modal').css() //jquyery
-    document.getElementById('modal').style.display='flex'; //js
-    document.getElementById('modal-body__signup').style.display='block';
-    document.getElementById('modal-body__signupSocial').style.display='flex';
-    document.getElementById('modal-body__signin').style.display='none';
-    document.getElementById('modal-body__signinSocial').style.display='none';
+    $('#js-modal').css('display', 'block');
+    $('#js-modal-signup').css('display', 'block');
+    $('#js-modal-signin').css('display', 'none');
 }
 function getFormSignin(){
-    document.getElementById('modal').style.display='flex';
-    document.getElementById('modal-body__signin').style.display='block';
-    document.getElementById('modal-body__signinSocial').style.display='flex';
-    document.getElementById('modal-body__signup').style.display='none';
-    document.getElementById('modal-body__signupSocial').style.display='none';
+    $('#js-modal').css('display', 'block');
+    $('#js-modal-signup').css('display', 'none');
+    $('#js-modal-signin').css('display', 'block');
+    
 }
-
 
 $.validator.addMethod('notContainNumber',function(value, element){
     return this.optional(element) || (/^([^0-9]*)$/).test(value);
@@ -39,46 +34,46 @@ $.validator.addMethod("validatePassword", function (value, element) {
 }, "Hãy nhập password từ 8 đến 16 ký tự, trong đó ít nhất một chữ số");
 
 $(document).ready(function(){
-    let validatorSignup = $("#modal-body__signup").validate({
+    let validatorSignup = $("#js-modal-signup").validate({
 		rules: {
-            "auth-body__userName" : {
+            "modal-signup__username" : {
                 required: true,
                 maxlength: 100,
                 notContainNumber: true
             },
-            "auth-body__phoneNumber" : {
+            "modal-signup__phone" : {
                 required: true,
                 notContainLetter: true
             },
-			"auth-body__email": {
+			"modal-signup__email": {
                 email: true,
 				required: true
 			},
-			"auth-body__password": {
+			"modal-signup__password": {
 				required: true,
                 validatePassword: true
 			},
-			"auth-body__rePassword": {
-				equalTo: "#modal-body-signup__password", 
+			"modal-signup__repassword": {
+				equalTo: "#modal-signup__password", 
                 validatePassword: true
 			}
 		},
 		messages: {
-            "auth-body__userName" : {
+            "modal-signup__username" : {
                 required: 'Vui lòng nhập tên hiển thị',
                 maxlength: 'Tối đa là 100 ký tự',
             },
-            "auth-body__phoneNumber" : {
+            "modal-signup__phone" : {
                 required: 'Vui lòng nhập số điện thoại'
             },
-			"auth-body__email": {
+			"modal-signup__email": {
                 email: 'Email chưa đúng định dạng',
 				required: 'Vui lòng nhập email'
 			},
-			"auth-body__password": {
+			"modal-signup__password": {
 				required: 'Vui lòng nhập mật khẩu'
 			},
-			"auth-body__rePassword": {
+			"modal-signup__repassword": {
 				equalTo: "Mật khẩu nhập lại chưa đúng"
 			}
 		},
@@ -117,9 +112,9 @@ $(document).ready(function(){
         }
     })
     // *******Hiện mật khẩu
-    var signupPassword = $('#modal-body-signup__password');
-    var signupRePassword = $('#modal-body-signup__rePassword');
-    $('#modal-body-signup__showPassword').click(function() {
+    var signupPassword = $('#modal-signup__password');
+    var signupRePassword = $('#modal-signup__repassword');
+    $('#show-pass__signup').click(function() {
         if ($(this).is(':checked')) {
             signupPassword.attr('type', 'text');
             signupRePassword.attr('type', 'text');
@@ -130,21 +125,21 @@ $(document).ready(function(){
         }
       });
 
-    let validatorSignin = $("#modal-body__signin").validate({
+    let validatorSignin = $("#js-modal-signin").validate({
 		rules: {
-            "auth-body-signin__account" : {
+            "modal-signin__account" : {
                 required: true,
             },
-            "auth-body-signin__password" : {
+            "modal-signin__password" : {
                 required: true,
                 validatePassword: true
             }
 		},
 		messages: {
-            "auth-body-signin__account" : {
+            "modal-signin__account" : {
                 required: 'Vui lòng nhập số điện thoại hoặc email',
             },
-            "auth-body-signin__password" : {
+            "modal-signin__password" : {
                 required: 'Vui lòng nhập mật khẩu'
             }
 		},
@@ -182,8 +177,8 @@ $(document).ready(function(){
         
     })
     // Hiện mật khẩu khi đăng nhập
-    var signinPassword = $('#modal-body-signin__password');
-    $('#modal-body-signin__showPassword').click(function() {
+    var signinPassword = $('#modal-signin__password');
+    $('#show-pass__signin').click(function() {
         if ($(this).is(':checked')) {
             signinPassword.attr('type', 'text');
         }
@@ -192,22 +187,25 @@ $(document).ready(function(){
         }
     });
 
-    function cleanForm(){
+    function cleanForm(){   
+        $('#js-modal').css('display', 'none');
         validatorSignup.resetForm();
-        validatorSignin.resetForm();
-        document.getElementById('modal').style.display='none';
-        document.getElementsByClassName('modal-body__showPassword').checked= false;
-        signinPassword.attr('type', 'password');
         signupPassword.attr('type', 'password');
         signupRePassword.attr('type', 'password');
-        $('#modal-body__signup').trigger("reset");
-        $('#modal-body__signin').trigger("reset");
+        $('#js-modal-signup').trigger("reset");
+        validatorSignin.resetForm();
+        signinPassword.attr('type', 'password');
+        $('#js-modal-signin').trigger("reset");
 
     }
-    $('#modal__overlay').on('click', function(){
+    $("#js-modal-overlay").click(function(){
         cleanForm();
     });
-    $('.btn--back').on('click', function(){
+   
+    $('#modal-signup__back').on('click', function(){
+        cleanForm();
+    });
+    $('#modal-signin__back').on('click', function(){
         cleanForm();
     });
 })
