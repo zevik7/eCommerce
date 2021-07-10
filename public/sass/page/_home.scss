@@ -135,8 +135,18 @@
                 padding: 6px 0;
                 font-size: 1.5rem;
                 .price-original{
+                    position: relative;
                     color: $text-color-light;
-                    text-decoration: line-through;
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        top: 50%;
+                        left: 0;
+                        width: 100%;
+                        height: 1px;
+                        transform: rotate(-15deg);
+                        background-color: $text-color-light;
+                    }
                 }
                 .price-sale{
                     font-weight: 600;
@@ -148,6 +158,9 @@
                 justify-content: space-between;
                 font-size: 1.2rem;
                 padding-top: 5px;
+                .product-item__rating{
+                    color: $yellow-color;
+                }
                 .product-item__sold{
                     margin-left: 4px;
                 }
@@ -193,8 +206,8 @@
             font-weight: 600;
             line-height: 2rem;
             font-size: 1.2rem;
-            background-color: rgba(255,216,64, 0.8);
-            color: transparent;
+            background-color: $yellow-color;
+            color: $text-color-white;
         }
         .product-item__discount::after{
             content:"";
@@ -203,7 +216,7 @@
             bottom: -10px;
             border-width: 0 2rem 10px;
             border-style: solid;
-            border-color: transparent rgba(255,216,64,0.8) transparent rgba(255,216,64,0.8);
+            border-color: transparent $yellow-color transparent $yellow-color;
         }
         
     }
