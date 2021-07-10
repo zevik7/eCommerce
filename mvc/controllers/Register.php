@@ -15,12 +15,12 @@ class Register extends Controller{
         ]);
     }
     public function Auth(){
-        if (isset($_POST["auth-controls__signupBtn"]))
+        if (isset($_POST["modal-signup__submit"]))
         {
-            $userEmail      = $_POST["auth-body__email"];
-            $userPhone      = $_POST["auth-body__phoneNumber"];
-            $userPassword   = $_POST["auth-body__password"];
-            $userName       = $_POST["auth-body__userName"];
+            $userEmail      = $_POST["modal-signup__email"];
+            $userPhone      = $_POST["modal-signup__phone"];
+            $userPassword   = $_POST["modal-signup__password"];
+            $userName       = $_POST["modal-signup__username"];
             $result = $this->userModel->insertNewUser( $userEmail, $userPhone, $userPassword, $userName);
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Đăng kí thành công']);

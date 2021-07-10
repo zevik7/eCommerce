@@ -1868,4 +1868,80 @@ a {
   height: 100%;
 }
 
+.personal {
+  margin-left: 7.4rem;
+  margin-right: 7.4rem;
+}
+
+.sidePer {
+  height: 500px;
+  margin-bottom: 50px;
+}
+
+.contPer {
+  height: 500px;
+  background-color: lightcoral;
+  padding-top: 20px;
+}
+
+.sidePer-header-img__holder {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.sidePer-header-img__avatar {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.sidePer__header {
+  display: flex;
+  align-items: center;
+  padding: 15px 0;
+}
+
+.sidePer-header-heading__username {
+  color: var(--text-color-dark);
+  font-size: 1.4rem;
+  margin: 4px 0;
+}
+
+.sidePer-header__heading {
+  padding-left: 15px;
+  margin: 0;
+  text-decoration: none;
+}
+
+.sidePer-header-heading__customize {
+  font-size: 1.4rem;
+  color: var(--text-color-light);
+}
+
+.sidePer__body {
+  list-style-type: none;
+  margin-top: 26px;
+  padding: 0;
+}
+
+.sidePer-body__item {
+  font-size: 1.4rem;
+  color: var(--text-color);
+  word-spacing: 0.2rem;
+  margin-bottom: 15px;
+}
+
+.sidePer-body__item .fas {
+  font-size: 1.7rem;
+  margin-right: 10px;
+}
+
+.sidePer-body-item__link {
+  text-decoration: none;
+  color: var(--blue-color);
+}
+
 /*# sourceMappingURL=main.css.map */

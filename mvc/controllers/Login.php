@@ -16,10 +16,10 @@ class Login extends Controller{
     }
 
     public function LoginUser(){
-        if (isset($_POST["auth-controls__signinBtn"]))
+        if (isset($_POST["modal-signin__submit"]))
         {   
-            $userAccount    = $_POST["auth-body-signin__account"];
-            $userPassword   = $_POST["auth-body-signin__password"];
+            $userAccount    = $_POST["modal-signin__account"];
+            $userPassword   = $_POST["modal-signin__password"];
             $result = $this->userModel->loginUser( $userAccount, $userPassword);
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
