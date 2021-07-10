@@ -6,7 +6,6 @@ $(document).ready(function(){
     $("#nav-list__signinBtn").click(function(){
         getFormSignin()
     });
-
 });
 
 
