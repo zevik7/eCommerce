@@ -1,137 +1,114 @@
 /* Modal Popup */
 .modal{
     position: fixed;
-    display: flex;
     top:0;
     right:0;
     bottom:0;
     left:0;
-    display: none;
 }
-.modal__overlay{
+.modal-overlay{
     position: absolute;
-    width:100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.3);
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
 }
-.modal__body{
+.modal-body{
+    position: relative;
     margin: auto;
-    border-radius: 3px;
-    position: relative;
-    background-color:var(--white-color);
-    overflow: hidden;
-    animation: formAnimation ease-in 0.3s;
+    margin-top: 100px;
+    width: 500px;
+    animation: zoom-center ease-in 0.3s;
 }
-/* Signup */
-.modal-body__auth{
-    width: 450px;
-    padding:30px;
-}
-.auth-header{
-    height: 30px;
-    margin-bottom: 30px;
-    display: flex;
-    justify-content: space-between;
-    font-size: 1.5rem;
-    color:var(--text-color);
-    border-bottom: 1px solid var(--border-color-dark);
-}
-.auth-header__title{
-    margin:0;
-}
-.auth-header__switch{
+/* Signup form*/
+.modal-body__form{
+    padding: 25px;
     font-size: 1.4rem;
-    margin:0;
-    color: var(--primary-color);
-    cursor: pointer;
+    border-radius: $border-radius;
+    background-color: $background-color-white;
 }
-.auth-body{
-    padding: 0;
+.modal-form__header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid $hover-color-text;
+
+    .switch{
+        padding: 10px;
+        color: $primary-color;
+        text-decoration: none;
+        cursor: pointer;
+    }
 }
-.auth-body__element{
+.modal-form__input{
     position: relative;
+    margin-top: 10px;
 }
-.auth-policy{
-    text-align: center;
-    margin:20px 0;
-    font-size: 1.2rem;
-}
-.auth-policy__link{
-    color:var(--second-color);
-    text-decoration: none;
-}
-.auth-controls{
-    margin-top:40px;
+.modal-form__controls{
     display: flex;
     justify-content: space-between;
-    font-size: 1.2rem;
-    
-}
-.modal-body__socials{
-    display: flex;
-    justify-content: space-evenly;
-    height: 50px;
-}
-.modal-body-socials__facebook,.modal-body-socials__google{
-    width: 44%;
-}
-.modal-body-socials__google{
-    background-color: var(--google-color);
-    color:var(--text-color-white);
-}
-.modal-body-socials__facebook{
-    background-color: var(--facebook-color);
-    color:var(--text-color-white);
-}
-/* Forget pass */
-.modal-body-auth__forgetPass{
-    font-size:1.2rem;
-    text-align: right;
-    margin-top:10px;
-}
-.modal-body-auth-forgetPass__link{
-    color:var(--primary-color);
-    text-decoration: none;
-}
-/* Animation Form Signup and Login */
-@keyframes formAnimation {
-    0%{
-        transform: scale(0.5);
-        opacity: 0.5;
-        background-color: var(--third-color);
+    margin-top: 20px;
+    .btn{
+        font-size: 1.6rem;
+        padding: 10px 16px;
     }
-    100%{
-        transform: scale(1);
-        opacity: 1;
-       
+}
+.modal-form__socials{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+    a{
+        text-decoration: none;
+    }
+    .facebook-auth, .google-auth{
+        display: block;
+        padding: 10px;
+        color: $text-color-white;
+    }
+    .facebook-auth{
+        background-color: $facebook-color;
+    }
+    .google-auth{
+        background-color: $google-color;
+    }
+   
+}
+.login-policy{
+    text-align: center;
+    a{
+        display: block;
+        text-decoration: none;
+        color: $primary-color;
+        &:hover{
+            font-weight: 500;
+        }
+    }
+}
+// Forget pass
+.forget-pass{
+    a{
+        display: block;
+        text-align: center;
+        text-decoration: none;
+        color: $primary-color;
     }
 }
 // Place error massage Register and Login
-.auth-body__errorTxt{
-    color:red;
-    font-size: 1.4rem;
+.input__error-txt{
     margin-top: 6px;
     display: block;
+    color:red;
+    font-size: 1.3rem;
 }
 // Show password
-.auth-body__showPassword{
+.modal__show-pass{
     display: flex;
     align-items: center;
-    height: 20px;
-    margin-top: 10px;
     justify-content: flex-end;
-}
-.modal-body__showPassword{
-    margin:0 4px;
-}
-.auth-body-lable__showPassword{
-    font-size: 1.4rem;
-    display: block;
-    margin-top: 2px;
-}
-.auth-body-lable__showPassword:hover, .auth-body-lable__showPassword:hover{
-    cursor: pointer;
-}
-.auth-header__switch{
-    text-decoration: none;
+
+    input[type='checkbox']{
+        margin-right: 4px;
+    }
 }

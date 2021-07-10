@@ -10,7 +10,8 @@ $(document).ready(function(){
 
 
 function getFormSignup(){
-    document.getElementById('modal').style.display='flex';
+    $('.modal').css() //jquyery
+    document.getElementById('modal').style.display='flex'; //js
     document.getElementById('modal-body__signup').style.display='block';
     document.getElementById('modal-body__signupSocial').style.display='flex';
     document.getElementById('modal-body__signin').style.display='none';

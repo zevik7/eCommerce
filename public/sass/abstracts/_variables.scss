@@ -1,34 +1,46 @@
-:root{
-    //System color
-    --primary-color:#045762;
-    --second-color:#3f6f7e;
-    --third-color:#dff3e3;
-    //Text
-    --text-color:#444;
-    --text-color-light:#666;
-    --text-color-dark:#212529;
-    --text-color-white:white;
-    --text-color-disable:rgba(0,0,0,.05);
+//Pure colors
+$white-color:               #fff;
+$red-color:                 #ce3c3c;
+$orange-color:              #cf822a;
+$blue-color:                #455CA8;
+$yellow-color:              #fdf253;
+$gray-color:                #777;
 
-    //Decoration's color
-    --background-color-transparent:rgba(0,0,0,.35);
-    --hover-color-text:rgba(0,0,0,.03);
-    --hover-color-input:rgba(0,0,0,.03);
+//Customize color
+$primary-color:             #045762;
+$second-color:              #3f6f7e;
+$third-color:               #39A2DB;
+$fourth-color:              #A2DBFA;
+$fifth-color:               #E8F0F2;
 
-    --shadow-color-dark:#3E5363;
-    --border-color-light:#dfdfdf;
-    --border-color-dark:#c7c7c7;
-    --border-color-white:#fff;
+//Text
+$text-color:                #333; //Chinh
+$text-color-light:          #666;
+$text-color-black:          #000;
+$text-color-white:          #fff;
+$text-color-disable:        #999;
 
-    //Pure colors
-    --white-color:white;
-    --red-color:#cf2a2a;
-    --blue-color: #455CA8;
-    --yellow-color: #fdf253;
+//Background color
+$background-color-transparent: rgba(0,0,0,0.02);
+$background-color-white:       #fff;
+$background-color-disabled:    rgba(210, 210, 210);
 
-    //Social 
-    --facebook-color:#455CA8;
-    --google-color:#F74933;
+//Hover color
+$hover-color-text:          rgb(220, 220, 220);
+$hover-color-bg:            rgba(245, 245, 245);
 
+//Shadow
+$box-shadow:                  0 .5rem 1rem rgba(#000, .15);
+$box-shadow-sm:               0 .125rem .25rem rgba(#000, .075);
+$box-shadow-lg:               0 1rem 3rem rgba(#000, .175);
+$box-shadow-inset:            inset 0 1px 2px rgba(#000, .075);
 
-}
+//Border
+$border-transparent:          1px solid rgba(0,0,0,.35);
+$border-light:                1px solid #dee2e6;
+$border-dark:                 1px solid #c7c7c7;
+$border-radius:               2px;
+
+//Social 
+$facebook-color:            #455CA8;
+$google-color:              #F74933;

@@ -1,0 +1,17 @@
+/*Text*/
+.title{
+    margin: 8px 0;
+    font-size: 1.6rem;
+}
+.title-lg{
+    margin: 10px 0;
+    font-size: 1.8rem;
+}
+.title-sm{
+    margin: 4px 0;
+    font-size: 1.4rem;
+}
+.title, .title-lg, .title-sm{
+    font-weight: 400;
+    color: $text-color;
+}

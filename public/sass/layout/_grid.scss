@@ -1,46 +1,50 @@
 .grid{
-    width: 1400px;
+    width: 1200px;
     max-width: 100%;
     margin: 0 auto;
     // padding-left: 12px;
     // padding-right: 12px;
 }
-.grid--full-width{
+.grid--full{
     width: 100%;
     // padding-left: 12px;
     // padding-right: 12px;
 }
-.grid-row{
+.row{
     display: flex;
     flex-wrap: wrap;
     margin-left: -12px;
     margin-right: -12px;
 }
-.grid--alignment-top{
-    margin-top:25px;
-}
-.grid-column-4{
+.col{
     padding-left: 12px;
     padding-right: 12px;
-    width: 33.3333%;
+    &-4{
+        @extend .col;
+        width: 33.3333%;
+    }
+    &-8{
+        @extend .col;
+        width:66.66667%;
+    }
+    &-2{
+        @extend .col;
+        width: 16.6667%;
+    }
+    &-10-2{
+        @extend .col;
+        width: 20%; 
+    }
+    &-10{
+        @extend .col;
+        width: 83.3333%;
+    }
 }
-.grid-column-8{
-    padding-left:  12px;
-    padding-right: 12px;    
-    width:66.66667%;
+/*Margin top 10px*/
+.mt-10{
+    margin-top: 10px;
 }
-.grid-column-2{
-    padding-left:  12px;
-    padding-right: 12px;
-    width: 16.6667%;
-}
-.grid-column-10-2{
-    padding-left:12px;
-    padding-right: 12px;
-    width: 20%; 
-}
-.grid-column-10{
-    padding-left:  12px;
-    padding-right: 12px;
-    width: 83.3333%;
+/*Padding top 10px*/
+.pt-20{
+    padding-top: 20px;
 }
