@@ -38,5 +38,6 @@
     <script src="public/sliderengine/initslider-1.js"></script>
     <!-- Slider -->
     <script src="public/js/processRegister.js"></script>
+    <script src="public/js/personal.js"></script>
 </body>
 </html>
