@@ -1,40 +1,29 @@
 <?php
-class Login extends Controller{
+class Signin extends Controller{
     public $userModel;
     public function __construct(){
         $this->userModel = $this->model("User");
     }
-    public function Hello(){
-        if (isset($_SESSION['userEmail']))
-        {
-            header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat/Home/Chat');
-            die();
-        }
-        $this->view('Login',[
-
-        ]);
-    }
-
-    public function LoginUser(){
+    public function Auth(){
         if (isset($_POST["modal-signin__submit"]))
         {   
             $userAccount    = $_POST["modal-signin__account"];
             $userPassword   = $_POST["modal-signin__password"];
-            $result = $this->userModel->loginUser( $userAccount, $userPassword);
+
+            $result         = $this->userModel->loginUser($userAccount, $userPassword);
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
+                $_SESSION['userAccount'] = $userAccount;
             }
             else{
-                echo json_encode(['status' => 'error', 'message' => 'Không tìm thấy tài khoản']);
+                echo json_encode(['status' => 'error', 'message' => 'Tài khoản hoặc mật khẩu không đúng']);
             }
-            
         }
     }
     public function Logout(){
         session_destroy();
-        //header('Location: http://'.$_SERVER['HTTP_HOST'].'/CChat');
+        header('Location: http://'.$_SERVER['HTTP_HOST'].'/eCommerce');
         die();
-    
     }
 }
 ?>

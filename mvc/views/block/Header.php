@@ -35,26 +35,37 @@
                     </div>
                 </div>
             </li>
-            <!-- <li class="nav-list__item nav-user">
-                <img src="public/img/user/avatar.png" alt="" class="nav-user__avatar">
-                <span class="nav-user__name">Thiên Phú</span>
-                <ul class="nav-user__menu">
-                    <li class="nav-user-menu__item">
-                            <a href="" class="nav-user-menu__link">Tài khoản</a>
-                    </li>
-                    <li class="nav-user-menu__item">
-                        <a href="" class="nav-user-menu__link">Địa chỉ</a>
-                    </li>
-                    <li class="nav-user-menu__item">
-                        <a href="" class="nav-user-menu__link">Đơn mua</a>
-                    </li>
-                    <li class="nav-user-menu__item">
-                        <a id="nav-user-menu__logout" href="" class="nav-user-menu__link">Đăng xuất</a>
-                    </li>
-                </ul>
-            </li> -->
-            <li id= "nav-list__signupBtn" class="nav-list__item nav-list__signup-btn">Đăng kí</li>
-            <li id= "nav-list__signinBtn" class="nav-list__item nav-list__signin-btn">Đăng nhập</li>
+            
+            <?php 
+                if (isset($data['User'])):
+                    $value = json_decode($data['User'], true)[0];
+            ?>
+                <li class="nav-list__item nav-user">
+                    <img src="<?php echo $value['userAvatar'];?>" alt="" class="nav-user__avatar">
+                    <span class="nav-user__name"><?php echo $value['userName'];?></span>
+                    <ul class="nav-user__menu">
+                        <li class="nav-user-menu__item">
+                                <a href="" class="nav-user-menu__link">Tài khoản</a>
+                        </li>
+                        <li class="nav-user-menu__item">
+                            <a href="" class="nav-user-menu__link">Địa chỉ</a>
+                        </li>
+                        <li class="nav-user-menu__item">
+                            <a href="" class="nav-user-menu__link">Đơn mua</a>
+                        </li>
+                        <li class="nav-user-menu__item">
+                            <a id="nav-user-menu__logout" href="./Signin/Logout" class="nav-user-menu__link">Đăng xuất</a>
+                        </li>
+                    </ul>
+                </li>
+            <?php
+                else:
+            ?>
+                <li id= "nav-list__signupBtn" class="js-show-signup nav-list__item nav-list__signup-btn">Đăng kí</li>
+                <li id= "nav-list__signinBtn" class="js-show-signin nav-list__item nav-list__signin-btn">Đăng nhập</li>
+            <?php
+                endif;
+            ?>
         </ul>
     </div>
     <div class="head-bar">

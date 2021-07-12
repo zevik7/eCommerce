@@ -1,4 +1,15 @@
-//shake animation
+//General class for animation
+.animated{
+    -webkit-animation-duration: 1s;
+        -moz-animation-duration: 1s;
+            -o-animation-duration: 1s;
+                animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+        -moz-animation-fill-mode: both;
+            -o-animation-fill-mode: both;
+                animation-fill-mode: both;
+}
+/*Shake animation*/
 @-webkit-keyframes shake {
     0%, 100% {-webkit-transform: translateX(0);}
     10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}
@@ -22,8 +33,7 @@
     10%, 30%, 50%, 70%, 90% {transform: translateX(-10px);}
     20%, 40%, 60%, 80% {transform: translateX(10px);}
 }
-
-.shake  {
+.shake{
     -webkit-animation-name: shake;
     -moz-animation-name: shake;
     -o-animation-name: shake;
