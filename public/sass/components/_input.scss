@@ -23,7 +23,7 @@
         height: 1px;
         background-color: $primary-color;
     }
-    &:focus ~ .underline {
+    &:focus:not(.error-input) ~ .underline {
         width: 100%;
         transition: 0.5s;
     }

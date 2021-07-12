@@ -1,13 +1,24 @@
 <?php
     class User extends DB{
         public function getUserInfo(){
-            // $result = $this->read('SELECT * FROM user');
-            // return json_encode($result);
+            if (isset($_SESSION['userAccount'])){
+                $account = $_SESSION['userAccount'];
+                $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";
+                $param = array ($account, $account);
+                $result = $this->read($query, $param);
+                if ($result !== false){
+                    return json_encode($result);
+                }
+                else{
+                    return null;
+                }
+            }
+            return null;
         }
         // Check xem tài khoản có tồn tại hay không
-        public function checkUser($userAccount){
-            $query = "SELECT * FROM user WHERE userEmail = '$userAccount' or userPhone = '$userAccount'";
-            $param = array ($userAccount);
+        public function checkValidUser($userAccount){
+            $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";
+            $param = array ($userAccount, $userAccount);
             $result = $this->read($query, $param);
             if ($result !== false){
                 return true;
@@ -16,19 +27,28 @@
                 return false;
             }
         }
-        public function insertNewUser( $userEmail, $userPhone, $userPassword, $userName){
-            if($this->checkUser($userEmail)) return false;
-            $query ='INSERT INTO user( userEmail, userPhone, userPassword, userName)  VALUES ( "'.$userEmail.'", "'.$userPhone.'", "'.$userPassword.'", "'.$userName.'")';
+        public function insertNewUser($userEmail, $userPhone, $userPassword, $userName){
+            $query ='INSERT INTO user( userEmail, userPhone, userPassword, userName)  VALUES (?,?, ?, ?)';
             $param = array ($userEmail, $userPhone, $userPassword, $userName);
             $result = $this->write($query, $param);
-            return $result;
+            if ($result)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
         }
         public function loginUser($userAccount, $userPassword){
-            if($this->checkUser($userAccount) === false) return false;
-            $query = "SELECT * FROM user WHERE (userPhone = '$userAccount' OR userEmail = '$userAccount') AND userPassword = '$userPassword'";
-            $param = array ($userAccount, $userPassword);
+            $query = "SELECT * FROM user WHERE (userPhone = ? OR userEmail = ?) AND userPassword = ?";
+            $param = array ($userAccount, $userAccount, $userPassword);
             $result = $this->read($query, $param);
-            return $result;
+            if ($result !== false){
+                return true;
+            }
+            else{
+                return false;
+            }
         }
     }
 ?>
