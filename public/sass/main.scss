@@ -15,21 +15,22 @@
 @import 'components/button';
 // @import 'components/carousel';
 @import 'components/slider';
-@import 'components/modal';
 //@import 'components/search';
 @import 'components/input';
+@import 'components/notification';
 
 @import 'layout/grid';
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/pagination';
+@import 'layout/modal';
 //@import 'layout/manager';
 // @import 'layout/sidebar';
 // @import 'layout/forms';
 
 @import 'page/home';
 @import 'page/product';
-@import 'page/personal.scss';
+@import 'page/personal';
 // @import 'pages/about';
 // @import 'pages/contact';
 

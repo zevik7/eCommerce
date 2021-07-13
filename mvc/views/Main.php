@@ -37,7 +37,11 @@
     <script src="public/sliderengine/amazingslider.js"></script>
     <script src="public/sliderengine/initslider-1.js"></script>
     <!-- Slider -->
+<<<<<<< HEAD
     <script src="public/js/processRegister.js"></script>
     <script src="public/js/personal.js"></script>
+=======
+    <script src="public/js/authentication.js"></script>
+>>>>>>> c88cec9fe5778009dcd1969db3416e960139fc44
 </body>
 </html>

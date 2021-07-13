@@ -2,7 +2,6 @@
 class Home extends Controller{
     protected $userModel;
     protected $productModel;
-    protected $shopModel;
 
     function __construct(){
         $this->userModel = $this->model('User');

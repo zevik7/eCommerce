@@ -1,111 +1,63 @@
-.person-sidebar{
+.personal{
+    margin-left: 7.4rem;
+    margin-right: 7.4rem;
+}
+.sidePer{
     height: 500px;
     margin-bottom: 50px;
-
-    &__header{
-        display: flex;
-        align-items: center;
-        padding: 15px 0;
-
-    }
-    &__img{
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        position: relative;
-        overflow: hidden;
-        .avatar{
-            width: 100%;
-            height: 100%;
-        }
-        
-    }
-    &__edit{
-        padding-left: 15px;
-        margin: 0;
-        text-decoration: none;
-        .username{
-            color: $text-color;
-            font-size: 1.4rem;
-            margin: 4px 0;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            width: 115px;
-            font-weight: 600;
-        }
-        .edit{
-            font-size: 1.4rem;
-            color: $text-color-light;
-        }
-
-    }
-    &__list{
-        list-style-type: none;
-        margin-top: 26px;
-        padding: 0;
-    }
-    &__item{
-        font-size: 1.4rem;
-        word-spacing: 0.2rem;
-        margin-bottom: 15px;
-    }
-    &__nav{
-        display: block;
-        color: $text-color; 
-        transition: all 0.2s;
-        display: flex;
-        flex-wrap: nowrap;
-        align-items: center;
-        &:hover{
-            cursor: pointer;
-            transform: scale(1.05); 
-            color: $primary-color;
-            font-weight: 500;
-        }
-        i{
-            font-size: 1.7rem;
-            min-width: 32px;
-        }
-        .dropdown{
-            font-size: 1.4rem;
-            min-width: 14px;
-            margin-left: 10px;
-        }
-        .fa-user-alt, .fa-clipboard-list{
-            color: $blue-color;
-        }
-        .fa-bell, .fa-ticket-alt{
-            color: $red-color;
-        }
-        .fa-donate{
-            color: $orange-color;
-        }
-    }
-  
-    &__subnav{
-        list-style: none;
-        margin-left: 32px;
-        li{
-            margin-top: 15px;
-            display: none;
-            transition: transform 0.2s;
-            &:hover{
-                cursor: pointer;
-                transform: scale(1.02); 
-                color: $primary-color;
-                font-weight: 500;
-            }
-        }
-    }
 }
-.person-separation{
-    height: 1px;
-    background-color: $fifth-color;
-}
-
 .contPer{
     height: 500px;
-    background-color: $white-color;
+    background-color: lightcoral;
     padding-top: 20px;
+}
+.sidePer-header-img__holder{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+}
+.sidePer-header-img__avatar{
+    position:absolute ;
+    width: 100%;
+    height: 100%;
+}
+.sidePer__header{
+    display: flex;
+    align-items: center;
+    padding: 15px 0;
+}
+.sidePer-header-heading__username{
+    color: var(--text-color-dark);
+    font-size: 1.4rem;
+    margin: 4px 0;
+}
+.sidePer-header__heading{
+    padding-left: 15px;
+    margin: 0;
+    text-decoration: none;
+}
+.sidePer-header-heading__customize{
+    font-size: 1.4rem;
+    color: var( --text-color-light) ;
+}
+.sidePer__body{
+    list-style-type: none;
+    margin-top: 26px;
+    padding: 0;
+}
+.sidePer-body__item{
+    font-size: 1.4rem;
+    color: var(--text-color);
+    word-spacing: 0.2rem;
+    margin-bottom: 15px;
+}
+.sidePer-body__item .fas{
+    font-size: 1.7rem;
+    margin-right: 10px;
+}
+.sidePer-body-item__link{
+    text-decoration: none;
+    color: var(--blue-color);
 }

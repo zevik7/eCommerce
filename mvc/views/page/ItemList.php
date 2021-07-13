@@ -69,57 +69,64 @@
             <div class="product">
                 <div id= "product_list" class="row">
                     <?php
-                            // if (isset($data['Product']))
-                            // {
-                            //     $decode = json_decode($data['Product'], true);
-                            //     foreach($decode as $value)
-                            //     {
+                        if (isset($data['Product']))
+                        {
+                            $decode = json_decode($data['Product'], true);
+                            foreach($decode as $value)
+                            {
                     ?>
                     <div class="col-10-2">
-                        <a href="./Item" class="product__item mt-10">
-                            <div class="product-item__img" style="background-image: url(public/img/product/tinhchat.png);"></div>
+                        <a href="./Item/<?php echo $value['productId'];?>" class="product__item mt-10">
+                            <div class="product-item__img" style="background-image: url(<?php echo $value['imageProductUrl'];?>);"></div>
                             <div class="product-item__content">
-                                <h4 class="product-item__name">Tinh chất thiên nhiên ngon từ thịt ngọt từ xương</h4>
+                                <h4 class="product-item__name"><?php echo $value['productName'];?></h4>
                                 <div class="product-item__price">
-                                    <span class="price-original">134200000</span>
-                                    <span class="price-sale">98200000</span>
+                                    <span class="price-original"><?php echo $value['productTypePrice'];?></span>
+                                    <span class="price-sale"><?php echo $value['productTypePrice']-$value['productTypePrice']*$value['productDiscount'];?></span>
                                 </div>
                                 <div class="product-item__react">
-                                    <!-- add product-item-react__like--liked when click icon like  -->
-                                    <!-- <span class="product-item-react__like">
-                                        <i class="far fa-heart product-item-react-like__iconEmpty"></i>
-                                        <i class="fas fa-heart product-item-react-like__iconClicked"></i>
-                                    </span> -->
                                     <div class="product-item__rating">
-                                        <i class="product-item-reat-rating__fill fas fa-star"></i>
-                                        <i class="product-item-reat-rating__fill fas fa-star"></i>
-                                        <i class="product-item-reat-rating__fill fas fa-star"></i>
-                                        <i class="product-item-reat-rating__fill fas fa-star"></i>
-                                        <i class="fas fa-star"></i>
+                                        <?php
+                                            $starValue = $value['productRating'];
+                                            $maxStar = 0;
+                                            while ($maxStar < 5)
+                                            {
+                                                if ($starValue > 0)
+                                                {
+                                                    if ($starValue >= 1) echo '<i class="fas fa-star"></i>';
+                                                    else echo '<i class="fas fa-star-half-alt"></i>';
+                                                    $starValue--;
+                                                }
+                                                else{
+                                                    echo '<i class="far fa-star"></i>';
+                                                }
+                                                $maxStar++;
+                                            }
+                                        ?>
                                     </div>
                                     <span class="product-item__sold">
-                                        <span class="sold-number">123</span>
+                                        <span class="sold-number"><?php echo $value['productSold'];?></span>
                                          đã bán
                                     </span>
                                 </div>
                                 <div class="product-item__origin">
-                                    <span class="item-brand">Ohhui</span>
-                                    <span class="item-source">Nhật bản</span>
+                                    <span class="item-brand"><?php echo $value['productBrand'];?></span>
+                                    <span class="item-source"><?php echo $value['productSource'];?></span>
                                 </div>
                                 <!-- Item label -->
                                 <div class="product-item__favourite">
                                     <i class="fas fa-check"></i>Yêu thích
                                 </div>
                                 <div class="product-item__discount">
-                                    <span class="percent">12%</span>
+                                    <span class="percent"><?php echo $value['productDiscount']*100;?>%</span>
                                     <span class="label">GIẢM</span>
                                 </div>
                             </div>
                         </a>
                     </div>
                     <?php
-                            //     }
-                            // }
+                            }
+                        }
                     ?>
                 </div>
             </div>

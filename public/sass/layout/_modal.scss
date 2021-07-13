@@ -29,6 +29,7 @@
     background-color: $background-color-white;
 }
 .modal-form__header{
+    margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -54,17 +55,20 @@
         padding: 10px 16px;
     }
 }
-.modal-form__socials{
+.socials{
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
+    justify-content: center;
+    padding: 10px 0;
     a{
+        display: block;
+        padding: 15px;
+        margin: 0 10px;
+        font-size: 2rem;
         text-decoration: none;
+        border-radius: $border-radius;
     }
     .facebook-auth, .google-auth{
-        display: block;
-        padding: 10px;
         color: $text-color-white;
     }
     .facebook-auth{
@@ -94,13 +98,6 @@
         text-decoration: none;
         color: $primary-color;
     }
-}
-// Place error massage Register and Login
-.input__error-txt{
-    margin-top: 6px;
-    display: block;
-    color:red;
-    font-size: 1.3rem;
 }
 // Show password
 .modal__show-pass{
