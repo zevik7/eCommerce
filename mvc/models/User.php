@@ -50,5 +50,67 @@
                 return false;
             }
         }
+        public function editProfile($userName, $userAvatar, $userAccount){
+            $query = "UPDATE user SET userName = ?";
+            $param = array ($userName);
+            if($userAvatar != ''){
+                $query = $query . ", userAvatar = ? ";
+                array_push($param, $userAvatar);
+            }
+            $query = $query . "WHERE userEmail = ? OR  userPhone = ?";
+            array_push($param, $userAccount, $userAccount);
+            $result = $this->write($query, $param);
+            if ($result)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+
+        public function updateAccount($userEmail, $userPhone, $userAccount){
+            if($userEmail != '' && $userPhone == ''){
+                $query = "UPDATE user SET userEmail = ? WHERE userEmail = ? OR  userPhone = ?";
+                $param = array ($userEmail, $userAccount, $userAccount);
+                $result = $this->write($query, $param);
+                if ($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            if($userEmail == '' && $userPhone != '') {
+                $query = "UPDATE user SET userPhone = ? WHERE userEmail = ? OR  userPhone = ?";
+                $param = array ($userPhone, $userAccount, $userAccount);
+                $result = $this->write($query, $param);
+                if ($result)
+                {
+                    return true;
+                }
+                else{
+                    return false;
+                }
+            }
+            
+        }
+        public function updatePassword($new_userPassword, $userAccount){
+        
+            $query = "UPDATE user SET userPassword = ? WHERE userEmail = ? OR  userPhone = ?";
+            $param = array ($new_userPassword, $userAccount, $userAccount);
+            $result = $this->write($query, $param);
+            if ($result)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+            
+        }
+        
+       
     }
 ?>

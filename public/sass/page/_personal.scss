@@ -1,63 +1,482 @@
-.personal{
-    margin-left: 7.4rem;
-    margin-right: 7.4rem;
-}
-.sidePer{
-    height: 500px;
+//Personal Sidebar
+.personal-sidebar{
     margin-bottom: 50px;
+    padding-bottom: 10px;
+
+    &__header{
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+        border-bottom: $border-light;
+    }
+    &__avatar{
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        object-fit: cover;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+
+    &__profile{
+        padding-left: 15px;
+        margin: 0;
+        text-decoration: none;
+        .username{
+            color: $text-color;
+            font-size: 1.4rem;
+            margin: 4px 0;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            width: 115px;
+            font-weight: 600;
+        }
+        .edit{
+            font-size: 1.4rem;
+            color: $text-color-light;
+            &:hover{
+                cursor: pointer;
+            }
+        }
+    }
+
+    &__list{
+        list-style-type: none;
+        margin-top: 26px;
+        padding: 0;
+    }
+
+    &__item{
+        font-size: 1.4rem;
+        word-spacing: 0.2rem;
+        margin-bottom: 15px;
+    }
+    
+    &__nav{
+        display: block;
+        color: $text-color; 
+        transition: all 0.2s;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: center;
+        &:hover{
+            cursor: pointer;
+            transform: scale(1.05); 
+            color: $primary-color;
+            font-weight: 500;
+        }
+        i{
+            font-size: 1.7rem;
+            min-width: 32px;
+        }
+        .dropdown{
+            font-size: 1.4rem;
+            min-width: 14px;
+            margin-left: 10px;
+        }
+        .fa-user-alt, .fa-clipboard-list{
+            color: $blue-color;
+        }
+        .fa-bell, .fa-ticket-alt{
+            color: $red-color;
+        }
+        .fa-donate{
+            color: $orange-color;
+        }
+    }
+  
+    &__subnav{
+        list-style: none;
+        margin-left: 32px;
+       
+        li{
+            margin-top: 15px;
+            display: none;
+            transition: transform 0.2s;
+            &:hover{
+                cursor: pointer;
+                transform: scale(1.1); 
+                color: $primary-color;
+                font-weight: 500;
+            }
+        }
+    }
 }
-.contPer{
-    height: 500px;
-    background-color: lightcoral;
-    padding-top: 20px;
+.personal-active{ //active navbar when it is clicked
+    transform: scale(1.05); 
+    color: $primary-color;
+    font-weight: 500;
 }
-.sidePer-header-img__holder{
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    position: relative;
-    overflow: hidden;
-}
-.sidePer-header-img__avatar{
-    position:absolute ;
-    width: 100%;
+
+.personal-body{
+    display: none;
     height: 100%;
+    &:first-child {
+        display: block;
+    }
 }
-.sidePer__header{
+// Tài khoản của tôi
+.account__header-2line{
+    padding: 18px 0;
+    border-bottom: $border-light;
+    height: 80px;
+    h2{
+        font-weight: 500;
+        margin: 0;
+        padding-bottom: 6px;
+        font-size: 1.8rem;
+        color: $text-color;
+    }
+    p{
+        font-size: 1.4rem;
+        margin: 0;
+        color: $text-color;
+    }
+}
+.account__header-1line{
+    padding: 18px 0;
+    border-bottom: $border-light;
+    height: 80px;
     display: flex;
     align-items: center;
-    padding: 15px 0;
+    justify-content: space-between;
+    h2{
+        font-weight: 500;
+        margin: 0;
+        padding-bottom: 6px;
+        font-size: 1.8rem;
+        color: $text-color;
+    }
+    .btn{
+        padding: 0 20px;
+        height: 40px;
+    }     
 }
-.sidePer-header-heading__username{
-    color: var(--text-color-dark);
-    font-size: 1.4rem;
+.account{
+    background-color: $background-color-white;
+    padding: 0 30px;
+    border-radius: 0.2rem;
+    box-shadow: 0 1px 1px $background-color-disabled;
+}
+
+.profile{
+    padding-bottom: 50px;
+    &__info{
+        padding-right: 25px;
+    }
+    .error-username{
+        margin-left: 160px;
+        color: $red-color;
+    }
+    &__edit{
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        &-title{
+            min-width: 120px;
+            text-align: right;
+            margin: 0  20px;
+            color: $text-color-light;
+        }
+        &-change{
+            color: $primary-color;
+            margin: 0;
+            margin-left: 8px;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        &-inner{
+            margin: 0;
+        }
+        .save{
+            padding: 0 20px;
+            height: 40px;
+            font-size: 1.5rem;
+        }
+    }
+    &__avatar{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        border-left: $border-light;
+        margin-top: 30px;
+        &-img{
+            margin: 20px 0;
+            height: 100px;
+            width: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        &-upload{
+           display: none;
+        }
+        &-label{
+            height: 40px;
+            width: 110px;
+            line-height: 22px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        &-note{
+            p{
+                font-size: 1.4rem;
+                margin: 0;
+                line-height: 20px;
+                color: $text-color-disable;
+            }
+        }
+    }
+}
+.update-email{
+    display: none;
+    height: 100%;
+    &__confirm{
+        height: 100%;
+        padding: 30px 0 0;
+        margin: 0 auto;
+    }
+    &__change{
+        height: 100%;
+        padding: 30px 0 0;
+        margin: 0 auto;
+        display: none;
+    }
+}
+.update-field{
+    display: flex;
+    width: 100%;
+    margin-top: 30px;
+    align-items: center;
+    p{
+        margin: 0;
+        width: 30%;
+        font-size: 1.4rem;
+        color: $text-color-disable;
+        text-align: right;
+        padding-right: 20px;
+    }
+    input[type=password], input[type=text]{
+        width: 40%;
+        padding: 0 20px;
+        height: 40px;
+        font-size: 1.3rem;
+    }
+    input[type=submit], input[type=button]{
+        padding: 0 20px;
+        height: 40px;
+        width: 110px;
+        margin-right: 12px;
+        font-size: 1.5rem;
+    }
+}
+.wrong-password{
     margin: 4px 0;
+    padding-left:30%;
+    color: $red-color;
+    font-size: 1.3rem;
 }
-.sidePer-header__heading{
-    padding-left: 15px;
-    margin: 0;
-    text-decoration: none;
+
+.error-password{
+    color: $red-color;
+    font-size: 1.3rem;
+    margin: 4px 0;
+    padding-left: calc(22% + 2px);
 }
-.sidePer-header-heading__customize{
-    font-size: 1.4rem;
-    color: var( --text-color-light) ;
+.update-phone{
+    display: none;
+    height: 100%;
+    &__change{
+        height: 100%;
+        padding: 30px 0 0;
+        margin: 0 auto;
+        display: none;
+    }
 }
-.sidePer__body{
-    list-style-type: none;
-    margin-top: 26px;
-    padding: 0;
+.bank{
+    display: none;
+    &__body{
+        min-height: 220px;
+        display: flex;
+        padding-bottom: 20px;
+        p{
+            font-size: 1.7rem;
+            color: $text-color-light;
+            margin: auto;
+            font-weight: 500;
+        }
+    }
 }
-.sidePer-body__item{
-    font-size: 1.4rem;
-    color: var(--text-color);
-    word-spacing: 0.2rem;
-    margin-bottom: 15px;
+
+.address{
+    display: none;
+    min-height: 100%;
+    &__body{
+        display: flex;
+        min-height: 200px;
+        p{
+            font-size: 1.7rem;
+            color: $text-color-light;
+            margin: auto;
+            font-weight: 500;
+        }
+    }
 }
-.sidePer-body__item .fas{
-    font-size: 1.7rem;
-    margin-right: 10px;
+.update-password{
+    display: none;
+    padding-bottom: 70px;
+    &__field{
+        display: flex;
+        align-items: center;
+        margin-top: 15px;
+        p{
+            width: 20%;
+            text-align: right;
+            font-size: 1.4rem;
+            color: $text-color-light;
+        }
+        a{
+            font-size: 1.4rem;
+            color: $text-color-light;
+        }
+        input{
+            margin: 0 20px;
+            width: 40%;
+        }
+        input[type=submit]{
+            padding: 0 20px;
+            height: 40px;
+            width: 110px;
+        }
+    }
+    .save{  
+        padding: 0 20px;
+        height: 40px;
+        font-size: 1.5rem;
+        margin: 0 20px;
+    }
 }
-.sidePer-body-item__link{
-    text-decoration: none;
-    color: var(--blue-color);
+// ************Đơn mua************
+.personal-purchase{
+    &__header{
+        background-color: $background-color-white;
+        border-radius: 0.2rem;
+        display: flex;
+        &-nav{
+            height: 54px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: $text-color;
+            border-bottom: 2px solid #dee2e6;
+            &:hover{
+                cursor: pointer;
+            }
+            &:first-child{
+                border-bottom: 2px solid #045762;
+            }
+        }
+    }
+    &__body{
+        display: none;
+    }
+    &__all{
+        display: block;
+        &-search{
+            margin-top: 12px;
+            display: flex;
+            .search-icon{
+                height: 40px;
+                background-color: $background-color-transparent;
+                width: 60px;
+                text-align: center;
+                color: $text-color-disable;
+                i{
+                    font-size: 1.8rem;            
+                    line-height: 40px;                
+                }
+            }
+            input{
+                border: none;
+                background-color: $background-color-transparent;
+            }
+        }
+
+    }
+    &__list{
+        min-height: 600px;
+        background-color: $background-color-white;
+        border-radius: 0.2rem;
+        margin-top: 12px;
+        box-shadow: 0 1px 1px $background-color-disabled;
+        &-empty{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 600px;
+            justify-content: center;
+            img{
+                height: 200px;
+            }
+        }
+    }
+}
+
+// ***************Thông Báo************
+.personal-notify{
+    height: 100%;
+    display: none;
+    &__update-bill{
+        display: block;
+    }
+    &__body{
+        height: 100%;
+        background-color: $background-color-white;
+        border-radius: 0.2rem;
+        box-shadow: 0 1px 1px $background-color-disabled;
+    }
+    &__empty{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+        img{
+            height: 200px;
+        }
+    }
+}
+
+//*******Modal success
+.modal__update-success, .modal__update-failed{
+    display: none;
+}
+.update-success, .update-failed{
+    width: 500px;
+    height: 150px;
+    border-radius: 0.2rem;
+    background-color: $background-color-white;
+    position: relative;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    div{
+        margin: auto;
+        text-align: center;
+        p{
+            font-size: 1.6rem;
+        }
+    }
+}
+.update-success i{
+    font-size: 4rem;
+    color: $green-color;
+}
+.update-failed{
+    font-size: 4rem;
+    color: $red-color;
 }

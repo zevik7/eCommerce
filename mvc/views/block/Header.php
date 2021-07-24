@@ -45,7 +45,7 @@
                     <span class="nav-user__name"><?php echo $value['userName'];?></span>
                     <ul class="nav-user__menu">
                         <li class="nav-user-menu__item">
-                                <a href="" class="nav-user-menu__link">Tài khoản</a>
+                                <a href="./Personal" class="nav-user-menu__link">Tài khoản</a>
                         </li>
                         <li class="nav-user-menu__item">
                             <a href="" class="nav-user-menu__link">Địa chỉ</a>

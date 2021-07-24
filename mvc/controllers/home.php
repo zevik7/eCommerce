@@ -9,7 +9,7 @@ class Home extends Controller{
     }
     function Main(){
         $this->view('Main',[
-            'Page' => 'Personal',
+            'Page' => 'ItemList',
             'User' => $this->userModel->getUserInfo(),
             'Product' => $this->productModel->getProductInfo()
         ]);
