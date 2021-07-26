@@ -69,10 +69,12 @@
 .p-25{
     padding: 25px;
 }
-
 .layout-split{
     margin-top: 24px;
     padding: 25px;
     background-color: $background-color-white;
-    border-radius: $border-radius; 
+    border-radius: $border-radius;
+}
+.pb-50{
+    padding-bottom: 50px;
 }

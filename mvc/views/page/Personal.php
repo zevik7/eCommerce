@@ -1,42 +1,39 @@
-<div class="grid grid--alignment-top">
-    <div class="grid-row personal">
-        <div class="grid-column-2">
-            <nav class="sidePer">
-                <div class="sidePer__header">
-                    <a href="" class="sidePer-header__img">
-                        <div class="sidePer-header-img__holder">
-                            <img src="public/img/user/avatar.png" alt="" class="sidePer-header-img__avatar">
-                        </div>
-                    </a>
-                    <a  href=""  class="sidePer-header__heading">
-                        <h3 class="sidePer-header-heading__username">hai quang</h3>
-                        <div class="sidePer-header-heading__customize"><i class="fas fa-pencil-alt"></i> Sửa Hồ Sơ</div>
-                    </a>
-                </div>
-                <hr>
-                <ul class="sidePer__body">
-                    <li class="sidePer-body__item">
-                        <a href="" class="sidePer-body-item__link"><i class="fas fa-user-alt"></i>Tài Khoản Của Tôi</a>
-                    </li>
-                    <li class="sidePer-body__item">
-                        <a href="" class="sidePer-body-item__link"><i class="fas fa-clipboard-list"></i>Đơn Mua</a>
-                    </li>
-                    <li class="sidePer-body__item">
-                        <a href="" class="sidePer-body-item__link"><i class="fas fa-bell"></i>Thông Báo</a>
-                    </li>
-                    <li class="sidePer-body__item">
-                        <a href="" class="sidePer-body-item__link"><i class="fas fa-ticket-alt"></i>Kho Voucher</a>
-                    </li>
-                    <li class="sidePer-body__item">
-                        <a href="" class="sidePer-body-item__link"><i class="fas fa-donate"></i>Hevy Xu</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-        <div class="grid-column-10">
-            <nav class="contPer">
+<div class="grid pt-20">
+<div class="row"> <!--open tag of Personal Page-->
+<?php
+    require_once './mvc/views/block/Personal_Sidebar.php';
+?>
 
-            </nav>
+<div class="col-10 pb-50">
+    <?php
+        require_once './mvc/views/page/PersonalAccount.php';
+        require_once './mvc/views/page/PersonalPurchase.php';
+        require_once './mvc/views/page/PersonalNotify.php';
+        require_once './mvc/views/page/PersonalVoucher.php';
+        require_once './mvc/views/page/PersonalCent.php';
+    ?>
+</div> 
+
+<div class="modal modal__update-success">
+    <div class="modal-overlay"></div>
+    <div class="update-success">
+        <div>
+            <i class="far fa-check-circle"></i>
+            <p>Cập nhật thành công</p>
         </div>
     </div>
+</div>
+
+<div class="modal modal__update-failed">
+    <div class="modal-overlay"></div>
+    <div class="update-failed">
+        <div>
+            <i class="far fa-times-circle"></i>
+            <p>Mật khẩu không đúng</p>
+        </div>
+    </div>
+</div>
+
+<!--Close tag of Personal Page  -->
+</div>
 </div>

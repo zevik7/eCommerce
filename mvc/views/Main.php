@@ -17,6 +17,7 @@
         </div>
         <div class="body">
             <?php
+                
                 require_once './mvc/views/page/'.$data['Page'].'.php';
             ?>
         </div>
@@ -38,5 +39,7 @@
     <!-- Slider -->
     <script src="public/js/authentication.js"></script>
     <script type="module" src="public/js/loadComponent.js"></script>
+    <script src="public/js/personal.js"></script>
+    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
 </body>
 </html>
