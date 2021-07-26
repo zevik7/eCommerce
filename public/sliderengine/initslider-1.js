@@ -84,7 +84,7 @@ jQuery(document).ready(function(){
 
         loop:0,
 
-        autoplay:true,
+        autoplay:false,
 
         navplayvideoimage:"play-32-32-0.png",
 
@@ -138,7 +138,7 @@ jQuery(document).ready(function(){
 
         googlefonts:"Inder",
 
-        navborderhighlightcolor:"var(--primary-color)",
+        navborderhighlightcolor:"#045762",
 
         navcolor:"#999999",
 
@@ -224,7 +224,7 @@ jQuery(document).ready(function(){
 
         navfonthighlightcolor:"#666666",
 
-        showbackgroundimage:false,
+        showbackgroundimage:true,
 
         showpinterest:true,
 
@@ -244,7 +244,7 @@ jQuery(document).ready(function(){
 
         buttoncss:"display:block; position:relative; margin-top:8px;",
 
-        navborder:1,
+        navborder:2,
 
         navshowpreviewontouch:false,
 
@@ -350,7 +350,7 @@ jQuery(document).ready(function(){
 
         backgroundimagewidth:120,
 
-        bordercolor:"var(--border-color-light)",
+        bordercolor:"#dee2e6",
 
         border:1,
 
@@ -390,17 +390,17 @@ jQuery(document).ready(function(){
 
         texteffecteasing1:"easeOutCubic",
 
-        textcss:"display:block; padding:6px 10px; text-align:left;color:var(--text-color-white)",
+        textcss:"display:block; padding:6px 10px; text-align:left;color:#333",
 
         navthumbsmallwidth:48,
 
-        navbordercolor:"var(--border-color-light)",
+        navbordercolor:"#dee2e6",
 
         navthumbmediumcolumn:4,
 
         navpreviewarrowimage:"previewarrow-16-8-0.png",
 
-        showbottomshadow:true,
+        showbottomshadow:false,
 
         texteffectslidedistance:30,
 
@@ -438,7 +438,7 @@ jQuery(document).ready(function(){
 
         cssslide: {
 
-            duration:1000,
+            duration:700,
 
             easing:"ease",
 
@@ -448,7 +448,7 @@ jQuery(document).ready(function(){
 
         transition:"cssslide",
 
-        scalemode:"fill",
+        scalemode:"fit",
 
         isfullscreen:false,
 

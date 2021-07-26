@@ -15,7 +15,7 @@
                 require_once './mvc/views/block/Header.php';
             ?>
         </div>
-        <div class="container">
+        <div class="body">
             <?php
                 require_once './mvc/views/page/'.$data['Page'].'.php';
             ?>
@@ -30,13 +30,13 @@
                 require_once './mvc/views/block/Modal.php';
         ?>
     </div>
-    
-    <script src="public/js/jquery-3.6.0.min.js"></script>
-    <script src="public/js/jquery.validate.min.js"></script>
+    <script src="public/js/libs/jquery-3.6.0.min.js"></script>
+    <script src="public/js/libs/jquery.validate.min.js"></script>
     <!-- Slider -->
     <script src="public/sliderengine/amazingslider.js"></script>
     <script src="public/sliderengine/initslider-1.js"></script>
     <!-- Slider -->
     <script src="public/js/authentication.js"></script>
+    <script type="module" src="public/js/loadComponent.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 <?php
-class Item extends Controller{
+class ProductDetail extends Controller{
     protected $productModel;
     protected $shopModel;
 
@@ -9,7 +9,7 @@ class Item extends Controller{
     }
     function Main(){
         $this->view('Main',[
-            'Page' => 'ItemDetail',
+            'Page' => 'ProductDetail',
             'Product' => $this->productModel->getProductInfo()
         ]);
     }

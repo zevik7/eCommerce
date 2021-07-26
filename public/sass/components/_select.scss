@@ -5,49 +5,97 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    min-width: 160px;
     padding: 5px 10px;
     border-radius: $border-radius;
+    border: $border-light;
     background-color: $background-color-white;
     i{
+        margin-left: 8px;
         padding-bottom: 5px;
     }
-    &__title{
+    &__active{
         margin: 0;
         font-weight: 400;
     }
+    $spaceToList: 4px;
+    &::before{
+        content: '';
+        position: absolute;
+        bottom: -$spaceToList;
+        left: 0;
+        height: $spaceToList;
+        width: 100%;
+    }
     &__list{
+        display: none;
         z-index: 2;
         position: absolute;
-        list-style: none;
         min-width: 100%;
-        top: 110%;
+        top: calc(100% + #{$spaceToList});
         left: 0;
+        list-style: none;
         background-color: inherit;
         box-shadow: $box-shadow-sm;
-        border: $border-light;
         border-radius: $border-radius;
-        opacity: 0;
-        ::after{
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: 0;
-            height: 5px;
-            width: 100%;
+        border: $border-light;
+        animation: slide-down 0.3s;
+        &--show{
+            display: block;
         }
-
         li{
             padding: 8px 16px;
             font-size: 0.9em;
             cursor: pointer;
+            white-space: nowrap;
             &:hover{
                 background-color: $hover-color-bg;
             }
         }
     }
-    &:hover > &__list{
-        opacity: 1;
-        transition: opacity 0.2s;
+    
+}
+//Select for provinces
+.select[name ~= "fs-select-shipping-provinces"]{
+    min-width: 140px;
+    .select__list{
+        max-height: 30vh;
+        overflow-y: scroll;
+        &::-webkit-scrollbar-track
+        {
+            border-radius: $border-radius;
+            -webkit-box-shadow: $box-shadow-inset;
+            background-color: #f5f5f5;
+        }
+
+        &::-webkit-scrollbar
+        {
+            width: 10px;
+        }
+        &::-webkit-scrollbar-thumb
+        {
+            border-radius: $border-radius;
+            -webkit-box-shadow: $box-shadow-inset;
+            background-color: $second-color;
+        }
+    }
+}
+.select-quantity{
+    display: flex;
+    font-size: 1.1em;
+    .plus, .minus{
+        padding: 5px 10px;
+        border: $border-light;
+        cursor: pointer;
+        &:hover{
+            background-color: $background-color-transparent;
+        }
+    }
+    .number{
+        width: 40px;
+        outline: none;
+        text-align: center;
+        border: none;
+        border-top: $border-light;
+        border-bottom: $border-light;
     }
 }

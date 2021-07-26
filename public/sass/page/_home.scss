@@ -1,8 +1,10 @@
-/* Container */
-.container{
+/* Background color*/
+.bg-transparent{
     background-color: $background-color-transparent;
-    font-size: 1.3rem;
+}
+.product-list-page{
     color: $text-color;
+    font-size: 1.3rem;
 }
 .category-bar{
     border-radius: $border-radius;
@@ -63,7 +65,11 @@
             &:hover:not(.active):not(.filter__item-select){
                 cursor: pointer;
                 background: $hover-color-text;
-                transition: background 0.2s;
+                transition: background-color 0.2s;
+            }
+            .select{
+                border: none;
+                min-width: 140px;
             }
         }
     }
@@ -208,6 +214,7 @@
             font-size: 1.2rem;
             background-color: $yellow-color;
             color: $text-color-white;
+            border-top-right-radius: $border-radius;
         }
         .product-item__discount::after{
             content:"";

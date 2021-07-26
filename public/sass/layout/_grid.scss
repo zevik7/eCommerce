@@ -12,9 +12,28 @@
     margin-left: -12px;
     margin-right: -12px;
 }
+.row-al-center{
+    align-items: center;
+}
 .col{
     padding-left: 12px;
     padding-right: 12px;
+    &-3{
+        @extend .col;
+        width: 25%;
+    }
+    &-9{
+        @extend .col;
+        width: 75%;
+    }
+    &-5{
+        @extend .col;
+        width: 41.16666%;
+    }
+    &-7{
+        @extend .col;
+        width: 58.33333%;
+    }
     &-4{
         @extend .col;
         width: 33.3333%;
@@ -40,7 +59,20 @@
 .mt-10{
     margin-top: 10px;
 }
+.mt-20{
+    margin-top: 20px;
+}
 /*Padding top 10px*/
 .pt-20{
     padding-top: 20px;
+}
+.p-25{
+    padding: 25px;
+}
+
+.layout-split{
+    margin-top: 24px;
+    padding: 25px;
+    background-color: $background-color-white;
+    border-radius: $border-radius; 
 }

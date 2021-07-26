@@ -16,7 +16,7 @@ class Signin extends Controller{
                 $_SESSION['userAccount'] = $userAccount;
             }
             else{
-                echo json_encode(['status' => 'error', 'message' => 'Tài khoản hoặc mật khẩu không đúng']);
+                echo json_encode(['status' => 'invalid account', 'message' => 'Tài khoản hoặc mật khẩu không đúng']);
             }
         }
     }

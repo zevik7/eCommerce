@@ -90,7 +90,7 @@
                     </a>
                 </div>
                 <div class="modal-form__controls">
-                    <input class="js-close-modal btn-second" type="button" value="TRỞ LẠI">
+                    <input class="js-close-modal btn btn-second" type="button" value="TRỞ LẠI">
                     <input id="modal-signin__submit" class="btn btn-primary" name="modal-signin__submit" type="submit" value="ĐĂNG NHẬP">
                 </div>
             </form>
