@@ -8,6 +8,35 @@ class App{
     function __construct(){
  
         $arr = $this->UrlProcess();
+        //If call API
+        if (isset($arr[0]) && $arr[0] == 'api')
+        {
+            $rmFirst = array_shift($arr);
+            $apiType = '';
+            $apiObj = '';
+            $apiParams = [];
+
+            if (isset($arr[0])) 
+            {
+                $apiType = $arr[0];
+                unset($arr[0]);
+            }
+            if (isset($arr[1])) 
+            {
+                $apiObj = $arr[1];   
+                unset($arr[1]);
+            }
+            $apiParams = $arr ? array_values($arr) : [];
+            $apiFile = "./mvc/controllers/api/".$apiType."/".$apiObj.".php";
+            if(file_exists($apiFile)){
+                require_once $apiFile;
+                $reflect  = new ReflectionClass($apiObj);
+                $instance = $reflect->newInstanceArgs($apiParams);
+            }
+            else echo 'The methods does not exist';
+            die();
+        }
+
         // Controller
         if(isset($arr[0]))
         {
@@ -27,7 +56,7 @@ class App{
         }
         // Params
         $this->params = $arr?array_values($arr):[];
-        call_user_func_array([$this->controller, $this->action], $this->params);
+        call_user_func_array([$this->controller, $this->action], arra($this->params));
     }
 
     function UrlProcess(){

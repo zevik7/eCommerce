@@ -1,0 +1,12 @@
+--------2021-07-29 21:44:52--------
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 16
+--------2021-07-29 21:44:59--------
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near '?' at line 16
+--------2021-07-29 23:01:18--------
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+--------2021-07-29 23:02:45--------
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+--------2021-07-29 23:04:09--------
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined
+--------2021-07-29 23:07:57--------
+SQLSTATE[HY093]: Invalid parameter number: parameter was not defined

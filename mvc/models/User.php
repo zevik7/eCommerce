@@ -5,7 +5,7 @@
                 $account = $_SESSION['userAccount'];
                 $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";
                 $param = array ($account, $account);
-                $result = $this->read($query, $param);
+                $result = $this->readDB($query, $param);
                 if ($result !== false){
                     return json_encode($result);
                 }
@@ -19,7 +19,7 @@
         public function checkValidUser($userAccount){
             $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";
             $param = array ($userAccount, $userAccount);
-            $result = $this->read($query, $param);
+            $result = $this->readDB($query, $param);
             if ($result !== false){
                 return true;
             }
@@ -30,7 +30,7 @@
         public function insertNewUser($userEmail, $userPhone, $userPassword, $userName){
             $query ='INSERT INTO user( userEmail, userPhone, userPassword, userName)  VALUES (?,?, ?, ?)';
             $param = array ($userEmail, $userPhone, $userPassword, $userName);
-            $result = $this->write($query, $param);
+            $result = $this->writeDB($query, $param);
             if ($result)
             {
                 return true;
@@ -42,7 +42,7 @@
         public function loginUser($userAccount, $userPassword){
             $query = "SELECT * FROM user WHERE (userPhone = ? OR userEmail = ?) AND userPassword = ?";
             $param = array ($userAccount, $userAccount, $userPassword);
-            $result = $this->read($query, $param);
+            $result = $this->readDB($query, $param);
             if ($result !== false){
                 return true;
             }
@@ -59,7 +59,7 @@
             }
             $query = $query . "WHERE userEmail = ? OR  userPhone = ?";
             array_push($param, $userAccount, $userAccount);
-            $result = $this->write($query, $param);
+            $result = $this->writeDB($query, $param);
             if ($result)
             {
                 return true;
@@ -73,7 +73,7 @@
             if($userEmail != '' && $userPhone == ''){
                 $query = "UPDATE user SET userEmail = ? WHERE userEmail = ? OR  userPhone = ?";
                 $param = array ($userEmail, $userAccount, $userAccount);
-                $result = $this->write($query, $param);
+                $result = $this->writeDB($query, $param);
                 if ($result)
                 {
                     return true;
@@ -85,7 +85,7 @@
             if($userEmail == '' && $userPhone != '') {
                 $query = "UPDATE user SET userPhone = ? WHERE userEmail = ? OR  userPhone = ?";
                 $param = array ($userPhone, $userAccount, $userAccount);
-                $result = $this->write($query, $param);
+                $result = $this->writeDB($query, $param);
                 if ($result)
                 {
                     return true;
@@ -100,7 +100,7 @@
         
             $query = "UPDATE user SET userPassword = ? WHERE userEmail = ? OR  userPhone = ?";
             $param = array ($new_userPassword, $userAccount, $userAccount);
-            $result = $this->write($query, $param);
+            $result = $this->writeDB($query, $param);
             if ($result)
             {
                 return true;
