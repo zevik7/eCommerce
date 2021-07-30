@@ -144,11 +144,12 @@
                                     <h6 class="title-sm">Số lượng</h6>
                                 </div>
                                 <div class="product-quantity-count__body col-9">
-                                    <div class="select-quantity">
-                                        <div class="plus">-</div>
-                                        <input class="number" type="number" value="1">
-                                        <div class="minus">+</div>
-                                    </div>
+                                <div class="carousel-quantity">
+                                    <div class="carousel-quantity__minus">-</div>
+                                        <input class="carousel-quantity__number" type="number" value="1">
+                                        <div class="carousel-quantity__plus">+</div>
+                                     </div>
+                                    <span class="product-quantity-count__text">Còn 34 sản phẩm</span>
                                 </div>
                             </div>
                             <div class="product-buy mt-20">
@@ -162,7 +163,7 @@
                     </div>
                 </div>  
             </div> 
-            <div class="layout-split">
+            <div class="layout-split mt-24 p-25">
                 <div class="shop-banner">
                     <div class="row row-al-center">
                         <div class="col-5">
@@ -223,8 +224,8 @@
             </div>
             <div class="product-desc">
                 <div class="row">
-                    <div class="col-9">
-                        <div class="layout-split">
+                    <div class="col-10">
+                        <div class="layout-split mt-24 p-25">
                             <div class="desc">
                                 <div class="desc__header">
                                     <h2 class="desc__title title-lg">Chi tiết sản phẩm</h2>
@@ -261,7 +262,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="layout-split">
+                        <div class="layout-split mt-24 p-25 mb-20">
                             <div class="product-rating">
                                 <h2 class="product-rating__header title-lg">Đánh giá sản phẩm</h2>
                                 <div class="product-rating__overview">
@@ -375,15 +376,33 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-3">
-                        <div class="layout-split">
+                    <div class="col-2">
+                        <div class="layout-split mt-24">
                             <div class="suggestion">
-                                Gợi ý cho sản phẩm
+                            <h3 class="suggestion__title title titile-sm">Sản phẩm bán chạy</h3>
+                                <div class="suggestion__list">
+                                    <a href="#" class="suggestion-list__item">
+                                        <img src="public/img/product/giaybitas.jpg" alt="">
+                                        <h3 class="title title-sm">Tên sản phẩm</h3>
+                                        <p class="price">150.000 đ</p>
+                                    </a>
+                                    <a href="#" class="suggestion-list__item">
+                                        <img src="public/img/product/giaybitas.jpg" alt="">
+                                        <h3 class="title title-sm">Tên sản phẩm</h3>
+                                        <p class="price">150.000 đ</p>
+                                    </a>
+                                    <a href="#" class="suggestion-list__item">
+                                        <img src="public/img/product/giaybitas.jpg" alt="">
+                                        <h3 class="title title-sm">Tên sản phẩm</h3>
+                                        <p class="price">150.000 đ</p>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            
         </div>
     </div>
 </div>

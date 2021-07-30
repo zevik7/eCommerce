@@ -56,7 +56,7 @@ class App{
         }
         // Params
         $this->params = $arr?array_values($arr):[];
-        call_user_func_array([$this->controller, $this->action], arra($this->params));
+        call_user_func_array([$this->controller, $this->action], array($this->params));
     }
 
     function UrlProcess(){

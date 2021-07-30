@@ -79,10 +79,10 @@
         }
     }
 }
-.select-quantity{
+.carousel-quantity{
     display: flex;
     font-size: 1.1em;
-    .plus, .minus{
+    &__plus, &__minus{
         padding: 5px 10px;
         border: $border-light;
         cursor: pointer;
@@ -90,7 +90,7 @@
             background-color: $background-color-transparent;
         }
     }
-    .number{
+    &__number{
         width: 40px;
         outline: none;
         text-align: center;

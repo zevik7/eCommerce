@@ -1,4 +1,3 @@
-
 .product-page{
     color: $text-color;
     font-size: 1.4rem;
@@ -94,9 +93,9 @@
                 .freight-sub-text{
                     margin-left: 36px;
                     color: $text-color-light;
-                    &:first-of-type{
-                        margin-top: 0;
-                    }
+                    // &:first-of-type{
+                    //     margin-top: 0;
+                    // }
                 }
             }
         }
@@ -122,6 +121,16 @@
                     
                     
                 }
+            }
+        }
+        .product-quantity-count__body{
+            display: flex;
+            align-items: center;
+            .carousel-quantity{
+                margin-right: 5px;
+            }
+            .product-quantity-count__text{
+                color: $text-color-light;
             }
         }
         .product-buy{
@@ -221,8 +230,8 @@
     }
     &__overview{
         display: flex;
-        padding: 30px;
-        border: $border-light;
+        padding: 25px;
+        border: $border-dark;
         border-radius: $border-radius;
         background-color: $fifth-color;
         .product-rating-overview__header{
@@ -246,15 +255,19 @@
             display: flex;
             flex-wrap: wrap;
             .overview-filter-item{
-                min-width: 100px;
+                min-width: 120px;
                 margin-right: 5px;
                 margin-bottom: 5px;
-                border: $border-dark;
+                border: $border-light;
                 background-color: $background-color-white;
                 &.active{
                     color: $primary-color;
                     border-color: $primary-color;
                     pointer-events: none;
+                    font-weight: 500;
+                }
+                &:hover{
+                    border-color: $primary-color;
                 }
             }
         }
@@ -262,7 +275,9 @@
     &__box{
         display: flex;
         padding: 0 20px;
-        border-bottom: $border-light;
+        &:not(:last-of-type){
+            border-bottom: $border-light;
+        }
         .product-rating-box__header{
             width: 40px;
         }
@@ -277,6 +292,28 @@
                 margin-top: 0;
                 color: $text-color-light;
             }
+        }
+    }
+}
+.suggestion{
+    &__title{
+        margin: 0;
+        padding: 20px;
+        padding-bottom: 0;
+        color: $text-color-light;
+    }
+    &-list__item{
+        display: block;
+        padding: 20px;
+        padding-bottom: 0;
+        border-bottom: $border-light;
+        img{
+            width: 100%;
+        }
+        .price{
+            color: $primary-color;
+            font-size: 1.6rem;
+            font-weight: 500;
         }
     }
 }

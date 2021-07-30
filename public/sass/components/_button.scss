@@ -1,5 +1,6 @@
 .btn {
-    display: inline-block;
+    display: inline-flex;
+    justify-content: center;
     align-items: center;
     vertical-align: middle;
     -webkit-user-select: none;
@@ -8,7 +9,6 @@
     user-select: none;
     /*Customize*/
     padding: 0.8rem 1.2rem;
-    text-align: center;
     background-color: transparent;
     border: 1px solid transparent;
     border-radius: 0.2rem;

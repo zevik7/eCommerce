@@ -33,13 +33,11 @@
     </div>
     <script src="public/js/libs/jquery-3.6.0.min.js"></script>
     <script src="public/js/libs/jquery.validate.min.js"></script>
+    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
     <!-- Slider -->
     <script src="public/sliderengine/amazingslider.js"></script>
     <script src="public/sliderengine/initslider-1.js"></script>
     <!-- Slider -->
-    <script src="public/js/authentication.js"></script>
-    <script type="module" src="public/js/loadComponent.js"></script>
-    <script src="public/js/personal.js"></script>
-    <script src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+    <script type="module" src="public/js/main.js"></script>
 </body>
 </html>

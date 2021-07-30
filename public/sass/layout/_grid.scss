@@ -62,6 +62,12 @@
 .mt-20{
     margin-top: 20px;
 }
+.mb-20{
+    margin-bottom: 20px;
+}
+.mt-24{
+    margin-top: 24px;
+}
 /*Padding top 10px*/
 .pt-20{
     padding-top: 20px;
@@ -70,8 +76,6 @@
     padding: 25px;
 }
 .layout-split{
-    margin-top: 24px;
-    padding: 25px;
     background-color: $background-color-white;
     border-radius: $border-radius;
 }
