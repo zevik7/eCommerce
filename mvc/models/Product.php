@@ -22,7 +22,7 @@
         // public $currentDate;
 
         /*
-            ---------read, create for API------------
+            ---------Read, create for API------------
         */
         public function read(){
             $query = 
@@ -103,17 +103,32 @@
             $result = $this->writeDB($query, $queryParams);
             return $result;
         }
+
         /*-------For Web system-----------*/
-        public function getProductInfo(){
+        public function getProductList($offset = 0, $productsQuantity = 0){
             $query = 
-            "SELECT product.productId, productName, productDiscount, productSource, productSold, productBrand, productRating, imageProductUrl, productTypePrice 
+            "SELECT product.productId, productName, productDiscount, 
+            productSource, productSold, productBrand, productRating, 
+            imageProductUrl, productTypePrice 
             FROM product, image_product, product_type
-            where product.productId = image_product.productId AND product_type.productId = image_product.productId 
+            where product.productId = image_product.productId 
+            AND product_type.productId = image_product.productId 
             AND imageProductType = 'thumb'
             GROUP BY product.productId
-            ORDER BY productTypePrice;";
-            $result = $this->readDB($query);
+            ORDER BY productTypePrice
+            LIMIT ?, ?";
+
+            $result = $this->readDB($query, array($offset, $productsQuantity));
             return json_encode($result);
+        }
+        public function getProductQuantity(){
+            $query = "SELECT * FROM product_type GROUP BY productId";
+            $result = $this->readDB($query);
+            if ($result !== false)
+            {
+                return count($result);
+            }
+            return 0;
         }
     }
 ?>

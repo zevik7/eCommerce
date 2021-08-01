@@ -5,7 +5,7 @@ class Read extends Controller{
     protected $productModel;
     function __construct(){
         $this->productModel = $this->model('Product');
-        echo json_encode($this->productModel->Read());
+        echo json_encode($this->productModel->read());
         die();
     }
 }

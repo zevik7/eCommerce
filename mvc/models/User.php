@@ -1,6 +1,6 @@
 <?php
     class User extends DB{
-        public function getUserInfo(){
+        public function getUser(){
             if (isset($_SESSION['userAccount'])){
                 $account = $_SESSION['userAccount'];
                 $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";

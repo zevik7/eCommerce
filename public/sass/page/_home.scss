@@ -22,7 +22,8 @@
     }
     &__item{
         flex: 1;
-        display: block;
+        display: flex;
+        align-items: center;
         position: relative;
         padding: 4px 16px;
         font-size: 1.5rem;
@@ -34,6 +35,12 @@
             right: -4px;
             color: $primary-color;
             font-weight: 600;
+        }
+        
+        &.item-gift, &.item-book{
+            svg{
+                height: 20px;
+            }
         }
     }
 
@@ -48,6 +55,7 @@
     font-size: 1.5rem;
     &__title{
         font-size: inherit;
+        color: $text-color-light;
     }
     &__list{
         flex: 1;

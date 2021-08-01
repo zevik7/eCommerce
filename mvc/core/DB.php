@@ -20,16 +20,14 @@ class DB{
 			//Create an instane to connect db
 			$connection = new PDO($dbtype.':host='.$host.';dbname='.$dbname, $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 			return $connection;
 
 		}catch(PDOException $e)
 		{
 			echo "PDO ERROR !!!";
             // Put error information to txt file
-            $timeError = date('Y-m-d H:i:s');
-            file_put_contents('./serverReport/PDOErrors.txt','--------'.$timeError .'--------'.PHP_EOL, FILE_APPEND);
-            file_put_contents('./serverReport/PDOErrors.txt',$e->getMessage().PHP_EOL, FILE_APPEND);
-			die;
+            $this->putErrorToLog($e->getMessage());
 		}
 
 		return false;
@@ -52,9 +50,7 @@ class DB{
         catch(PDOException $e) {
             echo "PDO ERROR !!!";
             // Put error information to txt file
-            $timeError = date('Y-m-d H:i:s');
-            file_put_contents('./serverReport/PDOErrors.txt','--------'.$timeError .'--------'.PHP_EOL, FILE_APPEND);
-            file_put_contents('./serverReport/PDOErrors.txt',$e->getMessage().PHP_EOL, FILE_APPEND);
+            $this->putErrorToLog($e->getMessage());
         }
         return $result;
 	}
@@ -65,6 +61,7 @@ class DB{
         try {
             $statement = $this->con->prepare($query);
             $statement->setFetchMode(PDO::FETCH_OBJ);
+            
             $check = $statement->execute($data);
             if($check)
             {
@@ -79,16 +76,20 @@ class DB{
         catch(PDOException $e) {
             echo "PDO ERROR !!!";
             // Put error information to txt file
-            $timeError = date('Y-m-d H:i:s');
-            file_put_contents('./serverReport/PDOErrors.txt','--------'.$timeError .'--------'.PHP_EOL, FILE_APPEND);
-            file_put_contents('./serverReport/PDOErrors.txt',$e->getMessage().PHP_EOL, FILE_APPEND);
+            $this->putErrorToLog($e->getMessage());
         }
 		return false;
 	}
-    public function cleanData(&$data = array()){
-        foreach ($data as $key => $value) {
-            $data[$key] = htmlspecialchars(strip_tags($data[$key]));
-        }
+    public function cleanData(&$data){
+        return htmlspecialchars(strip_tags($data));
+    }
+    public function cleanDataArray(&$data = array()){
+        // return htmlspecialchars(strip_tags($data));
+    }
+    public function putErrorToLog($msgError){
+        $currentTime = date('Y-m-d H:i:s');
+        file_put_contents('./serverReport/PDOErrors.txt','--------'.$currentTime .'--------'.PHP_EOL, FILE_APPEND);
+        file_put_contents('./serverReport/PDOErrors.txt',$msgError.PHP_EOL, FILE_APPEND);
     }
 }
 ?>

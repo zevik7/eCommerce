@@ -1572,7 +1572,8 @@ a {
 }
 .category-bar__item {
   flex: 1;
-  display: block;
+  display: flex;
+  align-items: center;
   position: relative;
   padding: 4px 16px;
   font-size: 1.5rem;
@@ -1586,6 +1587,9 @@ a {
   color: #045762;
   font-weight: 600;
 }
+.category-bar__item.item-gift svg, .category-bar__item.item-book svg {
+  height: 20px;
+}
 
 /* Navigation Filter */
 .filter {
@@ -1598,6 +1602,7 @@ a {
 }
 .filter__title {
   font-size: inherit;
+  color: #666;
 }
 .filter__list {
   flex: 1;
