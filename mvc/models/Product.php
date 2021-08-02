@@ -24,7 +24,7 @@
         /*
             ---------Read, create for API------------
         */
-        public function read(){
+        public function read_all(){
             $query = 
             "SELECT 
                 product.productId,
@@ -120,6 +120,48 @@
 
             $result = $this->readDB($query, array($offset, $productsQuantity));
             return json_encode($result);
+        }
+        public function getProduct($productId){
+            $productQuery = 
+            "SELECT productId, productName, productDiscount, 
+            productSource, productSold, productBrand, productRating
+            FROM product
+            WHERE productId='".$productId."'";
+
+            $productTypeQuery = 
+            "SELECT * FROM product_type 
+            WHERE productId ='".$productId."'";
+
+            $productImageQuery = 
+            "SELECT imageProductId, imageProductType, 
+            imageProductName, imageProductUrl, 
+            imageProductDescription 
+            FROM image_product
+            WHERE productId='".$productId."'";
+
+            $productRatingQuery =
+            "SELECT * FROM product_rating
+            WHERE productId ='".$productId."'";
+
+            $productResult = $this->readDB($productQuery);
+            $productTypeResult = $this->readDB($productTypeQuery);
+            $productImageResult = $this->readDB($productImageQuery);
+            $productRating = $this->readDB($productRatingQuery);
+            
+            $allResult = array();
+            if ($productResult !== false) {
+                $allResult['product'] = $productResult;
+            }
+            if ($productTypeResult !== false) {
+                $allResult['productType'] = $productTypeResult;
+            }
+            if ($productImageResult !== false) {
+                $allResult['productImage'] = $productImageResult;
+            }
+            if ($productRating !== false) {
+                $allResult['productRating'] = $productRating;
+            }
+            return json_encode($allResult);
         }
         public function getProductQuantity(){
             $query = "SELECT * FROM product_type GROUP BY productId";

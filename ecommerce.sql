@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 12, 2021 at 07:22 PM
+-- Generation Time: Aug 02, 2021 at 06:17 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.2
 
@@ -31,7 +31,8 @@ CREATE TABLE `cart` (
   `cartId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `productTypeId` int(11) NOT NULL,
-  `cartQuantity` tinyint(4) NOT NULL
+  `cartQuantity` tinyint(4) NOT NULL,
+  `cartDate` datetime NOT NULL COMMENT 'Limit the days of item in cart'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -88,10 +89,10 @@ DELIMITER ;
 CREATE TABLE `image_product` (
   `imageProductId` int(11) NOT NULL,
   `productId` int(11) NOT NULL,
-  `imageProductType` varchar(20) DEFAULT NULL,
+  `imageProductType` varchar(20) NOT NULL,
   `imageProductName` varchar(200) DEFAULT NULL,
-  `imageProductUrl` varchar(400) NOT NULL,
-  `imageProductDescription` varchar(200) DEFAULT NULL
+  `imageProductUrl` text NOT NULL,
+  `imageProductDescription` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -110,7 +111,10 @@ INSERT INTO `image_product` (`imageProductId`, `productId`, `imageProductType`, 
 (9, 9, 'thumb', 'thumb', 'public/img/product/tinhchat.png', NULL),
 (10, 10, 'thumb', 'thumb', 'public/img/product/quankaki.jpg', NULL),
 (11, 11, 'thumb', 'thumb', 'public/img/product/kem.png', NULL),
-(12, 12, 'thumb', 'thumb', 'public/img/product/balo.jpg', NULL);
+(12, 12, 'thumb', 'thumb', 'public/img/product/balo.jpg', NULL),
+(13, 1, 'collection', '', 'public/img/product/giaybitas2.jpg', NULL),
+(14, 1, 'collection', NULL, 'public/img/product/giaybitas3.jpg', NULL),
+(15, 1, 'collection', NULL, 'public/img/product/giaybitas4.jpg', NULL);
 
 -- --------------------------------------------------------
 
@@ -121,17 +125,18 @@ INSERT INTO `image_product` (`imageProductId`, `productId`, `imageProductType`, 
 CREATE TABLE `image_user` (
   `imageUserId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
-  `imageUserType` varchar(20) DEFAULT NULL,
-  `imageUserName` varchar(200) DEFAULT NULL,
-  `imageUserUrl` varchar(400) NOT NULL
+  `imageUserType` varchar(20) NOT NULL DEFAULT 'avatar',
+  `imageUserName` varchar(200) DEFAULT 'user',
+  `imageUserUrl` text NOT NULL,
+  `imageUserDescription` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `image_user`
 --
 
-INSERT INTO `image_user` (`imageUserId`, `userId`, `imageUserType`, `imageUserName`, `imageUserUrl`) VALUES
-(1, 1, 'avatar', NULL, 'public/img/user/avatar.png');
+INSERT INTO `image_user` (`imageUserId`, `userId`, `imageUserType`, `imageUserName`, `imageUserUrl`, `imageUserDescription`) VALUES
+(1, 1, 'avatar', NULL, 'public/img/user/avatar.png', NULL);
 
 -- --------------------------------------------------------
 
@@ -144,15 +149,16 @@ CREATE TABLE `order` (
   `userId` int(11) NOT NULL,
   `orderDate` datetime NOT NULL,
   `orderStatus` varchar(20) NOT NULL,
-  `orderTotal` decimal(11,0) NOT NULL
+  `orderRatingStatusl` varchar(20) DEFAULT NULL,
+  `orderTotal` decimal(19,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `order`
 --
 
-INSERT INTO `order` (`orderId`, `userId`, `orderDate`, `orderStatus`, `orderTotal`) VALUES
-(1, 1, '0000-00-00 00:00:00', 'done', '0');
+INSERT INTO `order` (`orderId`, `userId`, `orderDate`, `orderStatus`, `orderRatingStatusl`, `orderTotal`) VALUES
+(1, 1, '0000-00-00 00:00:00', 'done', NULL, '0.00');
 
 -- --------------------------------------------------------
 
@@ -163,11 +169,10 @@ INSERT INTO `order` (`orderId`, `userId`, `orderDate`, `orderStatus`, `orderTota
 CREATE TABLE `order_detail` (
   `orderDetailId` int(11) NOT NULL,
   `orderId` int(11) NOT NULL,
-  `shopId` int(11) NOT NULL,
   `productTypeId` int(11) NOT NULL,
   `orderDetailQuantity` tinyint(4) NOT NULL,
-  `orderDetailTotal` decimal(11,0) NOT NULL,
-  `orderDetailPrice` decimal(11,0) NOT NULL
+  `orderDetailPrice` decimal(19,2) NOT NULL,
+  `orderDetailTotal` decimal(19,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -224,36 +229,36 @@ DELIMITER ;
 CREATE TABLE `product` (
   `productId` int(11) NOT NULL,
   `shopId` int(11) NOT NULL,
-  `productName` varchar(400) NOT NULL,
   `productCategoryId` int(11) NOT NULL,
+  `productName` varchar(400) CHARACTER SET utf8mb4 NOT NULL,
   `productQuantity` int(11) DEFAULT NULL,
-  `productDescription` varchar(1000) DEFAULT NULL,
+  `productDescription` text CHARACTER SET utf8mb4 DEFAULT NULL,
   `productDiscount` decimal(3,2) DEFAULT NULL,
-  `productSource` varchar(200) DEFAULT NULL,
+  `productSource` varchar(200) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `productSendFrom` varchar(200) CHARACTER SET utf8mb4 DEFAULT NULL,
   `productSold` int(11) DEFAULT 0,
-  `productBrand` varchar(200) DEFAULT NULL,
-  `productDate` datetime DEFAULT NULL,
-  `productRating` float(2,1) DEFAULT NULL,
-  `productImageThumbs` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `productBrand` varchar(200) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `productDate` datetime NOT NULL,
+  `productRating` float(2,1) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_vietnamese_ci;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`productId`, `shopId`, `productName`, `productCategoryId`, `productQuantity`, `productDescription`, `productDiscount`, `productSource`, `productSold`, `productBrand`, `productDate`, `productRating`, `productImageThumbs`) VALUES
-(1, 1, 'Giày adadas', 1, NULL, 'Đây là mô tả giày', '0.10', 'Trung Quốc', 0, 'Adadas', NULL, 4.5, 'public/img/product/tinhchat.png'),
-(2, 1, 'Áo Khoác Bomber Ny Full Da Unisex', 1, NULL, 'Áo, Quần form rộng, mặc cực thoải mái cho cả Nam lẫn Nữ.', '0.10', 'Việt Nam', 11, 'Laza', NULL, NULL, 'public/img/product/tinhchat.png'),
-(3, 1, 'Kem Chống Nắng Nâng Tone Innisfree Tone Up No Sebum Sunscreen SPF50/PA+++', 6, NULL, 'Kem chống nắng No Sebum chứa bột xốp giúp kiềm dầu và mồ hôi trên da, ngoài ra còn giúp nâng tone-giúp sáng da.', '0.20', 'Nhật Bản', 25, 'Orem', NULL, NULL, 'public/img/product/tinhchat.png'),
-(4, 1, 'Giày Bita\'s Hunter Street Black Line 2k20', 2, NULL, 'Đôi giày không chỉ vật thể hiện cá tính, mà còn là người bạn đồng hành trên mỗi hành trình trải nghiệm.', '0.30', 'Trung Quốc', 150, 'Bitas', NULL, NULL, 'public/img/product/tinhchat.png'),
-(5, 1, 'Giày Thể Thao Nike Nam Chạy Bộ CARRY OVER AIR MAX', 2, 0, 'Chất liệu: Polyester, chất liệu tổng hợp, cao su', '0.12', 'Việt Nam', 113, 'Nike', NULL, NULL, 'public/img/product/tinhchat.png'),
-(6, 1, 'Loa Bluetooth Di Động LG Xboomgo PL2 - Hàng Chính Hãng', 3, 976, 'Đơn giản mà thời trang', '0.19', 'Việt Nam', 326, 'Ubl', NULL, NULL, 'public/img/product/tinhchat.png'),
-(7, 1, 'Son Môi Mini Garden Roses Matte Lipstick Version 2019 6ML PV993', 6, 188, 'Roses Matte Lipstick với sáng chế Đột Phá Mới X3 Resin Technologies - Mỹ tạo lớp màng kháng nước tuyệt vời chống lem, chống trôi giúp tăng khả năng bám màu gấp 3 lần lên đến 24h.', '0.31', 'Hàn Quốc', 596, 'Beauful', NULL, NULL, 'public/img/product/tinhchat.png'),
-(8, 1, 'Sữa rửa mặt ngăn ngừa lão hóa Pond\'s Age Miracle 100g', 6, 278, 'Với phức hợp Intelligent Pro-cell Complex gồm 6 dưỡng chất chuyên biệt giúp thúc đẩy quá trình tái tạo da tại tầng biểu bì, chống lão hóa da.', '0.45', 'Việt Nam', 32, 'Pond', NULL, NULL, 'public/img/product/tinhchat.png'),
-(9, 1, 'Bộ đôi tinh chất củng cố cốt lõi ngăn lão hóa OHUI Prime Advancer Ampoule Serum', 6, 145, 'Prime Advancer Ampoule Serum có khả năng củng cố, tăng cường sức mạnh cho phần cốt lõi, đồng thời Prime Advancer Ampoule Serum sẽ đảm nhận nhiệm vụ duy trì làn da của ta ở trạng thái khỏe mạnh, tươi tắn và tràn trề sức sống nhất', '0.40', 'Việt Nam', 18, 'Ohui', NULL, NULL, 'public/img/product/tinhchat.png'),
-(10, 1, 'Quần kaki dài nam chất vải cotton có giãn siêu đẹp LADOS ', 1, 1499, 'Thiết kế theo form Slimfit , dáng gọn, tôn dám trẻ trung- thông số phù hợp với người việt nam', '0.32', 'Hàn Quốc', 23, 'Lados', NULL, NULL, 'public/img/product/tinhchat.png'),
-(11, 1, 'Kem dưỡng chống lão hoá trẻ hoá da Ohui Prime Advancer Ampoul Capture Cream/ Mỹ phẩm công ty chính h', 6, 164, 'Kem dưỡng OHUI Prime Advancer Ampoule Capture Cream là một trong những sản phẩm có nhiều tính năng nhất. Rất được lòng giới chị em xứ sở Kim Chi.', '0.23', 'Nhật Bản', 59, 'Ohui', NULL, NULL, 'public/img/product/tinhchat.png'),
-(12, 1, 'Balo nam Hàn Quốc Cao Cấp HARAS', 1, 556, 'Balo nam HARAS được gia công bằng chất liệu vải đảm bảo độ bền chắc theo thời gian. Loại chất liệu này góp phần hạn chế tối đa tình trạng sờn cũ, phai màu sau một thời gian dài sử dụng.', '0.43', 'Trung Quốc', 29, 'Haras', NULL, NULL, 'public/img/product/tinhchat.png');
+INSERT INTO `product` (`productId`, `shopId`, `productCategoryId`, `productName`, `productQuantity`, `productDescription`, `productDiscount`, `productSource`, `productSendFrom`, `productSold`, `productBrand`, `productDate`, `productRating`) VALUES
+(1, 1, 1, 'Giày thể thao Bitas Hunter X White Collection', 0, 'Đây là mô tả giày', '0.10', 'Trung Quốc', NULL, 0, 'Adadas', '0000-00-00 00:00:00', 4.5),
+(2, 1, 1, 'Áo Khoác Bomber Ny Full Da Unisex', NULL, 'Áo, Quần form rộng, mặc cực thoải mái cho cả Nam lẫn Nữ.', '0.10', 'Việt Nam', NULL, 11, 'Laza', '0000-00-00 00:00:00', NULL),
+(3, 1, 6, 'Kem Chống Nắng Nâng Tone Innisfree Tone Up No Sebum Sunscreen SPF50/PA+++', NULL, 'Kem chống nắng No Sebum chứa bột xốp giúp kiềm dầu và mồ hôi trên da, ngoài ra còn giúp nâng tone-giúp sáng da.', '0.20', 'Nhật Bản', NULL, 25, 'Orem', '0000-00-00 00:00:00', NULL),
+(4, 1, 2, 'Giày Bita\'s Hunter Street Black Line 2k20', NULL, 'Đôi giày không chỉ vật thể hiện cá tính, mà còn là người bạn đồng hành trên mỗi hành trình trải nghiệm.', '0.30', 'Trung Quốc', NULL, 150, 'Bitas', '0000-00-00 00:00:00', NULL),
+(5, 1, 2, 'Giày Thể Thao Nike Nam Chạy Bộ CARRY OVER AIR MAX', 0, 'Chất liệu: Polyester, chất liệu tổng hợp, cao su', '0.12', 'Việt Nam', NULL, 113, 'Nike', '0000-00-00 00:00:00', NULL),
+(6, 1, 3, 'Loa Bluetooth Di Động LG Xboomgo PL2 - Hàng Chính Hãng', 976, 'Đơn giản mà thời trang', '0.19', 'Việt Nam', NULL, 326, 'Ubl', '0000-00-00 00:00:00', NULL),
+(7, 1, 6, 'Son Môi Mini Garden Roses Matte Lipstick Version 2019 6ML PV993', 188, 'Roses Matte Lipstick với sáng chế Đột Phá Mới X3 Resin Technologies - Mỹ tạo lớp màng kháng nước tuyệt vời chống lem, chống trôi giúp tăng khả năng bám màu gấp 3 lần lên đến 24h.', '0.31', 'Hàn Quốc', NULL, 596, 'Beauful', '0000-00-00 00:00:00', NULL),
+(8, 1, 6, 'Sữa rửa mặt ngăn ngừa lão hóa Pond\'s Age Miracle 100g', 278, 'Với phức hợp Intelligent Pro-cell Complex gồm 6 dưỡng chất chuyên biệt giúp thúc đẩy quá trình tái tạo da tại tầng biểu bì, chống lão hóa da.', '0.45', 'Việt Nam', NULL, 32, 'Pond', '0000-00-00 00:00:00', NULL),
+(9, 1, 6, 'Bộ đôi tinh chất củng cố cốt lõi ngăn lão hóa OHUI Prime Advancer Ampoule Serum', 145, 'Prime Advancer Ampoule Serum có khả năng củng cố, tăng cường sức mạnh cho phần cốt lõi, đồng thời Prime Advancer Ampoule Serum sẽ đảm nhận nhiệm vụ duy trì làn da của ta ở trạng thái khỏe mạnh, tươi tắn và tràn trề sức sống nhất', '0.40', 'Việt Nam', NULL, 18, 'Ohui', '0000-00-00 00:00:00', NULL),
+(10, 1, 1, 'Quần kaki dài nam chất vải cotton có giãn siêu đẹp LADOS ', 1499, 'Thiết kế theo form Slimfit , dáng gọn, tôn dám trẻ trung- thông số phù hợp với người việt nam', '0.32', 'Hàn Quốc', NULL, 23, 'Lados', '0000-00-00 00:00:00', NULL),
+(11, 1, 6, 'Kem dưỡng chống lão hoá trẻ hoá da Ohui Prime Advancer Ampoul Capture Cream/ Mỹ phẩm công ty chính h', 100, 'Kem dưỡng OHUI Prime Advancer Ampoule Capture Cream là một trong những sản phẩm có nhiều tính năng nhất. Rất được lòng giới chị em xứ sở Kim Chi.', '0.23', 'Nhật Bản', NULL, 59, 'Ohui', '0000-00-00 00:00:00', NULL),
+(12, 1, 1, 'Balo nam Hàn Quốc Cao Cấp HARAS', 100, 'Balo nam HARAS được gia công bằng chất liệu vải đảm bảo độ bền chắc theo thời gian. Loại chất liệu này góp phần hạn chế tối đa tình trạng sờn cũ, phai màu sau một thời gian dài sử dụng.', '0.43', 'Trung Quốc', NULL, 29, 'Haras', '0000-00-00 00:00:00', NULL);
 
 -- --------------------------------------------------------
 
@@ -289,7 +294,7 @@ CREATE TABLE `product_rating` (
   `productId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `productRatingStar` tinyint(4) NOT NULL,
-  `productRatingComment` varchar(400) DEFAULT NULL
+  `productRatingComment` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -350,51 +355,50 @@ CREATE TABLE `product_type` (
   `productId` int(11) NOT NULL,
   `productTypeName` varchar(200) NOT NULL,
   `productTypeQuantity` int(11) NOT NULL,
-  `productTypePrice` decimal(11,0) DEFAULT NULL
+  `productTypePrice` decimal(19,2) NOT NULL,
+  `productFreightCost` decimal(19,2) DEFAULT 30000.00
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `product_type`
 --
 
-INSERT INTO `product_type` (`productTypeId`, `productId`, `productTypeName`, `productTypeQuantity`, `productTypePrice`) VALUES
-(1, 1, 'Size 39', 19, '142000'),
-(2, 1, 'Size 40', 30, '142000'),
-(3, 1, 'Size 41', 19, '142000'),
-(4, 1, 'Size 40', 40, '300000'),
-(5, 1, 'Size 41', 30, '300000'),
-(6, 1, 'Size 42', 30, '300000'),
-(7, 2, 'Size M', 50, '800000'),
-(8, 2, 'Size L', 25, '800000'),
-(9, 2, 'Size XL', 25, '800000'),
-(10, 3, '300g', 20, '300000'),
-(11, 3, '400g', 20, '250000'),
-(12, 3, '50g', 20, '80000'),
-(13, 3, '200g', 20, '180000'),
-(14, 3, '100g', 20, '120000'),
-(15, 4, 'Size 39', 25, '2000000'),
-(16, 4, 'Size 40', 25, '2000000'),
-(17, 4, 'Size 41', 25, '2000000'),
-(18, 4, 'Size 42', 25, '2000000'),
-(19, 5, 'Size 38', 32, '1521000'),
-(20, 5, 'Size 39', 230, '1521000'),
-(21, 5, 'Size 40', 123, '1521000'),
-(22, 5, 'Size 41', 322, '1521000'),
-(62, 5, 'Size 42', 0, '1521000'),
-(63, 6, 'Nhập khẩu', 124, '760000'),
-(64, 6, 'Chính hãng', 752, '980000'),
-(65, 7, 'Màu đỏ', 74, '340000'),
-(66, 7, 'Màu hồng', 14, '348000'),
-(67, 8, 'Chai 200ml', 23, '150000'),
-(68, 8, 'Chai 400ml', 57, '230000'),
-(69, 8, 'Chai 700ml', 98, '340000'),
-(70, 9, '', 45, '670000'),
-(71, 10, 'Size 29', 54, '341000'),
-(72, 10, 'Size 30', 34, '341000'),
-(73, 10, 'Size 31', 965, '341000'),
-(74, 10, 'Size 32', 346, '341000'),
-(75, 11, '', 64, '983000'),
-(76, 12, '', 456, '568000');
+INSERT INTO `product_type` (`productTypeId`, `productId`, `productTypeName`, `productTypeQuantity`, `productTypePrice`, `productFreightCost`) VALUES
+(1, 1, 'Size 39', 19, '142000.00', NULL),
+(2, 1, 'Size 40', 30, '142000.00', NULL),
+(3, 1, 'Size 41', 19, '142000.00', NULL),
+(4, 1, 'Size 40', 40, '300000.00', NULL),
+(5, 1, 'Size 41', 30, '300000.00', NULL),
+(6, 1, 'Size 42', 30, '300000.00', NULL),
+(7, 2, 'Size M', 50, '800000.00', NULL),
+(8, 2, 'Size L', 25, '800000.00', NULL),
+(9, 2, 'Size XL', 25, '800000.00', NULL),
+(10, 3, '300g', 20, '300000.00', NULL),
+(11, 3, '400g', 20, '250000.00', NULL),
+(12, 3, '50g', 20, '80000.00', NULL),
+(13, 3, '200g', 20, '180000.00', NULL),
+(14, 3, '100g', 20, '120000.00', NULL),
+(15, 4, 'Size 39', 25, '2000000.00', NULL),
+(16, 4, 'Size 40', 25, '2000000.00', NULL),
+(17, 4, 'Size 41', 25, '2000000.00', NULL),
+(18, 4, 'Size 42', 25, '2000000.00', NULL),
+(19, 5, 'Size 38', 32, '1521000.00', NULL),
+(20, 5, 'Size 39', 230, '1521000.00', NULL),
+(21, 5, 'Size 40', 123, '1521000.00', NULL),
+(22, 5, 'Size 41', 322, '1521000.00', NULL),
+(62, 5, 'Size 42', 0, '1521000.00', NULL),
+(63, 6, 'Nhập khẩu', 124, '760000.00', NULL),
+(64, 6, 'Chính hãng', 752, '980000.00', NULL),
+(65, 7, 'Màu đỏ', 74, '340000.00', NULL),
+(66, 7, 'Màu hồng', 14, '348000.00', NULL),
+(67, 8, 'Chai 200ml', 23, '150000.00', NULL),
+(68, 8, 'Chai 400ml', 57, '230000.00', NULL),
+(69, 8, 'Chai 700ml', 98, '340000.00', NULL),
+(70, 9, '', 45, '670000.00', NULL),
+(71, 10, 'Size 29', 54, '341000.00', NULL),
+(72, 10, 'Size 30', 34, '341000.00', NULL),
+(73, 10, 'Size 31', 965, '341000.00', NULL),
+(74, 10, 'Size 32', 346, '341000.00', NULL);
 
 --
 -- Triggers `product_type`
@@ -458,19 +462,19 @@ DELIMITER ;
 
 CREATE TABLE `shop` (
   `shopId` int(11) NOT NULL,
-  `shopEmail` varchar(320) NOT NULL,
+  `shopEmail` varchar(200) NOT NULL,
   `shopPassword` varchar(64) NOT NULL,
   `shopName` varchar(200) NOT NULL,
-  `shopAdress` varchar(400) NOT NULL,
+  `shopAdress` text NOT NULL,
   `shopPhone` varchar(20) NOT NULL,
-  `shopDateJoin` date NOT NULL
+  `shopJoinDate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `shop`
 --
 
-INSERT INTO `shop` (`shopId`, `shopEmail`, `shopPassword`, `shopName`, `shopAdress`, `shopPhone`, `shopDateJoin`) VALUES
+INSERT INTO `shop` (`shopId`, `shopEmail`, `shopPassword`, `shopName`, `shopAdress`, `shopPhone`, `shopJoinDate`) VALUES
 (1, 'shop01@gmail.com', '123456', 'Shop 01', 'Hà Nội', '0912312123', '0000-00-00');
 
 -- --------------------------------------------------------
@@ -481,12 +485,12 @@ INSERT INTO `shop` (`shopId`, `shopEmail`, `shopPassword`, `shopName`, `shopAdre
 
 CREATE TABLE `user` (
   `userId` int(11) NOT NULL,
-  `userEmail` varchar(320) NOT NULL,
+  `userEmail` varchar(200) NOT NULL,
   `userPhone` varchar(20) DEFAULT NULL,
   `userPassword` varchar(64) NOT NULL,
   `userName` varchar(200) DEFAULT NULL,
-  `userAddress` varchar(400) DEFAULT NULL,
-  `userAvatar` varchar(400) DEFAULT NULL
+  `userAddress` text DEFAULT NULL,
+  `userAvatar` text DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -509,8 +513,9 @@ CREATE TABLE `voucher` (
   `shopId` int(11) NOT NULL,
   `voucherDate` date NOT NULL,
   `voucherDateValid` date NOT NULL,
-  `voucherDiscount` decimal(2,1) DEFAULT NULL,
-  `voucherPrice` decimal(11,0) DEFAULT NULL,
+  `voucherDiscount` decimal(3,2) DEFAULT NULL,
+  `voucherPrice` decimal(19,2) DEFAULT NULL,
+  `voucherPriceMinToUse` decimal(19,2) DEFAULT NULL,
   `voucherQuantity` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -554,8 +559,7 @@ ALTER TABLE `order`
 ALTER TABLE `order_detail`
   ADD PRIMARY KEY (`orderDetailId`),
   ADD KEY `order_detail_fk1_idx` (`orderId`),
-  ADD KEY `oder_detail_fk1_idx` (`productTypeId`),
-  ADD KEY `order_detail_fk3_idx` (`shopId`);
+  ADD KEY `oder_detail_fk1_idx` (`productTypeId`);
 
 --
 -- Indexes for table `product`
@@ -621,7 +625,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `image_product`
 --
 ALTER TABLE `image_product`
-  MODIFY `imageProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `imageProductId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `image_user`
@@ -645,7 +649,7 @@ ALTER TABLE `order_detail`
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `productId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `product_rating`
@@ -657,7 +661,7 @@ ALTER TABLE `product_rating`
 -- AUTO_INCREMENT for table `product_type`
 --
 ALTER TABLE `product_type`
-  MODIFY `productTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=77;
+  MODIFY `productTypeId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=80;
 
 --
 -- AUTO_INCREMENT for table `shop`
@@ -711,8 +715,7 @@ ALTER TABLE `order`
 --
 ALTER TABLE `order_detail`
   ADD CONSTRAINT `order_detail_fk1` FOREIGN KEY (`orderId`) REFERENCES `order` (`orderId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_detail_fk2` FOREIGN KEY (`productTypeId`) REFERENCES `product_type` (`productTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `order_detail_fk3` FOREIGN KEY (`shopId`) REFERENCES `shop` (`shopId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `order_detail_fk2` FOREIGN KEY (`productTypeId`) REFERENCES `product_type` (`productTypeId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `product`

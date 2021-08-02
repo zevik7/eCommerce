@@ -7,11 +7,13 @@ class ProductDetail extends Controller{
         $this->shopModel = $this->model('Shop');
         $this->productModel = $this->model('Product');
     }
-    function Main(){
-        $this->view('Main',[
-            'Page' => 'ProductDetail',
-            'Product' => $this->productModel->getProductInfo()
-        ]);
+    function loadProduct($productId){
+        if (count($productId) === 1) {
+            $this->view('Main',[
+                'Page' => 'ProductDetail',
+                'productData' => $this->productModel->getProduct($productId[0])
+            ]);
+        }
     }
 }
 ?>
