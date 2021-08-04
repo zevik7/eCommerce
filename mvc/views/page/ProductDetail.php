@@ -2,11 +2,15 @@
     if (isset($data['productData'])){
     
     $productData = json_decode($data['productData'], true);
+
     $product = 
-    array_key_exists('product', $productData) ? $productData['product'][0] : []; //One product / one row
+    array_key_exists('product', $productData) ? $productData['product'] : []; //One product / one row
 
     $productType = 
-    array_key_exists('productType', $productData) ? $productData['productType'] : [];
+    array_key_exists('productType', $productData) ? $productData['productType'] : []; 
+
+    $productTypeSub = 
+    array_key_exists('productTypeSub', $productData) ? $productData['productTypeSub'] : []; 
 
     $productImage =
     array_key_exists('productImage', $productData) ? $productData['productImage'] : [];
@@ -14,14 +18,35 @@
     $productRating =
     array_key_exists('productRating', $productData) ? $productData['productRating'] : [];
 
-    if (!empty($product) && !empty($productType) && !empty($productImage))
+    if (!empty($product) && !empty($productType) && !empty($productImage)) // In false, not enough information to display
     {
-        $minPrice = 9999999999999999;
+        //Flat 1 level
+        $productTypeSub = array_reduce($productTypeSub, 'array_merge', array());
+        $product = array_reduce($product, 'array_merge', array());
+
+        /*---------Parse general data--------*/
+
+        //Min price and max price
+        $minPrice = 99999999999;
         $maxPrice = 0;
-        foreach ($productType as $type) {
-            $minPrice = $type['productTypePrice'] < $minPrice ? $type['productTypePrice'] : $minPrice;
-            $maxPrice = $type['productTypePrice'] > $maxPrice ? $type['productTypePrice'] : $maxPrice;
+        $productTypePrice = array_filter(array_column($productType, 'productTypePrice'));
+        $productTypeSubPrice = array_filter(array_column($productTypeSub, 'productTypeSubPrice'));
+        if (!empty($productTypePrice));
+        {
+            $minPrice = min($productTypePrice);
+            $maxPrice = max($productTypePrice);
         }
+        if (!empty($productTypeSubPrice))
+        {
+            $minPrice = $minPrice > min($productTypeSubPrice) ? min($productTypeSubPrice) : $minPrice;
+            $maxPrice = $maxPrice < max($productTypeSubPrice) ? max($productTypeSubPrice) : $maxPrice;
+        }
+
+        // Product total quantity
+        $productTotalQuantity = array_sum(array_column($productType, 'productTypeQuantity'));
+
+        // Product typeSubName List
+        $productTypeSubNameList = array_unique(array_column($productTypeSub, 'productTypeSubName'));
 ?>
     <div class="bg-transparent">
         <div class="grid pt-20">
@@ -119,13 +144,13 @@
                                     <?php
                                         if ($minPrice==$maxPrice){
                                     ?>
-                                        <span class="product-price__from"><?php echo $minPrice;?></span>
+                                        <span class="product-price__from"><?php echo number_format($minPrice);?></span>
                                     <?php
                                         } else {
                                     ?>
-                                        <span class="product-price__from"><?php echo $minPrice;?></span>
+                                        <span class="product-price__from"><?php echo number_format($minPrice);?></span>
                                         -
-                                        <span class="product-price__to"><?php echo $maxPrice;?> đ</span>
+                                        <span class="product-price__to"><?php echo number_format($maxPrice);?> đ</span>
                                     <?php
                                         }
                                     ?>
@@ -162,42 +187,72 @@
                                         </div>
                                         <p class="freight-sub-text title-sm">
                                             Phí vận chuyển (tạm tính):
-                                            <span id="freight-cost">40.000</span>
+                                            <span id="freight-cost">
+                                                30.000
+                                            </span>
                                         </p>                                                        
                                     </div>
                                 </div>
                                 <div class="product-type row mt-20">
                                     <div class="product-type__header col-3">
-                                        <h6 class="title-sm">Chọn loại hàng</h6>
+                                        <h6 class="title-sm"><?php echo $productType[0]['productTypeLabelName'];?></h6>
                                     </div>
                                     <div class="product-type__body col-9">
                                         <ul class="list-type">
                                             <?php
                                                 foreach($productType as $type) {
                                             ?>
-                                                <li class="list-type__item btn btn-third"><?php echo $type['productTypeName'];?></li>
+                                                <li class="list-type__item btn btn-third" 
+                                                    id="<?php echo $type['productTypeId'];?>" 
+                                                    price="<?php echo $type['productTypePrice'];?>"
+                                                    type-quantity="<?php echo $type['productTypeQuantity'];?>"> 
+                                                    <?php echo $type['productTypeName'];?>
+                                                </li>
                                             <?php
                                                 }
                                             ?>
                                         </ul>
                                     </div>
                                 </div>
+                                <?php
+                                    if (!empty($productTypeSub))
+                                    {
+                                ?>
                                 <div class="product-type row mt-20">
                                     <div class="product-type__header col-3">
-                                        <h6 class="title-sm">Chọn màu</h6>
+                                        <h6 class="title-sm"><?php echo $productTypeSub[0]['productTypeLabelName'];?></h6>
                                     </div>
                                     <div class="product-type__body col-9">
+                                        <ul class="list-type-display-first">
+                                            <?php
+                                                foreach($productTypeSubNameList as $name) {
+                                            ?>
+                                                <li class="list-type__item btn btn-third">
+                                                    <?php echo $name;?>
+                                                </li>
+                                            <?php
+                                                }
+                                            ?>
+                                        </ul>
                                         <ul class="list-type">
                                             <?php
-                                                    foreach($productType as $type) {
+                                                foreach($productTypeSub as $type) {
                                             ?>
-                                                <li class="list-type__item btn btn-third"><?php echo $type['productTypeName'];?></li>
+                                                <li class="list-type__item btn btn-third" style="display:none"
+                                                id="<?php echo $type['productTypeSubId'];?>" 
+                                                price="<?php echo $type['productTypeSubPrice'];?>"
+                                                typesub-quantity="<?php echo $type['productTypeSubQuantity'];?>">
+                                                    <?php echo $type['productTypeSubName'];?>
+                                                </li>
                                             <?php
                                                 }
                                             ?>
                                         </ul>
                                     </div>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                                 <div class="product-quantity-count row mt-20">
                                     <div class="product-quantity-count__header col-3">
                                         <h6 class="title-sm">Số lượng</h6>
@@ -208,7 +263,7 @@
                                             <input class="carousel-quantity__number" type="number" value="1">
                                             <div class="carousel-quantity__plus">+</div>
                                         </div>
-                                        <span class="product-quantity-count__text">Còn 34 sản phẩm</span>
+                                        <span class="product-quantity-count__text">Còn <?php echo $productTotalQuantity;?> sản phẩm</span>
                                     </div>
                                 </div>
                                 <div class="product-buy mt-20">
@@ -291,19 +346,31 @@
                                         <div class="desc__box">
                                             <div class="desc__row">
                                                 <h3 class="row-title">Danh mục</h3>
-                                                <p class="row-text">Thời trang</p>
+                                                <p class="row-text">
+                                                    <?php echo $product['productCategoryName'];?>
+                                                </p>
                                             </div>
                                             <div class="desc__row">
-                                                <h3 class="row-title">Kho hàng</h3>
-                                                <p class="row-text">2343</p>
+                                                <h3 class="row-title">
+                                                    Kho hàng
+                                                </h3>
+                                                <p class="row-text">
+                                                    <?php
+                                                        echo $productTotalQuantity;
+                                                    ?>
+                                                </p>
                                             </div>
                                             <div class="desc__row">
-                                                <h3 class="row-title">Gửi từ</h3>
+                                                <h3 class="row-title">
+                                                    <?php echo $product['productSendFrom'];?>
+                                                </h3>
                                                 <p class="row-text">Hồ Chí Minh</p>
                                             </div>
                                             <div class="desc__row">
                                                 <h3 class="row-title">Thương hiệu</h3>
-                                                <p class="row-text">No brand</p>
+                                                <p class="row-text">
+                                                    <?php echo $product['productBrand'];?>
+                                                </p>
                                             </div>
                                         </div> 
                                     </div>
@@ -311,11 +378,7 @@
                                         <div class="desc__title title-lg">Mô tả sản phầm</div>
                                         <div class="desc__box">
                                             <p class="desc__content">
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam mattis tortor a libero venenatis, sit amet imperdiet eros mattis. Morbi pharetra libero ac tortor sollicitudin tincidunt. In dignissim libero nec sapien gravida, sed ullamcorper tellus rhoncus. Vivamus suscipit a nibh et vehicula. Etiam vel suscipit eros. Vestibulum sollicitudin venenatis sem, vel vestibulum neque consectetur et. Sed malesuada tristique odio nec interdum.
-                                                Vestibulum id ipsum id leo maximus auctor nec ut ipsum. Duis a ultrices lectus. Pellentesque ipsum nunc, pretium id efficitur sit amet, mattis sed velit. Praesent pulvinar euismod convallis. Nunc varius ex non dui egestas, at aliquet lorem cursus. Mauris mattis consectetur ante, sit amet malesuada nisl sollicitudin in. Vivamus eget aliquam urna.
-                                                Maecenas porta ante quis erat mattis, sed viverra nisi elementum. Vestibulum turpis nulla, tempus a odio sit amet, eleifend congue ipsum. Aliquam eleifend venenatis enim, sit amet vestibulum dolor commodo in. Integer efficitur vulputate urna, vel vulputate elit ultricies nec. Pellentesque dui massa, tristique vitae vulputate sed, ultrices sed est. Ut vitae mi vitae ligula venenatis varius. Donec quis neque vulputate augue posuere dapibus mollis at nisi. Pellentesque at orci a erat posuere cursus. Suspendisse vitae elit ut metus gravida pellentesque ut sit amet ipsum. Pellentesque eu ornare diam.
-                                                Sed dapibus rutrum leo ut aliquet. Sed non purus arcu. Integer sodales pulvinar efficitur. In ac eros pellentesque, ultrices lectus eu, sollicitudin ipsum. Suspendisse potenti. Sed luctus pharetra felis. Phasellus ultrices urna sed est lacinia auctor. Cras tempor diam a tellus aliquet tincidunt. Pellentesque metus leo, volutpat et ullamcorper id, volutpat vel ipsum. Sed vitae dui gravida, consectetur risus quis, porttitor tellus. Aliquam eu tincidunt neque. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Donec vel cursus arcu. Vestibulum sem quam, mollis tempus venenatis id, posuere a turpis. Donec sit amet enim ipsum.
-                                                Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin eu cursus ligula. Nullam nec nisi orci. Integer quis sodales dui. Integer porta turpis nunc, ac maximus magna vehicula eget. Nulla facilisi. Praesent eu dui mollis libero sodales auctor.
+                                                <?php echo $product['productDescription'];?>
                                             </p>
                                         </div>
                                     </div>

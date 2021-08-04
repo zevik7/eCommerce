@@ -123,13 +123,41 @@
         }
         public function getProduct($productId){
             $productQuery = 
-            "SELECT productId, productName, productDiscount, 
-            productSource, productSold, productBrand, productRating
-            FROM product
-            WHERE productId='".$productId."'";
+            "SELECT productId, productName,
+            productDiscount, productSource, 
+            productSold, productBrand, 
+            productRating, productSendFrom, 
+            productDescription,
+            pc.productCategoryName
+            FROM product pd
+            LEFT JOIN product_category pc
+            ON pd.productCategoryId = pc.productCategoryId
+            WHERE pd.productId='".$productId."'";
+
+            // $productTypeQuery = 
+            // "SELECT pt.productTypeId, pt.productTypeName, pt.productTypeQuantity, 
+            // pt.productTypePrice, pt.productFreightCost, 
+            // ptl.productTypeLabelId, ptl.productTypeLabelName,
+            // pts.productTypeSubId, pts.productTypeSubName,
+            // pts.productTypeSubQuantity, pts.productTypeSubPrice,
+            // pts.productTypeLabelId as productTypeLabelSubId, pts.productTypeLabelName as productTypeLabelSubName
+            // FROM product_type pt
+            // INNER JOIN product_type_label ptl 
+            // ON pt.productTypeLabelId = ptl.productTypeLabelId
+            // LEFT JOIN 
+            // (SELECT productTypeId, productTypeSubId, productTypeSubName,
+            // productTypeSubQuantity, productTypeSubPrice,
+            // ptl.productTypeLabelId, ptl.productTypeLabelName
+            // FROM product_type_sub pts 
+            // INNER JOIN product_type_label ptl 
+            // ON ptl.productTypeLabelId = pts.productTypeLabelId) pts
+            // ON pt.productTypeId = pts.productTypeId
+            // WHERE productId ='".$productId."'";
 
             $productTypeQuery = 
-            "SELECT * FROM product_type 
+            "SELECT * FROM product_type pt
+            INNER JOIN product_type_label ptl
+            ON pt.productTypeLabelId = ptl.productTypeLabelId
             WHERE productId ='".$productId."'";
 
             $productImageQuery = 
@@ -143,10 +171,19 @@
             "SELECT * FROM product_rating
             WHERE productId ='".$productId."'";
 
+            // $recommedCategoryId = $this->getRecommendCategoryId($productId);
+            // $productRecommendQuery = 
+            // "SELECT productId, productName
+            // FROM product pd
+            // INNER JOIN product_category pc
+            // ON pd.productCategoryId = pc.productCategoryId
+            // WHERE productCategoryId ='".$recommedCategoryId."'";
+
             $productResult = $this->readDB($productQuery);
             $productTypeResult = $this->readDB($productTypeQuery);
             $productImageResult = $this->readDB($productImageQuery);
             $productRating = $this->readDB($productRatingQuery);
+            // $productRecommend = $this->readDB($productRecommendQuery);
             
             $allResult = array();
             if ($productResult !== false) {
@@ -154,9 +191,13 @@
             }
             if ($productTypeResult !== false) {
                 $allResult['productType'] = $productTypeResult;
-            }
+                $allResult['productTypeSub'] = $this->getProductTypeSub($productTypeResult);
+            }          
             if ($productImageResult !== false) {
                 $allResult['productImage'] = $productImageResult;
+            }
+            if ($productRating !== false) {
+                $allResult['productRating'] = $productRating;
             }
             if ($productRating !== false) {
                 $allResult['productRating'] = $productRating;
@@ -171,6 +212,30 @@
                 return count($result);
             }
             return 0;
+        }
+
+        public function getProductTypeSub($productTypeList){
+            $productTypeListId = array_column($productTypeList, 'productTypeId');
+            $productTypeSub = array();
+            if(!empty($productTypeListId))
+            {
+                foreach($productTypeListId as $typeId){
+                    $query = 
+                    "SELECT * FROM product_type_sub pts
+                    INNER JOIN product_type_label ptl
+                    ON pts.productTypeLabelId = ptl.productTypeLabelId
+                    WHERE productTypeId='".$typeId."'";
+                    $result = $this->readDB($query);
+                    if ($result !== false)
+                    {
+                        array_push($productTypeSub, $result);
+                    }
+                }
+            }
+            return $productTypeSub;
+        }
+        public function getProductMinPrice($productId){
+
         }
     }
 ?>
