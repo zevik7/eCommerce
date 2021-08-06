@@ -107,15 +107,32 @@
         /*-------For Web system-----------*/
         public function getProductList($offset = 0, $productsQuantity = 0){
             $query = 
-            "SELECT product.productId, productName, productDiscount, 
-            productSource, productSold, productBrand, productRating, 
-            imageProductUrl, productTypePrice 
-            FROM product, image_product, product_type
-            where product.productId = image_product.productId 
-            AND product_type.productId = image_product.productId 
-            AND imageProductType = 'thumb'
-            GROUP BY product.productId
-            ORDER BY productTypePrice
+            "SELECT pd.productId, pd.productName,
+            pd.productDiscount, pd.productSource, 
+            pd.productSold, pd.productBrand, 
+            pd.productRating, pd.productSendFrom, 
+            -- pd.productDescription,
+            -- pc.productCategoryId,
+            -- pc.productCategoryName,
+            -- pt.productTypeId,
+            -- pt.productTypeName,
+            MIN(pt.productTypePrice) as productTypePrice,
+            ip.imageProductId,
+            ip.imageProductUrl,
+            -- pts.productTypeSubId,
+            -- pts.productTypeSubName,
+            MIN(pts.productTypeSubPrice) as productTypeSubPrice
+            FROM product pd
+            INNER JOIN product_category pc
+            ON pd.productCategoryId = pc.productCategoryId
+            INNER JOIN image_product ip
+            ON ip.productId = pd.productId
+            INNER JOIN product_type pt
+            ON pt.productId = pd.productId
+            LEFT JOIN product_type_sub pts 
+            ON pts.productTypeId = pt.productTypeId
+            WHERE ip.imageProductType = 'thumb'
+            GROUP BY pd.productId
             LIMIT ?, ?";
 
             $result = $this->readDB($query, array($offset, $productsQuantity));
@@ -156,7 +173,7 @@
 
             $productTypeQuery = 
             "SELECT * FROM product_type pt
-            INNER JOIN product_type_label ptl
+            LEFT JOIN product_type_label ptl
             ON pt.productTypeLabelId = ptl.productTypeLabelId
             WHERE productId ='".$productId."'";
 
@@ -171,19 +188,10 @@
             "SELECT * FROM product_rating
             WHERE productId ='".$productId."'";
 
-            // $recommedCategoryId = $this->getRecommendCategoryId($productId);
-            // $productRecommendQuery = 
-            // "SELECT productId, productName
-            // FROM product pd
-            // INNER JOIN product_category pc
-            // ON pd.productCategoryId = pc.productCategoryId
-            // WHERE productCategoryId ='".$recommedCategoryId."'";
-
             $productResult = $this->readDB($productQuery);
             $productTypeResult = $this->readDB($productTypeQuery);
             $productImageResult = $this->readDB($productImageQuery);
             $productRating = $this->readDB($productRatingQuery);
-            // $productRecommend = $this->readDB($productRecommendQuery);
             
             $allResult = array();
             if ($productResult !== false) {
@@ -234,8 +242,74 @@
             }
             return $productTypeSub;
         }
-        public function getProductMinPrice($productId){
+        public function getCategoryId($productId)
+        {
+            $query = 
+            "SELECT productCategoryId 
+            FROM product
+            WHERE productId = '".$productId."'
+            LIMIT 1";
 
+            $result = $this->readDB($query);
+            if ($result !== false)
+            {
+                return $result[0]->productCategoryId;
+            }
+            return '';
+        }
+        public function getProductListByCategory($productCategoryId, $offset = 0, $productsQuantity = 0){
+            $query= 
+            "SELECT pd.productId, pd.productName,
+            pd.productDiscount, pd.productSource, 
+            pd.productSold, pd.productBrand, 
+            pd.productRating, pd.productSendFrom, 
+            -- pd.productDescription,
+            -- pc.productCategoryId,
+            -- pc.productCategoryName,
+            -- pt.productTypeId,
+            -- pt.productTypeName,
+            MIN(pt.productTypePrice) as productTypePrice,
+            ip.imageProductId,
+            ip.imageProductUrl,
+            -- pts.productTypeSubId,
+            -- pts.productTypeSubName,
+            MIN(pts.productTypeSubPrice) as productTypeSubPrice
+            FROM product pd
+            INNER JOIN product_category pc
+            ON pd.productCategoryId = pc.productCategoryId
+            INNER JOIN image_product ip
+            ON ip.productId = pd.productId
+            INNER JOIN product_type pt
+            ON pt.productId = pd.productId
+            LEFT JOIN product_type_sub pts 
+            ON pts.productTypeId = pt.productTypeId
+            WHERE ip.imageProductType = 'thumb'
+            AND pc.productCategoryId = ".$productCategoryId."
+            GROUP BY pd.productId
+            ORDER BY pd.productSold DESC
+            LIMIT ?,?";
+            $result = $this->readDB($query, array($offset,$productsQuantity));
+            if ($result !== false)
+            {
+                return json_encode($result);
+            }
+            return json_encode([]);
+        }
+        public function getProductQuantityByCategory($categoryId)
+        {
+            $query =
+            "SELECT * from product pd
+            INNER JOIN product_type pt
+            ON pd.productId = pt.productId
+            WHERE productCategoryId = ?
+            GROUP BY pd.productId";
+
+            $result = $this->readDB($query, array($categoryId));
+
+            if($result !== false){
+                return count($result);
+            }
+            return 0;
         }
     }
 ?>

@@ -11,7 +11,7 @@
             parent::__construct();
             //Default Pagination
             $this->currentPage = 1;
-            $this->itemPerPage = 5;
+            $this->itemPerPage = 10;
             $this->offset = 0;
         }
         function calPagination($totalItems){

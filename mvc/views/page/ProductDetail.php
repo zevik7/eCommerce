@@ -17,8 +17,8 @@
 
     $productRating =
     array_key_exists('productRating', $productData) ? $productData['productRating'] : [];
-
-    if (!empty($product) && !empty($productType) && !empty($productImage)) // In false, not enough information to display
+    
+    if (!empty($product)) // In false, not enough information to display
     {
         //Flat 1 level
         $productTypeSub = array_reduce($productTypeSub, 'array_merge', array());
@@ -28,10 +28,10 @@
 
         //Min price and max price
         $minPrice = 99999999999;
-        $maxPrice = 0;
+        $maxPrice = -99999999999;
         $productTypePrice = array_filter(array_column($productType, 'productTypePrice'));
         $productTypeSubPrice = array_filter(array_column($productTypeSub, 'productTypeSubPrice'));
-        if (!empty($productTypePrice));
+        if (!empty($productTypePrice))
         {
             $minPrice = min($productTypePrice);
             $maxPrice = max($productTypePrice);
@@ -44,6 +44,10 @@
 
         // Product total quantity
         $productTotalQuantity = array_sum(array_column($productType, 'productTypeQuantity'));
+
+        // Product type label quantity
+        $productTypeLabelList = array_unique(array_column($productType, 'productTypeLabelName'));
+        var_dump($productTypeLabelList);
 
         // Product typeSubName List
         $productTypeSubNameList = array_unique(array_column($productTypeSub, 'productTypeSubName'));
@@ -193,14 +197,20 @@
                                         </p>                                                        
                                     </div>
                                 </div>
+                                <?php
+                                    foreach ($productTypeLabelList as $labelType)
+                                    {
+                                ?>
                                 <div class="product-type row mt-20">
                                     <div class="product-type__header col-3">
-                                        <h6 class="title-sm"><?php echo $productType[0]['productTypeLabelName'];?></h6>
+                                        <h6 class="title-sm"><?php echo $labelType;?></h6>
                                     </div>
                                     <div class="product-type__body col-9">
                                         <ul class="list-type">
                                             <?php
                                                 foreach($productType as $type) {
+                                                    if(empty($type['productTypeName'])) break;
+                                                    if($type['productTypeLabelName'] != $labelType) continue;
                                             ?>
                                                 <li class="list-type__item btn btn-third" 
                                                     id="<?php echo $type['productTypeId'];?>" 
@@ -214,6 +224,9 @@
                                         </ul>
                                     </div>
                                 </div>
+                                <?php
+                                    }
+                                ?>
                                 <?php
                                     if (!empty($productTypeSub))
                                     {
@@ -498,30 +511,45 @@
                                 </div>
                             </div>
                         </div>
+                        <?php
+                        if (isset($data['productsRecommend']))
+                        {
+                            $productsRecommend = json_decode($data['productsRecommend'], true);
+                            if (!empty($productsRecommend))
+                            {
+                        ?>
                         <div class="col-2">
                             <div class="layout-split mt-24">
                                 <div class="suggestion">
                                 <h3 class="suggestion__title title titile-sm">Sản phẩm bán chạy</h3>
                                     <div class="suggestion__list">
+                                        <?php
+                                            foreach ($productsRecommend as $recommend) {
+                                                if($recommend['productId'] == $product['productId']) continue;
+                                        ?>
                                         <a href="#" class="suggestion-list__item">
-                                            <img src="public/img/product/giaybitas.jpg" alt="">
-                                            <h3 class="title title-sm">Tên sản phẩm</h3>
-                                            <p class="price">150.000 đ</p>
+                                            <img src="<?php echo $recommend['imageProductUrl'];?>" alt="">
+                                            <h3 class="title title-sm"><?php echo $recommend['productName'];?></h3>
+                                            <p class="price">
+                                                <?php
+                                                    if(isset($recommend['productTypePrice']))
+                                                        echo number_format($recommend['productTypePrice']);
+                                                    else echo number_format($recommend['productTypeSubPrice']);
+                                                ?>
+                                                đ
+                                            </p>
                                         </a>
-                                        <a href="#" class="suggestion-list__item">
-                                            <img src="public/img/product/giaybitas.jpg" alt="">
-                                            <h3 class="title title-sm">Tên sản phẩm</h3>
-                                            <p class="price">150.000 đ</p>
-                                        </a>
-                                        <a href="#" class="suggestion-list__item">
-                                            <img src="public/img/product/giaybitas.jpg" alt="">
-                                            <h3 class="title title-sm">Tên sản phẩm</h3>
-                                            <p class="price">150.000 đ</p>
-                                        </a>
+                                        <?php
+                                            }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <?php
+                            }
+                        }
+                        ?>
                     </div>
                 </div>
                 

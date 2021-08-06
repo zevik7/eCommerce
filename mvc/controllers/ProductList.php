@@ -25,5 +25,22 @@ class ProductList extends Controller{
             'Pagination' => $this->paginationModel->getPagination()
         ]);
     }
+    function loadListByCategory($categoryId){
+        $categoryId = 1;
+        //Pagination
+        if (isset($_GET['pageNumber']) && is_numeric($_GET['pageNumber'])) {
+            $this->paginationModel->currentPage = $_GET['pageNumber'];
+        }
+        $productQuantity = $this->productModel->getProductQuantityByCategory($categoryId);
+        $this->paginationModel->calpagination($productQuantity);
+        $productsData = 
+            $this->productModel->getProductListByCategory($categoryId, $this->paginationModel->offset, $this->paginationModel->itemPerPage);
+        $this->view('Main',[
+            'Page' => 'ProductList',
+            'User' => $this->userModel->getUser(),
+            'Product' => $productsData,
+            'Pagination' => $this->paginationModel->getPagination()
+        ]);
+    }
 }
 ?>

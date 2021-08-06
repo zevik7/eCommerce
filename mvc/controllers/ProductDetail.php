@@ -7,11 +7,15 @@ class ProductDetail extends Controller{
         $this->shopModel = $this->model('Shop');
         $this->productModel = $this->model('Product');
     }
-    function loadProduct($productId){
-        if (count($productId) === 1) {
+    function loadProduct($params){
+        $productId = current($params);
+        if ($productId !== false) {
+            $productCategoryId = $this->productModel->getCategoryId($productId);
+            $productsRecommend = $this->productModel->getProductListByCategory($productCategoryId, 0, 5);
             $this->view('Main',[
                 'Page' => 'ProductDetail',
-                'productData' => $this->productModel->getProduct($productId[0])
+                'productData' => $this->productModel->getProduct($productId),
+                'productsRecommend' => $productsRecommend
             ]);
         }
     }
