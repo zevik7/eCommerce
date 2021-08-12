@@ -5,12 +5,13 @@ class Personal extends Controller{
     function __construct(){
         $this->userModel = $this->model('User');
     }
-    function Main(){
+    public function loadList($param = null){
+        $PP = current($param);
         $this->view('Main',[
             'Page' => 'Personal',
-            'User' => $this->userModel->getUserInfo(),
+            'User' => $this->userModel->getUser(),
+            'PP'   => $PP
         ]);
-        
     }
     public function Edit(){
             $target_file = '';
@@ -124,6 +125,21 @@ class Personal extends Controller{
         }
         else{
             echo json_encode(['status' => 'error', 'message' => 'Sai mật khẩu!!']);
+        }
+    }
+    public function setAddress(){
+        $userAccount   =   $_SESSION['userAccount'];
+        // $userprovinces  =   $_POST['user-provinces'];
+        // $userdistricts =  $_POST['user-districts'];
+        // $userdetail =  $_POST['user-detail'];
+        // $userAddress = $userdetail.'/'.$userdistricts.'/'.$userprovinces;
+        $userAddress =  $_POST['user-detail'].'/'.$_POST['user-address'];
+        $result = $this->userModel->updateAddress($userAddress , $userAccount);
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'Cap nhat dia chi thanh cong']);
+        }
+        else{
+            echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
         }
     }
 }

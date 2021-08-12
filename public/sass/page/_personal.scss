@@ -1,8 +1,8 @@
+
 //Personal Sidebar
 .personal-sidebar{
     margin-bottom: 50px;
     padding-bottom: 10px;
-
     &__header{
         display: flex;
         align-items: center;
@@ -47,7 +47,6 @@
         margin-top: 26px;
         padding: 0;
     }
-
     &__item{
         font-size: 1.4rem;
         word-spacing: 0.2rem;
@@ -55,59 +54,49 @@
     }
     
     &__nav{
+        font-size: 1.5rem;
         display: block;
         color: $text-color; 
         transition: all 0.2s;
         display: flex;
         flex-wrap: nowrap;
         align-items: center;
+        position: relative;
+        right: 0;
+        transition: right linear 0.2s;
         &:hover{
             cursor: pointer;
-            transform: scale(1.05); 
             color: $primary-color;
-            font-weight: 500;
+            font-weight: 600;
+            right: -6px;
         }
         i{
             font-size: 1.7rem;
             min-width: 32px;
-        }
-        .dropdown{
-            font-size: 1.4rem;
-            min-width: 14px;
-            margin-left: 10px;
-        }
-        .fa-user-alt, .fa-clipboard-list{
-            color: $blue-color;
-        }
-        .fa-bell, .fa-ticket-alt{
-            color: $red-color;
-        }
-        .fa-donate{
-            color: $orange-color;
         }
     }
   
     &__subnav{
         list-style: none;
         margin-left: 32px;
-       
         li{
             margin-top: 15px;
             display: none;
-            transition: transform 0.2s;
+            position: relative;
+            right: 0;
+            transition: right linear 0.2s;
             &:hover{
                 cursor: pointer;
-                transform: scale(1.1); 
                 color: $primary-color;
-                font-weight: 500;
+                font-weight: 600;
+                right: -6px;
             }
         }
     }
 }
 .personal-active{ //active navbar when it is clicked
-    transform: scale(1.05); 
     color: $primary-color;
-    font-weight: 500;
+    font-weight: 600;
 }
 
 .personal-body{
@@ -126,11 +115,11 @@
         font-weight: 500;
         margin: 0;
         padding-bottom: 6px;
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         color: $text-color;
     }
     p{
-        font-size: 1.4rem;
+        font-size: 1.5rem;
         margin: 0;
         color: $text-color;
     }
@@ -146,12 +135,13 @@
         font-weight: 500;
         margin: 0;
         padding-bottom: 6px;
-        font-size: 1.8rem;
+        font-size: 1.9rem;
         color: $text-color;
     }
-    .btn{
+    button{
         padding: 0 20px;
         height: 40px;
+        font-size: 1.5rem;    
     }     
 }
 .account{
@@ -159,6 +149,7 @@
     padding: 0 30px;
     border-radius: 0.2rem;
     box-shadow: 0 1px 1px $background-color-disabled;
+    min-height: 420px;
 }
 
 .profile{
@@ -179,6 +170,10 @@
             text-align: right;
             margin: 0  20px;
             color: $text-color-light;
+            font-size: 1.5rem;
+        }
+        .input{
+            font-size: 1.5rem;
         }
         &-change{
             color: $primary-color;
@@ -186,9 +181,11 @@
             margin-left: 8px;
             text-decoration: underline;
             cursor: pointer;
+            font-size: 1.3rem;
         }
-        &-inner{
+        &-phone, &-email{
             margin: 0;
+            font-size: 1.4rem;
         }
         .save{
             padding: 0 20px;
@@ -231,14 +228,14 @@
 }
 .update-email{
     display: none;
-    height: 100%;
+    padding-bottom: 110px;
     &__confirm{
-        height: 100%;
+
         padding: 30px 0 0;
         margin: 0 auto;
     }
     &__change{
-        height: 100%;
+
         padding: 30px 0 0;
         margin: 0 auto;
         display: none;
@@ -261,7 +258,10 @@
         width: 40%;
         padding: 0 20px;
         height: 40px;
-        font-size: 1.3rem;
+        font-size: 1.4rem;
+    }
+    span{
+        font-size: 1.5rem;
     }
     input[type=submit], input[type=button]{
         padding: 0 20px;
@@ -286,9 +286,8 @@
 }
 .update-phone{
     display: none;
-    height: 100%;
+    padding-bottom: 110px;
     &__change{
-        height: 100%;
         padding: 30px 0 0;
         margin: 0 auto;
         display: none;
@@ -311,7 +310,7 @@
 
 .address{
     display: none;
-    min-height: 100%;
+    height: 100%;
     &__body{
         display: flex;
         min-height: 200px;
@@ -333,7 +332,7 @@
         p{
             width: 20%;
             text-align: right;
-            font-size: 1.4rem;
+            font-size: 1.5rem;
             color: $text-color-light;
         }
         a{
@@ -357,73 +356,254 @@
         margin: 0 20px;
     }
 }
-// ************Đơn mua************
-.personal-purchase{
-    &__header{
-        background-color: $background-color-white;
-        border-radius: 0.2rem;
-        display: flex;
-        &-nav{
-            height: 54px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.6rem;
-            color: $text-color;
-            border-bottom: 2px solid #dee2e6;
-            &:hover{
-                cursor: pointer;
-            }
-            &:first-child{
-                border-bottom: 2px solid #045762;
-            }
-        }
+.modal-address__add{
+    display: none;
+}
+.user-address{
+    width: 500px;
+    background-color: $background-color-white;
+    border-radius: $border-radius;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 50px;
+    padding: 30px;
+    &__heading{
+        font-size: 2rem;
+        color: $text-color;
+        font-weight: 500;
     }
-    &__body{
+    span{
+        font-size: 1.5rem;
+        color: $text-color-light;
+    }
+    &__box{
+        justify-content: space-around;
+        padding: 12px 10px;
         display: none;
     }
-    &__all{
-        display: block;
-        &-search{
-            margin-top: 12px;
-            display: flex;
-            .search-icon{
-                height: 40px;
-                background-color: $background-color-transparent;
-                width: 60px;
-                text-align: center;
-                color: $text-color-disable;
-                i{
-                    font-size: 1.8rem;            
-                    line-height: 40px;                
-                }
-            }
-            input{
-                border: none;
-                background-color: $background-color-transparent;
-            }
-        }
-
+    &__select{
+        padding: 8px 40px;
+        font-size: 1.6rem;
     }
-    &__list{
-        min-height: 600px;
-        background-color: $background-color-white;
-        border-radius: 0.2rem;
-        margin-top: 12px;
-        box-shadow: 0 1px 1px $background-color-disabled;
-        &-empty{
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            height: 600px;
-            justify-content: center;
-            img{
-                height: 200px;
-            }
+    &__detail{
+        height: 80px;
+        margin: 12px 0;
+        padding: 6px 12px;
+        font-size: 1.4rem;
+        color: $text-color;
+    }
+    &__btn{
+        display: flex;
+        justify-content: space-between;
+        padding: 20px;
+        input{
+            padding: 8px 18px;
+            font-size: 1.6rem;
         }
     }
 }
+.user-address__input{
+    margin-top: 12px;
+    font-size: 1.7rem;
+}
+// ************Đơn mua************
+.purchase__menu{
+    background-color: $background-color-white;
+    border-radius: 0.2rem;
+    display: flex;
+    position: sticky;
+    top: 0;
+    &-nav{
+        height: 54px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.7rem;
+        color: $text-color;
+        border-bottom: 2px solid #dee2e6;
+        &:hover{
+            cursor: pointer;
+        }
+    }
+}
+.purchase-active{
+    border-bottom: 2px solid #045762;
+    font-weight: 500;
+}
+
+.purchase__body{
+    display: none;
+}
+.all-purchases{
+    display: block;
+    &__search{
+        margin-top: 12px;
+        display: flex;
+        &-icon{
+            height: 40px;
+            background-color: $background-color-transparent;
+            width: 60px;
+            text-align: center;
+            color: $text-color-disable;
+            i{
+                font-size: 1.8rem;            
+                line-height: 40px;                
+            }
+        }
+        &-input{
+            border: none;
+            background-color: $background-color-transparent;
+            font-size: 1.4rem;
+            &:focus{
+                background-color: $background-color-transparent ;
+            }
+            // &:focus ~ .all-purchases__search-icon i{
+            //     color: $text-color;
+            // }
+        }
+    }
+}
+.purchases__list{
+    min-height: 400px;
+    border-radius: 0.2rem;
+    margin-top: 12px;
+    background-color: $background-color-white;
+    box-shadow: 0 1px 1px $background-color-disabled;
+    padding: 20px 20px 30px;
+}
+.purchase__list-header{
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    &-item{
+        display: flex;
+        align-items: center;
+        .where{
+            font-size: 1.4rem;
+            font-weight: 600;
+            padding-left: 8px;
+        }
+        button{
+            font-size: 1.3rem;
+            margin-left: 6px;
+            padding: 6px 12px;
+        }
+        .shipped{
+            font-size: 1.6rem;
+            color: $third-color;
+            margin-left: 8px;
+        }
+        .help{
+           font-size: 1.5rem;
+           margin-left: 8px;
+           color: $text-color-light;
+        }
+        .separation{
+            height: 18px;
+            width: 1px;
+            background-color: $text-color-disable;
+            margin-left: 6px;
+        }
+        .rated{
+            font-size: 1.6rem;
+            color: $red-color;
+            margin-left: 8px;
+        }
+    }
+}
+.purchases__list-table{
+    width: 100%;
+}
+.purchases__list-table, .purchases__row{
+    border-top: $border-light ;
+    border-bottom: $border-light;
+    border-collapse: collapse;
+}
+.purchases__row{
+    td{
+        padding: 10px 0;
+    }
+    &-img{
+        width: 90px;
+        img{
+            height: 80px;
+            width: 80px;
+            object-fit: cover;
+        }
+    }
+    &-content{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        p{
+            margin: 0;
+            padding-bottom: 8px;
+        }
+    }
+    &-title{
+        padding-top: 4px;
+        font-size: 1.7rem;
+        color: $text-color;
+    }
+    &-category{
+        font-size: 1.5rem;
+        color: $text-color-light;
+    }
+    &-quantity{
+        font-size: 1.5rem;
+        color: $text-color;
+    }
+    &-price{
+        text-align: right;
+        font-size: 1.5rem;
+        color: $text-color;
+    }
+}
+.purchase__list-total{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    height: 30px;
+    margin: 20px 0;
+    p{
+        font-size: 1.5rem;
+        padding-right: 8px;
+    }
+    span{
+        font-size: 2rem;
+        color: $red-color;
+    }
+}
+.purchase__list-footer{
+    display: flex;
+    p{
+        margin-right: auto;
+        font-size: 1.4rem;
+        color: $text-color-light;
+    }
+    button{
+        font-size: 1.5rem;
+        margin-left: 6px;
+        min-width: 140px;
+    }
+}
+.purchases__empty{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 420px;
+    justify-content: center;
+    img{
+        height: 200px;
+    }
+    p{
+        font-size: 1.5rem;
+    }
+}
+
 
 // ***************Thông Báo************
 .personal-notify{
@@ -450,7 +630,7 @@
     }
 }
 
-//*******Modal success
+//*******Modal success - failed
 .modal__update-success, .modal__update-failed{
     display: none;
 }
@@ -479,4 +659,9 @@
 .update-failed{
     font-size: 4rem;
     color: $red-color;
+}
+.purchase-svg-icon{
+    width: 20px;
+    height: 20px;
+    margin-right: 4px;
 }
