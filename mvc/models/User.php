@@ -51,7 +51,7 @@
             }
         }
         public function editProfile($userName, $userAvatar, $userAccount){
-            $query = "UPDATE user SET userName = ?";
+            $query = " UPDATE user SET userName = ? ";
             $param = array ($userName);
             if($userAvatar != ''){
                 $query = $query . ", userAvatar = ? ";
@@ -97,7 +97,6 @@
             
         }
         public function updatePassword($new_userPassword, $userAccount){
-        
             $query = "UPDATE user SET userPassword = ? WHERE userEmail = ? OR  userPhone = ?";
             $param = array ($new_userPassword, $userAccount, $userAccount);
             $result = $this->writeDB($query, $param);
@@ -110,7 +109,18 @@
             }
             
         }
-        
+        public function updateAddress($userAddress, $userAccount){
+            $query = "UPDATE user SET userAddress = ? WHERE userEmail = ? OR userPhone = ?";
+            $param = array ($userAddress, $userAccount, $userAccount);
+            $result = $this->writeDB($query, $param);
+            if ($result)
+            {
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
        
     }
 ?>

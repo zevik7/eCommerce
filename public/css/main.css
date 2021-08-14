@@ -2132,36 +2132,26 @@ a {
   margin-bottom: 15px;
 }
 .personal-sidebar__nav {
+  font-size: 1.5rem;
   display: block;
   color: #333;
   transition: all 0.2s;
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
+  position: relative;
+  right: 0;
+  transition: right linear 0.2s;
 }
 .personal-sidebar__nav:hover {
   cursor: pointer;
-  transform: scale(1.05);
   color: #045762;
-  font-weight: 500;
+  font-weight: 600;
+  right: -6px;
 }
 .personal-sidebar__nav i {
   font-size: 1.7rem;
   min-width: 32px;
-}
-.personal-sidebar__nav .dropdown {
-  font-size: 1.4rem;
-  min-width: 14px;
-  margin-left: 10px;
-}
-.personal-sidebar__nav .fa-user-alt, .personal-sidebar__nav .fa-clipboard-list {
-  color: #455CA8;
-}
-.personal-sidebar__nav .fa-bell, .personal-sidebar__nav .fa-ticket-alt {
-  color: #dc3545;
-}
-.personal-sidebar__nav .fa-donate {
-  color: #cf822a;
 }
 .personal-sidebar__subnav {
   list-style: none;
@@ -2170,19 +2160,20 @@ a {
 .personal-sidebar__subnav li {
   margin-top: 15px;
   display: none;
-  transition: transform 0.2s;
+  position: relative;
+  right: 0;
+  transition: right linear 0.2s;
 }
 .personal-sidebar__subnav li:hover {
   cursor: pointer;
-  transform: scale(1.1);
   color: #045762;
-  font-weight: 500;
+  font-weight: 600;
+  right: -6px;
 }
 
 .personal-active {
-  transform: scale(1.05);
   color: #045762;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .personal-body {
@@ -2202,11 +2193,11 @@ a {
   font-weight: 500;
   margin: 0;
   padding-bottom: 6px;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   color: #333;
 }
 .account__header-2line p {
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   margin: 0;
   color: #333;
 }
@@ -2223,12 +2214,13 @@ a {
   font-weight: 500;
   margin: 0;
   padding-bottom: 6px;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   color: #333;
 }
-.account__header-1line .btn {
+.account__header-1line button {
   padding: 0 20px;
   height: 40px;
+  font-size: 1.5rem;
 }
 
 .account {
@@ -2236,6 +2228,7 @@ a {
   padding: 0 30px;
   border-radius: 0.2rem;
   box-shadow: 0 1px 1px #d2d2d2;
+  min-height: 420px;
 }
 
 .profile {
@@ -2258,6 +2251,10 @@ a {
   text-align: right;
   margin: 0 20px;
   color: #666;
+  font-size: 1.5rem;
+}
+.profile__edit .input {
+  font-size: 1.5rem;
 }
 .profile__edit-change {
   color: #045762;
@@ -2265,9 +2262,11 @@ a {
   margin-left: 8px;
   text-decoration: underline;
   cursor: pointer;
+  font-size: 1.3rem;
 }
-.profile__edit-inner {
+.profile__edit-phone, .profile__edit-email {
   margin: 0;
+  font-size: 1.4rem;
 }
 .profile__edit .save {
   padding: 0 20px;
@@ -2307,15 +2306,13 @@ a {
 
 .update-email {
   display: none;
-  height: 100%;
+  padding-bottom: 110px;
 }
 .update-email__confirm {
-  height: 100%;
   padding: 30px 0 0;
   margin: 0 auto;
 }
 .update-email__change {
-  height: 100%;
   padding: 30px 0 0;
   margin: 0 auto;
   display: none;
@@ -2339,7 +2336,10 @@ a {
   width: 40%;
   padding: 0 20px;
   height: 40px;
-  font-size: 1.3rem;
+  font-size: 1.4rem;
+}
+.update-field span {
+  font-size: 1.5rem;
 }
 .update-field input[type=submit], .update-field input[type=button] {
   padding: 0 20px;
@@ -2365,10 +2365,9 @@ a {
 
 .update-phone {
   display: none;
-  height: 100%;
+  padding-bottom: 110px;
 }
 .update-phone__change {
-  height: 100%;
   padding: 30px 0 0;
   margin: 0 auto;
   display: none;
@@ -2391,7 +2390,7 @@ a {
 
 .address {
   display: none;
-  min-height: 100%;
+  height: 100%;
 }
 .address__body {
   display: flex;
@@ -2416,7 +2415,7 @@ a {
 .update-password__field p {
   width: 20%;
   text-align: right;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   color: #666;
 }
 .update-password__field a {
@@ -2439,68 +2438,259 @@ a {
   margin: 0 20px;
 }
 
-.personal-purchase__header {
+.modal-address__add {
+  display: none;
+}
+
+.user-address {
+  width: 500px;
+  background-color: #fff;
+  border-radius: 2px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 50px;
+  padding: 30px;
+}
+.user-address__heading {
+  font-size: 2rem;
+  color: #333;
+  font-weight: 500;
+}
+.user-address span {
+  font-size: 1.5rem;
+  color: #666;
+}
+.user-address__box {
+  justify-content: space-around;
+  padding: 12px 10px;
+  display: none;
+}
+.user-address__select {
+  padding: 8px 40px;
+  font-size: 1.6rem;
+}
+.user-address__detail {
+  height: 80px;
+  margin: 12px 0;
+  padding: 6px 12px;
+  font-size: 1.4rem;
+  color: #333;
+}
+.user-address__btn {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+.user-address__btn input {
+  padding: 8px 18px;
+  font-size: 1.6rem;
+}
+
+.user-address__input {
+  margin-top: 12px;
+  font-size: 1.7rem;
+}
+
+.purchase__menu {
   background-color: #fff;
   border-radius: 0.2rem;
   display: flex;
+  position: sticky;
+  top: 0;
 }
-.personal-purchase__header-nav {
+.purchase__menu-nav {
   height: 54px;
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.6rem;
+  font-size: 1.7rem;
   color: #333;
   border-bottom: 2px solid #dee2e6;
 }
-.personal-purchase__header-nav:hover {
+.purchase__menu-nav:hover {
   cursor: pointer;
 }
-.personal-purchase__header-nav:first-child {
+
+.purchase-active {
   border-bottom: 2px solid #045762;
+  font-weight: 500;
 }
-.personal-purchase__body {
+
+.purchase__body {
   display: none;
 }
-.personal-purchase__all {
+
+.all-purchases {
   display: block;
 }
-.personal-purchase__all-search {
+.all-purchases__search {
   margin-top: 12px;
   display: flex;
 }
-.personal-purchase__all-search .search-icon {
+.all-purchases__search-icon {
   height: 40px;
   background-color: rgba(0, 0, 0, 0.03);
   width: 60px;
   text-align: center;
   color: #999;
 }
-.personal-purchase__all-search .search-icon i {
+.all-purchases__search-icon i {
   font-size: 1.8rem;
   line-height: 40px;
 }
-.personal-purchase__all-search input {
+.all-purchases__search-input {
   border: none;
   background-color: rgba(0, 0, 0, 0.03);
+  font-size: 1.4rem;
 }
-.personal-purchase__list {
-  min-height: 600px;
-  background-color: #fff;
+.all-purchases__search-input:focus {
+  background-color: rgba(0, 0, 0, 0.03);
+}
+
+.purchases__list {
+  min-height: 400px;
   border-radius: 0.2rem;
   margin-top: 12px;
+  background-color: #fff;
   box-shadow: 0 1px 1px #d2d2d2;
+  padding: 20px 20px 30px;
 }
-.personal-purchase__list-empty {
+
+.purchase__list-header {
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.purchase__list-header-item {
+  display: flex;
+  align-items: center;
+}
+.purchase__list-header-item .where {
+  font-size: 1.4rem;
+  font-weight: 600;
+  padding-left: 8px;
+}
+.purchase__list-header-item button {
+  font-size: 1.3rem;
+  margin-left: 6px;
+  padding: 6px 12px;
+}
+.purchase__list-header-item .shipped {
+  font-size: 1.6rem;
+  color: #39A2DB;
+  margin-left: 8px;
+}
+.purchase__list-header-item .help {
+  font-size: 1.5rem;
+  margin-left: 8px;
+  color: #666;
+}
+.purchase__list-header-item .separation {
+  height: 18px;
+  width: 1px;
+  background-color: #999;
+  margin-left: 6px;
+}
+.purchase__list-header-item .rated {
+  font-size: 1.6rem;
+  color: #dc3545;
+  margin-left: 8px;
+}
+
+.purchases__list-table {
+  width: 100%;
+}
+
+.purchases__list-table, .purchases__row {
+  border-top: 1px solid #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  border-collapse: collapse;
+}
+
+.purchases__row td {
+  padding: 10px 0;
+}
+.purchases__row-img {
+  width: 90px;
+}
+.purchases__row-img img {
+  height: 80px;
+  width: 80px;
+  object-fit: cover;
+}
+.purchases__row-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+}
+.purchases__row-content p {
+  margin: 0;
+  padding-bottom: 8px;
+}
+.purchases__row-title {
+  padding-top: 4px;
+  font-size: 1.7rem;
+  color: #333;
+}
+.purchases__row-category {
+  font-size: 1.5rem;
+  color: #666;
+}
+.purchases__row-quantity {
+  font-size: 1.5rem;
+  color: #333;
+}
+.purchases__row-price {
+  text-align: right;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.purchase__list-total {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  height: 30px;
+  margin: 20px 0;
+}
+.purchase__list-total p {
+  font-size: 1.5rem;
+  padding-right: 8px;
+}
+.purchase__list-total span {
+  font-size: 2rem;
+  color: #dc3545;
+}
+
+.purchase__list-footer {
+  display: flex;
+}
+.purchase__list-footer p {
+  margin-right: auto;
+  font-size: 1.4rem;
+  color: #666;
+}
+.purchase__list-footer button {
+  font-size: 1.5rem;
+  margin-left: 6px;
+  min-width: 140px;
+}
+
+.purchases__empty {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 600px;
+  height: 420px;
   justify-content: center;
 }
-.personal-purchase__list-empty img {
+.purchases__empty img {
   height: 200px;
+}
+.purchases__empty p {
+  font-size: 1.5rem;
 }
 
 .personal-notify {
@@ -2558,6 +2748,12 @@ a {
 .update-failed {
   font-size: 4rem;
   color: #dc3545;
+}
+
+.purchase-svg-icon {
+  width: 20px;
+  height: 20px;
+  margin-right: 4px;
 }
 
 /*# sourceMappingURL=main.css.map */

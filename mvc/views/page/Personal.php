@@ -1,3 +1,4 @@
+<div class="bg-transparent">
 <div class="grid pt-20">
 <div class="row"> <!--open tag of Personal Page-->
 <?php
@@ -5,12 +6,14 @@
 ?>
 
 <div class="col-10 pb-50">
-    <?php
+    <?php 
+        //require_once './mvc/views/page/'.$data['PP'].'.php';
         require_once './mvc/views/page/PersonalAccount.php';
         require_once './mvc/views/page/PersonalPurchase.php';
         require_once './mvc/views/page/PersonalNotify.php';
         require_once './mvc/views/page/PersonalVoucher.php';
         require_once './mvc/views/page/PersonalCent.php';
+        //echo $data['PP'];
     ?>
 </div> 
 
@@ -35,5 +38,6 @@
 </div>
 
 <!--Close tag of Personal Page  -->
+</div>
 </div>
 </div>
