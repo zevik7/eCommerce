@@ -172,9 +172,7 @@
             // WHERE productId ='".$productId."'";
 
             $productTypeQuery = 
-            "SELECT * FROM product_type pt
-            LEFT JOIN product_type_label ptl
-            ON pt.productTypeLabelId = ptl.productTypeLabelId
+            "SELECT * FROM product_type
             WHERE productId ='".$productId."'";
 
             $productImageQuery = 
@@ -185,8 +183,21 @@
             WHERE productId='".$productId."'";
 
             $productRatingQuery =
-            "SELECT * FROM product_rating
-            WHERE productId ='".$productId."'";
+            "SELECT DISTINCT * FROM product_rating pr
+            INNER JOIN product_type pt
+            ON pr.productTypeId = pt.productTypeId
+            INNER JOIN (
+                SELECT ur.userId, ur.userName, ur.userAvatar
+                FROM ecommerce.user ur
+            ) ur
+            ON ur.userId = pr.userId
+            LEFT JOIN (
+                SELECT ptsub.productTypeId as productTypeIdMap, ptsub.productTypeSubLabel, ptsub.productTypeSubName FROM product_rating prating
+                INNER JOIN product_type_sub ptsub
+                ON prating.productTypeSubId  = ptsub.productTypeSubId
+            ) pts
+            ON pt.productTypeId = pts.productTypeIdMap
+            WHERE pr.productId ='".$productId."'";
 
             $productResult = $this->readDB($productQuery);
             $productTypeResult = $this->readDB($productTypeQuery);
@@ -229,9 +240,7 @@
             {
                 foreach($productTypeListId as $typeId){
                     $query = 
-                    "SELECT * FROM product_type_sub pts
-                    INNER JOIN product_type_label ptl
-                    ON pts.productTypeLabelId = ptl.productTypeLabelId
+                    "SELECT * FROM product_type_sub
                     WHERE productTypeId='".$typeId."'";
                     $result = $this->readDB($query);
                     if ($result !== false)

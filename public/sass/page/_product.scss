@@ -269,6 +269,9 @@
                 &:hover{
                     border-color: $primary-color;
                 }
+                &__star-count{
+                    margin-left: 4px;
+                }
             }
         }
     }

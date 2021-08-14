@@ -2033,6 +2033,9 @@ a {
 .product-rating__overview .product-rating-overview__filter .overview-filter-item:hover {
   border-color: #045762;
 }
+.product-rating__overview .product-rating-overview__filter .overview-filter-item__star-count {
+  margin-left: 4px;
+}
 .product-rating__box {
   display: flex;
   padding: 0 20px;
