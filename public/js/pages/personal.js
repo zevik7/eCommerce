@@ -38,24 +38,19 @@ function switchPersonal(select) {
 }
   
 /**---------Personal Account---------- */
-//hide email
-function hideEmail(email) {
-    return email.replace(/(.{2})(.*)(?=@)/,
-      function (gp1, gp2, gp3) {
-        for (let i = 0; i < gp3.length; i++) {
-          gp2 += "*";
-        }
-        return gp2;
-      });
-};
-let email = hideEmail($('#js-get-email').html());
-    $('.profile__edit-email').html(email);
-  
+let email = $('#js-get-email').text();
+var mask = email.replace(/^(..)(.*)(@.*)$/,
+    function(str,a, b, c){
+        return a + b.replace(/./g, '*') + c
+    });
+
+$('.profile__edit-email').text(mask);
+
 //hide phone number
-let phone = $('#js-get-phone').html();
+let phone = $('#js-get-phone').text();
     phone = phone.slice(-2);
     let hidePhone = "********";
-    $('.profile__edit-phone').html(hidePhone.concat(phone));
+    $('.profile__edit-phone').text(hidePhone.concat(phone));
 
 // validate
 $.validator.addMethod('notContainNumber',function(value, element){

@@ -317,3 +317,16 @@
         }
     }
 }
+// search result
+.result__message{
+    display: flex;
+    align-items: center;
+    p{
+        font-size: 1.7rem;
+        margin-left: 6px;
+        span{
+            color: $primary-color;
+            font-weight: 500;
+        }
+    }
+}

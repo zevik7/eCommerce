@@ -76,11 +76,18 @@
         </div>
         <div class="head-bar__search">
             <div class="head-search">
-                <input type="text" class="head-search__text input" placeholder="Bạn cần tìm gì ?">
-                <span class="underline"></span>
-                <div class="head-search__btn btn btn-primary">
-                    <i class="fas fa-search"></i>
-                </div>
+                <form method="GET"  class="head-search__form" action="./SearchList/LoadList/">
+                    <input type="search" name="keyword" class="head-search__text input" 
+                    oninvalid="this.setCustomValidity(' ')"
+                    oninput="setCustomValidity('')"
+                    autocomplete="off"
+                    required placeholder="Bạn cần tìm gì ?"
+                    value="<?php if(isset($data['Keyword'])) echo $data['Keyword']?>">
+                    <span class="underline"></span>
+                    <button type="submit" class="head-search__btn btn btn-primary">
+                        <i class="fas fa-search"></i>
+                    </button> 
+                </form>
                 <div class="head-history">
                     <div class="head-history__header">
                         <h5 class="head-history__title title-sm">Lịch sử tìm kiếm</h5>
@@ -90,12 +97,9 @@
                     </div>
                     
                     <ul class="head-history__list">
-                        <li class="head-history__item">
-                            <a href="" class="">Ố cứng dung lượng 32gb</a> 
-                        </li>
-                        <li class="head-history__item">
-                            <a href="" class="">Durex invisible</a> 
-                        </li>
+                        <!-- <li class="head-history__item">
+                            <a>Ố cứng dung lượng 32gb</a> 
+                        </li> -->
                     </ul>
                 </div>
             </div> 

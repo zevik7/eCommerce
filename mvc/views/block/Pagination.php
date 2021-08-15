@@ -2,6 +2,10 @@
     if (isset($data['Pagination']))
     {
         $pagination = json_decode($data['Pagination']);
+        if(isset($data['Keyword'])) {
+            $url  = './SearchList/LoadList/?keyword='.$data['Keyword'].'&pageNumber=';
+        }
+        else $url = './ProductList/LoadList/?pageNumber=';
 ?>
     <ul class="pagination">
         <li class="pagination__item">
@@ -16,7 +20,7 @@
                 # code...
         ?>
             <li class="pagination__item">
-                <a href="<?php echo './ProductList/LoadList/?pageNumber='.$i; ?>" class="pagination__link <?php if ($i == $currentPage) echo 'active';?>">
+                <a href="<?php echo $url.$i; ?>" class="pagination__link <?php if ($i == $currentPage) echo 'active';?>">
                     <?php echo $i;?>
                 </a>
             </li>

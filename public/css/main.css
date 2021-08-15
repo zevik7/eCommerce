@@ -2077,6 +2077,19 @@ a {
   font-weight: 500;
 }
 
+.result__message {
+  display: flex;
+  align-items: center;
+}
+.result__message p {
+  font-size: 1.7rem;
+  margin-left: 6px;
+}
+.result__message p span {
+  color: #045762;
+  font-weight: 500;
+}
+
 .personal-sidebar {
   margin-bottom: 50px;
   padding-bottom: 10px;
