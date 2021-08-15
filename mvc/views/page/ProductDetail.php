@@ -18,10 +18,10 @@
     $productRating =
     array_key_exists('productRating', $productData) ? $productData['productRating'] : [];
     
-    if (!empty($product)) // In false, not enough information to display
+    if (!empty($product) || !empty($productType) || !empty($productImage)) {}// In false, not enough information to display
     {
         //Flat 1 level
-        $productTypeSub = array_reduce($productTypeSub, 'array_merge', array());
+        $productTypeSub = array_reduce($productTypeSub, 'array_merge', array());    
         $product = array_reduce($product, 'array_merge', array());
 
         /*---------Parse general data--------*/
@@ -31,6 +31,7 @@
         $maxPrice = -99999999999;
         $productTypePrice = array_filter(array_column($productType, 'productTypePrice'));
         $productTypeSubPrice = array_filter(array_column($productTypeSub, 'productTypeSubPrice'));
+
         if (!empty($productTypePrice))
         {
             $minPrice = min($productTypePrice);
@@ -46,8 +47,7 @@
         $productTotalQuantity = array_sum(array_column($productType, 'productTypeQuantity'));
 
         // Product type label quantity
-        $productTypeLabelList = array_unique(array_column($productType, 'productTypeLabelName'));
-        var_dump($productTypeLabelList);
+        $productTypeLabelList = array_unique(array_column($productType, 'productTypeLabel'));
 
         // Product typeSubName List
         $productTypeSubNameList = array_unique(array_column($productTypeSub, 'productTypeSubName'));
@@ -210,7 +210,7 @@
                                             <?php
                                                 foreach($productType as $type) {
                                                     if(empty($type['productTypeName'])) break;
-                                                    if($type['productTypeLabelName'] != $labelType) continue;
+                                                    if($type['productTypeLabel'] != $labelType) continue;
                                             ?>
                                                 <li class="list-type__item btn btn-third" 
                                                     id="<?php echo $type['productTypeId'];?>" 
@@ -233,7 +233,7 @@
                                 ?>
                                 <div class="product-type row mt-20">
                                     <div class="product-type__header col-3">
-                                        <h6 class="title-sm"><?php echo $productTypeSub[0]['productTypeLabelName'];?></h6>
+                                        <h6 class="title-sm"><?php echo $productTypeSub[0]['productTypeSubLabel'];?></h6>
                                     </div>
                                     <div class="product-type__body col-9">
                                         <ul class="list-type-display-first">
@@ -414,6 +414,37 @@
                                                 <i class="fas fa-star"></i>
                                             </div>
                                         </div>
+                                        <?php
+                                            $starCount = [0, 0, 0, 0, 0];
+                                            $ratingMediaCount = 0;
+                                            if (isset($productRating)){
+                                                $starCount[0] = 
+                                                count(array_filter($productRating, function($element) {
+                                                    return $element['productRatingStar'] == 1;
+                                                }));
+                                                $starCount[1] = 
+                                                count(array_filter($productRating, function($element) {
+                                                    return $element['productRatingStar'] == 2;
+                                                }));
+                                                $starCount[2] = 
+                                                count(array_filter($productRating, function($element) {
+                                                    return $element['productRatingStar'] == 3;
+                                                }));
+                                                $starCount[3] = 
+                                                count(array_filter($productRating, function($element) {
+                                                    return $element['productRatingStar'] == 4;
+                                                }));
+                                                $starCount[4] = 
+                                                count(array_filter($productRating, function($element) {
+                                                    return $element['productRatingStar'] == 5;
+                                                }));
+
+                                                $ratingMediaCount = 
+                                                count(array_filter($productRating, function($element) {
+                                                    return $element['productRatingType'] == 'Media';
+                                                }));
+                                            }
+                                        ?>
                                         <div class="product-rating-overview__body">
                                             <ul class="product-rating-overview__filter">
                                                 <li class="overview-filter-item btn active">
@@ -421,92 +452,93 @@
                                                 </li>
                                                 <li class="overview-filter-item btn">
                                                     5 sao
-                                                    <span class="overview-filter-item-five-star">(123)</span>
+                                                    <span class="overview-filter-item__star-count">
+                                                        (<?php echo $starCount[4];?>)
+                                                    </span>
                                                 </li>
                                                 <li class="overview-filter-item btn">
                                                     4 sao
-                                                    <span class="overview-filter-item-three-star">(234)</span>
+                                                    <span class="overview-filter-item__star-count">
+                                                        (<?php echo $starCount[3];?>)
+                                                    </span>
                                                 </li>
                                                 <li class="overview-filter-item btn">
                                                     3 sao
-                                                    <span class="overview-filter-item-four-star">(4)</span>
+                                                    <span class="overview-filter-item__star-count">
+                                                        (<?php echo $starCount[2];?>)
+                                                    </span>
                                                 </li>
                                                 <li class="overview-filter-item btn">
                                                     2 sao
-                                                    <span class="overview-filter-item-two-star">(4)</span>
+                                                    <span class="overview-filter-item__star-count">
+                                                        (<?php echo $starCount[1];?>)
+                                                    </span>
                                                 </li>
                                                 <li class="overview-filter-item btn">
                                                     1 sao
-                                                    <span class="overview-filter-item-one-star">(4)</span>
+                                                    <span class="overview-filter-item__star-count">
+                                                        (<?php echo $starCount[0];?>)
+                                                    </span>
                                                 </li>
                                                 <li class="overview-filter-item btn">
                                                     Có hình ảnh/video
-                                                    <span class="overview-filter-item-with-img-video">(34)</span>
+                                                    <span class="overview-filter-item__star-count">
+                                                        (<?php echo $ratingMediaCount;?>)
+                                                    </span>
                                                 </li>
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="product-rating__body">
+                                        <?php
+                                            if (isset($productRating))
+                                                foreach ($productRating as $rating)
+                                                {
+                                        ?>
                                         <div class="product-rating__box mt-20">
                                             <div class="product-rating-box__header">
-                                                <img src="public/img/user/avatar.png" alt="" class="user-avatar-sm">
+                                                <img src="<?php echo $rating['userAvatar'];?>" alt="" class="user-avatar-sm">
                                             </div>
                                             <div class="product-rating-box__body">
-                                                <a href="#" class="user-name-sm">Thien Phu</a>
+                                                <a href="#" class="user-name-sm">
+                                                    <?php echo $rating['userName'];?>
+                                                </a>
                                                 <div class="rating-product-star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
+                                                    <?php
+                                                        $starValue = $rating['productRatingStar'];
+                                                        $starCount = 0;
+                                                        while ($starCount < 5)
+                                                        {
+                                                            if ($starValue > 0)
+                                                            {
+                                                                if ($starValue >= 1) echo '<i class="fas fa-star"></i>';
+                                                                else echo '<i class="fas fa-star-half-alt"></i>';
+                                                                $starValue--;
+                                                            }
+                                                            else{
+                                                                echo '<i class="far fa-star"></i>';
+                                                            }
+                                                            $starCount++;
+                                                        }
+                                                    ?>
                                                 </div>
-                                                <p class="rating-product-type">Phân loại hàng: size M</p>
-                                                <p class="rating-product-text">
-                                                    sdfffffffffffffffffffffffffffffffffffffffffffffasjdfndnasjkdhfkjasdfhajskdfhajksdhfjk
+                                                <p class="rating-product-type">
+                                                    Phân loại hàng: 
+                                                    <?php echo $rating['productTypeName'];?>
+                                                    , 
+                                                    <?php echo $rating['productTypeSubName'];?>
                                                 </p>
-                                                <p class="text-date">16/08/2021</p>
+                                                <p class="rating-product-text">
+                                                    <?php echo $rating['productRatingComment'];?>
+                                                </p>
+                                                <p class="text-date">
+                                                    <?php echo $rating['productRatingDate'];?>
+                                                </p>
                                             </div>
                                         </div>
-                                        <div class="product-rating__box mt-20">
-                                            <div class="product-rating-box__header">
-                                                <img src="public/img/user/avatar.png" alt="" class="user-avatar-sm">
-                                            </div>
-                                            <div class="product-rating-box__body">
-                                                <a href="#" class="user-name-sm">Thien Phu</a>
-                                                <div class="rating-product-star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <p class="rating-product-type">Phân loại hàng: size M</p>
-                                                <p class="rating-product-text">
-                                                    sdfffffffffffffffffffffffffffffffffffffffffffffasjdfndnasjkdhfkjasdfhajskdfhajksdhfjk
-                                                </p>
-                                                <p class="text-date">16/08/2021</p>
-                                            </div>
-                                        </div>
-                                        <div class="product-rating__box mt-20">
-                                            <div class="product-rating-box__header">
-                                                <img src="public/img/user/avatar.png" alt="" class="user-avatar-sm">
-                                            </div>
-                                            <div class="product-rating-box__body">
-                                                <a href="#" class="user-name-sm">Thien Phu</a>
-                                                <div class="rating-product-star">
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <p class="rating-product-type">Phân loại hàng: size M</p>
-                                                <p class="rating-product-text">
-                                                    sdfffffffffffffffffffffffffffffffffffffffffffffasjdfndnasjkdhfkjasdfhajskdfhajksdhfjk
-                                                </p>
-                                                <p class="text-date">16/08/2021</p>
-                                            </div>
-                                        </div>
+                                        <?php
+                                                }
+                                        ?>
                                     </div>
                                 </div>
                             </div>
