@@ -79,7 +79,3 @@ selectProvinces.selects.each(function() {
         selectProvinces.pushLabelToList();
     })
 })
-//-------------------------
-$('.product__item').on('click', function () {
-    console.log(123);
-})
