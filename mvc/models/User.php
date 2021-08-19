@@ -1,5 +1,11 @@
 <?php
     class User extends DB{
+        protected $userEmail;
+        protected $userPhone;
+        protected $userName;
+        protected $userAvatar;
+        protected $userAddress;
+
         public function getUser(){
             if (isset($_SESSION['userAccount'])){
                 $account = $_SESSION['userAccount'];
@@ -39,16 +45,18 @@
                 return false;
             }
         }
-        public function loginUser($userAccount, $userPassword){
-            $query = "SELECT * FROM user WHERE (userPhone = ? OR userEmail = ?) AND userPassword = ?";
-            $param = array ($userAccount, $userAccount, $userPassword);
+        public function loginCheck($userAccount, $userPassword){
+            $query = 
+            "SELECT * FROM user
+            WHERE (userPhone = ? OR userEmail = ?) 
+            AND userPassword = ?
+            LIMIT 1";
+            $param = array($userAccount, $userAccount, $userPassword);
             $result = $this->readDB($query, $param);
             if ($result !== false){
-                return true;
+                return $result[0];
             }
-            else{
-                return false;
-            }
+            return false;
         }
         public function editProfile($userName, $userAvatar, $userAccount){
             $query = " UPDATE user SET userName = ? ";
