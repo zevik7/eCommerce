@@ -1,0 +1,36 @@
+--------2021-08-18 07:47:40--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 07:47:45--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 07:47:52--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 07:51:50--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 07:52:30--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 10:56:23--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 13:06:15--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 14:31:13--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 15:46:20--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 21:43:00--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-18 21:59:41--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-19 07:58:51--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-19 15:07:16--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-19 15:38:26--------
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MIN(pt.productTypePrice) as productTypePrice,
+            ip.imageProductId,...' at line 6
+--------2021-08-19 15:38:33--------
+SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'MIN(pt.productTypePrice) as productTypePrice,
+            ip.imageProductId,...' at line 6
+--------2021-08-19 15:43:27--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'
+--------2021-08-19 19:40:50--------
+SQLSTATE[42S22]: Column not found: 1054 Unknown column 'ptsub.productTypeSubLabel' in 'field list'

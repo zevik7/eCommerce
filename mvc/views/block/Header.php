@@ -76,15 +76,15 @@
         </div>
         <div class="head-bar__search">
             <div class="head-search">
-                <form method="GET"  class="head-search__form" action="./SearchList/LoadList/">
-                    <input type="search" name="keyword" class="head-search__text input" 
+                <form method="GET"  class="js-head-search__form" action="./ProductList/loadListByName/">
+                    <input type="search" name="keyword" class="head-search__text input js-head-search__text" 
                     oninvalid="this.setCustomValidity(' ')"
                     oninput="setCustomValidity('')"
                     autocomplete="off"
                     required placeholder="Bạn cần tìm gì ?"
                     value="<?php if(isset($data['Keyword'])) echo $data['Keyword']?>">
                     <span class="underline"></span>
-                    <button type="submit" class="head-search__btn btn btn-primary">
+                    <button type="submit" class="head-search__btn btn btn-primary js-head-search__btn btn btn-primary">
                         <i class="fas fa-search"></i>
                     </button> 
                 </form>
@@ -96,7 +96,7 @@
                         </div>
                     </div>
                     
-                    <ul class="head-history__list">
+                    <ul class="head-history__list js-head-history__list">
                         <!-- <li class="head-history__item">
                             <a>Ố cứng dung lượng 32gb</a> 
                         </li> -->

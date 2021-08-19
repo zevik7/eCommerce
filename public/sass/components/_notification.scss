@@ -42,3 +42,34 @@
     border-color: rgba(220, 53, 69, 1);
     color: rgba(114, 28, 36,1);
 }
+
+// modal success & failed alert
+.modal__update-success, .modal__update-failed{
+    display: none;
+}
+.update-success, .update-failed{
+    width: 500px;
+    height: 150px;
+    border-radius: 0.2rem;
+    background-color: $background-color-white;
+    position: relative;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    div{
+        margin: auto;
+        text-align: center;
+        p{
+            font-size: 1.6rem;
+        }
+    }
+}
+.update-success i{
+    font-size: 4rem;
+    color: $green-color;
+}
+.update-failed{
+    font-size: 4rem;
+    color: $red-color;
+}
