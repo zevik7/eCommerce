@@ -383,16 +383,6 @@ $('.update-password__form').validate({
     }
 });
 
-// $('#js-user-provinces').click(function(){
-//     let purAddress = $('.user-provinces').text();
-//     $(".user-provinces__input").val(purAddress);
-//     console.log($(".user-provinces__input").val());
-// });
-// $('#js-user-districts').click(function(){
-//     let purAddress = $('.user-districts').text();
-//     $(".user-districts__input").val(purAddress);
-//     console.log($(".user-districts__input").val());
-// });
 $('.user-address__input').focus(function(){
     $('.user-address__box').css('display','flex');
     // $(this).prop('disabled', true);

@@ -806,6 +806,39 @@ a {
   color: #721c24;
 }
 
+.modal__update-success, .modal__update-failed {
+  display: none;
+}
+
+.update-success, .update-failed {
+  width: 500px;
+  height: 150px;
+  border-radius: 0.2rem;
+  background-color: #fff;
+  position: relative;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+}
+.update-success div, .update-failed div {
+  margin: auto;
+  text-align: center;
+}
+.update-success div p, .update-failed div p {
+  font-size: 1.6rem;
+}
+
+.update-success i {
+  font-size: 4rem;
+  color: #26b303;
+}
+
+.update-failed {
+  font-size: 4rem;
+  color: #dc3545;
+}
+
 .svg-icon {
   width: 24px;
   height: 24px;
@@ -2728,39 +2761,6 @@ a {
 }
 .personal-notify__empty img {
   height: 200px;
-}
-
-.modal__update-success, .modal__update-failed {
-  display: none;
-}
-
-.update-success, .update-failed {
-  width: 500px;
-  height: 150px;
-  border-radius: 0.2rem;
-  background-color: #fff;
-  position: relative;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-}
-.update-success div, .update-failed div {
-  margin: auto;
-  text-align: center;
-}
-.update-success div p, .update-failed div p {
-  font-size: 1.6rem;
-}
-
-.update-success i {
-  font-size: 4rem;
-  color: #26b303;
-}
-
-.update-failed {
-  font-size: 4rem;
-  color: #dc3545;
 }
 
 .purchase-svg-icon {
