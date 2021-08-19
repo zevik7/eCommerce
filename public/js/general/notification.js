@@ -1,4 +1,4 @@
-export default function notification_modal(
+export const notification_modal = function (
     msg = 'Thông báo', 
     success = true, 
     duration = false) {
@@ -25,4 +25,17 @@ export default function notification_modal(
     modalNotiBody.children('.js-close-button').on('click', function () {
         modalNoti.fadeOut();
     })
+}
+export const notification_inline = function (
+    msg = 'Thông báo', 
+    type = 'alert-success', 
+    duration = false) {
+    let inlineAlert = $('.js-alert');
+    inlineAlert.text(msg);
+    inlineAlert.removeClass('alert-success alert-danger alert-info alert-warning');
+    inlineAlert.addClass(type);
+    inlineAlert.fadeIn();
+    if (duration !== false){
+        inlineAlert.fadeOut(duration);
+    }
 }

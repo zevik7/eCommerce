@@ -5,4 +5,4 @@ import './pagination.js';
 import './search.js';
 
 // To reusable
-export {default} from './notification.js';
+export * from './notification.js';

@@ -1,4 +1,4 @@
-import notification_modal from "../general/index.js";
+import * as asset from "../general/index.js";
 $(function () {
     //--------------Select product type event--------------
     let productTypeLists = $('.fs-product-type .fs-list-type');
@@ -58,14 +58,20 @@ $(function () {
             })
     }
     //-----------------Add to cart-------------
-    //prepare data
+    // Prepare data
     // productData = {};
-    // $.post("./productDetail/addToCart", data,
+    // $.post("./productDetail/addToCart", productData,
     //     function (data, textStatus, jqXHR) {
             
     //     },
     //     "dataType"
     // );
+    // function getProductType() {
+
+    // }
+    $('#product-add-cart__btn').on('click', function (params) {
+        asset.notification_inline('Bạn chưa chọn ', 'alert-warning');
+    })
     //----------------Rating event--------------------
     $('.overview-filter-item').on('click', function () {
         $(this).parent().children('.overview-filter-item.active').removeClass('active');

@@ -1,4 +1,4 @@
-import notification_modal from "../general/index.js";
+import {notification_modal} from "../general/index.js";
 $(document).ready(function () {
     $('.personal-sidebar__item:first').find('li').slideDown(300);
 });

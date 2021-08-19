@@ -266,6 +266,9 @@
                                         </span>
                                     </div>
                                 </div>
+                                <div class="js-alert alert alert-danger">
+                                    
+                                </div>
                                 <div class="product-buy mt-20">
                                     <button id="product-add-cart__btn" class="btn btn-outline-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64"><path d="M20 64c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM44 64c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"/><path d="M26 56h12v2H26zM13.003 57.073L9.07 3H0V1h10.93l4.067 55.927z"/><path d="M13.069 43.998l-.138-1.996 42.263-2.948L61.74 11H11V9h53.26l-7.454 31.946z"/><path d="M36.707 35.707h-1.414l-8-8 1.414-1.414L36 33.586l7.293-7.293 1.414 1.414z"/><path d="M35 15h2v20h-2z"/></svg> 

@@ -2,6 +2,8 @@
 class ProductDetail extends Controller{
     protected $productModel;
     protected $shopModel;
+    //General params
+    protected $productId;
     function __construct(){
         $this->shopModel = $this->model('Shop');
         $this->productModel = $this->model('Product');
@@ -17,6 +19,9 @@ class ProductDetail extends Controller{
                 'productsRecommend' => $productsRecommend
             ]);
         }
+    }
+    function addToCart(){
+        
     }
 }
 ?>

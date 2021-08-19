@@ -8,8 +8,8 @@
 .error-input{
     border-color: $red-color;
 }
-.alert {
-    width: 100%;
+.alert{
+    display: none;
     margin-top: 12px;
     padding: 12px 16px;
     border-radius: $border-radius;
