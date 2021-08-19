@@ -34,9 +34,9 @@ $(function () {
             );
     }
     function showSubType(parentId) {
-        // let restTypeSub = productTypeSubDisplay.children()
-        //     .map((element) => element.attr('name'));
         let seen = {};
+        //unset active
+        productTypeSubList.children('.list-type__item.active').removeClass('active')
         productTypeSubList
             .children('.list-type__item')
             .each(function () {

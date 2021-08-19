@@ -51,9 +51,7 @@
 
         // Product typeSubName List
         $productTypeSubNameList = 
-            array_unique(
-                array_column($productTypeSub, 'productTypeSubName')
-            );
+            array_unique(array_column($productTypeSub, 'productTypeSubName'));
 ?>
     <div class="bg-transparent">
         <div class="grid pt-20">
@@ -217,11 +215,12 @@
                                         </h6>
                                     </div>
                                     <div class="product-type__body col-9">
-                                        <ul class="fs-list-type-display-first list-type-display-first">
+                                        <ul class="fs-list-type-display-first list-type-display-first list-type">
                                             <?php
                                                 foreach($productTypeSubNameList as $name) {
                                             ?>
-                                                <li name="<?php echo $name;?>" class="list-type__item btn btn-third">
+                                                <li name="<?php echo $name;?>" 
+                                                class="list-type__item btn btn-third">
                                                     <?php echo $name;?>
                                                 </li>
                                             <?php
