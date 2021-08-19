@@ -37,12 +37,12 @@
             </li>
             
             <?php 
-                if (isset($data['User'])):
-                    $value = json_decode($data['User'], true)[0];
+                if (isset($_SESSION['user'])):
             ?>
                 <li class="nav-list__item nav-user">
-                    <img src="<?php echo $value['userAvatar'];?>" alt="" class="nav-user__avatar">
-                    <span class="nav-user__name"><?php echo $value['userName'];?></span>
+                    <img src="<?php echo $_SESSION['user']['avatar'];?>" 
+                        alt="" class="nav-user__avatar">
+                    <span class="nav-user__name"><?php echo $_SESSION['user']['name'];?></span>
                     <ul class="nav-user__menu">
                         <li class="nav-user-menu__item">
                                 <a href="./Personal/Auth" class="nav-user-menu__link">Tài khoản</a>
