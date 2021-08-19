@@ -806,37 +806,51 @@ a, input {
   color: #721c24;
 }
 
-.modal__update-success, .modal__update-failed {
+.modal-noti {
   display: none;
 }
-
-.update-success, .update-failed {
-  width: 500px;
-  height: 150px;
-  border-radius: 0.2rem;
-  background-color: #fff;
+.modal-noti .modal-body {
   position: relative;
-  top: 30%;
-  left: 50%;
-  transform: translateX(-50%);
   display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 400px;
+  padding: 10px;
+  font-size: 2rem;
+  color: #333;
+  background-color: #fff;
+  border-radius: 2px;
 }
-.update-success div, .update-failed div {
-  margin: auto;
-  text-align: center;
-}
-.update-success div p, .update-failed div p {
-  font-size: 1.6rem;
-}
-
-.update-success i {
+.modal-noti .modal-body .icon-success, .modal-noti .modal-body .icon-error {
+  margin-right: 8px;
   font-size: 4rem;
+}
+.modal-noti .modal-body .close-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  color: #666;
+  font-size: 2rem;
+  cursor: pointer;
+}
+.modal-noti--success .modal-body {
   color: #26b303;
 }
-
-.update-failed {
-  font-size: 4rem;
+.modal-noti--success .modal-body .icon-success {
+  display: block;
+}
+.modal-noti--success .modal-body .icon-error {
+  display: none;
+}
+.modal-noti--error .modal-body {
   color: #dc3545;
+}
+.modal-noti--error .modal-body .icon-success {
+  display: none;
+}
+.modal-noti--error .modal-body .icon-error {
+  display: block;
 }
 
 .svg-icon {
@@ -1486,7 +1500,7 @@ a, input {
   position: relative;
   margin: auto;
   margin-top: 100px;
-  width: 500px;
+  max-width: 500px;
   animation: zoom-center ease-in 0.3s;
 }
 

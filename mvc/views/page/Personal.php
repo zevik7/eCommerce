@@ -17,23 +17,13 @@
     ?>
 </div> 
 
-<div class="modal modal__update-success">
-    <div class="modal-overlay"></div>
-    <div class="update-success">
-        <div>
-            <i class="far fa-check-circle"></i>
-            <p>Cập nhật thành công</p>
-        </div>
-    </div>
-</div>
-
-<div class="modal modal__update-failed">
-    <div class="modal-overlay"></div>
-    <div class="update-failed">
-        <div>
-            <i class="far fa-times-circle"></i>
-            <p>Mật khẩu không đúng</p>
-        </div>
+<div class="js-modal-noti modal modal-noti">
+    <div class="js-modal-overlay modal-overlay"></div>
+    <div class="js-modal-body modal-body">
+        <i class="icon-success far fa-check-circle"></i>
+        <i class="icon-error far fa-times-circle"></i>
+        <p class="js-modal-body__msg modal-body__msg"></p>
+        <i class="js-close-button close-button fas fa-times"></i>
     </div>
 </div>
 

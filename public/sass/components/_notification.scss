@@ -30,7 +30,6 @@
     border-color: rgba(126, 182, 193, 1);
 }
 
-
 .alert.alert-warning {
     background-color: rgba(252, 248, 227, 1);
     border-color: rgba(177, 161, 129, 1);
@@ -44,32 +43,53 @@
 }
 
 // modal success & failed alert
-.modal__update-success, .modal__update-failed{
+.modal-noti{
     display: none;
-}
-.update-success, .update-failed{
-    width: 500px;
-    height: 150px;
-    border-radius: 0.2rem;
-    background-color: $background-color-white;
-    position: relative;
-    top: 30%;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    div{
-        margin: auto;
-        text-align: center;
-        p{
-            font-size: 1.6rem;
+    .modal-body{
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        max-width: 400px;
+        padding: 10px;
+        font-size: 2rem;
+        color: $text-color;
+        background-color: $background-color-white;
+        border-radius: $border-radius;
+        .icon-success, .icon-error{
+            margin-right: 8px;
+            font-size: 4rem;
+        }
+        .close-button{
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding: 10px;
+            color: $text-color-light;
+            font-size: 2rem;
+            cursor: pointer;
         }
     }
-}
-.update-success i{
-    font-size: 4rem;
-    color: $green-color;
-}
-.update-failed{
-    font-size: 4rem;
-    color: $red-color;
+    &--success{
+        .modal-body{
+            color: rgba(38, 179, 3, 1);
+            .icon-success{
+                display: block;
+            }
+            .icon-error{
+                display: none;
+            }
+        }
+    }
+    &--error{
+        .modal-body{
+            color: rgba(220, 53, 69, 1);
+            .icon-success{
+                display: none;
+            }
+            .icon-error{
+                display: block;
+            }
+        } 
+    }
 }

@@ -1,3 +1,4 @@
+import notification_modal from "../general/index.js";
 $(document).ready(function () {
     $('.personal-sidebar__item:first').find('li').slideDown(300);
 });
@@ -102,7 +103,9 @@ $('.profile__form').validate({
                 switch (feedback.status) {
                     case 'success':
                         successAlert();
-                        setTimeout(function(){ window.location = window.location; }, 1100);
+                        setTimeout(function(){ 
+                            //window.location = window.location; 
+                        }, 1100);
                     break;
                     default:  alert(feedback.message);
                 }
@@ -115,25 +118,21 @@ $('.profile__form').validate({
 });
 // success alert
 function successAlert(){
-    $(".modal__update-success").fadeIn();
-    $(".modal__update-success").fadeOut(1000);
+    notification_modal('Thành công');
 }
 // failed alert
 function failedAlert(){
-    $(".modal__update-failed").fadeIn();
-    $(".modal__update-failed").fadeOut(2000);
+    notification_modal('Thất bại');
 }
 
 // update email confirm
 $('.update-email__form-confirm').validate({
     rules: {
-
         "email__password-confirm" : {
             required: true,
         }
     },
     messages: {
-
         "email__password-confirm" : {
             required: 'Vui lòng nhập tên hiển thị',
         }

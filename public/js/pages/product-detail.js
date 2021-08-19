@@ -1,3 +1,4 @@
+import notification_modal from "../general/index.js";
 $(function () {
     //--------------Select product type event--------------
     let productTypeLists = $('.fs-product-type .fs-list-type');
@@ -58,13 +59,13 @@ $(function () {
     }
     //-----------------Add to cart-------------
     //prepare data
-    productData = {};
-    $.post("./productDetail/addToCart", data,
-        function (data, textStatus, jqXHR) {
+    // productData = {};
+    // $.post("./productDetail/addToCart", data,
+    //     function (data, textStatus, jqXHR) {
             
-        },
-        "dataType"
-    );
+    //     },
+    //     "dataType"
+    // );
     //----------------Rating event--------------------
     $('.overview-filter-item').on('click', function () {
         $(this).parent().children('.overview-filter-item.active').removeClass('active');
