@@ -1081,6 +1081,7 @@ a, input {
   margin: 0;
   height: 36px;
   line-height: 18px;
+  font-weight: 600;
   display: -webkit-box;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
@@ -1587,8 +1588,10 @@ a, input {
   color: #045762;
   font-weight: 600;
 }
-.category-bar__item.item-gift svg, .category-bar__item.item-book svg {
-  height: 20px;
+.category-bar__item svg {
+  margin-right: 4px;
+  height: 28px;
+  width: 28px;
 }
 
 /* Navigation Filter */

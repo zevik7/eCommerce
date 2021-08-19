@@ -56,6 +56,15 @@ $(function () {
                 }
             })
     }
+    //-----------------Add to cart-------------
+    //prepare data
+    productData = {};
+    $.post("./productDetail/addToCart", data,
+        function (data, textStatus, jqXHR) {
+            
+        },
+        "dataType"
+    );
     //----------------Rating event--------------------
     $('.overview-filter-item').on('click', function () {
         $(this).parent().children('.overview-filter-item.active').removeClass('active');

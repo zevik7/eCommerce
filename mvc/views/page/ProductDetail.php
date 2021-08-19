@@ -128,11 +128,10 @@
                                     ?>
                                         <span class="product-price__from"><?php echo number_format($minPrice);?></span>
                                         -
-                                        <span class="product-price__to"><?php echo number_format($maxPrice);?> đ</span>
+                                        <span class="product-price__to"><?php echo number_format($maxPrice);?> VND</span>
                                     <?php
                                         }
                                     ?>
-                                    VND
                                 </div>
                                 <div class="product-freight row mt-10">
                                     <div class="product-freight__header col-3">

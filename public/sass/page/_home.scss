@@ -36,11 +36,10 @@
             color: $primary-color;
             font-weight: 600;
         }
-        
-        &.item-gift, &.item-book{
-            svg{
-                height: 20px;
-            }
+        svg{
+            margin-right: 4px;
+            height: 28px;
+            width: 28px;
         }
     }
 
