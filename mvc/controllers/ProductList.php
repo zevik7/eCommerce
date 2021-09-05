@@ -20,7 +20,7 @@ class ProductList extends Controller{
         $productQuantity = $this->productModel->getProductQuantity();
         $this->paginationModel->calpagination($productQuantity);
         $productsData = 
-            $this->productModel->getProductList($this->paginationModel->offset, $this->paginationModel->itemPerPage);
+            $this->productModel->getProductList($this->paginationModel->offset, $this->paginationModel->perPage);
         $this->URL = './ProductList/loadList/?pageNumber=';
         $this->view('Main',[
             'Page' => 'ProductList',
@@ -40,7 +40,7 @@ class ProductList extends Controller{
         $productQuantity = $this->productModel->getProductQuantityByCategory($categoryId);
         $this->paginationModel->calpagination($productQuantity);
         $productsData = 
-            $this->productModel->getProductListByCategory($categoryId, $this->paginationModel->offset, $this->paginationModel->itemPerPage);
+            $this->productModel->getProductListByCategory($categoryId, $this->paginationModel->offset, $this->paginationModel->perPage);
         $this->view('Main',[
             'Page' => 'ProductList',
             'User' => $this->userModel->getUser(),
@@ -63,7 +63,7 @@ class ProductList extends Controller{
                 $productQuantity = $this->productModel->getProductQuantity();
                 $this->paginationModel->calpagination($productQuantity);
                 $productsData = 
-                    $this->productModel->getProductList($this->paginationModel->offset, $this->paginationModel->itemPerPage);
+                    $this->productModel->getProductList($this->paginationModel->offset, $this->paginationModel->perPage);
                     $this-> URL = './ProductList/loadListByName/?keyword='.$productName.'&pageNumber=';
             }
             else
@@ -71,7 +71,7 @@ class ProductList extends Controller{
                 $productQuantity = $totalItem;
                 $this->paginationModel->calpagination($productQuantity);
                 $productsData = 
-                $this->productModel->getProductListByName($productName, $this->paginationModel->offset, $this->paginationModel->itemPerPage);
+                $this->productModel->getProductListByName($productName, $this->paginationModel->offset, $this->paginationModel->perPage);
                 $this-> URL = './ProductList/loadListByName/?keyword='.$productName.'&pageNumber=';
             }
             $this->view('Main',[
@@ -107,7 +107,7 @@ class ProductList extends Controller{
             $this->paginationModel->calpagination($productQuantity);
     
             $productsData = 
-                $this->productModel->$sortBy('', $this->paginationModel->offset, $this->paginationModel->itemPerPage);
+                $this->productModel->$sortBy('', $this->paginationModel->offset, $this->paginationModel->perPage);
             if($productName !='' ) $url = 'keyword='.$productName.'&';
                 
             $this->URL = './ProductList/SortBy/?'.$url.'sortBy='.$sortBy.'&pageNumber=';
@@ -118,7 +118,7 @@ class ProductList extends Controller{
             $productQuantity = $totalItem;
             $this->paginationModel->calpagination($productQuantity);
             $productsData = 
-                $this->productModel-> $sortBy($productName, $this->paginationModel->offset, $this->paginationModel->itemPerPage);
+                $this->productModel-> $sortBy($productName, $this->paginationModel->offset, $this->paginationModel->perPage);
             $this-> URL = './ProductList/SortBy/?keyword='.$productName.'&sortBy='.$sortBy.'&pageNumber=';
         }
         $this->view('Main',[
