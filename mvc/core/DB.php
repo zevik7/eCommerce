@@ -6,7 +6,7 @@ class DB{
 
     function __construct()
 	{
-        $this->configs = include($_SERVER['DOCUMENT_ROOT'].'/eCommerce/configs.php');
+        $this->configs = include($_SERVER['DOCUMENT_ROOT'].'/configs.php');
 		$this->con = $this->connect();
 	}
     private function connect(){
