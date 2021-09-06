@@ -70,7 +70,7 @@ class DB{
                 if(is_array($result) && count($result) > 0)
                 {
                     return $result; 
-			    }
+                }
             }
         }
         catch(PDOException $e) {
@@ -88,8 +88,8 @@ class DB{
     }
     public function putErrorToLog($msgError){
         $currentTime = date('Y-m-d H:i:s');
-        file_put_contents('./serverReport/PDOErrors.txt','--------'.$currentTime .'--------'.PHP_EOL, FILE_APPEND);
-        file_put_contents('./serverReport/PDOErrors.txt',$msgError.PHP_EOL, FILE_APPEND);
+        file_put_contents('./serverLog/PDOErrors.txt','--------'.$currentTime .'--------'.PHP_EOL, FILE_APPEND);
+        file_put_contents('./serverLog/PDOErrors.txt',$msgError.PHP_EOL, FILE_APPEND);
     }
 }
 ?>
