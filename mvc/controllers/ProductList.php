@@ -1,4 +1,7 @@
 <?php
+// namespace mvc\controllers\ProductList;
+// use mvc\controllers\Pagination; 
+
 class ProductList extends Controller{
     protected $userModel;
     protected $productModel;

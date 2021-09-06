@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hevy Shop</title>
-    <base href="http://<?php echo $_SERVER['HTTP_HOST']?>/eCommerce/"/>
+    <base href="http://<?php echo $_SERVER['HTTP_HOST']?>"/>
     <link rel="stylesheet" href="public/fontawesome/css/all.min.css" type="text/css" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="/eCommerce/public/css/main.css" type="text/css">
+    <link rel="stylesheet" href="public/css/main.css" type="text/css">
 </head>
 <body>
     <div class="webapp">
