@@ -76,6 +76,7 @@
                                 if (isset($data['Product']))
                                 {   
                                     $decode = json_decode($data['Product'], true);
+                               
                                     foreach($decode as $value)
                                     {
                             ?>

@@ -6,7 +6,6 @@ class App{
     protected $params=[];
 
     function __construct(){
- 
         $arr = $this->UrlProcess();
         //If call API
         if (isset($arr[0]) && $arr[0] == 'api')
