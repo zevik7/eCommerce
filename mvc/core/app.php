@@ -3,6 +3,7 @@ class App{
     //testpr
     //testpr2
     //testpr3
+    //testpr4
     protected $controller="ProductList";
     protected $action="loadList";
     protected $params=[];
