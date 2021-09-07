@@ -1,7 +1,6 @@
-# eCommerce
-1. Enviroment: nginx, mysql
-2. Setup
-  composer dump-autoload
+# eCommerce project
+1. Enviroment: nginx, mysql, PHP > 5.4
+2. Config in: config.php
+3. Setup composer:  
+	composer dump-autoload
 
-Note:
-  turn off "only_full_group_by" mysql
