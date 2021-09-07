@@ -58,10 +58,9 @@ class App{
     }
 
     function UrlProcess(){
-        if(isset($_GET["url"]) ){
-            return explode("/", (trim($_GET["url"], "/")));
+        if(isset($_SERVER['REQUEST_URI']) ){
+            return explode("/", (trim($_SERVER['REQUEST_URI'], "/")));
         }
     }
-
 }
 ?>
