@@ -18,7 +18,7 @@ class DB{
         try
 		{
 			//Create an instane to connect db
-			$connection = new PDO($dbtype.':host='.$host.';dbname='.$dbname, $username, $password);
+			$connection = new PDO($dbtype.':host='.$host.';dbname='.$dbname.";charset=utf8", $username, $password);
             $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             $connection->setAttribute(PDO::ATTR_EMULATE_PREPARES, false);
 			return $connection;
@@ -29,8 +29,6 @@ class DB{
             // Put error information to txt file
             $this->putErrorToLog($e->getMessage());
 		}
-
-		return false;
     }
     function disConnect(){
         $this->con = NULL;
@@ -60,17 +58,13 @@ class DB{
 	{
         try {
             $statement = $this->con->prepare($query);
-            $statement->setFetchMode(PDO::FETCH_OBJ);
+            $statement->setFetchMode(PDO::FETCH_ASSOC); 
             
             $check = $statement->execute($data);
             if($check)
             {
-                // Peturn object data with column name
                 $result = $statement->fetchAll();
-                if(is_array($result) && count($result) > 0)
-                {
-                    return $result; 
-                }
+                return $result; 
             }
         }
         catch(PDOException $e) {
@@ -78,7 +72,6 @@ class DB{
             // Put error information to txt file
             $this->putErrorToLog($e->getMessage());
         }
-		return false;
 	}
     public function cleanData(&$data){
         return htmlspecialchars(strip_tags($data));

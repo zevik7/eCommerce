@@ -106,7 +106,9 @@
 
         /*-------For Web system-----------*/
         public function getProductList($offset = 0, $productsQuantity = 0){
-            $query = 
+            //Turn off only_full_group_by mode
+            // $this->readDB("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+            $query =
             "SELECT pd.productId, pd.productName,
             pd.productDiscount, pd.productSource, 
             pd.productSold, pd.productBrand, 
@@ -132,10 +134,11 @@
             LEFT JOIN product_type_sub pts 
             ON pts.productTypeId = pt.productTypeId
             WHERE ip.imageProductType = 'thumb'
-            GROUP BY pd.productId
-            LIMIT ?, ?";
+            GROUP BY pd.productId";
+            // LIMIT ?, ?";
 
-            $result = $this->readDB($query, array($offset, $productsQuantity));
+            // $result = $this->readDB($query, array($offset, $productsQuantity));
+            $result = $this->readDB($query);
             return json_encode($result);
         }
         public function getProduct($productId){
@@ -224,13 +227,13 @@
             return json_encode($allResult);
         }
         public function getProductQuantity(){
-            $query = "SELECT * FROM product_type GROUP BY productId";
-            $result = $this->readDB($query);
-            if ($result !== false)
-            {
-                return count($result);
-            }
-            return 0;
+            // $query = "SELECT productId FROM product_type GROUP BY productId";
+            // $result = $this->readDB($query);
+            // if ($result !== false)
+            // {
+            //     return count($result);
+            // }
+            // return 0;
         }
 
         public function getProductTypeSub($productTypeList){
