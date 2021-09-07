@@ -106,8 +106,6 @@
 
         /*-------For Web system-----------*/
         public function getProductList($offset = 0, $productsQuantity = 0){
-            //Turn off only_full_group_by mode
-            // $this->readDB("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
             $query =
             "SELECT pd.productId, pd.productName,
             pd.productDiscount, pd.productSource, 
