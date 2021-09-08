@@ -1,4 +1,6 @@
 <?php
+namespace mvc\core;
+use PDO;
 
 class DB{
     protected $con;
@@ -11,6 +13,7 @@ class DB{
         // Turn off only_full_group_by mode
         $temp = $this->readDB("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
 	}
+
     private function connect(){
         $dbtype = $this->configs['dbtype'];
         $host = $this->configs['host'];
@@ -32,27 +35,24 @@ class DB{
             $this->putErrorToLog($e->getMessage());
 		}
     }
+
     function disConnect(){
         $this->con = NULL;
     }
+
     //Write to database
 	public function writeDB($query, $data = array())
 	{
-        $result = false;
         try {
             $statement = $this->con->prepare($query);
             $check = $statement->execute($data);
-            if($check)
-            {
-                $result = true;
-            }
+            return $check ? true : false;
         }
         catch(PDOException $e) {
             echo "PDO ERROR !!!";
             // Put error information to txt file
             $this->putErrorToLog($e->getMessage());
         }
-        return $result;
 	}
 
 	//Read from database
@@ -75,16 +75,21 @@ class DB{
             $this->putErrorToLog($e->getMessage());
         }
 	}
+
     public function cleanData(&$data){
         return htmlspecialchars(strip_tags($data));
     }
-    public function cleanDataArray(&$data = array()){
+
+    public function cleanDatas(&$data = array()){
         // return htmlspecialchars(strip_tags($data));
     }
+    
     public function putErrorToLog($msgError){
         $currentTime = date('Y-m-d H:i:s');
-        file_put_contents('./serverLog/PDOErrors.txt','--------'.$currentTime .'--------'.PHP_EOL, FILE_APPEND);
-        file_put_contents('./serverLog/PDOErrors.txt',$msgError.PHP_EOL, FILE_APPEND);
+        file_put_contents('./serverLog/PDOErrors.txt',
+            PHP_EOL.'---'.$currentTime .'---'.PHP_EOL, FILE_APPEND);
+        file_put_contents('./serverLog/PDOErrors.txt',
+            $msgError.PHP_EOL, FILE_APPEND);
     }
 }
 ?>

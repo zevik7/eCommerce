@@ -1,12 +1,17 @@
 <?php
+namespace mvc\api\product;
+use mvc\core\Controller;
+use mvc\models\Product;
+
 header('Access-Control-Allow-Origin: *');
 header('Content-Type: application/json');
 header('Access-Control-Allow-MethodS: POST');   
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization, X-Requested-With');   
+
 class Insert extends Controller{
     protected $productModel;
     function __construct(){
-        $this->productModel = $this->model('Product');
+        $this->productModel = new Product();
         //Get raw data
         $data = json_decode(file_get_contents("php://input")); 
         $this->productModel->shopId = $data->shopId;
