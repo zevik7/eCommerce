@@ -1,5 +1,6 @@
 <?php
-// namespace mvc\controllers\Pagination;
+namespace mvc\models;
+use mvc\core\DB;
 
 class Pagination extends DB{
     public $perPage;

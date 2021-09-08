@@ -1,8 +1,12 @@
 <?php
+namespace mvc\controllers;
+use mvc\core\Controller;
+use mvc\models\User;
+
 class Signup extends Controller{
     public $userModel;
     public function __construct(){
-        $this->userModel = $this->model("User");
+        $this->userModel = new User();
     }
     public function Auth(){
         if (isset($_POST["modal-signup__submit"]))

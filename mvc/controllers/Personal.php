@@ -1,9 +1,13 @@
 <?php
+namespace mvc\controllers;
+use mvc\core\Controller;
+use mvc\models\User;
+
 class Personal extends Controller{
     protected $userModel;
 
     function __construct(){
-        $this->userModel = $this->model('User');
+        $this->userModel = new User();
     }
     public function loadList($param = null){
         $PP = current($param);
