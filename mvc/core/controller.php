@@ -8,6 +8,7 @@ class Controller{
     //     return new $model;
     // }
 
+    // Only require without namespace ???
     public function view($view, $data=[]){
         require_once "./mvc/views/".$view.".php";
     }
