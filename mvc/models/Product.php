@@ -233,13 +233,13 @@ class Product extends DB{
         return json_encode($allResult);
     }
     public function getProductQuantity(){
-        // $query = "SELECT productId FROM product_type GROUP BY productId";
-        // $result = $this->readDB($query);
-        // if ($result !== false)
-        // {
-        //     return count($result);
-        // }
-        // return 0;
+        $query = "SELECT productId FROM product_type GROUP BY productId";
+        $result = $this->readDB($query);
+        if ($result !== false)
+        {
+            return count($result);
+        }
+        return 0;
     }
 
     public function getProductTypeSub($productTypeList){

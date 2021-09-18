@@ -4,12 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hevy Shop</title>
-    <base href="http://<?php echo $_SERVER['HTTP_HOST']?>"/>
+    <base href="http://<?php echo BASE_URL;?>"/>
     <link rel="stylesheet" href="public/fontawesome/css/all.min.css" type="text/css" crossorigin="anonymous"/>
     <link rel="stylesheet" href="public/css/main.css" type="text/css">
 </head>
 <body>
     <div class="webapp">
+        <?php
+            function replaceUrlParams($param, $value)
+            {
+                $query = $_GET;
+                // replace parameter(s)
+                $query[$param] = $value;
+                // rebuild url
+                $query_result = './?'.http_build_query($query);
+                return $query_result;
+            }
+        ?>
         <div class="header">
             <?php
                 require_once './mvc/views/block/Header.php';

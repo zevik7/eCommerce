@@ -16,70 +16,88 @@ class ProductList extends Controller{
         $this->productModel = new Product();
         $this->paginationModel = new Pagination();
     }
-    function test(){
-        $query = 
-        "SELECT pd.productId, pd.productName,
+    function loadList($params){
+        /*
+            1. Get Params
+            2. Xu lí tuần tự params: 
+                search->
+                filter-column->
+                filter-order->
+                pagination
+            3. Trả view
+        */
+        $query =
+        " SELECT 
+        pd.productId, pd.productName,
         pd.productDiscount, pd.productSource, 
         pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        pc.productCategoryId,
+        pd.productRating, pd.productSendFrom,
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,
         ip.imageProductUrl,
         MIN(pts.productTypeSubPrice) as productTypeSubPrice
         FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
         INNER JOIN image_product ip
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
         LEFT JOIN product_type_sub pts 
         ON pts.productTypeId = pt.productTypeId
-        WHERE ip.imageProductType = 'thumb'";
+        WHERE ip.imageProductType = 'thumb' ";
+
+        // Search
         if (isset($_GET['search']))
         {
             $keyword = $_GET['search'];
-            $query = 
-                $query." AND pd.productName LIKE '%$keyword%'"; 
+            $query = $query . " AND pd.productName LIKE '%$keyword%' ";
         }
-        $query = $query."  GROUP BY pd.productId";
-        $this->view('Main',[
-            'Page' => 'ProductList',
-            'User' => $this->userModel->getUser(),
-            'Product' => json_encode($this->productModel->select($query))
-            // 'Pagination' => $this->paginationModel->getPagination(),
-            // 'URL' => $this->URL
-        ]);
-    }
-    function loadList(){
-        /*
-            1. Get Params
-            2. Xu lí tuần tự params: 
-                search->filtercolumn->filter-order->phântrang
-            3. Trả view
+        // Group by
+        $query = $query . " GROUP BY pd.productId ";
+        // Filter
+        if (isset($_GET['filter']))
+        {
+            $filter = $_GET['filter'];
+            switch ($filter) {
+                case 'newest':
+                    $query = $query . " ORDER BY pd.productDate DESC ";
+                    break;
+                case 'selling':
+                    $query = $query . " ORDER BY pd.productSold DESC ";
+                    break;
+                case 'price-asc':
+                    $query = 
+                        $query . " ORDER BY pt.productTypePrice ASC, pts.productTypeSubPrice ASC ";
+                    break;
+                case 'price-desc':
+                    $query = 
+                        $query . " ORDER BY pt.productTypePrice DESC, pts.productTypeSubPrice DESC ";
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+        }
 
-            --
-            tạo một trait cho model, dùng cho search và filter column
-
-        */
-        //Pagination
-        if (isset($_GET['pageNumber']) && is_numeric($_GET['pageNumber'])) {
+        // Pagination
+        if (isset($_GET['pageNumber'])) {
             $this->paginationModel->currentPage = $_GET['pageNumber'];
         }
-        $productName = '';
-        if (isset($_GET['keyword']))  $productName = 'keyword='.$_GET['keyword'].'&';
+        
         $productQuantity = $this->productModel->getProductQuantity();
-        $this->paginationModel->calpagination($productQuantity);
-        $productsData = 
-            $this->productModel->getProducts($this->paginationModel->offset, $this->paginationModel->perPage);
-        $this->URL = './ProductList/loadList/?pageNumber=';
+        $this->paginationModel->calPagination($productQuantity);
+        
+        $query = $query . " LIMIT " 
+        . $this->paginationModel->offset
+        . " , "
+        .$this->paginationModel->perPage;
+        
+        $productsData = json_encode($this->productModel->select($query));
+
         $this->view('Main',[
             'Page' => 'ProductList',
             'User' => $this->userModel->getUser(),
             'Product' => $productsData,
-            'Pagination' => $this->paginationModel->getPagination(),
-            'URL' => $this->URL
+            'Pagination' => $this->paginationModel->getPagination()
         ]);
     }
     
