@@ -10,6 +10,17 @@
 </head>
 <body>
     <div class="webapp">
+        <?php
+            function replaceUrlParams($param, $value)
+            {
+                $query = $_GET;
+                // replace parameter(s)
+                $query[$param] = $value;
+                // rebuild url
+                $query_result = './?'.http_build_query($query);
+                return $query_result;
+            }
+        ?>
         <div class="header">
             <?php
                 require_once './mvc/views/block/Header.php';
