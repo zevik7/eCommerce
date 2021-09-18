@@ -9,22 +9,33 @@
                     <div class="filter">
                         <span class="filter__title title-sm">Sắp xếp theo</span>
                         <ul class="filter__list">
-                            <li class="filter__item active">Phổ biến</li>
-                            <li class="filter__item"><a class="js-sortBy-list" href="./ProductList/SortBy/?<?php if(isset($data['Keyword'])) echo 'keyword='.$data['Keyword'].'&';?>sortBy=NEW">Mới nhất</a></li>
-                            <li class="filter__item"><a class="js-sortBy-list" href="./ProductList/SortBy/?<?php if(isset($data['Keyword'])) echo 'keyword='.$data['Keyword'].'&';?>sortBy=SOLDE">Bán chạy</a></li>
+                            <li class="filter__item active">
+                                Phổ biến
+                            </li>
+                            <li class="filter__item">
+                                <a class="js-sortBy-list" 
+                                href="<?php echo replaceUrlParams('filter', 'newest'); ?>">
+                                Mới nhất</a>
+                            </li>
+                            <li class="filter__item">
+                                <a class="js-sortBy-list" href="<?php echo replaceUrlParams('filter', 'selling'); ?>">
+                                Bán chạy</a>
+                            </li>
                             <li class="filter__item filter__item-select">
-                                
                                 <div name="fs-select-order-price" class="select">
-                                    
                                     <h4 class="select__active js-sortBy-active">
                                         <?php if(isset($data['sortBy'])) echo $data['sortBy'];?>
                                     </h4>
                                     <i class="fas fa-sort-down"></i>
                                     <ul class="select__list">
-                                        <li><a class="js-sortBy-list" href="./ProductList/SortBy/?<?php if(isset($data['Keyword'])) echo 'keyword='.$data['Keyword'].'&';?>sortBy=ASC">
-                                        Từ thấp đến cao</a></li>
-                                        <li><a class="js-sortBy-list" href="./ProductList/SortBy/?<?php if(isset($data['Keyword'])) echo 'keyword='.$data['Keyword'].'';?>&sortBy=DESC">
-                                        Từ cao đến thấp</a></li>
+                                        <li>
+                                            <a class="js-sortBy-list" href="<?php echo replaceUrlParams('filter', 'price-asc'); ?>">
+                                            Từ thấp đến cao</a>
+                                        </li>
+                                        <li>
+                                            <a class="js-sortBy-list" href="<?php echo replaceUrlParams('filter', 'price-desc'); ?>">
+                                            Từ cao đến thấp</a>
+                                        </li>
                                     </ul>
                                 </div>
                             </li>
