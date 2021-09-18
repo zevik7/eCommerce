@@ -8,18 +8,17 @@ class DB{
 
     function __construct()
 	{
-        $this->configs = include($_SERVER['DOCUMENT_ROOT'].'/configs.php');
 		$this->con = $this->connect();
         // Turn off only_full_group_by mode
         $temp = $this->readDB("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
 	}
 
     private function connect(){
-        $dbtype = $this->configs['dbtype'];
-        $host = $this->configs['host'];
-        $dbname = $this->configs['dbname'];
-        $username = $this->configs['username'];
-        $password = $this->configs['password'];
+        $dbtype = DBTYPE;
+        $host = HOST;
+        $dbname = DBNAME;
+        $username = USERNAME;
+        $password = PASSWORD;
         try
 		{
 			//Create an instane to connect db

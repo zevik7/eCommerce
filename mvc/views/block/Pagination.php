@@ -8,6 +8,7 @@
         // else $url = './ProductList/LoadList/?pageNumber=';
 ?>
     <ul class="pagination">
+        <?php echo $_SERVER['REQUEST_URI']; ?>
         <li class="pagination__item">
             <a href="" class="pagination__link">
                 <i class="pagination-link__icon fas fa-angle-left"></i>

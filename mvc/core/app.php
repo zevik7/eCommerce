@@ -4,7 +4,7 @@ namespace mvc\core;
 class App{
 
     protected $controller = "mvc\\controllers\\ProductList";
-    protected $action = "test";
+    protected $action = "loadList";
     protected $params = [];
 
     function __construct(){
