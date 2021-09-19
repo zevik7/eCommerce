@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hevy Shop</title>
     <base href="http://<?php echo BASE_URL;?>"/>
+    <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="public/fontawesome/css/all.min.css" type="text/css" crossorigin="anonymous"/>
     <link rel="stylesheet" href="public/css/main.css" type="text/css">
 </head>

@@ -31,7 +31,7 @@
         text-decoration: none;
         transition: right linear 0.2s;
         right: 0;
-        &:hover, &--active{
+        &:hover, &.active{
             right: -4px;
             color: $primary-color;
             font-weight: 600;
