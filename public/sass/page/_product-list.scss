@@ -57,6 +57,7 @@
         color: $text-color-light;
     }
     &__list{
+        display: block;
         flex: 1;
         justify-content: space-evenly;
         display: flex;
