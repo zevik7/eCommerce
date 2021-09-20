@@ -48,7 +48,7 @@
 .filter{ 
     display: flex;
     align-items: center;
-    padding: 0 16px;
+    padding: 8px 16px;
     background-color: rgba(0, 0, 0, 0.05);
     border-radius: $border-radius;
     font-size: 1.5rem;
@@ -64,7 +64,10 @@
         list-style: none;
         .filter__item{
             border-radius: $border-radius;
-            padding: 8px 16px;
+            & > a{
+                display: block;
+                padding: 8px 16px;
+            }
             &.active{
                 background-color: $primary-color;
                 color: $text-color-white;
