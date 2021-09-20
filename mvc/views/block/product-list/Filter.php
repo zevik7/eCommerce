@@ -3,45 +3,45 @@
     <ul class="filter__list">
         <li class="filter__item 
         <?php if(!isset($_GET['filter'])) echo "active";?>">
-            <a href="<?php replaceUrlParams('filter', '')?>">
+            <a href="<?php replaceUrlParams('filter', ''); ?>">
                 Phổ biến
             </a>
         </li>
         <li class="filter__item 
         <?php if(isset($_GET['filter']) && $_GET['filter'] == 'newest') echo "active";?>">
-            <a class="js-sortBy-list" 
+            <a class="" 
             href="<?php echo replaceUrlParams('filter', 'newest'); ?>">
                 Mới nhất
             </a>
         </li>
         <li class="filter__item
         <?php if(isset($_GET['filter']) && $_GET['filter'] == 'selling') echo "active";?>">
-            <a class="js-sortBy-list" 
+            <a class="" 
             href="<?php echo replaceUrlParams('filter', 'selling'); ?>">
                 Bán chạy
             </a>
         </li>
         <li class="filter__item filter__item-select">
-            <div name="fs-select-order-price" class="select">
-                <h4 class="select__active js-sortBy-active">
-                    <?php if(isset($data['sortBy'])) echo $data['sortBy'];?>
+            <div class="fs-select-price select">
+                <h4 class="fs-select-price-active select__active">
+                    
                 </h4>
                 <i class="fas fa-sort-down"></i>
                 <ul class="select__list">
-                    <li>
-                        <a class="js-sortBy-list" 
-                        href="<?php echo replaceUrlParams('filter', ''); ?>">
+                    <li class="fs-select-price-item">
+                        <a class="" 
+                        href="<?php echo replaceUrlParams('filter', 'price-asc'); ?>">
                             Giá
                         </a>
                     </li>
-                    <li>
-                        <a class="js-sortBy-list" 
+                    <li class="fs-select-price-item">
+                        <a class="" 
                         href="<?php echo replaceUrlParams('filter', 'price-asc'); ?>">
                             Từ thấp đến cao
                         </a>
                     </li>
-                    <li>
-                        <a class="js-sortBy-list" 
+                    <li class="fs-select-price-item">
+                        <a class="" 
                         href="<?php echo replaceUrlParams('filter', 'price-desc'); ?>">
                             Từ cao đến thấp
                         </a>
