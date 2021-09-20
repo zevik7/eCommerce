@@ -16,11 +16,15 @@ class ProductDetail extends Controller{
     function loadProduct($params){
         $productId = current($params);
         if ($productId !== false) {
-            $productCategoryId = $this->productModel->getCategoryId($productId);
-            $productsRecommend = $this->productModel->getProductListByCategory($productCategoryId, 0, 5);
+            $productCategoryId = 
+                $this->productModel->getCategoryId($productId);
+            $productsRecommend = 
+                json_encode($this->productModel->getProductListByCategory($productCategoryId, 0, 5));
+            $productData = 
+                json_encode($this->productModel->getProduct($productId));
             $this->view('Main',[
                 'Page' => 'ProductDetail',
-                'productData' => $this->productModel->getProduct($productId),
+                'productData' => $productData,
                 'productsRecommend' => $productsRecommend
             ]);
         }

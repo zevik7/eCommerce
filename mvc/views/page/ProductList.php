@@ -42,7 +42,7 @@
                         </ul>
                         <div class="filter__switch">
                             <span id="filter-switch__current" class="">
-                            1
+                                1
                             </span>
                             <span>/</span>
                             <span id="filter-switch__total">

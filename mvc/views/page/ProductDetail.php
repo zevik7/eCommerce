@@ -122,13 +122,15 @@
                                     <?php
                                         if ($minPrice==$maxPrice){
                                     ?>
-                                        <span class="product-price__from"><?php echo number_format($minPrice);?></span>
+                                        <span class="product-price__from"><?php echo viPrice($minPrice);?></span>
                                     <?php
                                         } else {
                                     ?>
-                                        <span class="product-price__from"><?php echo number_format($minPrice);?></span>
+                                        <span class="product-price__from"><?php echo viPrice($minPrice);?></span>
                                         -
-                                        <span class="product-price__to"><?php echo number_format($maxPrice);?> VND</span>
+                                        <span class="product-price__to">
+                                            <?php echo viPrice($maxPrice, 'VND');?>
+                                        </span>
                                     <?php
                                         }
                                     ?>
