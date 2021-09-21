@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 5px 10px;
+    padding: 7px 14px;
     border-radius: $border-radius;
     border: $border-light;
     background-color: $background-color-white;
@@ -43,10 +43,13 @@
             display: block;
         }
         li{
-            padding: 8px 16px;
             font-size: 0.9em;
             cursor: pointer;
             white-space: nowrap;
+            & > a {
+                display: block;
+                padding: 8px 16px;
+            }
             &:hover{
                 background-color: $hover-color-bg;
             }

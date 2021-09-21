@@ -9,7 +9,6 @@ class ProductList extends Controller{
     protected $userModel;
     protected $productModel;
     protected $paginationModel;
-    protected $URL;
 
     function __construct(){
         $this->userModel = new User();
