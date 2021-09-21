@@ -81,6 +81,14 @@
             .select{
                 border: none;
                 min-width: 140px;
+                &.active{
+                    background-color: $primary-color;
+                    color: $text-color-white;
+                }
+                .select__list{
+                    background-color: $background-color-white;
+                    color: $text-color;
+                }
             }
         }
     }
@@ -99,7 +107,7 @@
             }
             a.disabled{
                 background-color: $background-color-disabled;
-                cursor: default;
+                pointer-events: none;
             }
         }
 

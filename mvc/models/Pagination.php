@@ -14,7 +14,7 @@ class Pagination extends DB{
         parent::__construct();
         //Default setting
         $this->currentPage = 1;
-        $this->perPage = 10;
+        $this->perPage = 15;
         $this->offset = 0;
     }
 
