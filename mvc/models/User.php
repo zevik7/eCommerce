@@ -11,12 +11,12 @@ class User extends DB{
     protected $userAddress;
 
     public function getUser(){
-        if (isset($_SESSION['userAccount'])){
-            $account = $_SESSION['userAccount'];
-            $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";
-            $param = array ($account, $account);
+        if (isset($_SESSION['user'])){
+            $account = $_SESSION['user']['email'];
+            $query = "SELECT * FROM user WHERE userEmail = ?";
+            $param = array ($account);
             $result = $this->readDB($query, $param);
-            if ($result !== false){
+            if ($result != false){
                 return json_encode($result);
             }
             else{
@@ -30,7 +30,7 @@ class User extends DB{
         $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";
         $param = array ($userAccount, $userAccount);
         $result = $this->readDB($query, $param);
-        if ($result !== false){
+        if ($result != false){
             return true;
         }
         else{
@@ -57,7 +57,7 @@ class User extends DB{
         LIMIT 1";
         $param = array($userAccount, $userAccount, $userPassword);
         $result = $this->readDB($query, $param);
-        if ($result !== false){
+        if ($result != false){
             return $result[0];
         }
         return false;

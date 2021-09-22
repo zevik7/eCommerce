@@ -13,13 +13,15 @@ class Signin extends Controller{
         {   
             $userAccount    = $_POST["modal-signin__account"];
             $userPassword   = $_POST["modal-signin__password"];
-
             $result         = $this->userModel->loginCheck($userAccount, $userPassword);
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
-                $_SESSION['user'] = ['name' => $result->userName, 
-                                    'avatar' => $result->userAvatar,
-                                    'email' =>$result->userEmail];
+                // $_SESSION['user'] = ['name' => $result->userName, 
+                //                     'avatar' => $result->userAvatar,
+                //                     'email' =>$result->userEmail];
+                $_SESSION['user'] = ['name' => $result['userName'], 
+                                    'avatar' => $result['userAvatar'],
+                                    'email' =>$result['userEmail']];
             }
             else{
                 echo json_encode(['status' => 'invalid account', 'message' => 'Tài khoản hoặc mật khẩu không đúng']);
