@@ -1,0 +1,23 @@
+1.	Cú pháp:
+-	Comment ngay trước dòng code nếu có
+-	Mỗi cấp con thụt đầu dòng
+-	Khoảng trắng đầu và cuối toán tử “ = ”, “ != ” và các toán từ số học +-*/…
+-	Nếu dòng lệnh quá dài màn hình thì ngắt dòng
+Vd:     abc = “123123123123123123”
+abc = 
+  	      “123123123123123123”
+Vd2: $query = “SELECT a,b,c,b,e,f,g from table11111111111”
+	   $query = 
+    “SELECT 
+    a,b,c,b,e,f,g 
+    from 
+    table11111111111”	
+-	Giữa mỗi funtion có 1 dòng trống. Vd:
+
+Func a(){}
+
+Func b(){}
+
+-	Toán tử nối chuỗi cần có khoảng trắng trước và sau “ .  ”
+-	Trước và sau câu query đều có khoảng trắng
+-	Trong phần view tương tự

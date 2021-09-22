@@ -33,12 +33,12 @@ export default class Selects{
     }
 }
 //---------------General event select---------------------
-// $('.select .select__list').on('click', 'li', function(){
-//     $(this).parent().removeClass('select__list--show');
-//     let newText = $(this).text();
-//     let activeElement =  $(this).closest('.select').children(".select__active");
-//     activeElement.text(newText);
-// })
+$('.select .select__list').on('click', 'li', function(){
+    $(this).parent().removeClass('select__list--show');
+    let newText = $(this).text();
+    let activeElement =  $(this).closest('.select').children(".select__active");
+    activeElement.text(newText);
+})
 // Select show
 $('.select').on('mouseover', function(){
     $(this).children('.select__list').addClass('select__list--show')

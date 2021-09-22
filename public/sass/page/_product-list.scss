@@ -195,6 +195,12 @@
                 justify-content: space-between;
                 padding: 8px 0;
                 font-size: 1.2rem;
+                .item-brand{
+                    width: 50%;
+                    overflow: hidden;
+                    white-space: nowrap;
+                    text-overflow: ellipsis;
+                }
             }
         }
         .product-item__favourite{
