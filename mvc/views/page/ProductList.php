@@ -9,7 +9,7 @@
                     <?php require_once './mvc/views/block/product-list/Filter.php'?>
                     <div class="result">
                         <?php
-                            if (isset($data['Keyword']) && $data['Keyword']!='')
+                            if (isset($data['Keyword']) && $data['Keyword'] != '')
                             {
                                 if($data['ProductQuantity']>0){
                         ?>
@@ -45,8 +45,20 @@
                                     <div class="product-item__content">
                                         <h4 class="product-item__name"><?php echo $value['productName'];?></h4>
                                         <div class="product-item__price">
-                                            <span class="price-original"><?php echo $value['productTypePrice'];?></span>
-                                            <span class="price-sale"><?php echo $value['productTypePrice']-$value['productTypePrice']*$value['productDiscount'];?></span>
+                                            <span class="price-original">
+                                                <?php 
+                                                    $price = $value['productTypePrice'];
+                                                    if ($price < $value['productTypeSubPrice'])
+                                                        $price = $value['productTypeSubPrice'];
+                                                    echo viPrice($price);
+                                                ?>
+                                            </span>
+                                            <span class="price-sale">
+                                                <?php 
+                                                    $discountPrice = $price * (1 - $value['productDiscount']);
+                                                    echo viPrice($discountPrice, 'Đ');
+                                                ?>
+                                            </span>
                                         </div>
                                         <div class="product-item__react">
                                             <div class="product-item__rating">
