@@ -159,9 +159,11 @@ let validatorSignup = $("#js-modal-signup").validate({
                 {
                     case 'success':
                         shakeModal(feedback.message, 'success');
+                        // alert(feedback.message);
                     break;
                     default:
                         shakeModal(feedback.message);
+                        // alert(feedback.message);
                 }
             },
             error: function(feedback){
@@ -217,6 +219,8 @@ let validatorSignin = $("#js-modal-signin").validate({
             error: function(feedback){
                 alert('Lỗi gửi dữ liệu lên server')
             }
+
         });
+        console.log($(form).serialize());
     }
 })

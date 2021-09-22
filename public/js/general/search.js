@@ -32,17 +32,7 @@ $('.js-head-search__form').on('submit',function(){
     localStorage.setItem('history', JSON.stringify(history));
 });
 
-$('.js-head-history__delete-btn').click(function(){
+$('.js-head-history__header').click(function(){
     $(".head-history__item").remove();
     localStorage.clear();
 });
-
-// $(".filter__item").on({
-//     click   : function () {
-//       $(this).addClass( "active" );
-//       $(this).siblings().removeClass( "active"  );
-//     },
-//     load  :  function(){
-//         $(this).addClass( "active" );
-//     }
-// });

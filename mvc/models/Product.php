@@ -356,9 +356,9 @@ class Product extends DB{
         return $result;
     }
 
-    public function getProductQuantityByName($productName = ''){
+    public function getProductQuantityByName($keyword = ''){
         $query = 
-        "SELECT * FROM product WHERE productName LIKE '%$productName%'
+        "SELECT * FROM product WHERE productName LIKE '%$keyword%'
         GROUP BY productId";
         
         $result = $this->readDB($query);

@@ -50,7 +50,15 @@ class ProductList extends Controller{
         if (isset($_GET['search']))
         {
             $keyword = $_GET['search'];
-            $query = $query . " AND pd.productName LIKE '%$keyword%' ";
+            $productQuantity = $this->productModel->getProductQuantityByName($keyword);
+            if( $productQuantity > 0){
+                $_SESSION['search'] = 'found';
+                $query = $query . " AND pd.productName LIKE '%$keyword%' ";
+            }
+            else {
+                $productQuantity = $this->productModel->getProductQuantity();
+                $_SESSION['search'] = 404;
+            }
         }
 
         //Filter category

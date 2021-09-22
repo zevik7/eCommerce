@@ -14,7 +14,6 @@ class Personal extends Controller{
         $this->view('Main',[
             'Page' => 'Personal',
             'User' => $this->userModel->getUser(),
-            'PP'   => $PP
         ]);
     }
     public function Edit(){
@@ -81,7 +80,7 @@ class Personal extends Controller{
     public function UpdateConfirm(){
         $userAccount    =   $_SESSION['userAccount'];
         $userPassword   =   $_POST['password-confirm'];
-        $result         = $this->userModel->loginUser($userAccount, $userPassword);
+        $result         = $this->userModel->loginCheck($userAccount, $userPassword);
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Đã xác thực']);
         }
@@ -117,7 +116,7 @@ class Personal extends Controller{
         $userAccount            =   $_SESSION['userAccount'];
         $old_userPassword       =   $_POST['old-password'];
         $new_userPassword       =   $_POST['new-password'];
-        $check                  =   $this->userModel->loginUser( $userAccount , $old_userPassword );
+        $check                  =   $this->userModel->loginCheck( $userAccount , $old_userPassword );
         if ($check) {
             $result         = $this->userModel->updatePassword($new_userPassword , $userAccount);
             if ($result) {
