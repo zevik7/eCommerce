@@ -2,10 +2,7 @@
     <nav class="personal-sidebar">
 
         <div class="personal-sidebar__header">
-            <?php 
-                $value = json_decode($data['User'], true)[0];
-
-            ?>
+            <?php $value = json_decode($data['User'], true)[0]; ?>
             <img src="<?php echo $value['userAvatar'];?>" alt="" class="personal-sidebar__avatar js-trigger-profile" >
             <div class="personal-sidebar__profile"  href=""  >
                 <h3 class="username"><?php echo $value['userName'];?></h3>
@@ -68,6 +65,8 @@
                     Hevy Xu
                 </span>
             </li>
+
+            <button id="testthongbao">Test</button>
 
         </ul>
     </nav>

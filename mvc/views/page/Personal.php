@@ -7,13 +7,11 @@
 
             <div class="col-10 pb-50">
                 <?php 
-                    //require_once './mvc/views/page/'.$data['PP'].'.php';
-                    require_once './mvc/views/page/PersonalAccount.php';
-                    require_once './mvc/views/page/PersonalPurchase.php';
-                    require_once './mvc/views/page/PersonalNotify.php';
-                    require_once './mvc/views/page/PersonalVoucher.php';
-                    require_once './mvc/views/page/PersonalCent.php';
-                    //echo $data['PP'];
+                    require_once './mvc/views/page/personal/PersonalAccount.php';
+                    require_once './mvc/views/page/personal/PersonalPurchase.php';
+                    require_once './mvc/views/page/personal/PersonalNotify.php';
+                    require_once './mvc/views/page/personal/PersonalVoucher.php';
+                    require_once './mvc/views/page/personal/PersonalCent.php';
                 ?>
             </div> 
 
