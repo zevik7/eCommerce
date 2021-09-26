@@ -33,8 +33,7 @@ class ProductList extends Controller{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom,
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductUrl,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice
+        ip.imageProductUrl
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
@@ -42,8 +41,6 @@ class ProductList extends Controller{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb' ";
 
         // Search
@@ -85,11 +82,11 @@ class ProductList extends Controller{
                     break;
                 case 'price-asc':
                     $query = 
-                        $query . " ORDER BY pt.productTypePrice ASC, pts.productTypeSubPrice ASC ";
+                        $query . " ORDER BY pt.productTypePrice ASC";
                     break;
                 case 'price-desc':
                     $query = 
-                        $query . " ORDER BY pt.productTypePrice DESC, pts.productTypeSubPrice DESC ";
+                        $query . " ORDER BY pt.productTypePrice DESC";
                     break;
                 
                 default:

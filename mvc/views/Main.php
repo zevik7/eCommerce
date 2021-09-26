@@ -12,7 +12,8 @@
 <body>
     <div class="webapp">
         <?php
-            require_once './mvc/views/assets/Function.php';
+            require_once './mvc/views/assets/UrlFunction.php';
+            require_once './mvc/views/assets/RatingFunction.php';
         ?>
         <div class="header">
             <?php

@@ -9,49 +9,37 @@
     $productType = 
     array_key_exists('productType', $productData) ? $productData['productType'] : []; 
 
-    $productTypeSub = 
-    array_key_exists('productTypeSub', $productData) ? $productData['productTypeSub'] : []; 
-
     $productImage =
     array_key_exists('productImage', $productData) ? $productData['productImage'] : [];
 
     $productRating =
     array_key_exists('productRating', $productData) ? $productData['productRating'] : [];
     
-    if (!empty($product) || !empty($productType) || !empty($productImage)) {}// In false, not enough information to display
+    // If false, not enough information to display
+    if (!empty($product) || !empty($productType) || !empty($productImage))
     {
-        //Flat 1 level
-        $productTypeSub = array_reduce($productTypeSub, 'array_merge', array());    
+        // Flat 1 level
         $product = array_reduce($product, 'array_merge', array());
 
         /*---------Parse general data--------*/
 
-        //Min price and max price
+        // Default min price and max price
         $minPrice = 99999999999;
         $maxPrice = -99999999999;
-        $productTypePrice = array_filter(array_column($productType, 'productTypePrice'));
-        $productTypeSubPrice = array_filter(array_column($productTypeSub, 'productTypeSubPrice'));
 
+        // Array filter without callback remove falsy value
+        $productTypePrice = array_filter(array_column($productType, 'productTypePrice'));
+
+        // Get min and max price
         if (!empty($productTypePrice))
         {
             $minPrice = min($productTypePrice);
             $maxPrice = max($productTypePrice);
         }
-        if (!empty($productTypeSubPrice))
-        {
-            $minPrice = $minPrice > min($productTypeSubPrice) ? min($productTypeSubPrice) : $minPrice;
-            $maxPrice = $maxPrice < max($productTypeSubPrice) ? max($productTypeSubPrice) : $maxPrice;
-        }
-
-        // Product total quantity
-        $productTotalQuantity = array_sum(array_column($productType, 'productTypeQuantity'));
 
         // Product type label list
         $productTypeLabelList = array_unique(array_column($productType, 'productTypeLabel'));
 
-        // Product typeSubName List
-        $productTypeSubNameList = 
-            array_unique(array_column($productTypeSub, 'productTypeSubName'));
 ?>
     <div class="bg-transparent">
         <div class="grid pt-20">
@@ -82,21 +70,7 @@
                                         </span>
                                         <span class="product-rating__star">
                                             <?php
-                                                $starValue = $product['productRating'];
-                                                $starCount = 0;
-                                                while ($starCount < 5)
-                                                {
-                                                    if ($starValue > 0)
-                                                    {
-                                                        if ($starValue >= 1) echo '<i class="fas fa-star"></i>';
-                                                        else echo '<i class="fas fa-star-half-alt"></i>';
-                                                        $starValue--;
-                                                    }
-                                                    else{
-                                                        echo '<i class="far fa-star"></i>';
-                                                    }
-                                                    $starCount++;
-                                                }
+                                                displayStar($product['productRating']);
                                             ?>
                                         </span>
                                     </div>
@@ -127,7 +101,7 @@
                                         } else {
                                     ?>
                                         <span class="product-price__from"><?php echo viPrice($minPrice);?></span>
-                                        -
+                                        <span> - </span>
                                         <span class="product-price__to">
                                             <?php echo viPrice($maxPrice, 'VND');?>
                                         </span>
@@ -177,75 +151,31 @@
                                     foreach ($productTypeLabelList as $labelType)
                                     {
                                 ?>
-                                <div class="fs-product-type product-type row mt-20">
-                                    <div class="product-type__header col-3">
-                                        <h6 class="fs-product-type__label title-sm">
-                                            <?php echo $labelType;?>
-                                        </h6>
+                                    <div class="fs-product-type product-type row mt-20">
+                                        <div class="product-type__header col-3">
+                                            <h6 class="fs-product-type__label title-sm">
+                                                <?php echo $labelType;?>
+                                            </h6>
+                                        </div>
+                                        <div class="product-type__body col-9">
+                                            <ul class="fs-list-type list-type">
+                                                <?php
+                                                    foreach($productType as $type) {
+                                                        if(empty($type['productTypeName'])) break;
+                                                        if($type['productTypeLabel'] != $labelType) continue;
+                                                ?>
+                                                    <li class="list-type__item btn btn-third" 
+                                                        id="<?php echo $type['productTypeId'];?>" 
+                                                        price="<?php echo $type['productTypePrice'];?>"
+                                                        quantity="<?php echo $type['productTypeQuantity'];?>">
+                                                        <?php echo $type['productTypeName'];?>
+                                                    </li>
+                                                <?php
+                                                    }
+                                                ?>
+                                            </ul>
+                                        </div>
                                     </div>
-                                    <div class="product-type__body col-9">
-                                        <ul class="fs-list-type list-type">
-                                            <?php
-                                                foreach($productType as $type) {
-                                                    if(empty($type['productTypeName'])) break;
-                                                    if($type['productTypeLabel'] != $labelType) continue;
-                                            ?>
-                                                <li class="list-type__item btn btn-third" 
-                                                    id="<?php echo $type['productTypeId'];?>" 
-                                                    price="<?php echo $type['productTypePrice'];?>"
-                                                    quantity="<?php echo $type['productTypeQuantity'];?>">
-                                                    <?php echo $type['productTypeName'];?>
-                                                </li>
-                                            <?php
-                                                }
-                                            ?>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <?php
-                                    }
-                                ?>
-                                <?php
-                                    if (!empty($productTypeSub))
-                                    {
-                                ?>
-                                <div class="fs-product-type-sub product-type row mt-20">
-                                    <div class="product-type__header col-3">
-                                        <h6 class="fs-product-type-sub__label title-sm">
-                                            <?php echo $productTypeSub[0]['productTypeSubLabel'];?>
-                                        </h6>
-                                    </div>
-                                    <div class="product-type__body col-9">
-                                        <ul class="fs-list-type-display-first list-type-display-first list-type">
-                                            <?php
-                                                foreach($productTypeSubNameList as $name) {
-                                            ?>
-                                                <li name="<?php echo $name;?>" 
-                                                class="list-type__item btn btn-third">
-                                                    <?php echo $name;?>
-                                                </li>
-                                            <?php
-                                                }
-                                            ?>
-                                        </ul>
-                                        <ul class="fs-list-type-sub list-type">
-                                            <?php
-                                                foreach($productTypeSub as $type) {
-                                            ?>
-                                                <li class="list-type__item btn btn-third" style="display:none"
-                                                id="<?php echo $type['productTypeSubId'];?>" 
-                                                price="<?php echo $type['productTypeSubPrice'];?>"
-                                                quantity="<?php echo $type['productTypeSubQuantity'];?>"
-                                                parentId = <?php echo $type['productTypeId'];?>
-                                                name ="<?php echo $type['productTypeSubName'];?>">
-                                                    <?php echo $type['productTypeSubName'];?>
-                                                </li>
-                                            <?php
-                                                }
-                                            ?>
-                                        </ul>
-                                    </div>
-                                </div>
                                 <?php
                                     }
                                 ?>
@@ -262,7 +192,7 @@
                                         <span class="fs-quantity-count__text product-quantity-count__text">
                                             Còn 
                                             <span class="fs-number-quantity fs-number-product-quantity number-quantity">
-                                                <?php echo $productTotalQuantity;?>
+                                                <?php echo $product['productQuantity'];?>
                                             </span>
                                             sản phẩm
                                         </span>
@@ -311,18 +241,17 @@
                                             foreach ($productsRecommend as $recommend) {
                                                 if($recommend['productId'] == $product['productId']) continue;
                                         ?>
-                                        <a href="#" class="suggestion-list__item">
-                                            <img src="<?php echo $recommend['imageProductUrl'];?>" alt="">
-                                            <h3 class="title title-sm"><?php echo $recommend['productName'];?></h3>
-                                            <p class="price">
-                                                <?php
-                                                    if(isset($recommend['productTypePrice']))
-                                                        echo number_format($recommend['productTypePrice']);
-                                                    else echo number_format($recommend['productTypeSubPrice']);
-                                                ?>
-                                                đ
-                                            </p>
-                                        </a>
+                                            <a href="#" class="suggestion-list__item">
+                                                <img src="<?php echo $recommend['imageProductUrl'];?>" alt="">
+                                                <h3 class="title title-sm"><?php echo $recommend['productName'];?></h3>
+                                                <p class="price">
+                                                    <?php
+                                                        if(isset($recommend['productTypePrice']))
+                                                            echo viPrice($recommend['productTypePrice']);
+                                                    ?>
+                                                    đ
+                                                </p>
+                                            </a>
                                         <?php
                                             }
                                         ?>

@@ -122,16 +122,9 @@ class Product extends DB{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom, 
         pc.productCategoryId,
-        -- pd.productDescription,
-        -- pc.productCategoryName,
-        -- pt.productTypeId,
-        -- pt.productTypeName,
         MIN(pt.productTypePrice) as productTypePrice,
         ip.imageProductId,
-        ip.imageProductUrl,
-        -- pts.productTypeSubId,
-        -- pts.productTypeSubName,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice
+        ip.imageProductUrl
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
@@ -139,8 +132,6 @@ class Product extends DB{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb'
         GROUP BY pd.productId
         LIMIT ?, ?";
@@ -156,38 +147,24 @@ class Product extends DB{
             pd.productSold, pd.productBrand, 
             pd.productRating, pd.productSendFrom, 
             pd.productDescription,
+            pd.productQuantity,
             pc.productCategoryName
             FROM product pd
             LEFT JOIN product_category pc
             ON pd.productCategoryId = pc.productCategoryId
             WHERE pd.productId = '$productId'";
 
-        // $productTypeQuery = 
-        // "SELECT pt.productTypeId, pt.productTypeName, pt.productTypeQuantity, 
-        // pt.productTypePrice, pt.productFreightCost, 
-        // ptl.productTypeLabelId, ptl.productTypeLabelName,
-        // pts.productTypeSubId, pts.productTypeSubName,
-        // pts.productTypeSubQuantity, pts.productTypeSubPrice,
-        // pts.productTypeLabelId as productTypeLabelSubId, pts.productTypeLabelName as productTypeLabelSubName
-        // FROM product_type pt
-        // INNER JOIN product_type_label ptl 
-        // ON pt.productTypeLabelId = ptl.productTypeLabelId
-        // LEFT JOIN 
-        // (SELECT productTypeId, productTypeSubId, productTypeSubName,
-        // productTypeSubQuantity, productTypeSubPrice,
-        // ptl.productTypeLabelId, ptl.productTypeLabelName
-        // FROM product_type_sub pts 
-        // INNER JOIN product_type_label ptl 
-        // ON ptl.productTypeLabelId = pts.productTypeLabelId) pts
-        // ON pt.productTypeId = pts.productTypeId
-        // WHERE productId ='".$productId."'";
-
         $productTypeQuery = 
-            "SELECT * FROM product_type
+            "SELECT 
+            productTypeId, productTypeLabel,
+            productTypeName, productTypeQuantity,
+            productTypePrice, productFreightCost
+            FROM product_type
             WHERE productId = '".$productId."'";
 
         $productImageQuery = 
-            "SELECT imageProductId, imageProductType, 
+            "SELECT 
+            imageProductId, imageProductType, 
             imageProductName, imageProductUrl, 
             imageProductDescription 
             FROM image_product
@@ -202,13 +179,7 @@ class Product extends DB{
                 FROM ecommerce.user ur
             ) ur
             ON ur.userId = pr.userId
-            LEFT JOIN (
-                SELECT ptsub.productTypeId as productTypeIdMap, ptsub.productTypeSubLabel, ptsub.productTypeSubName FROM product_rating prating
-                INNER JOIN product_type_sub ptsub
-                ON prating.productTypeSubId  = ptsub.productTypeSubId
-            ) pts
-            ON pt.productTypeId = pts.productTypeIdMap
-            WHERE pr.productId ='".$productId."'";
+            WHERE pr.productId ='$productId'";
 
         $productResult = $this->readDB($productQuery);
         $productTypeResult = $this->readDB($productTypeQuery);
@@ -221,13 +192,9 @@ class Product extends DB{
         }
         if ($productTypeResult !== false) {
             $allResult['productType'] = $productTypeResult;
-            $allResult['productTypeSub'] = $this->getProductTypeSub($productTypeResult);
         }          
         if ($productImageResult !== false) {
             $allResult['productImage'] = $productImageResult;
-        }
-        if ($productRating !== false) {
-            $allResult['productRating'] = $productRating;
         }
         if ($productRating !== false) {
             $allResult['productRating'] = $productRating;
@@ -244,25 +211,6 @@ class Product extends DB{
             return count($result);
         }
         return 0;
-    }
-
-    public function getProductTypeSub($productTypeList){
-        $productTypeListId = array_column($productTypeList, 'productTypeId');
-        $productTypeSub = array();
-        if(!empty($productTypeListId))
-        {
-            foreach($productTypeListId as $typeId){
-                $query = 
-                "SELECT * FROM product_type_sub
-                WHERE productTypeId='".$typeId."'";
-                $result = $this->readDB($query);
-                if ($result !== false)
-                {
-                    array_push($productTypeSub, $result);
-                }
-            }
-        }
-        return $productTypeSub;
     }
 
     public function getCategoryId($productId)
@@ -335,8 +283,7 @@ class Product extends DB{
         pd.productRating, pd.productSendFrom, 
         MIN(pt.productTypePrice) as productTypePrice,
         ip.imageProductId,
-        ip.imageProductUrl,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice
+        ip.imageProductUrl
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
@@ -344,8 +291,6 @@ class Product extends DB{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
@@ -374,7 +319,6 @@ class Product extends DB{
         MIN(pt.productTypePrice) as productTypePrice,
         ip.imageProductId,
         ip.imageProductUrl,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
@@ -408,7 +352,6 @@ class Product extends DB{
         MIN(pt.productTypePrice) as productTypePrice,
         ip.imageProductId,
         ip.imageProductUrl,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
@@ -442,7 +385,6 @@ class Product extends DB{
         MIN(pt.productTypePrice) as productTypePrice,
         ip.imageProductId,
         ip.imageProductUrl,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
@@ -451,8 +393,6 @@ class Product extends DB{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
@@ -477,7 +417,6 @@ class Product extends DB{
         MIN(pt.productTypePrice) as productTypePrice,
         ip.imageProductId,
         ip.imageProductUrl,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
@@ -486,8 +425,6 @@ class Product extends DB{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
