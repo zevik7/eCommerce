@@ -1,7 +1,6 @@
 import './authentication.js';
 import './select.js';
 import './inputQuantity.js';
-import './pagination.js';
 import './search.js';
 
 // To reusable

@@ -110,19 +110,38 @@ $('.profile__form').validate({
                     default:  alert(feedback.message);
                 }
             },
-            error: function () {
-            alert(feedback.message);
+            error: function (feedback) {
+                alert(feedback.message);
             }
         });
     }
 });
 // success alert
 function successAlert(){
-    asset.notification_modal('Thành công');
+    asset.notification_modal({
+        // Element
+        modal: '.modal-noti',
+        modalOverlay: '.modal-overlay',
+        msgElement: '.modal-body__msg',
+        closeBtn: '.modal-body__close-button',
+        // Custom attribute
+        autoClose: 2000,
+        class: 'modal-noti--success',
+        msg: 'Thành công'
+    });
 }
 // failed alert
 function failedAlert(){
-    asset.notification_modal('Thất bại');
+    asset.notification_modal({
+        modal: '.modal-noti',
+        modalOverlay: '.modal-overlay',
+        msgElement: '.modal-body__msg',
+        closeBtn: '.modal-body__close-button',
+        // Custom attribute
+        autoClose: 2000,
+        class: 'modal-noti--error',
+        msg: 'Thất bại'
+    });
 }
 
 // update email confirm
