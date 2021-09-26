@@ -2,26 +2,21 @@ import * as asset from "../general/index.js";
 $(function () {
     //--------------Select product type event--------------
     let productTypeLists = $('.fs-product-type .fs-list-type');
-    let productTypeSubList = $('.fs-product-type-sub .fs-list-type-sub');
-    let productTypeSubDisplay = $('.fs-product-type-sub .fs-list-type-display-first');
 
     productTypeLists.each(function (index, productTypeList) {
         $(this).children('.list-type__item').on('click', function () {
-            productTypeSubDisplay.css('display', 'none');
             showStyle($(this));
             showPrice($(this));
             showQuantity($(this));
-            showSubType($(this).attr('id'));
         });
     });
     function showQuantity(element) {
         if (element.attr('quantity')){
-            let quantitys = $('.fs-number-product-quantity');
+            let quantitys = $('.number-quantity');
             quantitys.text(element.attr('quantity'));
         }
     }
     function showStyle(element) {
-        //Set css
         element.parent().children('.list-type__item.active').removeClass('active');
         element.addClass('active');
     }
@@ -34,41 +29,7 @@ $(function () {
                   })
             );
     }
-    function showSubType(parentId) {
-        let seen = {};
-        //unset active
-        productTypeSubList.children('.list-type__item.active').removeClass('active')
-        productTypeSubList
-            .children('.list-type__item')
-            .each(function () {
-                let txt = $(this).attr('name');
-                if (!seen[txt] && $(this).attr('parentId') == parentId)
-                {
-                    seen[txt] = true;
-                    $(this).css('display', 'inline-flex');
-                    $(this).on('click', function () {
-                        showStyle($(this));
-                        showPrice($(this));
-                        showQuantity($(this));
-                    });
-                }
-                else{
-                    $(this).css('display', 'none');
-                }
-            })
-    }
     //-----------------Add to cart-------------
-    // Prepare data
-    // productData = {};
-    // $.post("./productDetail/addToCart", productData,
-    //     function (data, textStatus, jqXHR) {
-            
-    //     },
-    //     "dataType"
-    // );
-    // function getProductType() {
-
-    // }
     $('#product-add-cart__btn').on('click', function (params) {
         asset.notification_inline('Bạn chưa chọn ', 'alert-warning');
     })

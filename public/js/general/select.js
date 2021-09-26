@@ -1,5 +1,5 @@
 //Import list of location
-import * as localtionObj from './location-list.js';
+import * as localtionObj from './locationList.js';
 //---------------Select component----------------------
 export default class Selects{
     constructor(selects, label){

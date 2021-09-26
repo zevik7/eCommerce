@@ -1,4 +1,4 @@
-export const notification_modal = function (
+let notification_modal = function (
     msg = 'Thông báo', 
     success = true, 
     duration = false) {
@@ -26,10 +26,11 @@ export const notification_modal = function (
         modalNoti.fadeOut();
     })
 }
-export const notification_inline = function (
+let notification_inline = function (
     msg = 'Thông báo', 
     type = 'alert-success', 
     duration = false) {
+
     let inlineAlert = $('.js-alert');
     inlineAlert.text(msg);
     inlineAlert.removeClass('alert-success alert-danger alert-info alert-warning');
@@ -39,3 +40,9 @@ export const notification_inline = function (
         inlineAlert.fadeOut(duration);
     }
 }
+let rm_notification_inline = function(){
+    let inlineAlert = $('.js-alert');
+    inlineAlert.fadeOut();
+}
+
+export {notification_modal, notification_inline, rm_notification_inline}

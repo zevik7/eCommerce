@@ -1,4 +1,4 @@
-import {notification_modal} from "../general/index.js";
+import * as asset from "../general/index.js";
 $(document).ready(function () {
     $('.personal-sidebar__item:first').find('li').slideDown(300);
 });
@@ -118,11 +118,11 @@ $('.profile__form').validate({
 });
 // success alert
 function successAlert(){
-    notification_modal('Thành công');
+    asset.notification_modal('Thành công');
 }
 // failed alert
 function failedAlert(){
-    notification_modal('Thất bại');
+    asset.notification_modal('Thất bại');
 }
 
 // update email confirm

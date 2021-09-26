@@ -1,4 +1,0 @@
-// Add to cart
-AddCart({
-    
-})
