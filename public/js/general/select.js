@@ -10,10 +10,10 @@ export default class Selects{
         this.actives.text(this.label);
     }
     insertTop(id, text){
-        this.lists.prepend('<li id="'+id+'">'+text+'</li>');
+        this.lists.prepend('<li id="'+id+'"><a>'+text+'</a></li>');
     }
     insert(id, text){
-        this.lists.append('<li id="'+id+'">'+text+'</li>');
+        this.lists.append('<li id="'+id+'"><a>'+text+'</a></li>');
     }
     reset(){
         this.actives.text(this.label);
@@ -47,20 +47,12 @@ $('.select').on('mouseover', function(){
 $('.select').on('mouseout', function(){
     $(this).children('.select__list').removeClass('select__list--show');
 })
-
-// //-----------------Select price-------------------
-// let selectPrice = new Selects($('.select[name="fs-select-order-price"]'), 'Giá');
-// selectPrice.selects.each(function () {
-//     selectPrice.lists.on('click', 'li', function(){
-//         selectPrice.pushLabelToList();
-//     })
-// })
 //-----------------Select adress-------------------
 let selectProvinces = new Selects($('.select[name="fs-select-shipping-provinces"]'), 'Tỉnh, thành phố');
 let selectDistricts = new Selects($('.select[name="fs-select-shipping-districts"]'), 'Quận, huyện')
 selectProvinces.selects.each(function() {
     let provinceList = localtionObj.provinces;
-    //Load province
+    // Load province
     provinceList.forEach(function(province, index) {
         selectProvinces.insert(index, province);
     })
