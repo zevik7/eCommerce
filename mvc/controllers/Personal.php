@@ -9,8 +9,7 @@ class Personal extends Controller{
     function __construct(){
         $this->userModel = new User();
     }
-    public function loadList($param = null){
-        $PP = current($param);
+    public function loadList(){
         $this->view('Main',[
             'Page' => 'Personal',
             'User' => $this->userModel->getUser(),
@@ -66,7 +65,7 @@ class Personal extends Controller{
 
             $userName       =   $_POST["profile-username"];
             $userAvatar     =   $target_file;
-            $userAccount    =   $_SESSION['userAccount'];
+            $userAccount    =   $_SESSION['user']['email'];
             $result = $this->userModel->editProfile($userName, $userAvatar, $userAccount);
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Đã cập nhật thành công']);
@@ -75,10 +74,11 @@ class Personal extends Controller{
                 echo json_encode(['status' => 'error', 'message' => 'Lỗi khi thêm vào cơ sở dữ liệu']);
             }
             die();
+            // echo json_encode(['status' => 'success', 'message' => 'Lỗi khi thêm vào cơ sở dữ liệu']);
         
     }
     public function UpdateConfirm(){
-        $userAccount    =   $_SESSION['userAccount'];
+        $userAccount    =   $_SESSION['user']['email'];
         $userPassword   =   $_POST['password-confirm'];
         $result         = $this->userModel->loginCheck($userAccount, $userPassword);
         if ($result) {
@@ -89,11 +89,11 @@ class Personal extends Controller{
         }
     }
     public function UpdateEmail(){
-        $userAccount    =   $_SESSION['userAccount'];
+        $userAccount    =    $_SESSION['user']['phone'];
         $userEmail      =   $_POST['update-email'];
         $result         = $this->userModel->updateAccount($userEmail, '' , $userAccount);
         if ($result) {
-            $_SESSION['userAccount'] =  $userEmail;
+            $_SESSION['user']['email'] =  $userEmail;
             echo json_encode(['status' => 'success', 'message' => 'Thay đổi thành công']);
         }
         else{
@@ -101,11 +101,11 @@ class Personal extends Controller{
         }
     }
     public function UpdatePhone(){
-        $userAccount    =   $_SESSION['userAccount'];
+        $userAccount    =   $_SESSION['user']['email'];
         $userPhone      = $_POST['update-phone'];
         $result         = $this->userModel->updateAccount('', $userPhone , $userAccount);
         if ($result) {
-            $_SESSION['userAccount'] =  $userPhone;
+            $_SESSION['user']['phone'] =  $userPhone;
             echo json_encode(['status' => 'success', 'message' => 'Thay đổi thành công']);
         }
         else{
@@ -113,7 +113,7 @@ class Personal extends Controller{
         }
     }
     public function UpdatePassword(){
-        $userAccount            =   $_SESSION['userAccount'];
+        $userAccount            =   $_SESSION['user']['email'];
         $old_userPassword       =   $_POST['old-password'];
         $new_userPassword       =   $_POST['new-password'];
         $check                  =   $this->userModel->loginCheck( $userAccount , $old_userPassword );
@@ -123,7 +123,7 @@ class Personal extends Controller{
                 echo json_encode(['status' => 'success', 'message' => 'Đổi mật khẩu thành công']);
             }
             else{
-                echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
+                echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công']);
             }
         }
         else{
@@ -131,12 +131,8 @@ class Personal extends Controller{
         }
     }
     public function setAddress(){
-        $userAccount   =   $_SESSION['userAccount'];
-        // $userprovinces  =   $_POST['user-provinces'];
-        // $userdistricts =  $_POST['user-districts'];
-        // $userdetail =  $_POST['user-detail'];
-        // $userAddress = $userdetail.'/'.$userdistricts.'/'.$userprovinces;
-        $userAddress =  $_POST['user-detail'].'/'.$_POST['user-address'];
+        $userAccount   =   $_SESSION['user']['email'];
+        $userAddress =  $_POST['user-address'] . '/' . $_POST['user-detail'] ;
         $result = $this->userModel->updateAddress($userAddress , $userAccount);
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Cap nhat dia chi thanh cong']);

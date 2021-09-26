@@ -21,7 +21,9 @@ class Signin extends Controller{
                 //                     'email' =>$result->userEmail];
                 $_SESSION['user'] = ['name' => $result['userName'], 
                                     'avatar' => $result['userAvatar'],
-                                    'email' =>$result['userEmail']];
+                                    'email' =>$result['userEmail'],
+                                    'phone' =>$result['userPhone']
+                                ];
             }
             else{
                 echo json_encode(['status' => 'invalid account', 'message' => 'Tài khoản hoặc mật khẩu không đúng']);

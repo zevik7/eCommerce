@@ -69,8 +69,8 @@ class User extends DB{
             $query = $query . ", userAvatar = ? ";
             array_push($param, $userAvatar);
         }
-        $query = $query . "WHERE userEmail = ? OR  userPhone = ?";
-        array_push($param, $userAccount, $userAccount);
+        $query = $query . "WHERE userEmail = ?";
+        array_push($param, $userAccount);
         $result = $this->writeDB($query, $param);
         if ($result)
         {
@@ -83,8 +83,8 @@ class User extends DB{
 
     public function updateAccount($userEmail, $userPhone, $userAccount){
         if($userEmail != '' && $userPhone == ''){
-            $query = "UPDATE user SET userEmail = ? WHERE userEmail = ? OR  userPhone = ?";
-            $param = array ($userEmail, $userAccount, $userAccount);
+            $query = "UPDATE user SET userEmail = ? WHERE userPhone = ?";
+            $param = array ($userEmail, $userAccount);
             $result = $this->writeDB($query, $param);
             if ($result)
             {
@@ -95,8 +95,8 @@ class User extends DB{
             }
         }
         if($userEmail == '' && $userPhone != '') {
-            $query = "UPDATE user SET userPhone = ? WHERE userEmail = ? OR  userPhone = ?";
-            $param = array ($userPhone, $userAccount, $userAccount);
+            $query = "UPDATE user SET userPhone = ? WHERE userEmail = ?";
+            $param = array ($userPhone, $userAccount);
             $result = $this->writeDB($query, $param);
             if ($result)
             {
@@ -122,8 +122,8 @@ class User extends DB{
         
     }
     public function updateAddress($userAddress, $userAccount){
-        $query = "UPDATE user SET userAddress = ? WHERE userEmail = ? OR userPhone = ?";
-        $param = array ($userAddress, $userAccount, $userAccount);
+        $query = "UPDATE user SET userAddress = ? WHERE userEmail = ?";
+        $param = array ($userAddress, $userAccount);
         $result = $this->writeDB($query, $param);
         if ($result)
         {

@@ -1,10 +1,13 @@
 import {notification_modal} from "../general/index.js";
 $(document).ready(function () {
     $('.personal-sidebar__item:first').find('li').slideDown(300);
+    localStorage.setItem('current-person', '#account');
+    localStorage.setItem('current-person-sub', '.profile');
 });
   
   /*--------Events for sidebar----------*/
 $('.personal-sidebar__nav').click(function () {
+    localStorage.setItem('current-person', $(this).attr('href'))
     // slide down and switch page
     $(this).siblings().find('li').slideDown(300);
     switchPersonal($(this).attr('href'));
@@ -13,6 +16,7 @@ $('.personal-sidebar__nav').click(function () {
     $(this).siblings().find('li').removeClass('personal-active');
     $(this).siblings().find('li:first').addClass('personal-active');
     switchPersonal($(this).siblings().find('li:first').attr('href'));
+    localStorage.setItem('current-person-sub', $(this).siblings().find('li:first').attr('href'));
     $(this).parent().siblings().find('span').removeClass('personal-active');
     $(this).parent().siblings().find('li').removeClass('personal-active');
     $(this).parent().siblings().find('li').slideUp(300);
@@ -25,8 +29,10 @@ $(document).on('click', '.js-trigger-profile', function (e) {
 
 $('.profile__edit-change').click(function () {
     switchPersonal($(this).attr('href'));
+    localStorage.setItem('current-person-sub', $(this).attr('href'));
 });
 $('.personal-sidebar__subnav-item').click(function () {
+    localStorage.setItem('current-person-sub', $(this).attr('href'));
     $(this).addClass('personal-active');
     $(this).siblings().removeClass('personal-active');
     switchPersonal($(this).attr('href'));
@@ -39,19 +45,20 @@ function switchPersonal(select) {
 }
   
 /**---------Personal Account---------- */
-let email = $('#js-get-email').text();
+let email = $('.js-get-email').text();
 var mask = email.replace(/^(..)(.*)(@.*)$/,
     function(str,a, b, c){
         return a + b.replace(/./g, '*') + c
     });
-
-$('.profile__edit-email').text(mask);
+$('.js-get-email').text(mask);
+$('.js-get-email').css("display", "block");
 
 //hide phone number
-let phone = $('#js-get-phone').text();
+let phone = $('.js-get-phone').text();
     phone = phone.slice(-2);
     let hidePhone = "********";
-    $('.profile__edit-phone').text(hidePhone.concat(phone));
+    $('.js-get-phone').text(hidePhone.concat(phone));
+    $('.js-get-phone').css("display", "block");
 
 // validate
 $.validator.addMethod('notContainNumber',function(value, element){
@@ -63,25 +70,21 @@ $.validator.addMethod('validPhoneNumber',function(value, element){
 }, 'Số điện thoại không hợp lệ');
 
 // Edit username or avatar
+
 $('.profile__form').validate({
     rules: {
-
         "profile-username" : {
             required: true,
-            maxlength: 100,
-            notContainNumber: true
         }
     },
     messages: {
-
         "profile-username" : {
             required: 'Vui lòng nhập tên hiển thị',
-            maxlength: 'Tối đa là 100 ký tự'
         }
     },
-    errorClass: 'error-username',
+    errorClass: 'error-label',
     errorPlacement: function(error, element) {
-        var inputBox = $(element).parent();
+        var inputBox = $(element);
         error.insertAfter(inputBox); 
     },
     highlight: function(element, errorClass, validClass) {
@@ -103,9 +106,6 @@ $('.profile__form').validate({
                 switch (feedback.status) {
                     case 'success':
                         successAlert();
-                        setTimeout(function(){ 
-                            //window.location = window.location; 
-                        }, 1100);
                     break;
                     default:  alert(feedback.message);
                 }
@@ -116,32 +116,41 @@ $('.profile__form').validate({
         });
     }
 });
+
+
+
+
 // success alert
-function successAlert(){
-    notification_modal('Thành công');
+function successAlert(msg = 'Thành công'){
+    notification_modal(msg);
 }
 // failed alert
-function failedAlert(){
-    notification_modal('Thất bại');
+function failedAlert(msg = 'Thất bại'){
+    notification_modal(msg, false);
 }
 
 // update email confirm
 $('.update-email__form-confirm').validate({
     rules: {
-        "email__password-confirm" : {
+        "password-confirm" : {
             required: true,
         }
     },
     messages: {
-        "email__password-confirm" : {
+        "password-confirm" : {
             required: 'Vui lòng nhập tên hiển thị',
         }
     },
-    errorClass: 'error-label', 
+    errorClass: 'error-label',
     errorPlacement: function(error, element) {
-        $('.wrong-password').empty();
-        var inputBox = $('.wrong-password');
-        error.appendTo(inputBox);
+        var inputBox = $(element);
+        error.insertAfter(inputBox); 
+    },
+    highlight: function(element, errorClass, validClass) {
+        $(element).addClass('error-input');
+    },
+    unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('error-input'); 
     },
     submitHandler: function(form) {
         $.ajax({
@@ -156,10 +165,10 @@ $('.update-email__form-confirm').validate({
                 switch (feedback.status) {
                     case 'success':
                         switchPersonal('.update-email__change');
+                        localStorage.setItem('current-person-sub', '.update-email__change');
                     break;
                     default:
-                        $('.wrong-password').empty();
-                        $(".wrong-password").append("Mật khẩu chưa chính xác vui lòng nhập lại");
+                        failedAlert(feedback.message)
                     }
             },
             error: function () {
@@ -168,49 +177,7 @@ $('.update-email__form-confirm').validate({
         });
     }
 });
-// update phone confirm
-$('.update-phone__form-confirm').validate({
-    rules: {
-        "phone__password-confirm" : {
-            required: true,
-        }
-    },
-    messages:{
-        "phone__password-confirm" : {
-            required: 'Vui lòng nhập tên hiển thị',
-        }
-    },
-    errorClass: 'error-label', 
-    errorPlacement: function(error, element) {
-        $('.wrong-password').empty();
-        var inputBox = $('.wrong-password');
-        error.appendTo(inputBox);
-    },
-    submitHandler: function(form) {
-        $.ajax({
-            type: "POST",
-            url: './Personal/UpdateConfirm',
-            data:  new FormData(form),
-            dataType: "JSON",
-            cache: false,
-            contentType: false,
-            processData: false,
-            success: function (feedback) {
-                switch (feedback.status) {
-                    case 'success':
-                        switchPersonal('.update-phone__change');
-                    break;
-                    default:
-                        $('.wrong-password').empty();
-                        $(".wrong-password").append("Mật khẩu chưa chính xác vui lòng nhập lại");
-                    }
-            },
-            error: function () {
-                alert('Lỗi gửi dữ liệu lên server');
-            }
-        });
-    }
-});
+
 // email change
 $('.update-email__form-change').validate({
     rules: {
@@ -226,11 +193,16 @@ $('.update-email__form-change').validate({
             email: 'Email chưa đúng định dạng'
         }
     },
-    errorClass: 'wrong-password', 
+    errorClass: 'error-label',
     errorPlacement: function(error, element) {
-        $('.wrong-password').empty();
-        var inputBox = $(element).parent();
-        error.insertAfter(inputBox);
+        var inputBox = $(element);
+        error.insertAfter(inputBox); 
+    },
+    highlight: function(element, errorClass, validClass) {
+        $(element).addClass('error-input');
+    },
+    unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('error-input'); 
     },
     submitHandler: function(form) {
         $.ajax({
@@ -245,10 +217,57 @@ $('.update-email__form-change').validate({
                 switch (feedback.status) {
                     case 'success':
                         successAlert();
-                        setTimeout(function(){ window.location = window.location; }, 1100);
                     break;
                     default: 
                         alert(feedback.message);
+                    }
+            },
+            error: function () {
+                alert('Lỗi gửi dữ liệu lên server');
+            }
+        });
+    }
+});
+// update phone confirm
+$('.update-phone__form-confirm').validate({
+    rules: {
+        "password-confirm" : {
+            required: true,
+        }
+    },
+    messages:{
+        "password-confirm" : {
+            required: 'Vui lòng nhập tên hiển thị',
+        }
+    },
+    errorClass: 'error-label',
+    errorPlacement: function(error, element) {
+        var inputBox = $(element);
+        error.insertAfter(inputBox); 
+    },
+    highlight: function(element, errorClass, validClass) {
+        $(element).addClass('error-input');
+    },
+    unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('error-input'); 
+    },
+    submitHandler: function(form) {
+        $.ajax({
+            type: "POST",
+            url: './Personal/UpdateConfirm',
+            data:  new FormData(form),
+            dataType: "JSON",
+            cache: false,
+            contentType: false,
+            processData: false,
+            success: function (feedback) {
+                switch (feedback.status) {
+                    case 'success':
+                        switchPersonal('.update-phone__change');
+                        localStorage.setItem('current-person-sub','.update-phone__change');
+                    break;
+                    default:
+                        failedAlert(feedback.message)
                     }
             },
             error: function () {
@@ -274,11 +293,16 @@ $('.update-phone__form-change').validate({
             validPhoneNumber: 'Số điện thoại chưa đúng định dạng'
         }
     },
-    errorClass: 'wrong-password', 
+    errorClass: 'error-label',
     errorPlacement: function(error, element) {
-        $('.wrong-password').empty();
-        var inputBox = $(element).parent();
-        error.insertAfter(inputBox);
+        var inputBox = $(element);
+        error.insertAfter(inputBox); 
+    },
+    highlight: function(element, errorClass, validClass) {
+        $(element).addClass('error-input');
+    },
+    unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('error-input'); 
     },
     submitHandler: function(form) {
         $.ajax({
@@ -293,7 +317,6 @@ $('.update-phone__form-change').validate({
                 switch (feedback.status) {
                     case 'success':
                         successAlert();
-                        setTimeout(function(){ window.location = window.location; }, 1100);
                     break;
                     default: 
                         alert(feedback.message);
@@ -368,34 +391,32 @@ $('.update-password__form').validate({
             success: function (feedback) {
                 switch (feedback.status) {
                     case 'success':
-                        successAlert();
-                        setTimeout(function(){ window.location = window.location; }, 1100);
+                        successAlert(feedback.message);
                     break;
                     default: 
-                        failedAlert();
+                        failedAlert(feedback.message);
                     }
             },
             error: function () {
-                alert('Lỗi gửi dữ liệu lên server');
+                failedAlert('Lỗi gửi dữ liệu lên server');
             }
         });
     }
 });
 
-$('.user-address__input').focus(function(){
+$('.user-address__input').click(function(){
     $('.user-address__box').css('display','flex');
-    // $(this).prop('disabled', true);
 });
-$('#js-user-provinces').click(function(){
-    let userprovinces = $('.user-provinces').text();
+$('#js-user-provinces li').click(function(){
+    var userprovinces = $(this).text();
     $(".user-address__input").val(userprovinces);
-    console.log($(".user-address__input").val());
 });
-$('#js-user-districts').click(function(){
-    let userdistricts = $('.user-districts').text();
-    let useraddress = $(".user-address__input").val()+', ' + userdistricts;
-    $(".user-address__input").val(useraddress);
-    console.log($(".user-districts__input").val());
+$('#js-user-districts ul').click(function(){
+    var str =  $(".user-address__input").val();
+    let index = str.search(",");
+    var useraddress = str.slice(0, index); 
+    var userdistricts = $('.user-districts').text();
+    $(".user-address__input").val(useraddress + ' , ' + userdistricts);
 });
 // them dia chi
 $('.user-address').validate({
@@ -415,15 +436,23 @@ $('.user-address').validate({
             required: "Vui lòng nhập địa chỉ chi tiết"
         }
     },
+    errorClass: 'error-label',
+    errorPlacement: function(error, element) {
+        var inputBox = $(element);
+        error.insertAfter(inputBox); 
+    },
+    highlight: function(element, errorClass, validClass) {
+        $(element).addClass('error-input');
+    },
+    unhighlight: function(element, errorClass, validClass) {
+        $(element).removeClass('error-input'); 
+    },
     submitHandler: function(form) {
         $.ajax({
             type: "POST",
             url: './Personal/setAddress',
-            data:  new FormData(form),
-            dataType: "JSON",
-            cache: false,
-            contentType: false,
-            processData: false,
+            data:  $(form).serialize(),
+            dataType: 'JSON',
             success: function (feedback) {
                 switch (feedback.status) {
                     case 'success':
@@ -434,9 +463,11 @@ $('.user-address').validate({
                 }
             },
             error: function () {
-                alert('Lỗi gửi dữ liệu lên server');
+                // alert('Lỗi gửi dữ liệu lên server');
+                console.log($(form).serialize());
             }
         });
+        console.log($(form).serialize());
     }
 });
 
@@ -448,6 +479,10 @@ $('#js-user-address__add').click(function(){
 $('.modal-overlay, #js-user-back-btn').click(function(){
     $('.modal-address__add').fadeOut();
 });
+// update address
+$('#js-update-address').click(function(){
+    $("#js-user-address__add").trigger('click');
+})
 
 
 
@@ -473,4 +508,5 @@ $(".all-purchases__search-input").on({
   
 $('.purchase__menu-nav').click(function () {
     switchPersonal($(this).attr('href'));
+    localStorage.setItem('current-person-sub',$(this).attr('href'));
 });
