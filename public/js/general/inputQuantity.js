@@ -18,7 +18,11 @@ const config = {
 function getValue(val) {
     let parseNum = parseInt(val.replace(/\s\s+/g, ' '), 10);
     if (!parseNum) {
-        noti.notification_inline(config.msgError.numInvalid, 'alert-error');
+        noti.notification_inline({
+            notiElement: '#quantity-notification',
+            class: 'alert-danger',
+            msg: config.msgError.numInvalid
+        });
     }
     else {
     }
@@ -64,10 +68,20 @@ inputQuantity.each(function () {
 
     input.on('keyup', function() {
         if (this.value <= 0)
-            noti.notification_inline(config.msgError.numLtZero, 'alert-danger');
+            noti.notification_inline({
+                element: '#quantity-notification',
+                class: 'alert-danger',
+                msg: config.msgError.numLtZero
+            });
         else if (this.value > getValue(quantityElement.text()))
-            noti.notification_inline(config.msgError.numGtTotal, 'alert-danger');
+            noti.notification_inline({
+                element: '#quantity-notification',
+                class: 'alert-danger',
+                msg: config.msgError.numGtTotal
+            });
         else 
-            noti.rm_notification_inline();
+            noti.rm_notification_inline({
+                notiElement: '#quantity-notification'
+            });
     })
 });

@@ -198,7 +198,8 @@
                                         </span>
                                     </div>
                                 </div>
-                                <div class="js-alert alert alert-danger">
+                                <!-- Notification inline -->
+                                <div id="quantity-notification" class="alert alert-danger">
                                 </div>
                                 <div class="product-buy mt-60">
                                     <button id="product-add-cart__btn" class="btn btn-outline-primary">
