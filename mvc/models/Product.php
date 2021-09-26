@@ -236,8 +236,7 @@ class Product extends DB{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom, 
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,ip.imageProductUrl,
-        MIN(pts.productTypeSubPrice) as productTypeSubPrice
+        ip.imageProductId,ip.imageProductUrl
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
@@ -245,8 +244,6 @@ class Product extends DB{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb'
         AND pc.productCategoryId = '$productCategoryId'
         GROUP BY pd.productId
@@ -327,8 +324,6 @@ class Product extends DB{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
@@ -360,8 +355,6 @@ class Product extends DB{
         ON ip.productId = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        LEFT JOIN product_type_sub pts 
-        ON pts.productTypeId = pt.productTypeId
         WHERE ip.imageProductType = 'thumb'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
