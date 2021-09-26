@@ -1,41 +1,47 @@
-export const notification_modal = function (
-    msg = 'Thông báo', 
-    success = true, 
-    duration = false) {
+let notification_modal = function (config) {
+    let modal = $(config.modal);
+    let overlay = modal.find(config.modalOverlay);
+    let msgElement = modal.find(config.msgElement);
+    let closeBtn = modal.find(config.closeBtn);
+    let defaultClasses = 'modal-noti--error modal-noti--success';
+    // Set text
+    msgElement.text(config.msg);
+    // Remove classes
+    modal.removeClass(defaultClasses);
+    // Add class
+    modal.addClass(config.class)
+    // Show modal
+    modal.fadeIn();
+    // Close when click button or overlay
+    overlay.on('click', function () {
+        modal.fadeOut('fast');
+    })
+    closeBtn.on('click', function () {
+        modal.fadeOut('fast');
+    })
+    // Auto close
+    if (config.autoClose){
+        setTimeout(function (){
+            modal.fadeOut('fast');
+        }, config.autoClose);
+    }
+}
 
-    let modalNoti = $('.js-modal-noti');
-    let modalNotiBody = $('.js-modal-noti').children('.js-modal-body');
-    modalNotiBody.children('.js-modal-body__msg').text(msg);
-    modalNoti.removeClass('modal-noti--error modal-noti--success');
-    if (success == true)
-    {
-        modalNoti.addClass('modal-noti--success');
-    }
-    else{
-        modalNoti.addClass('modal-noti--error');
-    }
-    modalNoti.fadeIn();
-    if (duration !== false){
-        modalNoti.fadeOut(duration);
-    }
-    //Close when click button or outside
-    modalNoti.children('.js-modal-overlay').on('click', function () {
-        modalNoti.fadeOut();
-    })
-    modalNotiBody.children('.js-close-button').on('click', function () {
-        modalNoti.fadeOut();
-    })
-}
-export const notification_inline = function (
-    msg = 'Thông báo', 
-    type = 'alert-success', 
-    duration = false) {
-    let inlineAlert = $('.js-alert');
-    inlineAlert.text(msg);
-    inlineAlert.removeClass('alert-success alert-danger alert-info alert-warning');
-    inlineAlert.addClass(type);
-    inlineAlert.fadeIn();
-    if (duration !== false){
-        inlineAlert.fadeOut(duration);
+let notification_inline = function (config) {
+    let notiElement = $(config.element);
+    let notiClasses = 
+        'alert-success alert-danger alert-info alert-warning';
+    notiElement.text(config.msg);
+    notiElement.removeClass(notiClasses);
+    notiElement.addClass(config.class);
+    notiElement.fadeIn();
+    if (config.duration){
+        notiElement.fadeOut(duration);
     }
 }
+
+let rm_notification_inline = function(config){
+    $(config.notiElement).fadeOut();
+}
+
+export {notification_modal, notification_inline, rm_notification_inline}

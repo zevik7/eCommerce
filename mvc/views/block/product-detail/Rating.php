@@ -105,28 +105,12 @@
                 </a>
                 <div class="rating-product-star">
                     <?php
-                        $starValue = $rating['productRatingStar'];
-                        $starCount = 0;
-                        while ($starCount < 5)
-                        {
-                            if ($starValue > 0)
-                            {
-                                if ($starValue >= 1) echo '<i class="fas fa-star"></i>';
-                                else echo '<i class="fas fa-star-half-alt"></i>';
-                                $starValue--;
-                            }
-                            else{
-                                echo '<i class="far fa-star"></i>';
-                            }
-                            $starCount++;
-                        }
+                        displayStar($rating['productRatingStar']);
                     ?>
                 </div>
                 <p class="rating-product-type">
                     Phân loại hàng: 
                     <?php echo $rating['productTypeName'];?>
-                    , 
-                    <?php echo $rating['productTypeSubName'];?>
                 </p>
                 <p class="rating-product-text">
                     <?php echo $rating['productRatingComment'];?>

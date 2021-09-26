@@ -14,7 +14,7 @@
                 </h3>
                 <p class="row-text">
                     <?php
-                        echo $productTotalQuantity;
+                        echo $product['productQuantity'];
                     ?>
                 </p>
             </div>

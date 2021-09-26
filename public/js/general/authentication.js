@@ -190,13 +190,13 @@ let validatorSignin = $("#js-modal-signin").validate({
             required: 'Vui lòng nhập mật khẩu'
         }
     },
-    errorClass: 'error-label', //Set default error css class
+    errorClass: 'error-label', // Set default error css class
     errorPlacement: function(error, element) {
         var inputBox = $(element).parent();
-        error.insertAfter(inputBox); //Put error after input's parent
+        error.insertAfter(inputBox); // Put error after input's parent
     },
     highlight: function(element, errorClass, validClass) {
-        $(element).addClass('error-input'); //Class for input when it invalid
+        $(element).addClass('error-input'); // Class for input when it invalid
     },
     unhighlight: function(element, errorClass, validClass) {
         $(element).removeClass('error-input'); 
