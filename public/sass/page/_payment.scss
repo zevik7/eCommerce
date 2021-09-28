@@ -1,0 +1,158 @@
+.payment{
+    font-size: 1.4rem;
+    color: $text-color;
+    .payment-header{
+        padding: 15px;
+        &__title{
+            font-size: 2.8rem;
+            font-weight: 400;
+            color: $primary-color;
+        }
+    }
+    .payment-body{
+        padding-top: 10px;
+        .payment-address{
+            padding: 24px;
+            border-radius: $border-radius;
+            &__header{
+                display: flex;
+                margin-bottom: 20px;
+            }
+            &__title{
+                margin-left: 8px;
+                color: $primary-color;
+            }
+            &__info{
+                display: flex;
+                font-size: 1.6rem;
+                .payment-address__user{
+                    font-weight: 500;
+                }
+                .payment-address__content{
+                    margin: 0;
+                    margin-left: 30px;
+                    flex: 1;
+                }
+                .payment-address__change-btn{
+                    margin-left: 10px;
+
+                }
+            }
+        }
+        .payment-products{
+            padding: 24px 30px;
+            padding-bottom: 0;
+            border-bottom: $border-light;
+            border-bottom-style: dashed;
+            &__row{
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                margin-bottom: 10px;
+                font-size: 1.5rem;
+                &-block{
+                    flex: 1;
+                    text-align: center;
+                    &.block1{
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        flex: 5;
+                        overflow: hidden;
+                    }
+                    &.block4{
+                        text-align: right;
+                    }
+                }
+                h4, p{
+                    margin-top: 0;
+                    margin-bottom: 0;
+                    font-weight: 400;
+                }
+                // Custom classes
+                &-product-img{
+                    width: 55px;    
+                    object-fit: contain;
+                }
+                &-product-name{
+                    padding: 0 40px 0 20px;
+                    flex: 2;
+                }
+                &-product-type{
+                    margin-right: 40px;
+                    flex: 1;
+                }
+                &-product-name, &-product-type{
+                    text-overflow: ellipsis; 
+                    overflow: hidden; 
+                    white-space: nowrap;
+                }
+            }
+            &__title{
+                font-size: 1.8rem;
+                font-weight: 500;
+            }
+            &__sub-title{
+                color: $text-color-light;
+            }
+            &__shop-info{
+                display: flex;
+                margin-bottom: 20px;
+                .shop-name{
+                    margin-left: 10px;
+                    text-transform: uppercase;
+                }
+            }
+        }
+        .payment-voucher{
+            position: relative;
+            display: flex;
+            justify-content: flex-end;
+            padding: 18px 30px;
+            &__heading{
+                display: flex;
+                align-items: center;
+                .payment-voucer-heading__icon{
+                    // width: 32px;
+                    // height: 32px;
+                }
+                .payment-voucer-heading__show-list{
+                    margin-left: 160px;
+                    color: $blue-color;
+                    font-weight: 500;
+                }
+            }
+            .voucher-box{
+                opacity: 1;
+                position: absolute;
+                min-width: 400px;
+                top: 100%;
+                right: 0;
+                transition: opacity ease-in-out 0.5s;
+                box-shadow: $box-shadow;
+                border: $border-dark;
+                background-color: $background-color-white;
+                border-radius: $border-radius-lg;
+                &:after{
+                    content:"";
+                    border: 20px solid;
+                    border-color: transparent transparent red transparent;
+                    position: absolute;
+                    right: 10%;
+                    top: -40px;
+                }
+                &--show{
+                    opacity: 1;
+                }
+            }
+
+        }
+    }
+}
+.letter-line{
+    height: 3px;
+    width: 100%;
+    background-position-x: -30px;
+    background-size: 116px 3px;
+    background-image: repeating-linear-gradient(45deg,#6fa6d6,#6fa6d6 33px,transparent 0,transparent 41px,#f18d9b 0,#f18d9b 74px,transparent 0,transparent 82px);
+}
