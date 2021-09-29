@@ -123,29 +123,91 @@
                 }
             }
             .voucher-box{
-                opacity: 1;
+                display: none;
                 position: absolute;
                 min-width: 400px;
                 top: 100%;
                 right: 0;
                 transition: opacity ease-in-out 0.5s;
                 box-shadow: $box-shadow;
-                border: $border-dark;
+                border: $border-light;
                 background-color: $background-color-white;
                 border-radius: $border-radius-lg;
                 &:after{
                     content:"";
                     border: 20px solid;
-                    border-color: transparent transparent red transparent;
+                    border-color: transparent transparent #dee2e6 transparent;
                     position: absolute;
                     right: 10%;
                     top: -40px;
                 }
-                &--show{
-                    opacity: 1;
+                &__header{
+                    display: flex;
+                    justify-content: space-evenly;
+                    padding: 14px 18px;
+                    background-color: $background-color-transparent;
+                    input{
+                        flex: 1;
+                        margin-right: 8px;
+                        padding-left: 8px;
+                        border: $border-light;
+                        outline: none;
+                    }
+                }
+                &__list{
+                    .voucher-box-list__item{
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 7px 18px;
+                        .voucher-box-list-item__title{
+                            font-weight: 400;
+                        }
+                        .voucher-box-list-item__code{
+                            color: $text-color-light;
+                        }
+                    }
                 }
             }
 
+        }
+        .payment-method{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 30px;
+            border: $border-light;
+            border-style: dashed;
+            &__heading{
+                font-size: 1.8rem;
+                font-weight: 500;
+            }
+            &__list{
+                display: flex;
+                .payment-method__item{
+                    margin: 0 10px;
+                    color: $text-color;
+                    border: $border-dark;
+                    &:hover:not(.active){
+                        background-color: $background-color-transparent ;
+                    }
+                    &.active{
+                        pointer-events: none;
+                        transition: color ease-in 0.2s;
+                        color: $primary-color;
+                        border-color: $primary-color;
+                    }
+                }
+            }
+        }
+        .payment-info{
+            padding: 30px;
+            &__list{
+                display: flex;
+                flex-direction: column;
+                align-items: flex-end;
+            }
         }
     }
 }

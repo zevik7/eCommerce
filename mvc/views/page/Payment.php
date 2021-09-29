@@ -121,11 +121,11 @@
                                 <input class="voucher-list-header__input" type="text" placeholder="Nhập mã voucher của shop">
                                 <button class="btn btn-primary voucher-list-header__submit">Áp dụng</button>
                             </div>
-                            <div class="voucher-box_list">
+                            <div class="voucher-box__list">
                                 <div class="voucher-box-list__item">
                                     <div class="voucher-box-list-item__header">
-                                        <h6 class="voucher-box-list-item__title">Mã giảm giá dành cho người mới</h6>
-                                        <span class="voucher-box-list-item">HAK231</span>
+                                        <h4 class="voucher-box-list-item__title title-reset">Mã giảm giá dành cho người mới</h4>
+                                        <span class="voucher-box-list-item__code">HAK231</span>
                                     </div>
                                     <button class="btn btn-third voucher-box-list-item__submit">
                                         Chọn
@@ -135,11 +135,12 @@
                         </div>
                     </div>
                 </div>
-                <div class="layout-split pt-20">
+                <div class="layout-split mt-10">
                     <div class="payment-method">
+                        <div class="payment-method__heading">Chọn phương thức thanh toán</div>
                         <ul class="payment-method__list">
-                            <li class="payment-method__item">Thanh toán khi nhận hàng</li>
-                            <li class="payment-method__item">Zalo Pay</li>
+                            <li class="payment-method__item btn active">Thanh toán khi nhận hàng</li>
+                            <li class="payment-method__item btn">Zalo Pay</li>
                         </ul>
                     </div>
                     <div class="payment-info">
