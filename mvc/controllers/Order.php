@@ -4,7 +4,7 @@ use mvc\core\Controller;
 use mvc\models\Product;
 use mvc\models\Shop;
 
-class Payment extends Controller{
+class Order extends Controller{
     protected $productModel;
     protected $shopModel;
     //General params
@@ -15,7 +15,7 @@ class Payment extends Controller{
     }
     function load($params){
         $this->view('Main',[
-            'Page' => 'Payment',
+            'Page' => 'Order',
         ]);
     }
 }
