@@ -15,7 +15,7 @@ class ProductList extends Controller{
         $this->productModel = new Product();
         $this->paginationModel = new Pagination();
     }
-    function loadList(){
+    function load(){
         /*
             1. Get Params
             2. Xu lí tuần tự params: 
