@@ -13,27 +13,27 @@
         <ul class="personal-sidebar__list">
 
             <li class="personal-sidebar__item">
-                <span id="js-trigger-profile" class="personal-sidebar__nav personal-active" href="#account" >
+                <span id="personal-sidebar__nav-1" class="personal-sidebar__nav" href="#account" >
                    <svg  class="svg-icon" xmlns="http://www.w3.org/2000/svg" data-name="Layer 1" viewBox="0 0 512 512"><g data-name="&lt;Group&gt;"><path fill="#ed664c" d="M389.25 403.71v24.83a218.018 218.018 0 0 1-266.5 0V403.71a133.25 133.25 0 0 1 266.5 0zM304.09 124.82a67.514 67.514 0 1 1-47.64-19.67A67.064 67.064 0 0 1 304.09 124.82z"/><path fill="#fdc75b" d="M256,38c120.4,0,218,97.6,218,218a217.579,217.579,0,0,1-84.75,172.54V403.71a133.25,133.25,0,0,0-266.5,0v24.83A217.579,217.579,0,0,1,38,256C38,135.6,135.6,38,256,38Zm67.76,134.46a67.158,67.158,0,1,0-19.67,47.63A67.064,67.064,0,0,0,323.76,172.46Z"/><path d="M256,28A228.09,228.09,0,0,0,52.1,358.141a230.034,230.034,0,0,0,64.528,78.309,228.02,228.02,0,0,0,278.735,0A230.007,230.007,0,0,0,459.9,358.141,228.045,228.045,0,0,0,256,28ZM132.75,423.557V403.71a123.25,123.25,0,0,1,246.5,0v19.847a208.024,208.024,0,0,1-246.5,0Zm266.5-16.749v-3.1c0-78.988-64.262-143.25-143.25-143.25A143.257,143.257,0,0,0,112.75,403.71v3.1A206.439,206.439,0,0,1,48,256C48,141.309,141.309,48,256,48s208,93.309,208,208A206.444,206.444,0,0,1,399.25,406.808Z"/><path d="M256.45,95.15a77.158,77.158,0,1,0,54.713,22.6A76.787,76.787,0,0,0,256.45,95.15Zm40.566,117.872a57.513,57.513,0,1,1,16.745-40.562A56.931,56.931,0,0,1,297.016,213.022Z"/></g></svg>
                     Tài Khoản Của Tôi
                 </span>
                 <ul class="personal-sidebar__subnav">
-                    <li class="personal-sidebar__subnav-item personal-active" href=".profile">Hồ Sơ</li>
-                    <li class="personal-sidebar__subnav-item" href=".bank">Ngân Hàng</li>
-                    <li class="personal-sidebar__subnav-item" href=".address">Địa Chỉ</li>   
-                    <li class="personal-sidebar__subnav-item" href=".update-password">Đổi Mật Khẩu</li>
+                    <li id="personal-sidebar__subnav-item-1" class="personal-sidebar__subnav-item" href=".profile">Hồ Sơ</li>
+                    <li id="personal-sidebar__subnav-item-2" class="personal-sidebar__subnav-item" href=".bank">Ngân Hàng</li>
+                    <li id="personal-sidebar__subnav-item-3" class="personal-sidebar__subnav-item" href=".address">Địa Chỉ</li>   
+                    <li id="personal-sidebar__subnav-item-4" class="personal-sidebar__subnav-item" href=".update-password">Đổi Mật Khẩu</li>
                 </ul>
             </li>
 
             <li class="personal-sidebar__item">
-                <span class="personal-sidebar__nav" href="#purchase">
+                <span id="personal-sidebar__nav-2" class="personal-sidebar__nav" href="#purchase">
                     <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 64 64" viewBox="0 0 64 64"><path fill="#FBB03B" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M51.9,8.2h-8.4v2.1c0,2-1.7,3.5-3.8,3.5H24.3
                     c-2.1,0-3.8-1.6-3.8-3.5V8.2h-8.4c-1.3,0-2.3,1-2.3,2.3v49c0,1.3,1.1,2.3,2.3,2.3h39.8c1.3,0,2.3-1,2.3-2.3v-49
                     C54.2,9.3,53.2,8.2,51.9,8.2z M33.2,57c-3.7,0-6.7-2.9-6.7-6.5s3-6.5,6.7-6.5c3.7,0,6.7,2.9,6.7,6.5S36.8,57,33.2,57z"/><path fill="#F7931E" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M43.5,6.1v4.2c0,2-1.7,3.5-3.8,3.5H24.3
                     c-2.1,0-3.8-1.6-3.8-3.5V6.1c0-2,1.7-3.6,3.8-3.6h15.3C41.8,2.6,43.5,4.2,43.5,6.1z"/><line x1="17.6" x2="48.8" y1="21.3" y2="21.3" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><line x1="17.6" x2="48.8" y1="27.6" y2="27.6" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><line x1="17.6" x2="48.8" y1="33.8" y2="33.8" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><line x1="17.6" x2="48.8" y1="40.1" y2="40.1" fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2"/><path fill="#0FF" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M39.8,50.5c0,3.6-3,6.5-6.7,6.5
                     c-3.7,0-6.7-2.9-6.7-6.5s3-6.5,6.7-6.5C36.8,43.9,39.8,46.8,39.8,50.5z"/><path fill="none" stroke="#000" stroke-miterlimit="10" stroke-width="2" d="M36.4,48l-3.8,4.6c-0.6,0.5-1.3,0.3-1.7-0.4
                     L30,50.5"/></svg>
-                    Đơn Mua
+                    <a href="./Personal/purchase">Đơn Mua</a>
                 </span>
             </li>
 
@@ -65,8 +65,6 @@
                     Hevy Xu
                 </span>
             </li>
-
-            <button id="testthongbao">Test</button>
 
         </ul>
     </nav>

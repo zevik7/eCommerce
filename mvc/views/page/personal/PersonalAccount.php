@@ -24,7 +24,7 @@
                                 <div class="col-8"> 
                                     <div style="display: flex;">
                                         <p class="js-get-email profile__edit-email"><?php echo $value['userEmail'];?></p>
-                                        <p class="profile__edit-change" href=".update-email">Thay Đổi</p>
+                                        <p id="profile__edit-change" class="profile__edit-change" href=".update-email">Thay Đổi</p>
                                     </div>
                                 </div>
 
@@ -34,7 +34,7 @@
                                 <div class="col-8"> 
                                     <div style="display: flex;">
                                         <p class="js-get-phone profile__edit-phone"><?php echo $value['userPhone'];?></p>
-                                        <p class="profile__edit-change" href=".update-phone">Thay Đổi</p>
+                                        <p id="profile__edit-change-2" class="profile__edit-change" href=".update-phone">Thay Đổi</p>
                                     </div>
                                 </div>
 

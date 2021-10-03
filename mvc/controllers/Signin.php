@@ -19,7 +19,9 @@ class Signin extends Controller{
                 // $_SESSION['user'] = ['name' => $result->userName, 
                 //                     'avatar' => $result->userAvatar,
                 //                     'email' =>$result->userEmail];
-                $_SESSION['user'] = ['name' => $result['userName'], 
+                $_SESSION['user'] = [
+                                    'id' => $result['userId'],
+                                    'name' => $result['userName'], 
                                     'avatar' => $result['userAvatar'],
                                     'email' =>$result['userEmail'],
                                     'phone' =>$result['userPhone']
