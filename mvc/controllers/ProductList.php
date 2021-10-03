@@ -113,7 +113,7 @@ class ProductList extends Controller{
         $productsData = json_encode($this->productModel->select($query));
 
         $cartData = json_encode($this->cartModel->getCart(1));
-        // $userId = $_SESSION['user']['id'];
+        
         $this->view('Main',[
             'Page' => 'ProductList',
             'User' => $this->userModel->getUser(),
