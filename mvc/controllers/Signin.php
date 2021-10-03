@@ -14,7 +14,7 @@ class Signin extends Controller{
             $userAccount    = $_POST["modal-signin__account"];
             $userPassword   = $_POST["modal-signin__password"];
             $result         = $this->userModel->loginCheck($userAccount, $userPassword);
-            if ($result) {
+            if ($result !== false) {
                 echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
                 $_SESSION['user'] = [
                                     'id' => $result['userId'],
