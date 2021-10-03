@@ -11,7 +11,8 @@ const config = {
     msgError: {
         numInvalid: 'Số lượng không hợp lệ',
         numLtZero: 'Số lượng sản phẩm không hợp lệ',
-        numGtTotal: 'Số lượng sản phẩm vượt quá giới hạn'
+        numGtTotal: 'Số lượng sản phẩm vượt quá giới hạn',
+        limitItems: 'Đã đến giới hạn sản phẩm cho phép'
     }
 };
 
@@ -44,11 +45,20 @@ inputQuantity.each(function () {
     plus.on('click', function () {
         let currentQuanity = getValue(quantityElement.text());
         input.val(function(i, currentVal) {
-            if (currentVal > 0)
+            if (currentQuanity > 0)
             {
-                ++ currentVal;
-                let newNumber = currentQuanity - 1;
-                quantityElement.text(newNumber);
+                if (currentVal < 5)
+                {
+                    ++ currentVal;
+                    quantityElement.text(currentQuanity - 1);
+                }
+                else {
+                    noti.notification_inline({
+                        element: '#quantity-notification',
+                        class: 'alert-danger',
+                        msg: config.msgError.limitItems
+                    });
+                }
             }
             return currentVal;
         });
@@ -59,8 +69,7 @@ inputQuantity.each(function () {
             if (currentVal > 1)
             {
                 --currentVal;
-                let newNumber = currentQuanity + 1;
-                quantityElement.text(newNumber);
+                quantityElement.text(currentQuanity + 1);
             }
             return currentVal;
         });
@@ -84,4 +93,12 @@ inputQuantity.each(function () {
                 notiElement: '#quantity-notification'
             });
     })
+
+    // On change quantity
+    quantityElement.on('DOMSubtreeModified', function(){ 
+        noti.rm_notification_inline({
+            notiElement: '#quantity-notification'
+        });
+        input.val(1);
+    });
 });

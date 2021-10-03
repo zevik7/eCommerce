@@ -4,16 +4,19 @@ use mvc\core\Controller;
 use mvc\models\Pagination; 
 use mvc\models\Product; 
 use mvc\models\User; 
+use mvc\models\Cart; 
 
 class ProductList extends Controller{
     protected $userModel;
     protected $productModel;
     protected $paginationModel;
+    protected $cartModel;
 
     function __construct(){
         $this->userModel = new User();
         $this->productModel = new Product();
         $this->paginationModel = new Pagination();
+        $this->cartModel = new Cart();
     }
     function load(){
         /*
@@ -109,11 +112,14 @@ class ProductList extends Controller{
         
         $productsData = json_encode($this->productModel->select($query));
 
+        $cartData = json_encode($this->cartModel->getCart(1));
+        // $userId = $_SESSION['user']['id'];
         $this->view('Main',[
             'Page' => 'ProductList',
             'User' => $this->userModel->getUser(),
             'Product' => $productsData,
-            'Pagination' => $this->paginationModel->getPagination()
+            'Pagination' => $this->paginationModel->getPagination(),
+            'cart' => $cartData
         ]);
     }
 }
