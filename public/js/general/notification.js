@@ -36,7 +36,9 @@ let notification_inline = function (config) {
     notiElement.addClass(config.class);
     notiElement.fadeIn();
     if (config.duration){
-        notiElement.fadeOut(duration);
+        setTimeout(function () {  
+            notiElement.fadeOut();
+        }, config.duration)
     }
 }
 
