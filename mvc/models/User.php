@@ -58,7 +58,7 @@ class User extends DB{
         LIMIT 1";
         $param = array($userAccount, $userAccount, $userPassword);
         $result = $this->readDB($query, $param);
-        return $result;
+        return $result[0];
     }
     public function editProfile($userName, $userAvatar, $userAccount){
         $query = " UPDATE user SET userName = ? ";

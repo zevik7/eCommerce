@@ -14,7 +14,10 @@ class Cart extends DB{
             ON pt.productTypeId = ca.productTypeId
             INNER JOIN product pd
             ON pt.productId = pd.productId
-            WHERE ca.userId = ?";
+            INNER JOIN image_product ip
+            ON pd.productId = ip.productId
+            WHERE ca.userId = ?
+            AND ip.imageProductType = 'thumb'";
         $result = $this->readDB($query, [$userId]);
         return $result;
     }

@@ -1,11 +1,3 @@
-<?php
-    // Load cart data
-    if (isset($data['cart']))
-    {
-        // var_dump($_SESSION['user']);
-        // $cartData = json_decode($data['cart']);
-    }
-?>
 <div class="head-bar__cart">
     <div class="head-cart">
         <div class="head-cart__icon">
@@ -14,23 +6,56 @@
         </div>
         <div class="head-cart__box">
             <h3 class="head-cart__title title">Sản phẩm đã thêm</h3>
-            <!-- Empty Cart -->
-            <!-- <div class="head-cart__empty">
-                <img class ="title-sm" src="public/img/system/emptycart.png" alt="Empty Cart" >
-                <p>
-                    Giỏ hàng của bạn đang trống
-                </p>
-            </div> -->
-            <!-- Cart has item -->
-            
-            <ul id="cart-list" class="head-cart__list">
-                <!-- Load cart item -->
-            </ul>
-            <div class="head-cart__pay-btn">
-                <a href="#" class="title-sm">
-                    Thanh toán
-                </a>
-            </div>    
+            <?php
+                // Load cart data
+                if (isset($data['zxsdasd'])) 
+                {
+                    $cartData = json_decode($data['cart'], true);
+            ?>
+                <!-- Cart has item -->
+                <ul id="cart-list" class="head-cart__list">
+                    <?php
+                        foreach ($cartData as $key => $value) {
+                    ?>
+                        <li class="head-cart__item">
+                            <div class="item-img">
+                                <img src="<?php echo $value['imageProductUrl'];?>" alt="">
+                            </div>
+                            <div class="item-info">
+                                <div class="item-info__header">
+                                    <h5 class="item-info__title title-sm"><?php echo $value['productName'];?></h5>
+                                    <span class="item-info__price">Giá: <?php echo $value['productTypePrice'];?></span>
+                                    <span class="item-info__quantity">x <?php echo $value['productTypeQuantity'];?></span>
+                                </div>
+                                <div class="item-info__body">
+                                    <span class="item-info__type">Phân loại hàng: <?php echo $value['productTypeName'];?></span>
+                                    <input class="item-delete btn btn-third" type="button" value="Xoá">
+                                </div>
+                            </div>
+                        </li>
+                    <?php
+                        }
+                    ?>
+                </ul>
+                <div class="head-cart__pay-btn">
+                    <a href="#" class="title-sm">
+                        Thanh toán
+                    </a>
+                </div>    
+            <?php
+                }
+                else {
+            ?>
+                <!-- Empty Cart -->
+                <div class="head-cart__empty">
+                    <img class ="title-sm" src="public/img/system/emptycart.png" alt="Empty Cart" >
+                    <p>
+                        Giỏ hàng của bạn đang trống
+                    </p>
+                </div>
+            <?php
+                }
+            ?>
         </div>
     </div>
 </div>
