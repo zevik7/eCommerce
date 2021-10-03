@@ -102,64 +102,9 @@
             </div> 
             
         </div>
-        <div class="head-bar__cart">
-            <div class="head-cart">
-                <div class="head-cart__icon">
-                    <i class="fas fa-shopping-cart"></i>
-                    <span class="head-cart__quantity">0</span>
-                </div>
-                <div class="head-cart__box">
-                    <h3 class="head-cart__title title">Sản phẩm đã thêm</h3>
-                    <!-- Empty Cart -->
-                    <div class="head-cart__empty">
-                        <img class ="title-sm" src="public/img/system/emptycart.png" alt="Empty Cart" >
-                        <p>
-                            Giỏ hàng của bạn đang trống
-                        </p>
-                    </div>
-                    <!-- Cart has item -->
-                    <!-- 
-                    <ul id="cartItemList" class="head-cart__list">
-                        <li class="head-cart__item">
-                            <div class="item-img">
-                                <img src="public/img/product/giaybitas.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <div class="item-info__header">
-                                    <h5 class="item-info__title title-sm">Giày Bitas Street Hunter iày Bitas Street Hu iày Bitas Street Hu</h5>
-                                    <span class="item-info__price">Giá: 200.000VND</span>
-                                    <span class="item-info__quantity">x 2</span>
-                                </div>
-                                <div class="item-info__body">
-                                    <span class="item-info__type">Phân loại hàng: Size 42</span>
-                                    <input class="item-delete btn btn-second" type="button" value="Xoá">
-                                </div>
-                            </div>
-                        </li>
-                        <li class="head-cart__item">
-                            <div class="item-img">
-                                <img src="public/img/product/giaybitas.jpg" alt="">
-                            </div>
-                            <div class="item-info">
-                                <div class="item-info__header">
-                                    <h5 class="item-info__title title-sm">Giày Bitas Street Hunter iày Bitas Street Hu iày Bitas Street Hu</h5>
-                                    <span class="item-info__price">Giá: 200.000VND</span>
-                                    <span class="item-info__quantity">x 2</span>
-                                </div>
-                                <div class="item-info__body">
-                                    <span class="item-info__type">Phân loại hàng: Size 42</span>
-                                    <input class="item-delete btn btn-second" type="button" value="Xoá">
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                    <div class="head-cart__footer">
-                        <a href="#" class="title-sm">
-                            Xem giỏ hàng
-                        </a>
-                    </div>     -->
-                </div>
-            </div>
-        </div>
+        <?php
+            // Cart block
+            require_once './mvc/views/block/header/Cart.php';
+        ?>
     </div>
 </div>

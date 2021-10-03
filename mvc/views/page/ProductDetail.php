@@ -1,25 +1,27 @@
 <?php 
     if (isset($data['productData'])){
     
-    $productData = json_decode($data['productData'], true);
+    $productData = 
+        json_decode($data['productData'], true);
 
     $product = 
-    array_key_exists('product', $productData) ? $productData['product'] : []; //One product / one row
+        array_key_exists('product', $productData) ? $productData['product'] : []; //One product / one row
 
     $productType = 
-    array_key_exists('productType', $productData) ? $productData['productType'] : []; 
+        array_key_exists('productType', $productData) ? $productData['productType'] : []; 
 
     $productImage =
-    array_key_exists('productImage', $productData) ? $productData['productImage'] : [];
+        array_key_exists('productImage', $productData) ? $productData['productImage'] : [];
 
     $productRating =
-    array_key_exists('productRating', $productData) ? $productData['productRating'] : [];
+        array_key_exists('productRating', $productData) ? $productData['productRating'] : [];
     
     // If false, not enough information to display
     if (!empty($product) || !empty($productType) || !empty($productImage))
     {
         // Flat 1 level
-        $product = array_reduce($product, 'array_merge', array());
+        $product = 
+            array_reduce($product, 'array_merge', array());
 
         /*---------Parse general data--------*/
 
@@ -28,7 +30,8 @@
         $maxPrice = -99999999999;
 
         // Array filter without callback remove falsy value
-        $productTypePrice = array_filter(array_column($productType, 'productTypePrice'));
+        $productTypePrice = 
+            array_filter(array_column($productType, 'productTypePrice'));
 
         // Get min and max price
         if (!empty($productTypePrice))
@@ -38,7 +41,8 @@
         }
 
         // Product type label list
-        $productTypeLabelList = array_unique(array_column($productType, 'productTypeLabel'));
+        $productTypeLabelList =  
+            array_unique(array_column($productType, 'productTypeLabel'));
 
 ?>
     <div class="bg-transparent">
@@ -51,7 +55,13 @@
                                 <!--Carousel -->
                                 <?php require_once './mvc/views/block/ImageCarousel.php' ?>
                                 <!-- end of carousel -->
+
                             </div>
+                            <!--Thumb images for add cart -->
+                            <img id="product-image-thumb" style="display:none" 
+                            src="<?php 
+                                echo $productImage[0]['imageProductUrl'];
+                            ?>" alt="">
                         </div>
                         <div class="col-7">
                             <div class="product-detail__content">
@@ -60,7 +70,9 @@
                                         <span class="product-title__favourite">
                                             Yêu thích
                                         </span>
-                                        <?php echo $product['productName'];?>
+                                        <span class="product-title__txt">
+                                            <?php echo $product['productName'];?>
+                                        </span>
                                     </span> 
                                 </div>
                                 <div class="product-statis mt-20">
@@ -151,20 +163,21 @@
                                     foreach ($productTypeLabelList as $labelType)
                                     {
                                 ?>
-                                    <div class="fs-product-type product-type row mt-20">
+                                    <div class="product-type row mt-20">
                                         <div class="product-type__header col-3">
                                             <h6 class="fs-product-type__label title-sm">
                                                 <?php echo $labelType;?>
                                             </h6>
                                         </div>
                                         <div class="product-type__body col-9">
-                                            <ul class="fs-list-type list-type">
+                                            <ul class="list-type">
                                                 <?php
                                                     foreach($productType as $type) {
                                                         if(empty($type['productTypeName'])) break;
                                                         if($type['productTypeLabel'] != $labelType) continue;
                                                 ?>
-                                                    <li class="list-type__item btn btn-third" 
+                                                    <li class="list-type__item btn btn-third
+                                                        <?php if($type['productTypeQuantity'] == 0) echo 'disabled';?>" 
                                                         id="<?php echo $type['productTypeId'];?>" 
                                                         price="<?php echo $type['productTypePrice'];?>"
                                                         quantity="<?php echo $type['productTypeQuantity'];?>">
@@ -185,9 +198,9 @@
                                     </div>
                                     <div class="product-quantity-count__body col-9">
                                         <div class="carousel-quantity" min="1">
-                                            <div class="carousel-quantity__minus">-</div>
+                                            <div class="carousel-quantity__minus disable-select">-</div>
                                             <input class="carousel-quantity__number" type="number" value="1">
-                                            <div class="carousel-quantity__plus">+</div>
+                                            <div class="carousel-quantity__plus disable-select">+</div>
                                         </div>
                                         <span class="quantity-count__text">
                                             Còn 
@@ -207,6 +220,16 @@
                                         Thêm vào giỏ hàng
                                     </button>
                                     <button id="product-buy__btn" class="btn btn-primary">Mua ngay</button>
+                                </div>
+                                <!-- Modal notification -->
+                                <div class="modal modal-noti">
+                                    <div class="modal-overlay"></div>
+                                    <div class="modal-body">
+                                        <i class="icon-success far fa-check-circle"></i>
+                                        <i class="icon-error far fa-times-circle"></i>
+                                        <p class="modal-body__msg"></p>
+                                        <i class="modal-body__close-button fas fa-times"></i>
+                                    </div>
                                 </div>
                             </div>
                         </div>
