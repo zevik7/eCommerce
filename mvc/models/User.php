@@ -51,16 +51,14 @@ class User extends DB{
     }
     public function loginCheck($userAccount, $userPassword){
         $query = 
-        "SELECT * FROM user
+        "SELECT userName, userId, userEmail, userAvatar, userPhone 
+        FROM user
         WHERE (userPhone = ? OR userEmail = ?) 
         AND userPassword = ?
         LIMIT 1";
         $param = array($userAccount, $userAccount, $userPassword);
         $result = $this->readDB($query, $param);
-        if ($result != false){
-            return $result[0];
-        }
-        return false;
+        return $result;
     }
     public function editProfile($userName, $userAvatar, $userAccount){
         $query = " UPDATE user SET userName = ? ";

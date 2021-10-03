@@ -386,14 +386,15 @@ $height-nav: 40px;
             .head-cart__list{
                 width: 100%;
             }
-            .head-cart__footer{
+            .head-cart__pay-btn{
                 a {
                     display: block;
                     margin: 0%;
                     padding: 8px;
                     text-align: center;
-                    color: $text-color-light;
+                    color: $primary-color;
                     text-decoration: none;
+                    font-weight: 500;
                     &:hover{
                         background-color: $hover-color-bg;
                     }

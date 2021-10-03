@@ -12,6 +12,7 @@
 <body>
     <div class="webapp">
         <?php
+            // Assets function
             require_once './mvc/views/assets/UrlFunction.php';
             require_once './mvc/views/assets/RatingFunction.php';
         ?>
@@ -36,10 +37,12 @@
                 require_once './mvc/views/block/Modal.php';
         ?>
     </div>
-    <!-- Defer sẽ tải độc lập với trang nhưng đợi trang tải xong thì nó mới chạy, 
-    còn async cũng tải độc lập thì chạy ngay sau khi tải mặc kệ phía sau nó có render hay không,
-    nên không thể biết được lúc nào nó chạy,
-    Còn parse cái trang thì sẽ tuần tự từ trên xuống không liên quan 2 cái trên -->
+    <!-- 
+        Defer sẽ tải độc lập với trang nhưng đợi trang tải xong thì nó mới chạy, 
+        còn async cũng tải độc lập thì chạy ngay sau khi tải mặc kệ phía sau nó có render hay không,
+        nên không thể biết được lúc nào nó chạy,
+        Còn parse cái trang thì sẽ tuần tự từ trên xuống không liên quan 2 cái trên 
+    -->
     <script defer src="public/js/libs/jquery-3.6.0.min.js"></script>
     <script defer src="public/js/libs/jquery.validate.min.js"></script>
     <script defer src="https://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
