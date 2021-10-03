@@ -123,16 +123,17 @@ class Product extends DB{
         pd.productRating, pd.productSendFrom, 
         pc.productCategoryId,
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,
-        ip.imageProductUrl
+        img.id as image_id,
+        img.url as image_url
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
         GROUP BY pd.productId
         LIMIT ?, ?";
 
@@ -160,26 +161,32 @@ class Product extends DB{
             productTypeName, productTypeQuantity,
             productTypePrice, productFreightCost
             FROM product_type
-            WHERE productId = '".$productId."'";
+            WHERE productId = '$productId'";
 
         $productImageQuery = 
             "SELECT 
-            imageProductId, imageProductType, 
-            imageProductName, imageProductUrl, 
-            imageProductDescription 
-            FROM image_product
-            WHERE productId = '".$productId."'";
+            img.id, img.type, 
+            img.name, img.url as image_url, 
+            img.description 
+            FROM images img
+            WHERE img.imageable_id = '$productId'";
 
         $productRatingQuery =
-            "SELECT DISTINCT * FROM product_rating pr
+            "SELECT DISTINCT 
+            *, img.url as image_url
+            FROM product_rating pr
             INNER JOIN product_type pt
             ON pr.productTypeId = pt.productTypeId
             INNER JOIN (
-                SELECT ur.userId, ur.userName, ur.userAvatar
+                SELECT ur.userId, ur.userName
                 FROM ecommerce.user ur
             ) ur
             ON ur.userId = pr.userId
-            WHERE pr.productId ='$productId'";
+            INNER JOIN images img
+            ON img.imageable_id = ur.userId
+            WHERE pr.productId ='$productId'
+            AND img.imageable_type = 'user'
+            AND img.type ='avatar'";
 
         $productResult = $this->readDB($productQuery);
         $productTypeResult = $this->readDB($productTypeQuery);
@@ -218,7 +225,7 @@ class Product extends DB{
         $query = 
         "SELECT productCategoryId 
         FROM product
-        WHERE productId = '".$productId."'
+        WHERE productId = '$productId'
         LIMIT 1";
 
         $result = $this->readDB($query);
@@ -236,15 +243,16 @@ class Product extends DB{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom, 
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,ip.imageProductUrl
+        img.id as image_id,img.url as image_url
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
         AND pc.productCategoryId = '$productCategoryId'
         GROUP BY pd.productId
         ORDER BY pd.productSold DESC
@@ -279,16 +287,17 @@ class Product extends DB{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom, 
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,
-        ip.imageProductUrl
+        img.id as image_id,
+        img.url as image_url
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
         LIMIT ?,?";
@@ -314,17 +323,18 @@ class Product extends DB{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom, 
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,
-        ip.imageProductUrl,
+        img.id as image_id,
+        img.url as image_url,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
         ORDER BY productSalePrice ASC
@@ -345,17 +355,18 @@ class Product extends DB{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom, 
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,
-        ip.imageProductUrl,
+        img.id as image_id,
+        img.url as image_url,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
         ORDER BY productSalePrice DESC
@@ -376,17 +387,18 @@ class Product extends DB{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom, 
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,
-        ip.imageProductUrl,
+        img.id as image_id,
+        img.url as image_url,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
         ORDER BY pd.productSold DESC
@@ -408,17 +420,18 @@ class Product extends DB{
         pd.productRating, pd.productSendFrom, 
         pd.productDate,
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductId,
-        ip.imageProductUrl,
+        img.id as image_id,
+        img.url as image_url,
         (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
         AND pd.productName LIKE '%$productName%'
         GROUP BY pd.productId
         ORDER BY pd.productDate DESC
