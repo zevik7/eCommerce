@@ -16,11 +16,12 @@ class Signin extends Controller{
             $result         = $this->userModel->loginCheck($userAccount, $userPassword);
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
-                $_SESSION['user'] = ['name' => $result['userName'], 
+                $_SESSION['user'] = [
+                                    'id' => $result['userId'],
+                                    'name' => $result['userName'], 
                                     'avatar' => $result['userAvatar'],
                                     'email' => $result['userEmail'],
-                                    'phone' => $result['userPhone'],
-                                    'id' => $result['userId']
+                                    'phone' => $result['userPhone']
                                 ];
             }
             else{

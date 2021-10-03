@@ -76,7 +76,7 @@
         </div>
         <div class="head-bar__search">
             <div class="head-search">
-                <form method="GET"  class="js-head-search__form">
+                <form method="GET"  class="js-head-search__form" action="./ProductList/load">
                     <input type="search" name="search" class="head-search__text input js-head-search__text" 
                     oninvalid="this.setCustomValidity(' ')"
                     oninput="setCustomValidity('')"

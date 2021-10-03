@@ -1,13 +1,17 @@
 import * as asset from "../general/index.js";
 $(document).ready(function () {
-    $('.personal-sidebar__item:first').find('li').slideDown(300);
-    localStorage.setItem('current-person', '#account');
-    localStorage.setItem('current-person-sub', '.profile');
+    if(localStorage.getItem('current_person')) {
+        var current_person = localStorage.getItem('current_person');
+        var current_person_sub = localStorage.getItem('current_person_sub');
+        $('#' + current_person).trigger('click');
+        $('#' + current_person_sub).trigger('click');
+    }
+    else   $('#personal-sidebar__nav-1').trigger('click');
 });
   
   /*--------Events for sidebar----------*/
 $('.personal-sidebar__nav').click(function () {
-    localStorage.setItem('current-person', $(this).attr('href'))
+    localStorage.setItem('current_person', $(this).attr('id'))
     // slide down and switch page
     $(this).siblings().find('li').slideDown(300);
     switchPersonal($(this).attr('href'));
@@ -16,7 +20,7 @@ $('.personal-sidebar__nav').click(function () {
     $(this).siblings().find('li').removeClass('personal-active');
     $(this).siblings().find('li:first').addClass('personal-active');
     switchPersonal($(this).siblings().find('li:first').attr('href'));
-    localStorage.setItem('current-person-sub', $(this).siblings().find('li:first').attr('href'));
+    localStorage.setItem('current_person_sub', $(this).siblings().find('li:first').attr('id'));
     $(this).parent().siblings().find('span').removeClass('personal-active');
     $(this).parent().siblings().find('li').removeClass('personal-active');
     $(this).parent().siblings().find('li').slideUp(300);
@@ -24,15 +28,15 @@ $('.personal-sidebar__nav').click(function () {
 });
   
 $(document).on('click', '.js-trigger-profile', function (e) {
-    $("#js-trigger-profile").trigger('click');
+    $("#personal-sidebar__nav-1").trigger('click');
 });
 
 $('.profile__edit-change').click(function () {
     switchPersonal($(this).attr('href'));
-    localStorage.setItem('current-person-sub', $(this).attr('href'));
+    localStorage.setItem('current_person_sub', $(this).attr('id'));
 });
 $('.personal-sidebar__subnav-item').click(function () {
-    localStorage.setItem('current-person-sub', $(this).attr('href'));
+    localStorage.setItem('current_person_sub', $(this).attr('id'));
     $(this).addClass('personal-active');
     $(this).siblings().removeClass('personal-active');
     switchPersonal($(this).attr('href'));
@@ -184,7 +188,7 @@ $('.update-email__form-confirm').validate({
                 switch (feedback.status) {
                     case 'success':
                         switchPersonal('.update-email__change');
-                        localStorage.setItem('current-person-sub', '.update-email__change');
+                        localStorage.setItem('current_person_sub', '.update-email__change');
                     break;
                     default:
                         failedAlert(feedback.message)
@@ -283,7 +287,7 @@ $('.update-phone__form-confirm').validate({
                 switch (feedback.status) {
                     case 'success':
                         switchPersonal('.update-phone__change');
-                        localStorage.setItem('current-person-sub','.update-phone__change');
+                        localStorage.setItem('current_person_sub','.update-phone__change');
                     break;
                     default:
                         failedAlert(feedback.message)
@@ -507,9 +511,9 @@ $('#js-update-address').click(function(){
 
 
 /**----------Personal Purchase---------- chưa hoàn thiện */ 
-$(document).ready(function () {
-    $('.purchase__menu-nav:first').addClass('purchase-active');
-});
+// $(document).ready(function () {
+//     $('.purchase__menu-nav:first').addClass('purchase-active');
+// });
 
 $('.purchase__menu-nav').click(function () {
     $(this).addClass('purchase-active');
@@ -526,6 +530,6 @@ $(".all-purchases__search-input").on({
 });
   
 $('.purchase__menu-nav').click(function () {
-    switchPersonal($(this).attr('href'));
-    localStorage.setItem('current-person-sub',$(this).attr('href'));
+    switchPersonal($(this).attr('focus'));
+    localStorage.setItem('current_person_sub',$(this).attr('id'));
 });

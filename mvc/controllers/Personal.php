@@ -1,20 +1,25 @@
 <?php
 namespace mvc\controllers;
 use mvc\core\Controller;
+use mvc\models\Purchase; 
 use mvc\models\User;
 
 class Personal extends Controller{
     protected $userModel;
+    protected $purchaseModel;
 
     function __construct(){
         $this->userModel = new User();
+        $this->purchaseModel = new Purchase();
     }
-    public function loadList(){
+
+    public function load(){
         $this->view('Main',[
             'Page' => 'Personal',
             'User' => $this->userModel->getUser(),
         ]);
     }
+
     public function Edit(){
             $target_file = '';
             if ($_FILES['personal-image']['name'] != NULL && $_FILES['personal-image']['name'] != '')
@@ -77,6 +82,7 @@ class Personal extends Controller{
             // echo json_encode(['status' => 'success', 'message' => 'Lỗi khi thêm vào cơ sở dữ liệu']);
         
     }
+
     public function UpdateConfirm(){
         $userAccount    =   $_SESSION['user']['email'];
         $userPassword   =   $_POST['password-confirm'];
@@ -88,6 +94,7 @@ class Personal extends Controller{
             echo json_encode(['status' => 'error', 'message' => 'Mật khẩu chưa chính xác!!']);
         }
     }
+
     public function UpdateEmail(){
         $userAccount    =    $_SESSION['user']['phone'];
         $userEmail      =   $_POST['update-email'];
@@ -100,6 +107,7 @@ class Personal extends Controller{
             echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
         }
     }
+
     public function UpdatePhone(){
         $userAccount    =   $_SESSION['user']['email'];
         $userPhone      = $_POST['update-phone'];
@@ -112,6 +120,7 @@ class Personal extends Controller{
             echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
         }
     }
+
     public function UpdatePassword(){
         $userAccount            =   $_SESSION['user']['email'];
         $old_userPassword       =   $_POST['old-password'];
@@ -130,6 +139,7 @@ class Personal extends Controller{
             echo json_encode(['status' => 'error', 'message' => 'Sai mật khẩu!!']);
         }
     }
+
     public function setAddress(){
         $userAccount   =   $_SESSION['user']['email'];
         $userAddress =  $_POST['user-address'] . '/' . $_POST['user-detail'] ;
@@ -141,5 +151,61 @@ class Personal extends Controller{
             echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
         }
     }
+
+    function purchase(){
+        $query =
+        " SELECT 
+        od.orderId, od.orderDetailId,
+        pd.productName, pc.productCategoryName,
+        od.orderDetailQuantity, od.orderDetailTotal,
+        ip.imageProductId, ip.imageProductUrl 
+        FROM order_detail od
+        INNER JOIN ecommerce.`order` o
+        ON od.orderId = o.orderId
+        INNER JOIN product_type pt
+        ON od.productTypeId = pt.productTypeId
+        INNER JOIN product pd
+        ON pd.productId = pt.productId
+        INNER JOIN product_category pc
+        ON pc.productCategoryId = pd.productCategoryId
+        INNER JOIN image_product ip
+        ON ip.productId = pd.productId
+        WHERE ip.imageProductType = 'thumb'";
+       
+        // // Order Status
+        if (isset($_GET['status']))
+        {
+            $status = $_GET['status'];
+            switch ($status) {
+               
+
+                case 'waiting':
+                    $query = $query . " AND o.orderStatus = 'waiting' ";
+                    break;
+                case 'delivering':
+                    $query = $query . " AND o.orderStatus = 'delivering' ";
+                    break;
+                case 'done':
+                    $query = $query . " AND o.orderStatus = 'done' ";
+                    break;
+    
+                default:
+                    # get all
+                    break;
+            }
+        }
+
+        $query = $query . "AND o.userId = " . $_SESSION['user']['id'];
+
+        $purchaseData = json_encode($this->purchaseModel->select($query));
+
+        $this->view('Main',[
+            'Page' => 'Personal',
+            'User' => $this->userModel->getUser(),
+            'Purchase' => $purchaseData
+        ]);
+    }
+
+    
 }
 ?>
