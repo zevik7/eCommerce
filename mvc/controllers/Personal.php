@@ -154,11 +154,11 @@ class Personal extends Controller{
 
     function purchase(){
         $query =
-        "  SELECT 
+            "SELECT 
             od.orderId, od.orderDetailId,
             pd.productName, pc.productCategoryName, sp.shopName,
             od.orderDetailQuantity, od.orderDetailTotal,
-            ip.imageProductId, ip.imageProductUrl 
+            img.url as image_url
             FROM order_detail od
             INNER JOIN ecommerce.`order` o
             ON od.orderId = o.orderId
@@ -170,9 +170,9 @@ class Personal extends Controller{
             ON pc.productCategoryId = pd.productCategoryId
             INNER JOIN shop sp
             ON pd.shopId = sp.shopId
-            INNER JOIN image_product ip
-            ON ip.productId = pd.productId
-            WHERE ip.imageProductType = 'thumb'";
+            INNER JOIN images img
+            ON img.imageable_id = pd.productId
+            WHERE img.type = 'thumb'";
        
         // // Order Status
         if (isset($_GET['status']))
