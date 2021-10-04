@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `ecommerce` /*!40100 DEFAULT CHARACTER SET utf8mb4 */;
-USE `ecommerce`;
 -- MySQL dump 10.13  Distrib 8.0.24, for Win64 (x86_64)
 --
 -- Host: localhost    Database: ecommerce
@@ -45,99 +43,6 @@ LOCK TABLES `cart` WRITE;
 INSERT INTO `cart` VALUES (1,1,1,12,'2020-03-03 01:01:10'),(2,1,3,1,'2020-03-03 01:01:10'),(3,1,5,10,'2020-03-03 01:01:10');
 /*!40000 ALTER TABLE `cart` ENABLE KEYS */;
 UNLOCK TABLES;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `cart_AFTER_INSERT` AFTER INSERT ON `cart` FOR EACH ROW BEGIN
-	set @quantity = NEW.cartQuantity;
-    set @productTypeId = NEW.productTypeId;
-	update product_type
-		set productTypeQuantity = productTypeQuantity - @quantity
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `cart_BEFORE_UPDATE` BEFORE UPDATE ON `cart` FOR EACH ROW BEGIN
-	set @productTypeId = NEW.productTypeId;
-    set @userId = NEW.userId;
-    set @quantityOld = (select cartQuantity from cart where productTypeId = @productTypeId and userId = @userId);
-	update product_type
-		set productTypeQuantity = productTypeQuantity + @quantityOld
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `cart_AFTER_UPDATE` AFTER UPDATE ON `cart` FOR EACH ROW BEGIN
-    set @productTypeId = NEW.productTypeId;
-    set @quantityNew = NEW.cartQuantity;
-	update product_type
-		set productTypeQuantity = productTypeQuantity - @quantityNew
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `cart_AFTER_DELETE` AFTER DELETE ON `cart` FOR EACH ROW BEGIN
-	set @quantity = OLD.cartQuantity;
-    set @productTypeId = OLD.productTypeId;
-	update product_type
-		set productTypeQuantity = productTypeQuantity + @quantity
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 
 --
 -- Table structure for table `images`
@@ -180,8 +85,6 @@ CREATE TABLE `order` (
   `userId` int(11) NOT NULL,
   `orderDate` datetime NOT NULL,
   `orderStatus` varchar(20) NOT NULL,
-  `orderRatingStatusl` varchar(20) DEFAULT NULL,
-  `orderTotal` decimal(19,2) NOT NULL,
   PRIMARY KEY (`orderId`),
   UNIQUE KEY `orderId_UNIQUE` (`orderId`),
   KEY `MSKH` (`userId`),
@@ -195,7 +98,7 @@ CREATE TABLE `order` (
 
 LOCK TABLES `order` WRITE;
 /*!40000 ALTER TABLE `order` DISABLE KEYS */;
-INSERT INTO `order` VALUES (1,1,'0000-00-00 00:00:00','done',NULL,0.00);
+INSERT INTO `order` VALUES (1,1,'0000-00-00 00:00:00','done');
 /*!40000 ALTER TABLE `order` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -211,8 +114,6 @@ CREATE TABLE `order_detail` (
   `orderId` int(11) NOT NULL,
   `productTypeId` int(11) NOT NULL,
   `orderDetailQuantity` tinyint(4) NOT NULL,
-  `orderDetailPrice` decimal(19,2) NOT NULL,
-  `orderDetailTotal` decimal(19,2) NOT NULL,
   PRIMARY KEY (`orderDetailId`),
   KEY `order_detail_fk1_idx` (`orderId`),
   KEY `oder_detail_fk1_idx` (`productTypeId`),
@@ -229,99 +130,6 @@ LOCK TABLES `order_detail` WRITE;
 /*!40000 ALTER TABLE `order_detail` DISABLE KEYS */;
 /*!40000 ALTER TABLE `order_detail` ENABLE KEYS */;
 UNLOCK TABLES;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `order_detail_AFTER_INSERT` AFTER INSERT ON `order_detail` FOR EACH ROW BEGIN
-	set @quantity = NEW.orderDetailQuantity;
-    set @productTypeId = NEW.productTypeId;
-	update product_type
-		set productTypeQuantity = productTypeQuantity - @quantity
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `order_detail_BEFORE_UPDATE` BEFORE UPDATE ON `order_detail` FOR EACH ROW BEGIN
-	set @orderId = NEW.orderId;
-	set @productTypeId = NEW.productTypeId;
-    set @quantityOld = (select orderDetailQuantity from order_detail where productTypeId = @productTypeId and orderId = @orderId);
-	update product_type
-		set productTypeQuantity = productTypeQuantity + @quantityOld
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `order_detail_AFTER_UPDATE` AFTER UPDATE ON `order_detail` FOR EACH ROW BEGIN
-	set @productTypeId = NEW.productTypeId;
-    set @quantityNew = NEW.orderDetailQuantity;
-	update product_type
-		set productTypeQuantity = productTypeQuantity - @quantityNew
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `order_detail_AFTER_DELETE` AFTER DELETE ON `order_detail` FOR EACH ROW BEGIN
-	set @quantity = OLD.orderDetailQuantity;
-    set @productTypeId = OLD.productTypeId;
-	update product_type
-		set productTypeQuantity = productTypeQuantity + @quantity
-	where (productTypeId = @productTypeId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 
 --
 -- Table structure for table `product`
@@ -395,13 +203,10 @@ DROP TABLE IF EXISTS `product_rating`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `product_rating` (
   `productRatingId` int(11) NOT NULL AUTO_INCREMENT,
-  `productId` int(11) DEFAULT NULL,
   `productTypeId` int(11) NOT NULL,
-  `productTypeSubId` int(11) DEFAULT NULL,
   `userId` int(11) NOT NULL,
   `productRatingStar` tinyint(4) NOT NULL,
   `productRatingComment` text,
-  `productRatingType` varchar(20) DEFAULT NULL,
   `productRatingDate` datetime DEFAULT NULL,
   PRIMARY KEY (`productRatingId`),
   KEY `product_rating_fk1_idx` (`userId`),
@@ -416,83 +221,9 @@ CREATE TABLE `product_rating` (
 
 LOCK TABLES `product_rating` WRITE;
 /*!40000 ALTER TABLE `product_rating` DISABLE KEYS */;
-INSERT INTO `product_rating` VALUES (1,1,1,10,1,4,'Tạm ổn, chất lượng vải khá tốt nhưng may chưa được đẹp',NULL,NULL),(2,1,1,10,1,5,'Áo đẹp nha mụi ngừ !!!',NULL,NULL),(3,1,1,10,1,3,'Buồn nên cho 3 sao',NULL,NULL);
+INSERT INTO `product_rating` VALUES (1,1,1,4,'Tạm ổn, chất lượng vải khá tốt nhưng may chưa được đẹp',NULL),(2,1,1,5,'Áo đẹp nha mụi ngừ !!!',NULL),(3,1,1,3,'Buồn nên cho 3 sao',NULL);
 /*!40000 ALTER TABLE `product_rating` ENABLE KEYS */;
 UNLOCK TABLES;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `product_rating_AFTER_INSERT` AFTER INSERT ON `product_rating` FOR EACH ROW BEGIN
-	set @productId = NEW.productId;
-    set @newRatingStar = NEW.productRatingStar;
-	set @ratingStar = (select productRating from product where productId = @productId);
-	IF @ratingStar IS NULL THEN
-			update product
-				set productRating = @newRatingStar
-			where (productId = @productId);
-	ELSE
-			update product
-				set productRating = (select AVG(productRatingStar) from product_rating where productId = @productId)
-			where (productId = @productId);
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `product_rating_AFTER_UPDATE` AFTER UPDATE ON `product_rating` FOR EACH ROW BEGIN
-	set @productId = NEW.productId;
-	update product
-		set productRating = (select AVG(productRatingStar) from product_rating where productId = @productId)
-	where (productId = @productId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `product_rating_AFTER_DELETE` AFTER DELETE ON `product_rating` FOR EACH ROW BEGIN
-	set @productId = OLD.productId;
-	update product
-		set productRating = (select AVG(productRatingStar) from product_rating where productId = @productId)
-	where (productId = @productId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 
 --
 -- Table structure for table `product_type`
@@ -525,108 +256,6 @@ LOCK TABLES `product_type` WRITE;
 INSERT INTO `product_type` VALUES (1,1,'Kích cỡ','Size 39',212,378000.00,NULL,NULL),(2,1,'Kích cỡ','Size 40',240,378000.00,NULL,NULL),(3,1,'Kích cỡ','Size 41',119,378000.00,NULL,NULL),(4,1,'Kích cỡ','Size 40',120,378000.00,NULL,NULL),(5,1,'Kích cỡ','Size 41',110,378000.00,NULL,NULL),(6,1,'Kích cỡ','Size 42',120,378000.00,NULL,NULL),(7,2,'Kích cỡ','Size M',50,823000.00,NULL,NULL),(8,2,'Kích cỡ','Size L',25,823000.00,NULL,NULL),(9,2,'Kích cỡ','Size XL',25,823000.00,NULL,NULL),(10,3,'Loại','300g',20,322000.00,NULL,NULL),(11,3,'Loại','400g',20,610000.00,NULL,NULL),(12,3,'Loại','500g',20,78100.00,NULL,NULL),(13,3,'Loại','200g',20,210000.00,NULL,NULL),(14,3,'Loại','100g',33,190000.00,NULL,NULL),(15,4,'Kích cỡ','Size 39',25,2020000.00,NULL,NULL),(16,4,'Kích cỡ','Size 40',25,2020000.00,NULL,NULL),(17,4,'Kích cỡ','Size 41',25,2020000.00,NULL,NULL),(18,4,'Kích cỡ','Size 42',25,2020000.00,NULL,NULL),(19,5,'Kích cỡ','Size 38',32,1521000.00,NULL,NULL),(20,5,'Kích cỡ','Size 39',230,1521000.00,NULL,NULL),(21,5,'Kích cỡ','Size 40',123,1521000.00,NULL,NULL),(22,5,'Kích cỡ','Size 41',322,1521000.00,NULL,NULL),(62,5,'Kích cỡ','Size 42',0,1521000.00,NULL,NULL),(63,6,'Nguồn gốc','Nhập khẩu',124,760000.00,NULL,NULL),(64,6,'Nguồn gốc','Chính hãng',752,980000.00,NULL,NULL),(65,7,'Màu sắc','Màu đỏ',74,340000.00,NULL,NULL),(66,7,'Màu sắc','Màu hồng',14,348000.00,NULL,NULL),(67,8,'Loại','Chai 200ml',23,150000.00,NULL,NULL),(68,8,'Loại','Chai 400ml',57,230000.00,NULL,NULL),(69,8,'Loại','Chai 700ml',98,340000.00,NULL,NULL),(70,9,'Kích cỡ','Size M',45,670000.00,NULL,NULL),(71,10,'Kích cỡ','Size 29',54,341000.00,NULL,NULL),(72,10,'Kích cỡ','Size 30',34,341000.00,NULL,NULL),(73,10,'Kích cỡ','Size 31',965,341000.00,NULL,NULL),(74,10,'Kích cỡ','Size 32',346,341000.00,NULL,NULL),(81,11,NULL,'',123,299000.00,NULL,NULL),(91,12,'Màu sắc','Màu đen',100,567000.00,NULL,NULL),(92,12,'Màu sắc','Màu bạc',100,567000.00,NULL,NULL),(93,12,'Màu sắc','Màu xanh',100,567000.00,NULL,NULL),(94,12,'Màu sắc','Màu đỏ',100,567000.00,NULL,NULL),(95,13,'Màu sắc','Vàng',100,890000.00,NULL,NULL),(96,13,'Màu sắc','Vàng + đen',100,810000.00,NULL,NULL),(97,13,'Màu sắc','Vàng + trắng',100,700000.00,NULL,NULL),(98,13,'Màu sắc','Vàng + bạc',100,760000.00,NULL,NULL),(99,14,NULL,NULL,300,978000.00,NULL,NULL),(100,15,'Kích cỡ','Size M',100,341000.00,NULL,NULL),(101,15,'Kích cỡ','Size L',100,341000.00,NULL,NULL),(102,15,'Kích cỡ','Size XL',100,341000.00,NULL,NULL),(103,15,'Kích cỡ','Size XXL',100,341000.00,NULL,NULL),(104,16,'Kích cỡ','Size M',100,341000.00,NULL,NULL),(105,16,'Kích cỡ','Size L',100,341000.00,NULL,NULL),(106,16,'Kích cỡ','Sile XL',100,341000.00,NULL,NULL),(107,16,'Kích cỡ','Size XXL',100,341000.00,NULL,NULL),(108,16,'Màu sắc','Màu đỏ',100,341000.00,NULL,NULL),(109,16,'Màu sắc','Màu đen',100,341000.00,NULL,NULL),(110,16,'Màu sắc','Màu xanh đậm',100,341000.00,NULL,NULL),(111,16,'Màu sắc','Màu tím than',100,341000.00,NULL,NULL),(112,16,'Màu sắc','Màu xám',100,341000.00,NULL,NULL),(113,16,'Màu sắc','Màu đỏ đô',100,341000.00,NULL,NULL),(114,17,'Kích cỡ','Size M',100,241000.00,NULL,NULL),(115,17,'Kích cỡ','Size L',100,241000.00,NULL,NULL),(116,17,'Kích cỡ','Size XL',100,241000.00,NULL,NULL),(117,17,'Kích cỡ','Size XXL',100,241000.00,NULL,NULL),(118,17,'Màu sắc','Màu đỏ',100,241000.00,NULL,NULL),(119,17,'Màu sắc','Màu đen',100,241000.00,NULL,NULL),(120,17,'Màu sắc','Màu xanh đậm',100,241000.00,NULL,NULL),(121,17,'Màu sắc','Màu tím than',100,241000.00,NULL,NULL),(122,17,'Màu sắc','Màu xám',100,241000.00,NULL,NULL),(123,17,'Màu sắc','Màu đỏ đô',100,241000.00,NULL,NULL),(124,18,'Kích cỡ','Size M',100,669000.00,NULL,NULL),(125,18,'Kích cỡ','Size L',100,669000.00,NULL,NULL),(126,18,'Kích cỡ','Size XL',100,669000.00,NULL,NULL),(127,18,'Kích cỡ','Size XXL',100,669000.00,NULL,NULL),(128,18,'Màu sắc','Màu đỏ',100,669000.00,NULL,NULL),(129,18,'Màu sắc','Màu đen',100,669000.00,NULL,NULL),(130,18,'Màu sắc','Màu xanh đậm',100,669000.00,NULL,NULL),(131,18,'Màu sắc','Màu tím than',100,669000.00,NULL,NULL),(132,18,'Màu sắc','Màu xám',100,669000.00,NULL,NULL),(133,18,'Màu sắc','Màu đỏ đô',100,669000.00,NULL,NULL);
 /*!40000 ALTER TABLE `product_type` ENABLE KEYS */;
 UNLOCK TABLES;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `product_type_AFTER_INSERT` AFTER INSERT ON `product_type` FOR EACH ROW BEGIN
-	set @productId = NEW.productId;
-    set @quantityNew = NEW.productTypeQuantity;
-    -- Check null
-    set @productQuantity = (select productQuantity from product where productId = @productId);
-	IF @productQuantity IS NULL THEN
-			update product
-				set productQuantity = @quantityNew
-			where (productId = @productId);
-	ELSE
-			update product
-				set productQuantity = productQuantity + @quantityNew
-			where (productId = @productId);
-	END IF;
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `product_type_BEFORE_UPDATE` BEFORE UPDATE ON `product_type` FOR EACH ROW BEGIN
-	set @productTypeId = NEW.productTypeId;
-	set @productId = NEW.productId;
-    set @quantityOld = (select productTypeQuantity from product_type where productTypeId = @productTypeId);
-	update product
-		set productQuantity = productQuantity - @quantityOld
-	where (productId = @productId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `product_type_AFTER_UPDATE` AFTER UPDATE ON `product_type` FOR EACH ROW BEGIN
-	set @productTypeId = NEW.productTypeId;
-	set @productId = NEW.productId;
-    set @quantityNew = NEW.productTypeQuantity;
-	update product
-		set productQuantity = productQuantity + @quantityNew
-	where (productId = @productId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
-ALTER DATABASE `ecommerce` CHARACTER SET latin1 COLLATE latin1_swedish_ci ;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
-DELIMITER ;;
-/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `product_type_AFTER_DELETE` AFTER DELETE ON `product_type` FOR EACH ROW BEGIN
-	set @productId = OLD.productId;
-    set @quantityOld = OLD.productTypeQuantity;
-	update product
-		set productQuantity = productQuantity - @quantityOld
-		where (productId = @productId);
-END */;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
-ALTER DATABASE `ecommerce` CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 
 --
 -- Table structure for table `shop`
@@ -696,4 +325,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-10-03 23:12:06
+-- Dump completed on 2021-10-04 14:59:43
