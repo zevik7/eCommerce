@@ -1,6 +1,6 @@
 <div id="purchase" class="personal-body">
        <div class="purchase__menu">
-            <a id="all-purchases" class="purchase__menu-nav" focus=".all-purchases" href="./Personal/purchase/?status=all">
+            <a id="all-purchases" class="purchase__menu-nav" focus=".all-purchases" href="./Personal/purchase">
                 Tất cả
             </a>
             <a id="awaiting-approval"  class="purchase__menu-nav" focus=".awaiting-approval" href="./Personal/purchase/?status=waiting">
@@ -22,7 +22,14 @@
        
        <div class="purchase-container">
             <div class="all-purchases">
-                <!-- <div class="all-purchases__search">
+                <?php
+                    if (isset($data['Purchase']) && sizeof(json_decode($data['Purchase'], true)) > 0)
+                    {   
+                        
+                        
+                        
+                ?>
+                <div class="all-purchases__search">
                     <div class="all-purchases__search-icon"><i class="fas fa-search"></i></div>
                     <input type="text" class="all-purchases__search-input input" placeholder="Tìm kiếm theo tên shop, ID đơn hàng hoặc tên sản phẩm">
                 </div>
@@ -93,13 +100,21 @@
                         <button class="btn btn-outline-primary">Liên hệ người bán</button>
                         <button class="btn btn-outline-primary">Xem đánh giá shop</button>
                     </div>
-                </div> -->
+                </div>
+                <?php
+                    
+                }
+                    else {   
+                ?>
                 <div class="purchases__list">
                     <div class="purchases__empty">
                         <img src="public/img/system/emptylist.png" alt="Danh sách trống">
                         <p>Chưa có đơn hàng</p>
                     </div>
                 </div>
+                <?php
+                    }
+                ?>
             </div>
        </div>
 </div>

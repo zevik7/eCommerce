@@ -154,45 +154,48 @@ class Personal extends Controller{
 
     function purchase(){
         $query =
-        " SELECT 
-        od.orderId, od.orderDetailId,
-        pd.productName, pc.productCategoryName,
-        od.orderDetailQuantity, od.orderDetailTotal,
-        ip.imageProductId, ip.imageProductUrl 
-        FROM order_detail od
-        INNER JOIN ecommerce.`order` o
-        ON od.orderId = o.orderId
-        INNER JOIN product_type pt
-        ON od.productTypeId = pt.productTypeId
-        INNER JOIN product pd
-        ON pd.productId = pt.productId
-        INNER JOIN product_category pc
-        ON pc.productCategoryId = pd.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'";
+        "  SELECT 
+            od.orderId, od.orderDetailId,
+            pd.productName, pc.productCategoryName, sp.shopName,
+            od.orderDetailQuantity, od.orderDetailTotal,
+            ip.imageProductId, ip.imageProductUrl 
+            FROM order_detail od
+            INNER JOIN ecommerce.`order` o
+            ON od.orderId = o.orderId
+            INNER JOIN product_type pt
+            ON od.productTypeId = pt.productTypeId
+            INNER JOIN product pd
+            ON pd.productId = pt.productId
+            INNER JOIN product_category pc
+            ON pc.productCategoryId = pd.productCategoryId
+            INNER JOIN shop sp
+            ON pd.shopId = sp.shopId
+            INNER JOIN image_product ip
+            ON ip.productId = pd.productId
+            WHERE ip.imageProductType = 'thumb'";
        
         // // Order Status
         if (isset($_GET['status']))
         {
             $status = $_GET['status'];
-            switch ($status) {
+            // switch ($status) {
                
 
-                case 'waiting':
-                    $query = $query . " AND o.orderStatus = 'waiting' ";
-                    break;
-                case 'delivering':
-                    $query = $query . " AND o.orderStatus = 'delivering' ";
-                    break;
-                case 'done':
-                    $query = $query . " AND o.orderStatus = 'done' ";
-                    break;
+            //     case 'waiting':
+            //         $query = $query . " AND o.orderStatus = 'waiting' ";
+            //         break;
+            //     case 'delivering':
+            //         $query = $query . " AND o.orderStatus = 'delivering' ";
+            //         break;
+            //     case 'done':
+            //         $query = $query . " AND o.orderStatus = 'done' ";
+            //         break;
     
-                default:
-                    # get all
-                    break;
-            }
+            //     default:
+            //         # get all
+            //         break;
+            // }
+            $query = $query . " AND o.orderStatus = '$status'";
         }
 
         $query = $query . "AND o.userId = " . $_SESSION['user']['id'];
