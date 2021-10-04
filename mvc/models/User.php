@@ -51,7 +51,7 @@ class User extends DB{
     }
     public function loginCheck($userAccount, $userPassword){
         $query = 
-        "SELECT userName, userId, userEmail, userAvatar, userPhone 
+        "SELECT userName, userId, userEmail, userPhone 
         FROM user
         WHERE (userPhone = ? OR userEmail = ?) 
         AND userPassword = ?

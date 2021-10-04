@@ -36,15 +36,17 @@ class ProductList extends Controller{
         pd.productSold, pd.productBrand, 
         pd.productRating, pd.productSendFrom,
         MIN(pt.productTypePrice) as productTypePrice,
-        ip.imageProductUrl
+        img.url as image_url
         FROM product pd
         INNER JOIN product_category pc
         ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
+        INNER JOIN images img
+        ON img.imageable_id = pd.productId
         INNER JOIN product_type pt
         ON pt.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb' ";
+        WHERE img.type = 'thumb'
+        AND img.imageable_type = 'product'
+        AND img.imageable_id = pd.productId";
 
         // Search
         if (isset($_GET['search']))
@@ -112,7 +114,7 @@ class ProductList extends Controller{
         
         $productsData = json_encode($this->productModel->select($query));
 
-        $cartData = json_encode($this->cartModel->getCart(1));
+        $cartData = json_encode($this->cartModel->getCart($_SESSION['user']['id']));
         
         $this->view('Main',[
             'Page' => 'ProductList',

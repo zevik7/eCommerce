@@ -23,22 +23,12 @@
         $product = 
             array_reduce($product, 'array_merge', array());
 
-        /*---------Parse general data--------*/
-
-        // Default min price and max price
-        $minPrice = 99999999999;
-        $maxPrice = -99999999999;
-
         // Array filter without callback remove falsy value
         $productTypePrice = 
             array_filter(array_column($productType, 'productTypePrice'));
 
-        // Get min and max price
-        if (!empty($productTypePrice))
-        {
-            $minPrice = min($productTypePrice);
-            $maxPrice = max($productTypePrice);
-        }
+        $minPrice = min($productTypePrice)*(1-$product['productDiscount']);
+        $maxPrice = max($productTypePrice)*(1-$product['productDiscount']);
 
         // Product type label list
         $productTypeLabelList =  
@@ -60,7 +50,7 @@
                             <!--Thumb images for add cart -->
                             <img id="product-image-thumb" style="display:none" 
                             src="<?php 
-                                echo $productImage[0]['imageProductUrl'];
+                                echo $productImage[0]['image_url'];
                             ?>" alt="">
                         </div>
                         <div class="col-7">

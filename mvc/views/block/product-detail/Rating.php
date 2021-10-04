@@ -97,7 +97,7 @@
         ?>
         <div class="product-rating__box mt-20">
             <div class="product-rating-box__header">
-                <img src="<?php echo $rating['userAvatar'];?>" alt="" class="user-avatar-sm">
+                <img src="<?php echo $rating['image_url'];?>" alt="" class="user-avatar-sm">
             </div>
             <div class="product-rating-box__body">
                 <a href="#" class="user-name-sm">
