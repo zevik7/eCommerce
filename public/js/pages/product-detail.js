@@ -44,15 +44,28 @@ addToCart.on('click', function () {
     // Get product type
     let productType = $('.list-type__item.active');
     let productTypeId = productType.attr('id');
-    let productTypeQty = productType.attr('quantity');
+    let productTypeQty = $('.carousel-quantity__number')[0].value;
     if (!isEmpty(productType)){
         let data = {
             productTypeId,
             productTypeQty
         }
-        // Call ajax here
-
-
+        // Post method here
+        let addCartUrl = './ProductDetail/addToCart';
+        let options = {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(data)
+                    }
+        fetch(addCartUrl, options)
+            .then((response) => {
+                 return response.json();
+            })
+            .then((data) => {
+                console.log('Thêm sản phẩm thành công');
+            });
         addCartUI();
     }
     else {
@@ -105,4 +118,6 @@ function addCartUI() {
         asset.getValue($('.head-cart__quantity').text());
     $('.head-cart__quantity').text(++currentVal);
 }
+
+
     

@@ -116,7 +116,7 @@ class ProductList extends Controller{
 
         // Load cart data
         if (isset($_SESSION['user']['id']))
-            $cartData = json_encode($this->cartModel->getCart($_SESSION['user']['id']));
+            $cartData = json_encode($this->cartModel->getCart());
         else $cartData = null;
         
         $this->view('Main',[

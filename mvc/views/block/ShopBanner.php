@@ -2,7 +2,7 @@
     <div class="row row-al-center">
         <div class="col-5">
             <div class="banner-header">
-                <img src="public/img/user/avatar.png" alt="" class="banner-header__avt">
+                <img src="public/img/avatar.png" alt="" class="banner-header__avt">
                 <div class="banner-header__content">
                     <h6 class="content-title title">kaxoeofficial.vn</h6>
                     <p class="content-date">Online 15 phút trước</p>

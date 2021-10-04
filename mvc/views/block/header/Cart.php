@@ -55,7 +55,7 @@
                     ?>
                 </ul>
                 <div class="head-cart__pay-btn">
-                    <a href="#" class="title-sm">
+                    <a href="./order" class="title-sm">
                         Thanh toán
                     </a>
                 </div>    
