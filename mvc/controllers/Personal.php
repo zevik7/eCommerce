@@ -154,11 +154,11 @@ class Personal extends Controller{
 
     function purchase(){
         $query =
-            "SELECT 
-            od.orderId, od.orderDetailId,
+            " SELECT 
+            od.orderId, od.orderDetailId, pt.productTypeId,
             pd.productName, pc.productCategoryName, sp.shopName,
-            od.orderDetailQuantity, od.orderDetailTotal,
-            img.url as image_url
+            img.url AS image_url,  pr.productRatingStar, o.orderStatus,
+            od.orderDetailPrice, od.orderDetailQuantity
             FROM order_detail od
             INNER JOIN ecommerce.`order` o
             ON od.orderId = o.orderId
@@ -168,11 +168,13 @@ class Personal extends Controller{
             ON pd.productId = pt.productId
             INNER JOIN product_category pc
             ON pc.productCategoryId = pd.productCategoryId
+            LEFT JOIN product_rating pr
+            ON pr.productTypeId =  pt.productTypeId
             INNER JOIN shop sp
-            ON pd.shopId = sp.shopId
+            ON pd.shopId = sp.shopId 
             INNER JOIN images img
             ON img.imageable_id = pd.productId
-            WHERE img.type = 'thumb'";
+            WHERE img.`type` = 'thumb'";
        
         // // Order Status
         if (isset($_GET['status']))
@@ -198,7 +200,7 @@ class Personal extends Controller{
             $query = $query . " AND o.orderStatus = '$status'";
         }
 
-        $query = $query . "AND o.userId = " . $_SESSION['user']['id'];
+        $query = $query . "AND o.userId = " . $_SESSION['user']['id'] . " order BY o.orderDate DESC";
 
         $purchaseData = json_encode($this->purchaseModel->select($query));
 

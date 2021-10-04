@@ -471,10 +471,10 @@
     margin-top: 12px;
     background-color: $background-color-white;
     box-shadow: 0 1px 1px $background-color-disabled;
-    padding: 20px 20px 30px;
+    padding: 0 20px 30px;
 }
 .purchase__list-header{
-    margin-bottom: 10px;
+    padding: 10px 0; 
     display: flex;
     align-items: center;
     justify-content:space-between;
