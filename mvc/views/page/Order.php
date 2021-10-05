@@ -56,7 +56,7 @@
                         </div>
                         <div class="order-products__row">
                             <div class="order-products__row-block block1">
-                                <img class="order-products__row-product-img" src="public/img/product/giaybitas.jpg" alt="">
+                                <img class="order-products__row-product-img" src="public/img/giaybitas.jpg" alt="">
                                 <h4 class="order-products__row-product-name">
                                     Pin sạc dự phòng type C 18W Xiaomi 20000mAh gen 3 Pro
                                     Pin sạc dự phòng type C 18W Xiaomi 20000mAh gen 3 Pro
@@ -83,7 +83,7 @@
                         </div>
                         <div class="order-products__row">
                             <div class="order-products__row-block block1">
-                                <img class="order-products__row-product-img" src="public/img/product/giaybitas.jpg" alt="">
+                                <img class="order-products__row-product-img" src="public/img/giaybitas.jpg" alt="">
                                 <h4 class="order-products__row-product-name">
                                     Áo khoác
                                 </h4>
