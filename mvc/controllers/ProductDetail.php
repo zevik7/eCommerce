@@ -25,7 +25,7 @@ class ProductDetail extends Controller{
             $productData = 
                 json_encode($this->productModel->getProduct($productId));
             $cartData = 
-                json_encode($this->cartModel->getCart($_SESSION['user']['id']));
+                json_encode($this->cartModel->getCart());
             $this->view('Main',[
                 'Page' => 'ProductDetail',
                 'productData' => $productData,
@@ -35,7 +35,19 @@ class ProductDetail extends Controller{
         }
     }
     function addToCart(){
+        // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
+        $data = json_decode(file_get_contents('php://input'));
         
+        $addResult = 
+            $this->cartModel->addToCart(
+                    $data->productTypeId,
+                    $data->productTypeQty);
+        if ($addResult)
+        {
+            echo json_encode(['status' => 'success']);
+        }
+        else
+            echo json_encode(['status' => 'error']);
     }
 }
 ?>

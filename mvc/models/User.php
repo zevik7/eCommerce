@@ -51,10 +51,17 @@ class User extends DB{
     }
     public function loginCheck($userAccount, $userPassword){
         $query = 
-        "SELECT userName, userId, userEmail, userPhone 
+        "SELECT 
+        userName, userId, 
+        userEmail, userPhone,
+        img.url as image_url
         FROM user
+        INNER JOIN images img
+        ON img.imageable_id = userId
         WHERE (userPhone = ? OR userEmail = ?) 
         AND userPassword = ?
+        AND img.imageable_type = 'user'
+        AND img.type = 'avatar'
         LIMIT 1";
         $param = array($userAccount, $userAccount, $userPassword);
         $result = $this->readDB($query, $param);

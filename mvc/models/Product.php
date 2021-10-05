@@ -184,7 +184,7 @@ class Product extends DB{
             ON ur.userId = pr.userId
             INNER JOIN images img
             ON img.imageable_id = ur.userId
-            WHERE pr.productId ='$productId'
+            WHERE pt.productId ='$productId'
             AND img.imageable_type = 'user'
             AND img.type ='avatar'";
 
