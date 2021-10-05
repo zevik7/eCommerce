@@ -2,6 +2,7 @@ import './authentication.js';
 import './select.js';
 import './inputQuantity.js';
 import './search.js';
+import './cart.js';
 
 // To reusable
 export * from './notification.js';
