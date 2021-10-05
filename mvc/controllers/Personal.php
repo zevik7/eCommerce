@@ -154,48 +154,32 @@ class Personal extends Controller{
 
     function purchase(){
         $query =
-        " SELECT 
-        od.orderId, od.orderDetailId,
-        pd.productName, pc.productCategoryName,
-        od.orderDetailQuantity, od.orderDetailTotal,
-        ip.imageProductId, ip.imageProductUrl 
-        FROM order_detail od
-        INNER JOIN ecommerce.`order` o
-        ON od.orderId = o.orderId
-        INNER JOIN product_type pt
-        ON od.productTypeId = pt.productTypeId
-        INNER JOIN product pd
-        ON pd.productId = pt.productId
-        INNER JOIN product_category pc
-        ON pc.productCategoryId = pd.productCategoryId
-        INNER JOIN image_product ip
-        ON ip.productId = pd.productId
-        WHERE ip.imageProductType = 'thumb'";
+            "  SELECT 
+            od.orderId, od.orderDetailId, pt.productTypeId, o.orderDate,
+            pd.productName, pt.productTypeName, sp.shopName,
+            img.url as image_url, o.orderStatus,
+            od.orderDetailPrice, od.orderDetailQuantity
+            FROM order_detail od
+            INNER JOIN ecommerce.`order` o
+            ON od.orderId = o.orderId
+            INNER JOIN product_type pt
+            ON od.productTypeId = pt.productTypeId
+            INNER JOIN product pd
+            ON pd.productId = pt.productId
+            INNER JOIN shop sp
+            ON pd.shopId = sp.shopId 
+            INNER JOIN images img
+            ON img.imageable_id = pd.productId
+            WHERE img.`type` = 'thumb'";
        
         // // Order Status
         if (isset($_GET['status']))
         {
             $status = $_GET['status'];
-            switch ($status) {
-               
-
-                case 'waiting':
-                    $query = $query . " AND o.orderStatus = 'waiting' ";
-                    break;
-                case 'delivering':
-                    $query = $query . " AND o.orderStatus = 'delivering' ";
-                    break;
-                case 'done':
-                    $query = $query . " AND o.orderStatus = 'done' ";
-                    break;
-    
-                default:
-                    # get all
-                    break;
-            }
+            $query = $query . " AND o.orderStatus = '$status'";
         }
 
-        $query = $query . "AND o.userId = " . $_SESSION['user']['id'];
+        $query = $query . "AND o.userId = " . $_SESSION['user']['id'] . " order BY o.orderDate DESC";
 
         $purchaseData = json_encode($this->purchaseModel->select($query));
 

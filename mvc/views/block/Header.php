@@ -44,7 +44,7 @@
                         alt="" class="nav-user__avatar">
                     <span class="nav-user__name"><?php echo $_SESSION['user']['name'];?></span>
                     <ul class="nav-user__menu">
-                        <li class="nav-user-menu__item">
+                        <li class="nav-user-menu__item" id="remove_localStorage">
                                 <a href="./Personal/Auth" class="nav-user-menu__link">Tài khoản</a>
                         </li>
                         <li class="nav-user-menu__item">
