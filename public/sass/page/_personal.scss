@@ -478,6 +478,7 @@
     display: flex;
     align-items: center;
     justify-content:space-between;
+    border-bottom: $border-light;
     &-item{
         display: flex;
         align-items: center;
@@ -488,7 +489,7 @@
         }
         button{
             font-size: 1.3rem;
-            margin-left: 6px;
+            margin-left: 16px;
             padding: 6px 12px;
         }
         .shipped{
@@ -518,7 +519,7 @@
     width: 100%;
 }
 .purchases__list-table, .purchases__row{
-    border-top: $border-light ;
+    // border-top: $border-light ;
     border-bottom: $border-light;
     border-collapse: collapse;
 }
@@ -565,7 +566,7 @@
 .purchase__list-total{
     display: flex;
     align-items: center;
-    justify-content: flex-end;
+    // justify-content: flex-end;
     height: 30px;
     margin: 20px 0;
     p{
@@ -576,9 +577,16 @@
         font-size: 2rem;
         color: $red-color;
     }
+    .time{
+        justify-self: start;
+        margin-right: auto;
+        font-size: 1.7rem;
+        color: $blue-color;
+    }
 }
 .purchase__list-footer{
     display: flex;
+    margin-bottom: 20px;
     p{
         margin-right: auto;
         font-size: 1.4rem;
