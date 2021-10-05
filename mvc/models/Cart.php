@@ -4,7 +4,8 @@ use mvc\models\traits\Filter;
 use mvc\core\DB;
 
 class Cart extends DB{
-    public function getCart($userId){
+    public function getCart(){
+        $userId = $_SESSION['user']['id'];
         $query = 
             "SELECT
             ca.productTypeId, 
@@ -26,6 +27,18 @@ class Cart extends DB{
             AND img.type = 'thumb'
             AND img.imageable_type = 'product'";
         $result = $this->readDB($query, [$userId]);
+        return $result;
+    }
+    public function addToCart($typeId, $quantity)
+    {
+        $userId = $_SESSION['user']['id'];
+        $query = 
+        "INSERT INTO 
+        cart
+        (userId, ProductTypeId, cartQuantity)
+        VALUES
+        ( ?, ?, ?)";
+        $result = $this->writeDB($query, [$userId, $typeId, $quantity]);
         return $result;
     }
 }

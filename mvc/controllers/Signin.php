@@ -19,7 +19,7 @@ class Signin extends Controller{
                 $_SESSION['user'] = [
                                     'id' => $result['userId'],
                                     'name' => $result['userName'], 
-                                    'avatar' => $result['userAvatar'],
+                                    'avatar' => $result['image_url'],
                                     'email' => $result['userEmail'],
                                     'phone' => $result['userPhone']
                                 ];
