@@ -8,18 +8,23 @@ $(document).ready(function () {
     }
     else   $('#personal-sidebar__nav-1').trigger('click');
 });
+
+$('#remove_localStorage').click(function(){
+    localStorage.removeItem('current_person');
+    localStorage.removeItem('current_person_sub');
+})
   
   /*--------Events for sidebar----------*/
 $('.personal-sidebar__nav').click(function () {
     localStorage.setItem('current_person', $(this).attr('id'))
     // slide down and switch page
     $(this).siblings().find('li').slideDown(300);
-    switchPersonal($(this).attr('href'));
+    switchPersonal($(this).attr('focus'));
     // active
     $(this).addClass('personal-active');
     $(this).siblings().find('li').removeClass('personal-active');
     $(this).siblings().find('li:first').addClass('personal-active');
-    switchPersonal($(this).siblings().find('li:first').attr('href'));
+    switchPersonal($(this).siblings().find('li:first').attr('focus'));
     localStorage.setItem('current_person_sub', $(this).siblings().find('li:first').attr('id'));
     $(this).parent().siblings().find('span').removeClass('personal-active');
     $(this).parent().siblings().find('li').removeClass('personal-active');
@@ -32,14 +37,14 @@ $(document).on('click', '.js-trigger-profile', function (e) {
 });
 
 $('.profile__edit-change').click(function () {
-    switchPersonal($(this).attr('href'));
+    switchPersonal($(this).attr('focus'));
     localStorage.setItem('current_person_sub', $(this).attr('id'));
 });
 $('.personal-sidebar__subnav-item').click(function () {
     localStorage.setItem('current_person_sub', $(this).attr('id'));
     $(this).addClass('personal-active');
     $(this).siblings().removeClass('personal-active');
-    switchPersonal($(this).attr('href'));
+    switchPersonal($(this).attr('focus'));
 });
   
 //Switch
