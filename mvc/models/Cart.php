@@ -38,7 +38,7 @@ class Cart extends DB{
         $userId = $_SESSION['user']['id'];
         $query = 
         "INSERT INTO 
-        cart
+        carts
         (user_id, product_type_id, quantity)
         VALUES
         ( ?, ?, ?)";

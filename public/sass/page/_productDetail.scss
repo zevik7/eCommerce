@@ -109,7 +109,7 @@
                 display: flex;
                 align-items: center;
                 border-right: $border-light;
-                .product-type-title{
+                .type-title{
                     font-size: inherit;
                 }
             }
@@ -130,17 +130,21 @@
                 }
             }
         }
-        .product-quantity-title{
-            font-size: inherit;
-        }
-        .product-quantity-count__body{
-            display: flex;
-            align-items: center;
-            .carousel-quantity{
-                margin-right: 5px;
+        .product-quantity-count{
+            &__header{
+                .quantity-title{
+                    font-size: inherit;
+                }
             }
-            .product-quantity-count__text{
-                color: $text-color-light;
+            &__body{
+                display: flex;
+                align-items: center;
+                .carousel-quantity{
+                    margin-right: 5px;
+                }
+                .product-quantity-count__text{
+                    color: $text-color-light;
+                }
             }
         }
         .product-buy{
@@ -171,7 +175,7 @@
         }
         &__content{
             .content-title{
-                margin: 0;
+                font-size: 1.5rem;
             }
             .content-date{
                 margin: 5px 0;
@@ -315,13 +319,12 @@
     &__title{
         margin: 0;
         padding: 20px;
-        padding-bottom: 0;
+        padding-bottom: 10px;
         color: $text-color-light;
     }
     &-list__item{
         display: block;
         padding: 20px;
-        padding-bottom: 0;
         border-bottom: $border-light;
         &:first-of-type{
             padding-top: 0;
@@ -330,6 +333,7 @@
             width: 100%;
         }
         .price{
+            margin-top: 5px;
             color: $primary-color;
             font-size: 1.6rem;
             font-weight: 500;

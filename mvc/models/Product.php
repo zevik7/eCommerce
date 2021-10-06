@@ -182,10 +182,7 @@ class Product extends DB{
             "SELECT
             quantity as productQuantity
             from products pd
-            INNER JOIN product_types pt
-            ON pd.id = pt.product_id
-            WHERE product_category_id = ?
-            GROUP BY pd.id";
+            WHERE pd.product_category_id = ?";
 
         $result = $this->readDB($query, array($categoryId));
 

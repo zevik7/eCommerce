@@ -46,5 +46,20 @@ class ProductDetail extends Controller{
         else
             echo json_encode(['status' => 'error']);
     }
+    // function rmCart(){
+    //     // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
+    //     $data = json_decode(file_get_contents('php://input'));
+        
+    //     $addResult = 
+    //         $this->cartModel->addToCart(
+    //                 $data->productTypeId,
+    //                 $data->productTypeQty);
+    //     if ($addResult)
+    //     {
+    //         echo json_encode(['status' => 'success']);
+    //     }
+    //     else
+    //         echo json_encode(['status' => 'error']);
+    // }
 }
 ?>
