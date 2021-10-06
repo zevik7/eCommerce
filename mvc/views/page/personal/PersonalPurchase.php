@@ -74,7 +74,7 @@
                     <table class="purchases__list-table">
                         <tr class="purchases__row">
                             <td class="purchases__row-img">
-                                <img src="<?php echo $value['image_url'];?>" alt=""></div>
+                                <img src="<?php echo $value['imageUrl'];?>" alt=""></div>
                             </td>
                             <td class="purchases__row-content">
                                 <p class="purchases__row-title"><?php echo $value['productName']; ?></p>

@@ -1,11 +1,9 @@
 <?php
 namespace mvc\models;
-use mvc\models\traits\Filter;
 use mvc\core\DB;
 
 class Product extends DB{
 
-    use Filter;
     public $productId;
     public $shopId;
     public $productCategoryId;
@@ -19,92 +17,7 @@ class Product extends DB{
     public $productBrand; 
     public $productDate; 
     public $productRating;
-    /*
-        ---------Read, create for API------------
-    */
-    public function read_all(){
-        $query = 
-        "SELECT 
-            product.productId,
-            product.shopId,
-            productCategoryId,
-            productName, 
-            productQuantity, 
-            productDescription, 
-            productDiscount, 
-            productSource, 
-            productSendFrom, 
-            productSold, 
-            productBrand, 
-            productDate, 
-            productRating
-        FROM product";
-        $result = $this->readDB($query);
-        if ($result !== false)
-        {
-            return $result;
-        }
-        return ['message' => 'Empty'];
-    }
-
-    public function read_single(){
-        $query = 
-        "SELECT 
-            productId,
-            shopId,
-            productCategoryId,
-            productName, 
-            productQuantity, 
-            productDescription, 
-            productDiscount, 
-            productSource, 
-            productSendFrom, 
-            productSold, 
-            productBrand, 
-            productDate, 
-            productRating
-        FROM product
-        WHERE productId = ?";
-        $result = $this->readDB($query, array($this->productId));
-        if ($result !== false)
-        {
-            return $result;
-        }
-        return ['message' => 'Empty'];
-    }
     
-    public function insert(){
-        $currentDate = date("Y-m-d h:i:s");
-        $this->productDate = $currentDate;
-        $query =
-        "INSERT INTO product(
-                shopId,
-                productCategoryId,
-                productName, 
-                productDescription, 
-                productDiscount, 
-                productSource, 
-                productSendFrom, 
-                productBrand, 
-                productDate)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        $queryParams = array(
-            $this->shopId, 
-            $this->productCategoryId, 
-            $this->productName, 
-            $this->productDescription, 
-            $this->productDiscount, 
-            $this->productSource, 
-            $this->productSendFrom, 
-            $this->productBrand,                  
-            $this->productDate);
-        //Clean Data
-        // $this->cleanData($queryParams);
-        $result = $this->writeDB($query, $queryParams);
-        return $result;
-    }
-
-    /*-------For Web system-----------*/
     function select($query, $params = [])
     {
         $result = $this->readDB($query, $params);
@@ -117,24 +30,29 @@ class Product extends DB{
 
     public function getProducts($offset = 0, $productsQuantity = 0){
         $query =
-        "SELECT pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        pc.productCategoryId,
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.id as image_id,
-        img.url as image_url
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
+        "SELECT 
+        pd.id as productId, 
+        pd.name as productName,
+        pd.discount as productDiscount, 
+        pd.source as productSource, 
+        pd.sold as productSold, 
+        pd.brand as productBrand, 
+        pd.rating as productRating, 
+        pd.send_from as productSendFrom, 
+        pc.id as productCategoryId,
+        MIN(pt.price) as productTypePrice,
+        img.id as imageId,
+        img.url as imageUrl
+        FROM products pd
+        INNER JOIN product_categories pc
+        ON pd.product_category_id = pc.id
         INNER JOIN images img
         ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
+        INNER JOIN product_types pt
+        ON pt.id = pd.product_id
         WHERE img.type = 'thumb'
         AND img.imageable_type = 'product'
-        GROUP BY pd.productId
+        GROUP BY pd.id
         LIMIT ?, ?";
 
         $result = $this->readDB($query, array($offset, $productsQuantity));
@@ -143,48 +61,65 @@ class Product extends DB{
 
     public function getProduct($productId){
         $productQuery = 
-            "SELECT pd.productId, pd.productName,
-            pd.productDiscount, pd.productSource, 
-            pd.productSold, pd.productBrand, 
-            pd.productRating, pd.productSendFrom, 
-            pd.productDescription,
-            pd.productQuantity,
-            pc.productCategoryName
-            FROM product pd
-            LEFT JOIN product_category pc
-            ON pd.productCategoryId = pc.productCategoryId
-            WHERE pd.productId = '$productId'";
+            "SELECT 
+            pd.id as productId, 
+            pd.name as productName,
+            pd.discount as productDiscount, 
+            pd.source as productSource,
+            pd.sold as productSold, 
+            pd.brand as productBrand,
+            pd.rating as productRating, 
+            pd.send_from as productSendFrom,
+            pd.description as productDescription,
+            pd.quantity as productQuantity,
+            pc.name as productCategoryName
+            FROM products pd
+            LEFT JOIN product_categories pc
+            ON pd.product_category_id = pc.id
+            WHERE pd.id = '$productId'";
 
         $productTypeQuery = 
             "SELECT 
-            productTypeId, productTypeLabel,
-            productTypeName, productTypeQuantity,
-            productTypePrice, productFreightCost
-            FROM product_type
-            WHERE productId = '$productId'";
+            id as productTypeId, 
+            label as productTypeLabel,
+            name as productTypeName, 
+            quantity as productTypeQuantity,
+            price as productTypePrice, 
+            freight_cost as productFreightCost
+            FROM product_types
+            WHERE product_id = '$productId'";
 
         $productImageQuery = 
             "SELECT 
-            img.id, img.type, 
-            img.name, img.url as image_url, 
-            img.description 
+            img.id as imageId,
+            img.type as imageType,
+            img.name as imageName,
+            img.url as imageUrl,
+            img.description as imageDescription
             FROM images img
             WHERE img.imageable_id = '$productId'";
 
         $productRatingQuery =
-            "SELECT DISTINCT 
-            *, img.url as image_url
-            FROM product_rating pr
-            INNER JOIN product_type pt
-            ON pr.productTypeId = pt.productTypeId
-            INNER JOIN (
-                SELECT ur.userId, ur.userName
-                FROM ecommerce.user ur
-            ) ur
-            ON ur.userId = pr.userId
+            "SELECT
+            pr.id as productRatingId,
+            pr.product_type_id as productTypeId,
+            pr.user_id as userId,
+            pr.star as productRatingStar,
+            pr.comment as productRatingComment,
+            pr.date as productRatingDate,
+            pr.type as productRatingType,
+            pt.label as productTypeLabel,
+            pt.name as productTypeName,
+            ur.name as userName,
+            img.url as imageUrl
+            FROM product_ratings pr
+            INNER JOIN product_types pt
+            ON pr.product_type_id = pt.id
+            INNER JOIN users ur
+            ON ur.id = pr.user_id
             INNER JOIN images img
-            ON img.imageable_id = ur.userId
-            WHERE pt.productId ='$productId'
+            ON img.imageable_id = ur.id
+            WHERE pt.product_id ='1'
             AND img.imageable_type = 'user'
             AND img.type ='avatar'";
 
@@ -211,7 +146,11 @@ class Product extends DB{
     }
 
     public function getProductQuantity(){
-        $query = "SELECT productId FROM product_type GROUP BY productId";
+        $query = 
+            "SELECT 
+            product_id as productId 
+            FROM product_types 
+            GROUP BY product_id";
         $result = $this->readDB($query);
         if ($result !== false)
         {
@@ -223,10 +162,11 @@ class Product extends DB{
     public function getCategoryId($productId)
     {
         $query = 
-        "SELECT productCategoryId 
-        FROM product
-        WHERE productId = '$productId'
-        LIMIT 1";
+            "SELECT 
+            product_category_id as productCategoryId 
+            FROM products
+            WHERE id = '$productId'
+            LIMIT 1";
 
         $result = $this->readDB($query);
         if ($result !== false)
@@ -236,41 +176,16 @@ class Product extends DB{
         return '';
     }
 
-    public function getProductListByCategory($productCategoryId, $offset = 0, $productsQuantity = 0){
-        $query= 
-        "SELECT pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.id as image_id,img.url as image_url
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN images img
-        ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
-        WHERE img.type = 'thumb'
-        AND img.imageable_type = 'product'
-        AND pc.productCategoryId = '$productCategoryId'
-        GROUP BY pd.productId
-        ORDER BY pd.productSold DESC
-        LIMIT ?,?";
-        
-        $result = $this->readDB($query, array($offset,$productsQuantity));
-        
-        return $result;
-    }
-
     public function getProductQuantityByCategory($categoryId)
     {
         $query =
-        "SELECT * from product pd
-        INNER JOIN product_type pt
-        ON pd.productId = pt.productId
-        WHERE productCategoryId = ?
-        GROUP BY pd.productId";
+            "SELECT
+            quantity as productQuantity
+            from products pd
+            INNER JOIN product_types pt
+            ON pd.id = pt.product_id
+            WHERE product_category_id = ?
+            GROUP BY pd.id";
 
         $result = $this->readDB($query, array($categoryId));
 
@@ -280,169 +195,50 @@ class Product extends DB{
         return 0;
     }
 
-    public function getProductListByName($productName = '',$offset = 0, $productsQuantity = 0){
-        $query = 
-        "SELECT pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.id as image_id,
-        img.url as image_url
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN images img
-        ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
-        WHERE img.type = 'thumb'
-        AND img.imageable_type = 'product'
-        AND pd.productName LIKE '%$productName%'
-        GROUP BY pd.productId
-        LIMIT ?,?";
-
-        $result = $this->readDB($query, array( $offset, $productsQuantity));
-        
-        return $result;
-    }
-
     public function getProductQuantityByName($keyword = ''){
         $query = 
-        "SELECT * FROM product WHERE productName LIKE '%$keyword%'
-        GROUP BY productId";
+        "SELECT 
+        quantity as productQuantity 
+        FROM products 
+        WHERE name 
+            LIKE '%$keyword%'
+        GROUP BY id";
         
         $result = $this->readDB($query);
         return $result !== false ? count($result) : 0;
     }
 
-    function ASC($productName = '' , $offset = 0, $productsQuantity = 0  ){
-        $query = 
-        "SELECT pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.id as image_id,
-        img.url as image_url,
-        (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
+    public function getProductListByCategory($productCategoryId, $offset = 0, $productsQuantity = 0){
+        $query= 
+        "SELECT
+        pd.id as productId, 
+        pd.name as productName,
+        pd.discount as productDiscount, 
+        pd.source as productSource, 
+        pd.sold as productSold, 
+        pd.brand as productBrand, 
+        pd.rating as productRating, 
+        pd.send_from as productSendFrom, 
+        MIN(pt.price) as productTypePrice,
+        img.id as imageId,
+        img.url as imageUrl
+        FROM products pd
+        INNER JOIN product_categories pc
+        ON pd.product_category_id = pc.id
         INNER JOIN images img
-        ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
+        ON img.imageable_id = pd.id
+        INNER JOIN product_types pt
+        ON pt.product_id = pd.id
         WHERE img.type = 'thumb'
         AND img.imageable_type = 'product'
-        AND pd.productName LIKE '%$productName%'
-        GROUP BY pd.productId
-        ORDER BY productSalePrice ASC
+        AND pc.id = '$productCategoryId'
+        GROUP BY pd.id
+        ORDER BY pd.sold DESC
         LIMIT ?,?";
-
-        $result = $this->readDB($query, array( $offset, $productsQuantity));
-        if ($result !== false)
-        {
-            return json_encode($result);
-        }
-        return json_encode([]);
-    }
-
-    function DESC($productName = '' , $offset = 0, $productsQuantity = 0  ){
-        $query = 
-        "SELECT pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.id as image_id,
-        img.url as image_url,
-        (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN images img
-        ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
-        WHERE img.type = 'thumb'
-        AND img.imageable_type = 'product'
-        AND pd.productName LIKE '%$productName%'
-        GROUP BY pd.productId
-        ORDER BY productSalePrice DESC
-        LIMIT ?,?";
-
-        $result = $this->readDB($query, array( $offset, $productsQuantity));
-        if ($result !== false)
-        {
-            return json_encode($result);
-        }
-        return json_encode([]);
-    }
-
-    function SOLDE($productName = '' , $offset = 0, $productsQuantity = 0  ){
-        $query = 
-        "SELECT pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.id as image_id,
-        img.url as image_url,
-        (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN images img
-        ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
-        WHERE img.type = 'thumb'
-        AND img.imageable_type = 'product'
-        AND pd.productName LIKE '%$productName%'
-        GROUP BY pd.productId
-        ORDER BY pd.productSold DESC
-        LIMIT ?,?";
-
-        $result = $this->readDB($query, array( $offset, $productsQuantity));
-        if ($result !== false)
-        {
-            return json_encode($result);
-        }
-        return json_encode([]);
-    }
-
-    function NEW($productName = '' , $offset = 0, $productsQuantity = 0  ){
-        $query = 
-        "SELECT pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom, 
-        pd.productDate,
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.id as image_id,
-        img.url as image_url,
-        (MIN(pt.productTypePrice) - ( MIN(pt.productTypePrice)*pd.productDiscount)) AS productSalePrice
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
-        INNER JOIN images img
-        ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
-        WHERE img.type = 'thumb'
-        AND img.imageable_type = 'product'
-        AND pd.productName LIKE '%$productName%'
-        GROUP BY pd.productId
-        ORDER BY pd.productDate DESC
-        LIMIT ?,?";
-
-        $result = $this->readDB($query, array( $offset, $productsQuantity));
-        if ($result !== false)
-        {
-            return json_encode($result);
-        }
-        return json_encode([]);
+        
+        $result = $this->readDB($query, array($offset,$productsQuantity));
+        
+        return $result;
     }
 }
 ?>

@@ -13,7 +13,7 @@
             </span>
         </div>
         <div class="head-cart__box">
-            <h3 class="head-cart__title title">Sản phẩm đã thêm</h3>
+            <h3 class="head-cart__title title-reset">Sản phẩm đã thêm</h3>
             <?php
                 // Load cart data
                 if (isset($cartData)) 
@@ -26,12 +26,13 @@
                     ?>
                         <li class="head-cart__item">
                             <div class="item-img">
-                                <img src="<?php echo $value['image_url'];?>" alt="">
+                                <img src="<?php echo $value['imageUrl'];?>" alt="">
                             </div>
                             <div class="item-info">
                                 <div class="item-info__header">
-                                    <h5 class="item-info__title title-sm">
-                                        <?php echo $value['productName'];?></h5>
+                                    <h5 class="item-info__title title-reset">
+                                        <?php echo $value['productName'];?>
+                                    </h5>
                                     <span class="item-info__price">
                                         Giá: 
                                         <?php 
@@ -55,7 +56,7 @@
                     ?>
                 </ul>
                 <div class="head-cart__pay-btn">
-                    <a href="./order" class="title-sm">
+                    <a href="./order" class="title-reset">
                         Thanh toán
                     </a>
                 </div>    
@@ -65,7 +66,7 @@
             ?>
                 <!-- Empty Cart -->
                 <div class="head-cart__empty">
-                    <img class ="title-sm" src="public/img/system/emptycart.png" alt="Empty Cart" >
+                    <img class ="title-reset" src="public/img/system/emptycart.png" alt="Empty Cart" >
                     <p>
                         Giỏ hàng của bạn đang trống
                     </p>

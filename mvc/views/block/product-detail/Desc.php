@@ -1,6 +1,6 @@
 <div class="desc">
     <div class="desc__header">
-        <h2 class="desc__title title-lg">Chi tiết sản phẩm</h2>
+        <h2 class="desc__title title-reset">Chi tiết sản phẩm</h2>
         <div class="desc__box">
             <div class="desc__row">
                 <h3 class="row-title">Danh mục</h3>
@@ -33,7 +33,7 @@
         </div> 
     </div>
     <div class="desc__body">
-        <div class="desc__title title-lg">Mô tả sản phầm</div>
+        <div class="desc__title">Mô tả sản phầm</div>
         <div class="desc__box">
             <p class="desc__content">
                 <?php echo $product['productDescription'];?>

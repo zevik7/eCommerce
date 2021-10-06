@@ -13,7 +13,7 @@
                     <div class="letter-line">
                     </div>
                     <div class="order-success__info">
-                        <h2 class="order-success-body__title title-lg title-reset">
+                        <h2 class="order-success-body__title title-reset">
                             Đơn hàng đã được đặt thành công
                         </h2>
                         <p class="order-success-body__status">

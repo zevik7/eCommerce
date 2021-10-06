@@ -5,25 +5,29 @@ use mvc\core\DB;
 
 class Cart extends DB{
     public function getCart(){
-        $userId = $_SESSION['user']['id'];
+        $userId = 0;
+        if (isset($_SESSION['user']['id']))
+        {
+            $userId = $_SESSION['user']['id'];
+        }
         $query = 
             "SELECT
-            ca.productTypeId, 
-            ca.cartQuantity, 
-            ca.cartDate, 
-            pt.productTypeName, 
-            pt.productTypePrice,
-            pd.productName,
-            pd.productDiscount,
-            img.url as image_url
-            FROM ecommerce.cart ca
-            INNER JOIN product_type pt
-            ON pt.productTypeId = ca.productTypeId
-            INNER JOIN product pd
-            ON pt.productId = pd.productId
+            ca.product_type_id as productTypeId, 
+            ca.quantity as cartQuantity, 
+            ca.date as cartDate, 
+            pt.name as productTypeName, 
+            pt.price as productTypePrice,
+            pd.name as productName,
+            pd.discount as productDiscount,
+            img.url as imageUrl
+            FROM ecommerce.carts ca
+            INNER JOIN product_types pt
+            ON pt.id = ca.product_type_id
+            INNER JOIN products pd
+            ON pt.product_id = pd.id
             INNER JOIN images img
-            ON pd.productId = img.imageable_id
-            WHERE ca.userId = ?
+            ON pd.id = img.imageable_id
+            WHERE ca.user_id = ?
             AND img.type = 'thumb'
             AND img.imageable_type = 'product'";
         $result = $this->readDB($query, [$userId]);
@@ -35,7 +39,7 @@ class Cart extends DB{
         $query = 
         "INSERT INTO 
         cart
-        (userId, ProductTypeId, cartQuantity)
+        (user_id, product_type_id, quantity)
         VALUES
         ( ?, ?, ?)";
         $result = $this->writeDB($query, [$userId, $typeId, $quantity]);

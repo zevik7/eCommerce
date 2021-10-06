@@ -16,7 +16,6 @@ class Personal extends Controller{
     public function load(){
         $this->view('Main',[
             'Page' => 'Personal',
-            'User' => $this->userModel->getUser(),
         ]);
     }
 
@@ -154,32 +153,36 @@ class Personal extends Controller{
 
     function purchase(){
         $query =
-            "  SELECT 
-            od.orderId, od.orderDetailId, pt.productTypeId, o.orderDate,
-            pd.productName, pt.productTypeName, sp.shopName,
-            img.url as image_url, o.orderStatus,
-            od.orderDetailPrice, od.orderDetailQuantity
-            FROM order_detail od
-            INNER JOIN ecommerce.`order` o
-            ON od.orderId = o.orderId
-            INNER JOIN product_type pt
-            ON od.productTypeId = pt.productTypeId
-            INNER JOIN product pd
-            ON pd.productId = pt.productId
-            INNER JOIN shop sp
-            ON pd.shopId = sp.shopId 
+            "SELECT 
+            od.order_id as orderId, 
+            od.id as orderDetailId, 
+            pt.id as productTypeId, 
+            o.date as orderDate,
+            pd.name as productName, 
+            pt.name as productTypeName, 
+            img.url as imageUrl, 
+            o.status as orderStatus,
+            od.price as orderDetailPrice, 
+            od.quantity as orderDetailQuantity
+            FROM order_details od
+            INNER JOIN ecommerce.`orders` o
+            ON od.order_id = o.id
+            INNER JOIN product_types pt
+            ON od.product_type_id = pt.id
+            INNER JOIN products pd
+            ON pd.id = pt.product_id
             INNER JOIN images img
-            ON img.imageable_id = pd.productId
+            ON img.imageable_id = pd.id
             WHERE img.`type` = 'thumb'";
        
         // // Order Status
         if (isset($_GET['status']))
         {
             $status = $_GET['status'];
-            $query = $query . " AND o.orderStatus = '$status'";
+            $query = $query . " AND o.status = '$status'";
         }
 
-        $query = $query . "AND o.userId = " . $_SESSION['user']['id'] . " order BY o.orderDate DESC";
+        $query = $query . "AND o.user_id = " . $_SESSION['user']['id'] . " order BY o.date DESC";
 
         $purchaseData = json_encode($this->purchaseModel->select($query));
 

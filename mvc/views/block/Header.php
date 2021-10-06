@@ -18,11 +18,11 @@
                     <i class="fas fa-bell"></i> Thông báo
                 </a>
                 <div class="nav-noti">
-                    <h3 class="nav-noti__title-main title-sm">Các thông báo vừa nhận</h3>
+                    <h3 class="nav-noti__title-main title-reset">Các thông báo vừa nhận</h3>
                     <ul class="nav-noti__list">
                         <li class="nav-noti__item">
                             <a href="" class="nav-noti__link">
-                                <img class="nav-noti__img" src="public/img/product/giaybitas.jpg" alt="" >
+                                <img class="nav-noti__img" src="public/img/giaybitas.jpg" alt="" >
                                 <div class="nav-noti__infor">
                                     <h4 class="nav-noti__title">Khuyến mãi giày 30% cho tất cả giày Bitis Khuyến mãi giày 30% cho tất cả giày Bitis Khuyến mãi giày 30% cho tất cả giày Bitis< Khuyến mãi giày 30% cho tất cả giày Bitis</h4>
                                     <p class="nav-noti__descrip">Chương trình khyến mãi duy nhất hôm nayyyyyyyyyyyyyyyyyyyyyy</p>
@@ -31,7 +31,7 @@
                         </li>
                     </ul>
                     <div class="nav-noti__footer">
-                        <a href="#" class="more title-sm">Xem thêm</a>
+                        <a href="#" class="more title-reset">Xem thêm</a>
                     </div>
                 </div>
             </li>
@@ -90,7 +90,7 @@
                 </form>
                 <div class="head-history">
                     <div class="head-history__header js-head-history__header">
-                        <h5 class="head-history__title title-sm">Lịch sử tìm kiếm</h5>
+                        <h5 class="head-history__title title-reset">Lịch sử tìm kiếm</h5>
                         <div class="head-history__delete-btn">
                             <i class="fas fa-times"></i>
                         </div>

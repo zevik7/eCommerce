@@ -1,5 +1,5 @@
 <nav class="category-bar">
-    <h3 class="category-bar__title title">
+    <h3 class="category-bar__title title-reset">
         <i class="far fa-list-alt category-header__icon"></i> Danh mục hàng
     </h3>
     <ul id="category-bar__list" class="category-bar__list" 

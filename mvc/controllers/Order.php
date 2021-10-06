@@ -7,12 +7,10 @@ use mvc\models\Cart;
 
 class Order extends Controller{
     protected $productModel;
-    protected $shopModel;
     protected $cartModel;
     //General params
     protected $productId;
     function __construct(){
-        $this->shopModel = new Shop();
         $this->productModel = new Product();
         $this->cartModel = new Cart();
     }

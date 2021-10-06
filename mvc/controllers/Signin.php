@@ -17,11 +17,12 @@ class Signin extends Controller{
             if ($result !== false) {
                 echo json_encode(['status' => 'success', 'message' => 'Đăng nhập thành công']);
                 $_SESSION['user'] = [
-                                    'id' => $result['userId'],
-                                    'name' => $result['userName'], 
-                                    'avatar' => $result['image_url'],
-                                    'email' => $result['userEmail'],
-                                    'phone' => $result['userPhone']
+                                    'id' => $result['id'],
+                                    'name' => $result['name'], 
+                                    'avatar' => $result['url'],
+                                    'email' => $result['email'],
+                                    'phone' => $result['phone'],
+                                    'address' => $result['address']
                                 ];
             }
             else{

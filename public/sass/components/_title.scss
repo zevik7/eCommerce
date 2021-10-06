@@ -1,22 +1,5 @@
-/* Title */
-.title{
-    margin: 8px 0;
-    font-size: 1.8rem;
-}
-.title-lg{
-    margin: 10px 0;
-    font-size: 2rem;
-}
-.title-sm{
-    margin: 4px 0;
-    font-size: 1.6rem;
-}
-.title, .title-lg, .title-sm{
-    display: block;
-    font-weight: 400;
-    color: $text-color;
-}
 .title-reset{
     margin-top: 0;
     margin-bottom: 0;
+    font-weight: 400;
 }

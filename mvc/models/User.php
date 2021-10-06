@@ -13,7 +13,8 @@ class User extends DB{
     public function getUser(){
         if (isset($_SESSION['user'])){
             $account = $_SESSION['user']['email'];
-            $query = "SELECT * FROM user WHERE userEmail = ?";
+            $query = 
+                "SELECT * FROM users WHERE email = ?";
             $param = array ($account);
             $result = $this->readDB($query, $param);
             if ($result != false){
@@ -27,7 +28,10 @@ class User extends DB{
     }
     // Check xem tài khoản có tồn tại hay không
     public function checkValidUser($userAccount){
-        $query = "SELECT * FROM user WHERE userEmail = ? or userPhone = ?";
+        $query = 
+            "SELECT id 
+            FROM users
+            WHERE email = ? or phone = ?";
         $param = array ($userAccount, $userAccount);
         $result = $this->readDB($query, $param);
         if ($result != false){
@@ -38,7 +42,10 @@ class User extends DB{
         }
     }
     public function insertNewUser($userEmail, $userPhone, $userPassword, $userName){
-        $query ='INSERT INTO user( userEmail, userPhone, userPassword, userName)  VALUES (?,?, ?, ?)';
+        $query =
+            "INSERT INTO 
+                users (email, phone, password, name)  
+            VALUES (?, ?, ?, ?)";
         $param = array ($userEmail, $userPhone, $userPassword, $userName);
         $result = $this->writeDB($query, $param);
         if ($result)
@@ -51,30 +58,34 @@ class User extends DB{
     }
     public function loginCheck($userAccount, $userPassword){
         $query = 
-        "SELECT 
-        userName, userId, 
-        userEmail, userPhone,
-        img.url as image_url
-        FROM user
-        INNER JOIN images img
-        ON img.imageable_id = userId
-        WHERE (userPhone = ? OR userEmail = ?) 
-        AND userPassword = ?
-        AND img.imageable_type = 'user'
-        AND img.type = 'avatar'
-        LIMIT 1";
+            "SELECT 
+            name,
+            id.
+            email, 
+            phone,
+            address,
+            img.url
+            FROM users
+            INNER JOIN images img
+            ON img.imageable_id = userId
+            WHERE (phone = ? OR email = ?) 
+            AND password = ?
+            AND img.imageable_type = 'user'
+            AND img.type = 'avatar'
+            LIMIT 1";
         $param = array($userAccount, $userAccount, $userPassword);
         $result = $this->readDB($query, $param);
         return $result[0];
     }
     public function editProfile($userName, $userAvatar, $userAccount){
-        $query = " UPDATE user SET userName = ? ";
+        $query = 
+            " UPDATE users SET name = ? ";
         $param = array ($userName);
-        if($userAvatar != ''){
-            $query = $query . ", userAvatar = ? ";
-            array_push($param, $userAvatar);
-        }
-        $query = $query . "WHERE userEmail = ?";
+        // if($userAvatar != ''){
+        //     $query = $query . ", avatar = ? ";
+        //     array_push($param, $userAvatar);
+        // }
+        $query = $query . "WHERE email = ?";
         array_push($param, $userAccount);
         $result = $this->writeDB($query, $param);
         if ($result)
@@ -88,7 +99,8 @@ class User extends DB{
 
     public function updateAccount($userEmail, $userPhone, $userAccount){
         if($userEmail != '' && $userPhone == ''){
-            $query = "UPDATE user SET userEmail = ? WHERE userPhone = ?";
+            $query = 
+                "UPDATE users SET email = ? WHERE phone = ?";
             $param = array ($userEmail, $userAccount);
             $result = $this->writeDB($query, $param);
             if ($result)
@@ -100,7 +112,8 @@ class User extends DB{
             }
         }
         if($userEmail == '' && $userPhone != '') {
-            $query = "UPDATE user SET userPhone = ? WHERE userEmail = ?";
+            $query = 
+                "UPDATE users SET phone = ? WHERE email = ?";
             $param = array ($userPhone, $userAccount);
             $result = $this->writeDB($query, $param);
             if ($result)
@@ -114,7 +127,8 @@ class User extends DB{
         
     }
     public function updatePassword($new_userPassword, $userAccount){
-        $query = "UPDATE user SET userPassword = ? WHERE userEmail = ? OR  userPhone = ?";
+        $query = 
+            "UPDATE users SET password = ? WHERE email = ? OR  phone = ?";
         $param = array ($new_userPassword, $userAccount, $userAccount);
         $result = $this->writeDB($query, $param);
         if ($result)
@@ -127,7 +141,8 @@ class User extends DB{
         
     }
     public function updateAddress($userAddress, $userAccount){
-        $query = "UPDATE user SET userAddress = ? WHERE userEmail = ?";
+        $query = 
+            "UPDATE users SET address = ? WHERE email = ?";
         $param = array ($userAddress, $userAccount);
         $result = $this->writeDB($query, $param);
         if ($result)
