@@ -59,15 +59,15 @@ class User extends DB{
     public function loginCheck($userAccount, $userPassword){
         $query = 
             "SELECT 
-            name,
-            id.
-            email, 
+            ur.name,
+            ur.id,
+            email,
             phone,
             address,
             img.url
-            FROM users
+            FROM users ur
             INNER JOIN images img
-            ON img.imageable_id = userId
+            ON img.imageable_id = ur.id
             WHERE (phone = ? OR email = ?) 
             AND password = ?
             AND img.imageable_type = 'user'
