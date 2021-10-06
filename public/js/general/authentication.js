@@ -221,6 +221,5 @@ let validatorSignin = $("#js-modal-signin").validate({
             }
 
         });
-        console.log($(form).serialize());
     }
 })
