@@ -1,7 +1,7 @@
 <div class="grid">
     <div class="row">
         <div class="col-10-2">
-            <h3 class="footer__heading title">Giới thiệu</h3>
+            <h3 class="footer__heading title-reset">Giới thiệu</h3>
             <ul class="footer__list">
                 <li class="footer__item">
                     <a href="" class="footer__link">Chúng tôi là ai</a>
@@ -18,7 +18,7 @@
             </ul>
         </div>
         <div class="col-10-2">
-            <h3 class="footer__heading title">Chăm sóc khách hàng</h3>
+            <h3 class="footer__heading title-reset">Chăm sóc khách hàng</h3>
             <ul class="footer__list">
                 <li class="footer__item">
                     <a href="" class="footer__link">Trung tâm trợ giúp</a>
@@ -32,7 +32,7 @@
             </ul>
         </div>
         <div class="col-10-2">
-            <h3 class="footer__heading title">Điều khoản sử dụng</h3>
+            <h3 class="footer__heading title-reset">Điều khoản sử dụng</h3>
             <ul class="footer__list">
                 <li class="footer__item">
                     <a href="" class="footer__link">Chính sách bảo mật</a>
@@ -49,7 +49,7 @@
             </ul>
         </div>
         <div class="col-10-2">
-            <h3 class="footer__heading title">Liên hệ chúng tôi</h3>
+            <h3 class="footer__heading title-reset">Liên hệ chúng tôi</h3>
             <ul class="footer__list">
                 <li class="footer__item">
                     <a href="" class="footer__link">
@@ -69,7 +69,7 @@
             </ul>
         </div>
         <div class="col-10-2">
-            <h3 class="footer__heading title">Vào của hàng trên ứng dụng</h3>
+            <h3 class="footer__heading title-reset">Vào của hàng trên ứng dụng</h3>
             <ul class="footer__list">
                 <li class="footer__item">
                     <a href="" class="footer__link">

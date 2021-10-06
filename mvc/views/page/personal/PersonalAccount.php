@@ -1,5 +1,4 @@
 <div id="account" class="personal-body">
-    <?php $value = json_decode($data['User'], true)[0]; ?>
     <div class="profile account">
         <div class="account__header-2line">
             <h2>Hồ Sở Của Tôi</h2>
@@ -15,7 +14,7 @@
                                     <p class="profile__edit-title">Tên Đăng Nhập</p>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="profile-username" class="input" value="<?php echo $value['userName'];?>">
+                                    <input type="text" name="profile-username" class="input" value="<?php echo $_SESSION['user']['name'];?>">
                                 </div>
 
                                 <div class="col-4">
@@ -23,7 +22,7 @@
                                 </div>
                                 <div class="col-8"> 
                                     <div style="display: flex;">
-                                        <p class="js-get-email profile__edit-email"><?php echo $value['userEmail'];?></p>
+                                        <p class="js-get-email profile__edit-email"><?php echo $_SESSION['user']['email'];?></p>
                                         <p id="profile__edit-change" class="profile__edit-change" href=".update-email">Thay Đổi</p>
                                     </div>
                                 </div>
@@ -33,7 +32,7 @@
                                 </div>
                                 <div class="col-8"> 
                                     <div style="display: flex;">
-                                        <p class="js-get-phone profile__edit-phone"><?php echo $value['userPhone'];?></p>
+                                        <p class="js-get-phone profile__edit-phone"><?php echo $_SESSION['user']['phone'];?></p>
                                         <p id="profile__edit-change-2" class="profile__edit-change" href=".update-phone">Thay Đổi</p>
                                     </div>
                                 </div>
@@ -50,7 +49,7 @@
                     
                     <div class="col-4">
                         <div class="profile__avatar">
-                            <img src="<?php echo $value['userAvatar'];?>" alt="" id="personal-avatar" class="profile__avatar-img">
+                            <img src="<?php echo $_SESSION['user']['avatar'];?>" alt="" id="personal-avatar" class="profile__avatar-img">
                             <label class="profile__avatar-label btn btn-second" for="avatar-upload">Chọn Ảnh</label>
                             <input id="avatar-upload" name="personal-image" type="file" class="profile__avatar-upload">
                             <div class="profile__avatar-note">
@@ -103,7 +102,7 @@
                         <p>Địa Chỉ Hộp Thư</p>
                     </div>
                     <div class="col-8"> 
-                        <span><?php echo $value['userEmail'];?></span>
+                        <span><?php echo $_SESSION['user']['email'];?></span>
                     </div>
                 </div>
 
@@ -165,7 +164,7 @@
                         <p>Số Điện Thoại</p>
                     </div>
                     <div class="col-8"> 
-                        <span><?php echo $value['userPhone'];?></span>
+                        <span><?php echo $_SESSION['user']['phone'];?></span>
                     </div>
                 </div>
                 <form  class="update-phone__form-change">
@@ -211,12 +210,12 @@
             <button id="js-user-address__add" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Thêm Địa Chỉ Mới</button>
         </div>
         <div class="address__body mt-10">
-            <?php if($value['userAddress'] == ""): ?>
+            <?php if($_SESSION['user']['address'] == ""): ?>
               <p>Bạn chưa có địa chỉ</p>
 
             <?php
                 else: 
-                    $str = $value['userAddress'];
+                    $str = $_SESSION['user']['address'];
                     $index = strpos($str,"/");
             ?>
             <div class="grid">

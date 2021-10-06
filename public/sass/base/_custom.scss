@@ -1,6 +1,7 @@
 html {
     box-sizing: border-box;
 }
+
 * {
     box-sizing: inherit;
     -webkit-box-sizing: inherit;
@@ -8,16 +9,19 @@ html {
     -ms-box-sizing: inherit;
     -o-box-sizing: inherit;
 }
+
 ul{
     margin-top: 0;
     margin-bottom: 0;
     padding-left: 0;
     list-style: none;
 }
+
 a, input{
     color: inherit;
     text-decoration: none;
 }
+
 .disable-select {
     user-select: none; /* supported by Chrome and Opera */
    -webkit-user-select: none; /* Safari */

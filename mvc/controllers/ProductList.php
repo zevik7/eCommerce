@@ -31,22 +31,26 @@ class ProductList extends Controller{
         $productQuantity = $this->productModel->getProductQuantity();
         $query =
         " SELECT 
-        pd.productId, pd.productName,
-        pd.productDiscount, pd.productSource, 
-        pd.productSold, pd.productBrand, 
-        pd.productRating, pd.productSendFrom,
-        MIN(pt.productTypePrice) as productTypePrice,
-        img.url as image_url
-        FROM product pd
-        INNER JOIN product_category pc
-        ON pd.productCategoryId = pc.productCategoryId
+        pd.id as productId, 
+        pd.name as productName,
+        pd.discount as productDiscount, 
+        pd.source as productSource, 
+        pd.sold as productSold, 
+        pd.brand as productBrand, 
+        pd.rating as productRating, 
+        pd.send_from as productSendFrom,
+        MIN(pt.price) as productTypePrice,
+        img.url as imageUrl
+        FROM products pd
+        INNER JOIN product_categories pc
+        ON pd.product_category_id = pc.id
         INNER JOIN images img
-        ON img.imageable_id = pd.productId
-        INNER JOIN product_type pt
-        ON pt.productId = pd.productId
+        ON img.imageable_id = pd.id
+        INNER JOIN product_types pt
+        ON pt.product_id = pd.id
         WHERE img.type = 'thumb'
         AND img.imageable_type = 'product'
-        AND img.imageable_id = pd.productId";
+        AND img.imageable_id = pd.id";
 
         // Search
         if (isset($_GET['search']))
@@ -55,7 +59,7 @@ class ProductList extends Controller{
             $productQuantity = $this->productModel->getProductQuantityByName($keyword);
             if( $productQuantity > 0){
                 $_SESSION['search'] = 'found';
-                $query = $query . " AND pd.productName LIKE '%$keyword%' ";
+                $query = $query . " AND pd.name LIKE '%$keyword%' ";
             }
             else {
                 $productQuantity = $this->productModel->getProductQuantity();
@@ -67,12 +71,12 @@ class ProductList extends Controller{
         if (isset($_GET['category']))
         {
             $categoryId = $_GET['category'];
-            $query = $query . " AND pc.productCategoryId = $categoryId ";
+            $query = $query . " AND pc.id = $categoryId ";
             $productQuantity = $this->productModel->getProductQuantityByCategory($categoryId);
         }
 
         // Group by
-        $query = $query . " GROUP BY pd.productId ";
+        $query = $query . " GROUP BY pd.id ";
 
         // Filter
         if (isset($_GET['filter']))
@@ -80,18 +84,18 @@ class ProductList extends Controller{
             $filter = $_GET['filter'];
             switch ($filter) {
                 case 'newest':
-                    $query = $query . " ORDER BY pd.productDate DESC ";
+                    $query = $query . " ORDER BY pd.date DESC ";
                     break;
                 case 'selling':
-                    $query = $query . " ORDER BY pd.productSold DESC ";
+                    $query = $query . " ORDER BY pd.sold DESC ";
                     break;
                 case 'price-asc':
                     $query = 
-                        $query . " ORDER BY pt.productTypePrice ASC";
+                        $query . " ORDER BY pt.price ASC";
                     break;
                 case 'price-desc':
                     $query = 
-                        $query . " ORDER BY pt.productTypePrice DESC";
+                        $query . " ORDER BY pt.price DESC";
                     break;
                 
                 default:

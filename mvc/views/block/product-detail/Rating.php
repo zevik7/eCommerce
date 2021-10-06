@@ -1,8 +1,8 @@
 <div class="product-rating">
-    <h2 class="product-rating__header title-lg">Đánh giá sản phẩm</h2>
+    <h2 class="product-rating__header title-reset">Đánh giá sản phẩm</h2>
     <div class="product-rating__overview">
         <div class="product-rating-overview__header">
-            <h3 class="overview-title title-lg">
+            <h3 class="overview-title title-reset">
                 <span class="overview-score">4.8</span>
                 trên 5
             </h3>

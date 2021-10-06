@@ -2,9 +2,6 @@
 //@import 'abstracts/functions';
 //@import 'abstracts/mixins';
 
-//@import 'vendors/bootstrap-customize';
-//@import 'vendors/jquery-ui';  
-
 @import 'base/reset';
 @import 'base/typography';
 @import 'base/animation';
@@ -15,30 +12,22 @@
 @import 'components/button';
 // @import 'components/carousel';
 @import 'components/slider';
-//@import 'components/search';
 @import 'components/input';
 @import 'components/notification';
-@import 'components/image';
+@import 'components/svg';
 @import 'components/text';
-@import 'components/user';
-
+@import 'components/modal';
 
 @import 'layout/grid';
 @import 'layout/header';
 @import 'layout/footer';
 @import 'layout/pagination';
-@import 'layout/modal';
-//@import 'layout/manager';
-// @import 'layout/sidebar';
-// @import 'layout/forms';
 
-@import 'page/product-list';
-@import 'page/product';
+@import 'page/productList';
+@import 'page/productDetail';
 @import 'page/personal';
 @import 'page/order';
 @import 'page/orderSuccess';
-// @import 'pages/about';
-// @import 'pages/contact';
 
 // @import 'themes/theme';
 // @import 'themes/admin';

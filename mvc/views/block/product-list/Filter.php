@@ -1,5 +1,5 @@
 <div class="filter">
-    <span class="filter__title title-sm">Sắp xếp theo</span>
+    <span class="filter__title">Sắp xếp theo</span>
     <ul class="filter__list">
         <li class="filter__item 
         <?php if(!isset($_GET['filter'])) echo "active";?>">

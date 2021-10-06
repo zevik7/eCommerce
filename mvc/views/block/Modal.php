@@ -4,8 +4,8 @@
         <div class="modal-body__form">
             <form id="js-modal-signup" class="modal-form" name="modal-signup" role="dialog">
                 <div class="modal-form__header">
-                    <h3 class="title">Đăng ký</h3>
-                    <a class="js-show-signin switch title-sm">Đăng nhập</a>
+                    <h3 class="title-reset">Đăng ký</h3>
+                    <a class="js-show-signin switch title-reset">Đăng nhập</a>
                 </div>
                 <div class="socials">
                     <a href="" class="facebook-auth">
@@ -56,8 +56,8 @@
             </form>
             <form id="js-modal-signin" class="modal-form" name="modal-signin">
                 <div class="modal-form__header">
-                    <h3 class="title">Đăng nhập</h3>
-                    <a class="js-show-signup switch title-sm">Đăng ký</a>
+                    <h3 class="title-reset">Đăng nhập</h3>
+                    <a class="js-show-signup switch title-reset">Đăng ký</a>
                 </div>
                 <div class="socials">
                     <a href="" class="facebook-auth">

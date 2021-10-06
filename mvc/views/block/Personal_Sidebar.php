@@ -2,10 +2,9 @@
     <nav class="personal-sidebar">
 
         <div class="personal-sidebar__header">
-            <?php $value = json_decode($data['User'], true)[0]; ?>
-            <img src="<?php echo $value['userAvatar'];?>" alt="" class="personal-sidebar__avatar js-trigger-profile" >
+            <img src="<?php echo $_SESSION['user']['avatar'];?>" alt="" class="personal-sidebar__avatar js-trigger-profile" >
             <div class="personal-sidebar__profile"  >
-                <h3 class="username"><?php echo $value['userName'];?></h3>
+                <h3 class="username"><?php echo $_SESSION['user']['name'];?></h3>
                 <div class="edit js-trigger-profile"><i class="fas fa-pen"></i> Sửa Hồ Sơ</div>
             </div>
         </div>

@@ -6,6 +6,7 @@
     padding: 15px;
     background-color: $background-color-white;
     border-radius: $border-radius;
+    font-size: 1.4rem;
     &__content{
         padding: 10px;
         .product-title{
@@ -74,6 +75,9 @@
                 .freight-icon{
                     margin-right: 4px;
                 }
+                .freight-title{
+                    font-size: inherit;
+                }
             }
             &__body{
                 padding: 0 20px;
@@ -105,6 +109,9 @@
                 display: flex;
                 align-items: center;
                 border-right: $border-light;
+                .product-type-title{
+                    font-size: inherit;
+                }
             }
             &__body{
                 .list-type{
@@ -122,6 +129,9 @@
                     
                 }
             }
+        }
+        .product-quantity-title{
+            font-size: inherit;
         }
         .product-quantity-count__body{
             display: flex;
@@ -199,10 +209,10 @@
 .product-desc{
     .desc{
         .desc__title{
-            margin: 0;
             padding: 14px;
             text-transform: uppercase;
             font-weight: 500;
+            font-size: 1.6rem;
             background-color: $background-color-transparent;
         }
         .desc__box{
@@ -225,8 +235,10 @@
 }
 .product-rating{
     &__header{
+        padding-bottom: 18px;
         text-transform: uppercase;
         font-weight: 500;
+        font-size: 1.8rem;
     }
     &__overview{
         display: flex;
@@ -240,6 +252,7 @@
                 margin-top: 0;
                 color: $primary-color;
                 font-weight: 500;
+                font-size: 1.6rem;
                 text-align: center;
                 white-space: nowrap;
                 .overview-score{
@@ -298,7 +311,7 @@
         }
     }
 }
-.suggestion{
+.recommend{
     &__title{
         margin: 0;
         padding: 20px;
@@ -310,6 +323,9 @@
         padding: 20px;
         padding-bottom: 0;
         border-bottom: $border-light;
+        &:first-of-type{
+            padding-top: 0;
+        }
         img{
             width: 100%;
         }

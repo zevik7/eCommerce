@@ -6,7 +6,7 @@
                 {
             ?>
                 <li>
-                    <img src="<?php echo $value['image_url'];?>" alt=""  title="" data-description="" />
+                    <img src="<?php echo $value['imageUrl'];?>" alt=""  title="" data-description="" />
                 </li>
             <?php
                 }
@@ -18,7 +18,7 @@
                 {
             ?>
                 <li>
-                    <img src="<?php echo $value['image_url'];?>" alt=""  title=""/>
+                    <img src="<?php echo $value['imageUrl'];?>" alt=""  title=""/>
                 </li>
             <?php
                 }

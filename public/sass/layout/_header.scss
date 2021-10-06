@@ -139,8 +139,7 @@ $height-nav: 40px;
     }
 
     &__title-main{
-        margin: 0;
-        padding: 4px;
+        padding: 6px 0;
         text-align: center;
         color: $text-color-light;
         border-bottom: $border-light;
@@ -170,7 +169,7 @@ $height-nav: 40px;
         margin: 0;
         height: $height-item*0.6;
         line-height:  $height-item*0.3;
-        font-weight: 600;
+        font-weight: 500;
         display: -webkit-box;
         -webkit-line-clamp: 2;
         -webkit-box-orient: vertical;
@@ -179,9 +178,9 @@ $height-nav: 40px;
     }
     &__descrip{
         margin: 0;
-        height: $height-item*0.4;
+        height: $height-item*0.3;
         font-size: 1.3rem;
-        line-height: $height-item*0.4;
+        line-height: $height-item*0.3;
         color: $text-color-light;
         overflow:hidden;
         white-space: nowrap;
@@ -194,6 +193,7 @@ $height-nav: 40px;
             margin: 0;
             padding: 6px;
             font-weight: 500;
+            font-size: 1.5rem;
             text-align: center;
             text-decoration: none;
             color: $second-color;
@@ -280,8 +280,9 @@ $height-nav: 40px;
 
             &__title{
                 color: $text-color-light;
-                padding-top: 2px;
+                padding-top: 6px;
                 padding-left: 10px;
+                font-size: 1.5rem;
             }
             &__header{
                 display: flex;
@@ -328,6 +329,10 @@ $height-nav: 40px;
     .head-cart{
         position: relative;
         padding: 15px;
+        &__title{
+            margin: 7px 0;
+            font-size: 1.5rem;
+        }
         &__icon{
             position: relative;
             i {
@@ -389,12 +394,12 @@ $height-nav: 40px;
             .head-cart__pay-btn{
                 a {
                     display: block;
-                    margin: 0%;
                     padding: 8px;
                     text-align: center;
                     color: $primary-color;
                     text-decoration: none;
                     font-weight: 500;
+                    font-size: 1.5rem;
                     &:hover{
                         background-color: $hover-color-bg;
                     }
@@ -406,7 +411,7 @@ $height-nav: 40px;
             width: 100%;
             height: $height-item;
             display: flex;
-            border-bottom: 1px solid $second-color;
+            border-bottom: 1px solid $third-color;
             cursor: pointer;
             .item-img{
                 img{
@@ -422,10 +427,12 @@ $height-nav: 40px;
                 justify-content: space-between;
                 padding: 0 10px;
                 &__title{
+                    margin: 4px 0;
                     width: 100%;
                     overflow: hidden;
                     white-space: nowrap;
                     text-overflow: ellipsis;
+                    font-size: 1.5rem;
                 }
                 &__price{
                     color: $primary-color;
@@ -441,7 +448,7 @@ $height-nav: 40px;
                     color: $text-color-light;
                 }
                 .item-delete{
-                    margin-bottom: 2px;
+                    margin-bottom: 4px;
                     padding: 2px 8px;
                 }
             }
@@ -472,6 +479,7 @@ $height-nav: 40px;
                 display: block;
                 margin: 0 auto;
                 width: 50%;
+                font-size: 1.6rem;
             }
             p{
                 text-align: center;
