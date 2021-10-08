@@ -216,7 +216,7 @@
             <?php
                 else: 
                     $str = $_SESSION['user']['address'];
-                    $index = strpos($str,"/");
+                    $index = strpos($str,".");
             ?>
             <div class="grid">
                 <div class="row mt-24">
@@ -228,7 +228,6 @@
                         <span><?php  echo substr($str, $index + 1);?></span>
                     </div>
                     <div class="col-4">
-                        <!-- <button id="js-update-address" class="btn btn-second">Xóa</button> -->
                         <button id="js-update-address" class="btn btn-primary">Sửa</button>
                     </div>
                 </div>

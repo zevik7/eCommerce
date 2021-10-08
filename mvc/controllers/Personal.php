@@ -141,7 +141,7 @@ class Personal extends Controller{
 
     public function setAddress(){
         $userAccount   =   $_SESSION['user']['email'];
-        $userAddress =  $_POST['user-address'] . '/' . $_POST['user-detail'] ;
+        $userAddress =  trim($_POST['user-detail']). '. ' . $_POST['user-address'] ;
         $result = $this->userModel->updateAddress($userAddress , $userAccount);
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Cap nhat dia chi thanh cong']);

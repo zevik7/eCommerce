@@ -33,6 +33,9 @@
                     </div>
                 </div>
             </div>
+            <?php  
+                    echo $data['id'];
+             ?>
         </div>
     </div>
 </div>
