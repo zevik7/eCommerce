@@ -6,11 +6,9 @@ use mvc\models\User;
 
 class Personal extends Controller{
     protected $userModel;
-    protected $purchaseModel;
 
     function __construct(){
         $this->userModel = new User();
-        $this->purchaseModel = new Purchase();
     }
 
     public function load(){
@@ -184,7 +182,7 @@ class Personal extends Controller{
 
         $query = $query . "AND o.user_id = " . $_SESSION['user']['id'] . " order BY o.date DESC";
 
-        $purchaseData = json_encode($this->purchaseModel->select($query));
+        $purchaseData = json_encode($this->userModel->select($query));
 
         $this->view('Main',[
             'Page' => 'Personal',

@@ -27,15 +27,12 @@
                         <button class="btn btn-outline-primary order-success-redirect__main-page">
                             Tiếp tục mua sắm
                         </button>
-                        <button class="btn btn-second order-success-redirect__order-detail">
+                        <a href="./Personal/purchase" class="btn btn-second order-success-redirect__order-detail nav-user-menu__purchase">
                             Theo dõi đơn hàng
-                        </button>
+                        </a>
                     </div>
                 </div>
             </div>
-            <?php  
-                    echo $data['id'];
-             ?>
         </div>
     </div>
 </div>

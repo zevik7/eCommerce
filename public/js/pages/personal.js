@@ -9,10 +9,20 @@ $(document).ready(function () {
     else   $('#personal-sidebar__nav-1').trigger('click');
 });
 
-$('#remove_localStorage').click(function(){
+// Event for nav-user
+$('#nav-user-menu__account').click(function(){
     localStorage.removeItem('current_person');
     localStorage.removeItem('current_person_sub');
-})
+});
+
+$('#nav-user-menu__address').click(function(){
+    localStorage.setItem('current_person_sub', 'personal-sidebar__subnav-item-3');
+});
+
+$('.nav-user-menu__purchase').click(function(){
+    localStorage.setItem('current_person', 'personal-sidebar__nav-2')
+    localStorage.removeItem('current_person_sub');
+});
   
   /*--------Events for sidebar----------*/
 $('.personal-sidebar__nav').click(function () {

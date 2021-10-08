@@ -44,14 +44,14 @@
                         alt="" class="nav-user__avatar">
                     <span class="nav-user__name"><?php echo $_SESSION['user']['name'];?></span>
                     <ul class="nav-user__menu">
-                        <li class="nav-user-menu__item" id="remove_localStorage">
-                                <a href="./Personal/Auth" class="nav-user-menu__link">Tài khoản</a>
+                        <li class="nav-user-menu__item">
+                            <a id="nav-user-menu__account" href="./Personal/Auth" class="nav-user-menu__link">Tài khoản</a>
                         </li>
                         <li class="nav-user-menu__item">
-                            <a href="" class="nav-user-menu__link">Địa chỉ</a>
+                            <a id="nav-user-menu__address" href="./Personal/Auth" class="nav-user-menu__link">Địa chỉ</a>
                         </li>
                         <li class="nav-user-menu__item">
-                            <a href="" class="nav-user-menu__link">Đơn mua</a>
+                            <a href="./Personal/purchase" class="nav-user-menu__link nav-user-menu__purchase">Đơn mua</a>
                         </li>
                         <li class="nav-user-menu__item">
                             <a id="nav-user-menu__logout" href="./Signin/Logout" class="nav-user-menu__link">Đăng xuất</a>
