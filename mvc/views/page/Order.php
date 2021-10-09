@@ -169,7 +169,7 @@
                             Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo 
                             <a href="#">Điều khoản HeviShop</a>
                         </div>
-                        <a class="btn btn-primary order-submit__btn" href="./OrderSuccess">
+                        <a class="btn btn-primary order-submit__btn" href="./Order/order">
                             Đặt hàng
                         </a>
                     </div>
