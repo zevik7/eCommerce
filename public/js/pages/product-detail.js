@@ -84,21 +84,30 @@ function addCartUI() {
     let itemImg = $('#product-image-thumb').attr('src').trim();
 
     let itemElement = `<li class="head-cart__item">
-                        <div class="item-img">
-                            <img src="${itemImg}" alt="">
-                        </div>
-                        <div class="item-info">
-                            <div class="item-info__header">
-                                <h5 class="item-info__title title-sm">${itemName}</h5>
-                                <span class="item-info__price">Giá: ${itemPrice}</span>
-                                <span class="item-info__quantity">x ${itemQty}</span>
+                            <div class="item-img">
+                                <img src="${itemImg}" alt="">
                             </div>
-                            <div class="item-info__body">
-                                <span class="item-info__type">Phân loại hàng: ${itemType}</span>
-                                <input class="item-delete btn btn-third" type="button" value="Xoá">
+                            <div class="item-info">
+                                <div class="item-info__header">
+                                    <h5 class="item-info__title title-reset">
+                                    ${itemName}
+                                    </h5>
+                                    <span class="item-info__price">
+                                        Giá: 
+                                        ${itemPrice}
+                                    </span>
+                                    <span class="item-info__quantity">
+                                        x ${itemQty}
+                                    </span>
+                                </div>
+                                <div class="item-info__body">
+                                    <span class="item-info__type">
+                                        Phân loại hàng: ${itemType}
+                                    </span>
+                                    <input class="item-delete btn btn-third" type="button" value="Xoá">
+                                </div>
                             </div>
-                        </div>
-                    </li>`;
+                        </li>`;
     // Append to cart element
     $('#cart-list').append(itemElement);
     // Modal notification
