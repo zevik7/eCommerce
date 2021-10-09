@@ -6,11 +6,9 @@ use mvc\models\User;
 
 class Personal extends Controller{
     protected $userModel;
-    protected $purchaseModel;
 
     function __construct(){
         $this->userModel = new User();
-        $this->purchaseModel = new Purchase();
     }
 
     public function load(){
@@ -141,7 +139,7 @@ class Personal extends Controller{
 
     public function setAddress(){
         $userAccount   =   $_SESSION['user']['email'];
-        $userAddress =  $_POST['user-address'] . '/' . $_POST['user-detail'] ;
+        $userAddress =  trim($_POST['user-detail']). '. ' . $_POST['user-address'] ;
         $result = $this->userModel->updateAddress($userAddress , $userAccount);
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Cap nhat dia chi thanh cong']);
@@ -184,7 +182,7 @@ class Personal extends Controller{
 
         $query = $query . "AND o.user_id = " . $_SESSION['user']['id'] . " order BY o.date DESC";
 
-        $purchaseData = json_encode($this->purchaseModel->select($query));
+        $purchaseData = json_encode($this->userModel->select($query));
 
         $this->view('Main',[
             'Page' => 'Personal',

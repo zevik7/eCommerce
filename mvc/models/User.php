@@ -154,5 +154,15 @@ class User extends DB{
         }
     }
     
+    function select($query, $params = [])
+    {
+        $result = $this->readDB($query, $params);
+        if ($result !== false)
+        {
+            return $result;
+        }
+        return false;
+    }
+    
 }
 ?>
