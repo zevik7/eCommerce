@@ -12,5 +12,10 @@ class Controller{
     public function view($view, $data=[]){
         require_once "./mvc/views/".$view.".php";
     }
+
+    // Send response json
+    public function sendResponse($status = 'success', $msg = 'Thành công') {
+        return json_encode(['status' => $status, 'message' => $msg]);
+    }
 }
 ?>

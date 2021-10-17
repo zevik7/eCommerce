@@ -1,15 +1,22 @@
 /* Delete cart */
-let cartBtns = 
+let delBtns = 
     document.querySelectorAll('.head-cart__item .item-delete')
+let qtyNum =
+    document.querySelector('.head-cart__quantity')
 
-Array.from(cartBtns).forEach((cartBtn) => {
-    cartBtn.onclick = function ()
+Array.from(delBtns).forEach((delBtn) => {
+
+    // Get item element to delete
+    let itemElement = delBtn.closest('.head-cart__item')
+
+    delBtn.onclick = function ()
     {
         let data = {
             id: this.dataset.id
         }
+
         // Post method here
-        let addCartUrl = './ProductDetail/rmCart';
+        let addCartUrl = './ProductDetail/rmCart'
         let options = {
                         method: 'POST',
                         headers: {
@@ -19,13 +26,20 @@ Array.from(cartBtns).forEach((cartBtn) => {
                     }
         fetch(addCartUrl, options)
             .then((response) => {
-                return response.text();
+                return response.json()
             })
             .then((data) => {
                 console.log(data);
+                if (data.status == 'success')
+                {
+                    itemElement.remove()
+                    qtyNum.value -= 1
+                }
+                else if (data.status == "error")
+                    alert(data.msg)
             })
             .catch((error) =>{
-                console.log(error);
+                alert(error)
             })
     }
 })

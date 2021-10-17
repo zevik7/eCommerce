@@ -4,14 +4,26 @@ use mvc\models\traits\Filter;
 use mvc\core\DB;
 
 class Cart extends DB{
-    public function getCart(){
-        $userId = 0;
+
+    protected $userId;
+
+    function __construct()
+    {
+        parent::__construct();
+
+        $this->userId = -999;
+
         if (isset($_SESSION['user']['id']))
         {
-            $userId = $_SESSION['user']['id'];
+            $this->userId = $_SESSION['user']['id'];
         }
+    }
+
+    public function get(){
+
         $query = 
             "SELECT
+            ca.id as cartId,
             ca.product_type_id as productTypeId, 
             ca.quantity as cartQuantity, 
             ca.date as cartDate, 
@@ -31,22 +43,48 @@ class Cart extends DB{
             WHERE ca.user_id = ?
             AND img.type = 'thumb'
             AND img.imageable_type = 'product'";
-        $result = $this->readDB($query, [$userId]);
-        return $result;
-    }
-    public function addToCart($typeId, $quantity)
-    {
-        $userId = $_SESSION['user']['id'];
-        $query = 
-        "INSERT INTO 
-        cart
-        (user_id, product_type_id, quantity)
-        VALUES
-        ( ?, ?, ?)";
-        $result = $this->writeDB($query, [$userId, $typeId, $quantity]);
+
+        $result = $this->readDB($query, [$this->userId]);
+
         return $result;
     }
 
-   
+    public function add($typeId, $quantity)
+    {
+
+        $query = 
+        "INSERT INTO 
+        carts
+        (user_id, product_type_id, quantity)
+        VALUES
+        ( ?, ?, ?)";
+
+        $result = $this->writeDB($query, [$this->userId, $typeId, $quantity]);
+        return $result;
+    }
+
+    public function delete($id)
+    {
+        $query = 
+        "DELETE FROM carts
+        WHERE id=?;";
+
+        $result = $this->writeDB($query, [$id]);
+        return $result;
+    }
+
+    public function getQty($typeId)
+    {
+        $query = 
+        "SELECT 
+        count(id) as count
+        FROM carts c
+        WHERE c.product_type_id = ?
+        AND c.user_id = ?";
+
+        $result = $this->readDB($query, [$typeId, $this->userId]);
+
+        return $result[0]['count'];
+    }
 }
 ?>

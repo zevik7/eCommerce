@@ -4,7 +4,7 @@
             <div class="banner-header">
                 <img src="public/img/avatar.png" alt="" class="banner-header__avt">
                 <div class="banner-header__content">
-                    <h6 class="content-title title">kaxoeofficial.vn</h6>
+                    <h6 class="content-title title-reset">kaxoeofficial.vn</h6>
                     <p class="content-date">Online 15 phút trước</p>
                     <button class="content-btn btn btn-outline-primary">
                         <svg class="svg-icon svg-color-primary" xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 16 16" viewBox="0 0 16 16"><g display="none"><line x1="5.5" x2="7.5" y1="3.5" y2="3.5" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/><line x1="5.5" x2="9.5" y1="5.5" y2="5.5" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/><line x1="5.5" x2="10.5" y1="7.5" y2="7.5" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10"/><path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" d="M1.5,0.5c-0.6,0-1,0.4-1,1v13l4-4h10c0.6,0,1-0.4,1-1v-8c0-0.6-0.4-1-1-1h-11"/></g><path d="M5.5 4h2C7.8 4 8 3.8 8 3.5S7.8 3 7.5 3h-2C5.2 3 5 3.2 5 3.5S5.2 4 5.5 4zM5.5 6h4C9.8 6 10 5.8 10 5.5S9.8 5 9.5 5h-4C5.2 5 5 5.2 5 5.5S5.2 6 5.5 6zM5.5 8h5C10.8 8 11 7.8 11 7.5S10.8 7 10.5 7h-5C5.2 7 5 7.2 5 7.5S5.2 8 5.5 8z"/><path d="M14.5,0h-11C3.2,0,3,0.2,3,0.5S3.2,1,3.5,1h11C14.8,1,15,1.2,15,1.5v8c0,0.3-0.2,0.5-0.5,0.5h-10c-0.1,0-0.3,0.1-0.4,0.1

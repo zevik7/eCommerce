@@ -155,7 +155,7 @@
                                 ?>
                                     <div class="product-type row mt-20">
                                         <div class="product-type__header col-3">
-                                            <h6 class="product-type-title title-reset">
+                                            <h6 class="type-title title-reset">
                                                 <?php echo $labelType;?>
                                             </h6>
                                         </div>
@@ -184,7 +184,7 @@
                                 ?>
                                 <div class="product-quantity-count row mt-20">
                                     <div class="product-quantity-count__header col-3">
-                                        <h6 class="product-quantity-title title-reset">Số lượng</h6>
+                                        <h6 class="quantity-title title-reset">Số lượng</h6>
                                     </div>
                                     <div class="product-quantity-count__body col-9">
                                         <div class="carousel-quantity" min="1">
@@ -224,9 +224,6 @@
                             </div>
                         </div>
                     </div>  
-                </div> 
-                <div class="layout-split mt-24 p-25">
-                    <?php require_once './mvc/views/block/ShopBanner.php'; ?>
                 </div>
                 <div class="product-desc">
                     <div class="row">
@@ -257,7 +254,7 @@
                                             <a href="#" class="recommend-list__item">
                                                 <img src="<?php echo $recommend['imageUrl'];?>" alt="">
                                                 <h3 class="title-reset"><?php echo $recommend['productName'];?></h3>
-                                                <p class="price">
+                                                <p class="price title-reset">
                                                     <?php
                                                         if(isset($recommend['productTypePrice']))
                                                             echo viPrice($recommend['productTypePrice']);

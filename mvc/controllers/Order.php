@@ -27,7 +27,8 @@ class Order extends Controller{
         }
         // Cart data
         else 
-        $cartData = json_encode($this->cartModel->getCart());
+          $cartData = json_encode($this->cartModel->get());
+      
         $this->view('Main',[
             'Page' => 'Order',
             'cart' => $cartData,
@@ -39,8 +40,8 @@ class Order extends Controller{
         $this->orderModel->addToOrder($_SESSION['user']['id']);
         $order_id = $this->orderModel->getOrderID();
         $id = $order_id[0]['order_id'];
-        $cartData =$this->cartModel->getCart();
-        $this->orderDetailModel->addToOrderDetail($cartData, $id);
+        $cartData = json_encode($this->cartModel->get());
+        $this->orderModel->addToOrderDetail($cartData, $id);
 
         setcookie('orderID',  $id, time() + 30, "/");
         header('Location: http://' . BASE_URL . '/OrderSuccess');
