@@ -14,7 +14,7 @@ class Controller{
     }
 
     // Send response json
-    public function send($status = 'success', $msg = 'Thành công') {
+    public function sendResponse($status = 'success', $msg = 'Thành công') {
         return json_encode(['status' => $status, 'message' => $msg]);
     }
 }

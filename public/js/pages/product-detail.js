@@ -44,6 +44,7 @@ addToCart.on('click', function () {
     // Get product type
     let productType = $('.list-type__item.active');
     let productTypeId = productType.attr('id');
+    console.log(productTypeId);
     let productTypeQty = $('.carousel-quantity__number')[0].value;
     if (!isEmpty(productType)){
         let data = {
@@ -64,9 +65,25 @@ addToCart.on('click', function () {
                  return response.json();
             })
             .then((data) => {
-                console.log('Thêm sản phẩm thành công');
-            });
-        addCartUI();
+                if (data.status == 'success')
+                    addCartUI();
+                else 
+                    // Modal notification
+                    asset.notification_modal({
+                        // Element
+                        modal: '.modal-noti',
+                        modalOverlay: '.modal-overlay',
+                        msgElement: '.modal-body__msg',
+                        closeBtn: '.modal-body__close-button',
+                        // Custom attribute
+                        autoClose: 1000,
+                        class: 'modal-noti--error',
+                        msg: data.message
+                    });
+            })
+            .catch((error) => {
+                alert(error);
+            })
     }
     else {
         asset.notification_inline({

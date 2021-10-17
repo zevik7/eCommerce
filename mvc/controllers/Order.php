@@ -18,8 +18,10 @@ class Order extends Controller{
         $this->orderModel = new AddOrder();
     }
     function load($params){
+
         // Cart data
-        $cartData = json_encode($this->cartModel->getCart());
+        $cartData = json_encode($this->cartModel->get());
+
         $this->view('Main',[
             'Page' => 'Order',
             'cart' => $cartData
@@ -30,7 +32,7 @@ class Order extends Controller{
         $this->orderModel->addToOrder($_SESSION['user']['id']);
         $order_id = $this->orderModel->getOrderID();
         $id = $order_id[0]['order_id'];
-        $cartData = json_encode($this->cartModel->getCart());
+        $cartData = json_encode($this->cartModel->get());
         $this->orderModel->addToOrderDetail($cartData, $id);
 
         header('Location: http://'.$_SERVER['HTTP_HOST'].'/OrderSuccess');
