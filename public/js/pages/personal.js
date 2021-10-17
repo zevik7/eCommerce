@@ -9,10 +9,20 @@ $(document).ready(function () {
     else   $('#personal-sidebar__nav-1').trigger('click');
 });
 
-$('#remove_localStorage').click(function(){
+// Event for nav-user
+$('#nav-user-menu__account').click(function(){
     localStorage.removeItem('current_person');
     localStorage.removeItem('current_person_sub');
-})
+});
+
+$('#nav-user-menu__address').click(function(){
+    localStorage.setItem('current_person_sub', 'personal-sidebar__subnav-item-3');
+});
+
+$('.nav-user-menu__purchase').click(function(){
+    localStorage.setItem('current_person', 'personal-sidebar__nav-2')
+    localStorage.removeItem('current_person_sub');
+});
   
   /*--------Events for sidebar----------*/
 $('.personal-sidebar__nav').click(function () {
@@ -442,9 +452,11 @@ $('#js-user-provinces li').click(function(){
 $('#js-user-districts ul').click(function(){
     var str =  $(".user-address__input").val();
     let index = str.search(",");
-    var useraddress = str.slice(0, index); 
+    console.log(index);
+    if(index == -1) var useraddress = str;
+    else useraddress = str.slice(0, index); 
     var userdistricts = $('.user-districts').text();
-    $(".user-address__input").val(useraddress + ' , ' + userdistricts);
+    $(".user-address__input").val(useraddress + ', ' + userdistricts);
 });
 // them dia chi
 $('.user-address').validate({
@@ -484,10 +496,10 @@ $('.user-address').validate({
             success: function (feedback) {
                 switch (feedback.status) {
                     case 'success':
-                        alert(feedback.message);
+                        successAlert();
                     break;
                     default: 
-                        alert(feedback.message);
+                        failedAlert();
                 }
             },
             error: function () {

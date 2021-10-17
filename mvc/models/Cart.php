@@ -18,6 +18,7 @@ class Cart extends DB{
             ca.date as cartDate, 
             pt.name as productTypeName, 
             pt.price as productTypePrice,
+            pt.freight_cost as productFreightCost,
             pd.name as productName,
             pd.discount as productDiscount,
             img.url as imageUrl

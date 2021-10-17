@@ -5,11 +5,11 @@ use mvc\models\Product;
 use mvc\models\Shop;
 
 class OrderSuccess extends Controller{
-    function __construct(){
+    protected $cartModel;
 
-    }
     
     function load($params){
+       
         $this->view('Main',[
             'Page' => 'OrderSuccess',
         ]);
