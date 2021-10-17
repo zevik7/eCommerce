@@ -224,9 +224,6 @@
                             </div>
                         </div>
                     </div>  
-                </div> 
-                <div class="layout-split mt-24 p-25">
-                    <?php require_once './mvc/views/block/ShopBanner.php'; ?>
                 </div>
                 <div class="product-desc">
                     <div class="row">

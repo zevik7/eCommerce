@@ -12,6 +12,7 @@ class Cart extends DB{
         }
         $query = 
             "SELECT
+            ca.id as cartId,
             ca.product_type_id as productTypeId, 
             ca.quantity as cartQuantity, 
             ca.date as cartDate, 
@@ -33,16 +34,29 @@ class Cart extends DB{
         $result = $this->readDB($query, [$userId]);
         return $result;
     }
-    public function addToCart($typeId, $quantity)
+
+    public function add($typeId, $quantity)
     {
         $userId = $_SESSION['user']['id'];
+
         $query = 
         "INSERT INTO 
         carts
         (user_id, product_type_id, quantity)
         VALUES
         ( ?, ?, ?)";
+
         $result = $this->writeDB($query, [$userId, $typeId, $quantity]);
+        return $result;
+    }
+
+    public function delete($id)
+    {
+        $query = 
+        "DELETE FROM carts
+        WHERE id=?;";
+
+        $result = $this->writeDB($query, [$id]);
         return $result;
     }
 }

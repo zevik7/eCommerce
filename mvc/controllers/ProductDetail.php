@@ -6,15 +6,18 @@ use mvc\models\Cart;
 
 class ProductDetail extends Controller{
     protected $productModel;
-    //General params
-    protected $productId;
+
     function __construct(){
         $this->productModel = new Product();
         $this->cartModel = new Cart();
     }
-    function loadProduct($params){
+
+    function load($params){
+
         $productId = current($params);
+
         if ($productId !== false) {
+
             $productCategoryId = 
                 $this->productModel->getCategoryId($productId);
             $productsRecommend = 
@@ -23,6 +26,7 @@ class ProductDetail extends Controller{
                 json_encode($this->productModel->getProduct($productId));
             $cartData = 
                 json_encode($this->cartModel->getCart());
+
             $this->view('Main',[
                 'Page' => 'ProductDetail',
                 'productData' => $productData,
@@ -31,35 +35,37 @@ class ProductDetail extends Controller{
             ]);
         }
     }
-    function addToCart(){
+
+    function addCart(){
+
         // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
         $data = json_decode(file_get_contents('php://input'));
         
         $addResult = 
-            $this->cartModel->addToCart(
+            $this->cartModel->add(
                     $data->productTypeId,
                     $data->productTypeQty);
         if ($addResult)
         {
-            echo json_encode(['status' => 'success']);
+            echo $this->send();
         }
         else
-            echo json_encode(['status' => 'error']);
+            echo $this->send('error', 'Thêm sản phẩm thất bại');
     }
-    // function rmCart(){
-    //     // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
-    //     $data = json_decode(file_get_contents('php://input'));
+
+    function rmCart(){
+        // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
+        $data = json_decode(file_get_contents('php://input'));
         
-    //     $addResult = 
-    //         $this->cartModel->addToCart(
-    //                 $data->productTypeId,
-    //                 $data->productTypeQty);
-    //     if ($addResult)
-    //     {
-    //         echo json_encode(['status' => 'success']);
-    //     }
-    //     else
-    //         echo json_encode(['status' => 'error']);
-    // }
+        $addResult = 
+            $this->cartModel->delete($data->id);
+
+        if ($addResult)
+        {
+            echo $this->send('success', 'Xóa sản phẩm thành công !');
+        }
+        else
+            echo $this->send('erorr', 'Xóa sản phẩm thất bại !');
+    }
 }
 ?>

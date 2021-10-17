@@ -2,15 +2,14 @@
     <div class="head-cart">
         <div class="head-cart__icon">
             <i class="fas fa-shopping-cart"></i>
-            <span class="head-cart__quantity">
-                <?php
-                    if (isset($data['cart'])){
-                        $cartData = json_decode($data['cart'], true);
-                        echo count($cartData);
-                    }
-                    else echo 0;
-                ?>
-            </span>
+            <input class="head-cart__quantity" type="number" disabled
+            value="<?php
+                if (isset($data['cart'])){
+                    $cartData = json_decode($data['cart'], true);
+                    echo count($cartData);
+                }
+                else echo 0;
+            ?>">
         </div>
         <div class="head-cart__box">
             <h3 class="head-cart__title title-reset">Sản phẩm đã thêm</h3>
@@ -47,7 +46,7 @@
                                     <span class="item-info__type">
                                         Phân loại hàng: <?php echo $value['productTypeName'];?>
                                     </span>
-                                    <input class="item-delete btn btn-third" type="button" value="Xoá">
+                                    <input data-id=<?php echo $value['cartId'];?> class="item-delete btn btn-third" type="button" value="Xoá">
                                 </div>
                             </div>
                         </li>

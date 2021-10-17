@@ -51,7 +51,7 @@ addToCart.on('click', function () {
             productTypeQty
         }
         // Post method here
-        let addCartUrl = './ProductDetail/addToCart';
+        let addCartUrl = './ProductDetail/addCart';
         let options = {
                         method: 'POST',
                         headers: {
