@@ -144,6 +144,24 @@ function addCartUI() {
         asset.getValue($('.head-cart__quantity').text());
     $('.head-cart__quantity').text(++currentVal);
 }
+//----------------Product Buy Now--------------------
 
+const buyNow = $('#product-buy__btn');
 
-    
+buyNow.on('click', function () {  
+
+    // Get product type
+    let productType = $('.list-type__item.active');
+    let productTypeId = productType.attr('id');
+    let productTypeQty = $('.carousel-quantity__number')[0].value;
+    if (!isEmpty(productType)){
+        window.location.replace("./Order/load/" +  productTypeId + "?productTypeQty=" + productTypeQty);
+    }
+    else {
+        asset.notification_inline({
+            element: '#quantity-notification',
+            class: 'alert-danger',
+            msg: 'Bạn chưa chọn loại hàng'
+        });
+    }
+})
