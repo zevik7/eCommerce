@@ -43,7 +43,7 @@
                                     {
                             ?>
                             <div class="col-10-2">
-                                <a href="./ProductDetail/loadProduct/<?php echo $value['productId'];?><?php if(isset($_GET['search'])) echo('?search=' . $_GET['search'])?>" class="product__item mt-10">
+                                <a href="./ProductDetail/<?php echo $value['productId'];?><?php if(isset($_GET['search'])) echo('?search=' . $_GET['search'])?>" class="product__item mt-10">
                                     <div class="product-item__img" style="background-image: url(<?php echo $value['imageUrl'];?>);"></div>
                                     <div class="product-item__content">
                                         <h4 class="product-item__name"><?php echo $value['productName'];?></h4>

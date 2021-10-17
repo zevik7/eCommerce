@@ -4,20 +4,6 @@ use mvc\core\DB;
 
 class Product extends DB{
 
-    public $productId;
-    public $shopId;
-    public $productCategoryId;
-    public $productName; 
-    public $productQuantity; 
-    public $productDescription; 
-    public $productDiscount; 
-    public $productSource; 
-    public $productSendFrom; 
-    public $productSold; 
-    public $productBrand; 
-    public $productDate; 
-    public $productRating;
-    
     function select($query, $params = [])
     {
         $result = $this->readDB($query, $params);
@@ -119,7 +105,7 @@ class Product extends DB{
             ON ur.id = pr.user_id
             INNER JOIN images img
             ON img.imageable_id = ur.id
-            WHERE pt.product_id ='1'
+            WHERE pt.product_id ='$productId'
             AND img.imageable_type = 'user'
             AND img.type ='avatar'";
 
