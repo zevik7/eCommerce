@@ -16,6 +16,7 @@ $('#nav-user-menu__account').click(function(){
 });
 
 $('#nav-user-menu__address').click(function(){
+    localStorage.setItem('current_person', 'personal-sidebar__nav-1');
     localStorage.setItem('current_person_sub', 'personal-sidebar__subnav-item-3');
 });
 

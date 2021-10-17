@@ -60,7 +60,10 @@
                                 $totalOrder = 0;
                                 $totalFreight = 0;
                                 foreach($decode as $value)
-                                {  
+                                {   if(isset($_GET['productTypeQty']))  
+                                    $value['cartQuantity'] =$_GET['productTypeQty'];
+                                    $productTypeId =  $value['productTypeId']
+                                    
                         ?>
                         <div class="order-products__row">
                             <div class="order-products__row-block block1">
@@ -79,7 +82,9 @@
                             </div>
                             <div class="order-products__row-block block3">
                                 <div class="order-products__row-product-quantity">
-                                    <?php echo $value['cartQuantity']?> 
+                                    <?php
+                                        echo $value['cartQuantity']
+                                    ?> 
                                 </div>
                             </div>
                             <div class="order-products__row-block block4">
@@ -169,7 +174,8 @@
                             Nhấn "Đặt hàng" đồng nghĩa với việc bạn đồng ý tuân theo 
                             <a href="#">Điều khoản HeviShop</a>
                         </div>
-                        <a class="btn btn-primary order-submit__btn" href="./Order/order">
+                        <a class="btn btn-primary order-submit__btn" 
+                        href="<?php if(isset($_GET['productTypeQty'])) echo "./Order/buyNow/$productTypeId?productTypeQty=".$_GET['productTypeQty']; else echo "./Order/order";?>">
                             Đặt hàng
                         </a>
                     </div>

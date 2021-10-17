@@ -20,13 +20,17 @@
                             Theo dõi trạng thái đơn hàng tại Tài khoản > Đơn mua
                         </p>
                         <p class="order-success-body__status">
+                            Mã số đơn hàng của bạn là: 
+                            <?php if(isset($_COOKIE['orderID'])) echo $_COOKIE['orderID'];?>
+                        </p>
+                        <p class="order-success-body__status">
                             Cảm ơn bạn đã lựa chọn chúng tôi
                         </p>
                     </div>
                     <div class="order-success__redirect">
-                        <button class="btn btn-outline-primary order-success-redirect__main-page">
+                        <a href="./ProductList/" class="btn btn-outline-primary order-success-redirect__main-page">
                             Tiếp tục mua sắm
-                        </button>
+                        </a>
                         <a href="./Personal/purchase" class="btn btn-second order-success-redirect__order-detail nav-user-menu__purchase">
                             Theo dõi đơn hàng
                         </a>
