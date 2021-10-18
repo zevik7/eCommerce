@@ -1,4 +1,7 @@
-/* Delete cart */
+
+/* 
+    Delete cart 
+*/
 let delBtns = 
     document.querySelectorAll('.head-cart__item .item-delete')
 let qtyNum =
