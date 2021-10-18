@@ -40,7 +40,7 @@
                             $previousOrderID = 0;
                             foreach($decode as $value)
                             {
-                                $total += $value['orderDetailPrice'];
+                                $total += $value['orderDetailPrice'] * $value['orderDetailQuantity'];
                                 if($value['orderId'] != $previousOrderID){  
                     ?>
                     <div class="purchase__list-header">
@@ -82,7 +82,7 @@
                                 <p class="purchases__row-quantity">x<?php echo $value['orderDetailQuantity'];?></p>
                             </td>
                             <td class="purchases__row-price">
-                                <p><?php echo viPrice($value['orderDetailPrice'], 'VND');?></p>
+                                <p><?php echo viPrice($value['orderDetailPrice'] * $value['orderDetailQuantity'], 'VND');?></p>
                             </td>
                         </tr>
                     </table>
