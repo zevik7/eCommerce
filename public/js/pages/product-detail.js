@@ -34,6 +34,59 @@ $('.overview-filter-item').on('click', function () {
     $(this).addClass('active');
 });
 
+(function ratingEvent () {
+
+    let filterBtns = document.querySelectorAll('.overview-filter-item')
+    let productPage = document.querySelector('.product-page');
+
+    Array.from(filterBtns).forEach((filterBtn, index) => {
+        filterBtn.onclick = () => {
+
+            let data = {
+                id: productPage.dataset.id,
+                star: Math.abs(index - 6),
+            }
+
+            // Post method here
+            let addCartUrl = './ProductDetail/getRating'
+            let options = {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            body: JSON.stringify(data)
+                        }
+            fetch(addCartUrl, options)
+                .then((response) => {
+                    return response.json()
+                })
+                .then((data) => {
+                    if (data.status == 'success')
+                    {
+                        renderUI(data)
+                    }
+                    else if (data.status == "error")
+                        alert(data.msg)
+                })
+                .catch((error) =>{
+                    alert(error)
+                })
+        }
+    })
+
+    function renderUI(data) {
+        
+        let templateRaing = ``
+        if (data)
+        {
+            data.forEach(element => {
+                
+            })
+        }
+    }
+
+})();
+
 //----------------Add to cart--------------------
 function isEmpty( el ){
     return !$.trim(el.html())

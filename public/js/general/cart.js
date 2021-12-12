@@ -1,4 +1,7 @@
-/* Delete cart */
+
+/* 
+    Delete cart 
+*/
 let delBtns = 
     document.querySelectorAll('.head-cart__item .item-delete')
 let qtyNum =
@@ -29,11 +32,12 @@ Array.from(delBtns).forEach((delBtn) => {
                 return response.json()
             })
             .then((data) => {
-                console.log(data);
                 if (data.status == 'success')
                 {
                     itemElement.remove()
                     qtyNum.value -= 1
+
+                    alert('Thêm giỏ hàng thành công');
                 }
                 else if (data.status == "error")
                     alert(data.msg)
