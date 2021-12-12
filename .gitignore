@@ -1,3 +1,4 @@
 vendor/
 serverLog/
 public/css/*
+configs.php
