@@ -55,7 +55,7 @@ class ProductList extends Controller{
         AND img.imageable_type = 'product'
         AND img.imageable_id = pd.id";
 
-        // Search
+        // Search /url?search
         if (isset($_GET['search']))
         {
             $keyword = $_GET['search'];

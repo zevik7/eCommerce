@@ -85,34 +85,9 @@ class Product extends DB{
             FROM images img
             WHERE img.imageable_id = '$productId'";
 
-        $productRatingQuery =
-            "SELECT
-            pr.id as productRatingId,
-            pr.product_type_id as productTypeId,
-            pr.user_id as userId,
-            pr.star as productRatingStar,
-            pr.comment as productRatingComment,
-            pr.date as productRatingDate,
-            pr.type as productRatingType,
-            pt.label as productTypeLabel,
-            pt.name as productTypeName,
-            ur.name as userName,
-            img.url as imageUrl
-            FROM product_ratings pr
-            INNER JOIN product_types pt
-            ON pr.product_type_id = pt.id
-            INNER JOIN users ur
-            ON ur.id = pr.user_id
-            INNER JOIN images img
-            ON img.imageable_id = ur.id
-            WHERE pt.product_id ='$productId'
-            AND img.imageable_type = 'user'
-            AND img.type ='avatar'";
-
         $productResult = $this->readDB($productQuery);
         $productTypeResult = $this->readDB($productTypeQuery);
         $productImageResult = $this->readDB($productImageQuery);
-        $productRating = $this->readDB($productRatingQuery);
         
         $allResult = array();
         if ($productResult !== false) {
@@ -123,9 +98,6 @@ class Product extends DB{
         }          
         if ($productImageResult !== false) {
             $allResult['productImage'] = $productImageResult;
-        }
-        if ($productRating !== false) {
-            $allResult['productRating'] = $productRating;
         }
 
         return $allResult !== false ? $allResult : [];

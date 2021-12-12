@@ -14,7 +14,7 @@
         array_key_exists('productImage', $productData) ? $productData['productImage'] : [];
 
     $productRating =
-        array_key_exists('productRating', $productData) ? $productData['productRating'] : [];
+        isset($data['rating']) ? json_decode($data['rating'], true) : [];
     
     // If false, not enough information to display
     if (!empty($product) || !empty($productType) || !empty($productImage))
@@ -37,7 +37,7 @@
 ?>
     <div class="bg-transparent">
         <div class="grid pt-20">
-            <div class="product-page">
+            <div data-id="<?php echo $product['productId'];?>" class="product-page">
                 <div class="product-detail">
                     <div class="row">
                         <div class="col-5">

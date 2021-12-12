@@ -3,13 +3,17 @@ namespace mvc\controllers;
 use mvc\core\Controller;
 use mvc\models\Product;
 use mvc\models\Cart;
+use mvc\models\Rating;
 
 class ProductDetail extends Controller{
     protected $productModel;
+    protected $cartModel;
+    protected $ratingModel;
 
     function __construct(){
         $this->productModel = new Product();
         $this->cartModel = new Cart();
+        $this->ratingModel = new Rating();
     }
 
     function load($params){
@@ -24,18 +28,36 @@ class ProductDetail extends Controller{
             $productsRecommend = 
                 json_encode($this->productModel->getProductListByCategory($productCategoryId, 0, 5));
                 
-            $productData = 
+            $product = 
                 json_encode($this->productModel->getProduct($productId));
 
-            $cartData = 
+            $cart = 
                 json_encode($this->cartModel->get());
+
+            $rating = 
+                json_encode($this->ratingModel->get($productId));
 
             $this->view('Main',[
                 'Page' => 'ProductDetail',
-                'productData' => $productData,
+                'productData' => $product,
                 'productsRecommend' => $productsRecommend,
-                'cart' => $cartData
+                'cart' => $cart,
+                'rating' => $rating,
             ]);
+        }
+    }
+
+    function getRating() {
+
+        $data = json_decode(file_get_contents('php://input'));
+        $star = $data->star;
+        $productId = $data->id;
+
+        $result = $this->ratingModel->get($productId, $star);
+
+        if ($result !== false)
+        {
+            echo $this->sendResponse('success', 'Thành công', $result);
         }
     }
 

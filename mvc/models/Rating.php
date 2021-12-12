@@ -5,77 +5,40 @@ use mvc\core\DB;
 
 class Rating extends DB{
 
-    function __construct()
-    {
-        parent::__construct();
-    }
-
-    public function get(){
+    public function get($productId, $starFillter = 'all'){
 
         $query = 
             "SELECT
-            ca.id as cartId,
-            ca.product_type_id as productTypeId, 
-            ca.quantity as cartQuantity, 
-            ca.date as cartDate, 
-            pt.name as productTypeName, 
-            pt.price as productTypePrice,
-            pt.freight_cost as productFreightCost,
-            pd.name as productName,
-            pd.discount as productDiscount,
+            pr.id as productRatingId,
+            pr.product_type_id as productTypeId,
+            pr.user_id as userId,
+            pr.star as productRatingStar,
+            pr.comment as productRatingComment,
+            pr.date as productRatingDate,
+            pr.type as productRatingType,
+            pt.label as productTypeLabel,
+            pt.name as productTypeName,
+            ur.name as userName,
             img.url as imageUrl
-            FROM ecommerce.carts ca
+            FROM product_ratings pr
             INNER JOIN product_types pt
-            ON pt.id = ca.product_type_id
-            INNER JOIN products pd
-            ON pt.product_id = pd.id
+            ON pr.product_type_id = pt.id
+            INNER JOIN users ur
+            ON ur.id = pr.user_id
             INNER JOIN images img
-            ON pd.id = img.imageable_id
-            WHERE ca.user_id = ?
-            AND img.type = 'thumb'
-            AND img.imageable_type = 'product'";
+            ON img.imageable_id = ur.id
+            WHERE pt.product_id = ?
+            AND img.imageable_type = 'user'
+            AND img.type ='avatar' ";
+        
+        if ($starFillter !== 'all' && in_array($starFillter, [1,2,3,4,5]))
+        {
+            $query .= " AND pr.star = $starFillter ";
+        }
 
-        $result = $this->readDB($query, [$this->userId]);
+        $result = $this->readDB($query, [$productId]);
 
         return $result;
-    }
-
-    public function add($typeId, $quantity)
-    {
-
-        $query = 
-        "INSERT INTO 
-        carts
-        (user_id, product_type_id, quantity)
-        VALUES
-        ( ?, ?, ?)";
-
-        $result = $this->writeDB($query, [$this->userId, $typeId, $quantity]);
-        return $result;
-    }
-
-    public function delete($id)
-    {
-        $query = 
-        "DELETE FROM carts
-        WHERE id=?;";
-
-        $result = $this->writeDB($query, [$id]);
-        return $result;
-    }
-
-    public function getQty($typeId)
-    {
-        $query = 
-        "SELECT 
-        count(id) as count
-        FROM carts c
-        WHERE c.product_type_id = ?
-        AND c.user_id = ?";
-
-        $result = $this->readDB($query, [$typeId, $this->userId]);
-
-        return $result[0]['count'];
     }
 }
 ?>
