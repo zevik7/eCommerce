@@ -10,7 +10,8 @@ class DB{
 	{
 		$this->con = $this->connect();
         // Turn off only_full_group_by mode
-        $temp = $this->readDB("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
+        $temp = 
+            $this->readDB("SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))");
 	}
 
     private function connect(){

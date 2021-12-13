@@ -21,16 +21,7 @@ class ProductList extends Controller{
         $this->cartModel = new Cart();
         $this->CategoryModel = new Category();
     }
-    function load(){
-        /*
-            1. Get Params
-            2. Xu lí tuần tự params: 
-                search->
-                filter-column->
-                filter-order->
-                pagination
-            3. Trả view
-        */
+    function load(){    
         $productQuantity = $this->productModel->getProductQuantity();
         $query =
         " SELECT 

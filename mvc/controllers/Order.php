@@ -6,6 +6,7 @@ use mvc\models\Shop;
 use mvc\models\Cart;
 use mvc\models\Order as OrderModel;
 use mvc\models\OrderDetail;
+
 class Order extends Controller{
     protected $productModel;
     protected $cartModel;
@@ -13,12 +14,14 @@ class Order extends Controller{
     protected $orderDetailModel;
     //General params
     protected $productId;
+
     function __construct(){
         $this->productModel = new Product();
         $this->cartModel = new Cart();
         $this->orderModel = new OrderModel();
         $this->orderDetailModel = new OrderDetail();
     }
+    
     function load($params){
         // Product buy data
         if($params) {
@@ -35,6 +38,7 @@ class Order extends Controller{
             'params' => $params
         ]);
     }
+
     function order(){
 
         $this->orderModel->addToOrder($_SESSION['user']['id']);
