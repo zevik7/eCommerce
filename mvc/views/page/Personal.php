@@ -1,5 +1,5 @@
 <div class="bg-transparent">
-    <div class="grid pt-20">
+    <div class="grid wide padding-top20">
         <div class="row"> <!--open tag of Personal Page-->
             <?php
                 require_once './mvc/views/block/Personal_Sidebar.php';

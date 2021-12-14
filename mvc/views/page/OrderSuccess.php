@@ -7,7 +7,7 @@
         </div>
     </div>
     <div class="bg-transparent">
-        <div class="grid">
+        <div class="grid wide">
             <div class="order-success__body">
                 <div class="layout-split">
                     <div class="letter-line">

@@ -8,6 +8,7 @@ class App{
     protected $params = [];
 
     function __construct(){
+        
         $arr = $this->UrlProcess();
 
         // If call API
@@ -62,7 +63,6 @@ class App{
 
         // Action
         if(isset($arr[1])){
-            echo $arr[1];
             if(method_exists($this->controller , $arr[1]) ){
                 $this->action = $arr[1];
                 unset($arr[1]);

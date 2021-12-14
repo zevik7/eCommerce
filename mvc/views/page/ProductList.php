@@ -1,6 +1,6 @@
-<div class="bg-transparent">
-    <div class="grid pt-20">
-        <div class="product-list-page">
+<div class="product-list-page">
+    <div class="bg-transparent">
+        <div class="grid wide padding-top20">
             <div class="row">
                 <div class="col-2">
                     <?php require_once './mvc/views/block/product-list/Category.php'?>
@@ -43,7 +43,7 @@
                                     {
                             ?>
                             <div class="col-10-2">
-                                <a href="./ProductDetail/<?php echo $value['productId'];?><?php if(isset($_GET['search'])) echo('?search=' . $_GET['search'])?>" class="product__item mt-10">
+                                <a href="./ProductDetail/<?php echo $value['productId'];?><?php if(isset($_GET['search'])) echo('?search=' . $_GET['search'])?>" class="product__item margin-top10">
                                     <div class="product-item__img" style="background-image: url(<?php echo $value['imageUrl'];?>);"></div>
                                     <div class="product-item__content">
                                         <h4 class="product-item__name"><?php echo $value['productName'];?></h4>

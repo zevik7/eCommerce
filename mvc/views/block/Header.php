@@ -1,4 +1,4 @@
-<div class="grid">
+<div class="grid wide">
     <div class="nav">
         <ul class="nav__list">
             <li class="nav-list__item item--separate">

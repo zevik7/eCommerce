@@ -36,7 +36,7 @@
 
 ?>
     <div class="bg-transparent">
-        <div class="grid pt-20">
+        <div class="grid wide padding-top20">
             <div data-id="<?php echo $product['productId'];?>" class="product-page">
                 <div class="product-detail">
                     <div class="row">
@@ -65,7 +65,7 @@
                                         </span>
                                     </span> 
                                 </div>
-                                <div class="product-statis mt-20">
+                                <div class="product-statis margin-top20">
                                     <div class="statis-item product-rating">
                                         <span class="product-rating__number">
                                             <?php echo $product['productRating'];?>
@@ -94,7 +94,7 @@
                                         <span class="product-sold__icon">Đã bán</span>
                                     </div>
                                 </div>
-                                <div class="fs-product-price product-price mt-10">
+                                <div class="fs-product-price product-price margin-top10">
                                     <?php
                                         if ($minPrice==$maxPrice){
                                     ?>
@@ -111,7 +111,7 @@
                                         }
                                     ?>
                                 </div>
-                                <div class="product-freight row mt-10">
+                                <div class="product-freight row margin-top10">
                                     <div class="product-freight__header col-3">
                                         <svg class="freight-icon svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g transform="translate(17 -1672.362)"><path fill="#f8b84e" d="m 5.37809,1692.3622 -1.381527,0 0,-0.7797 0,-3.2203 10.503969,0 0,4 -2.953792,0"/><path fill="#4bbfeb" d="m 3.996563,1682.3622 5.730587,0 4.766237,6.0198 -10.503919,-0.02 z"/><path fill="none" stroke="#2b4255" stroke-linecap="round" stroke-linejoin="round" d="m 6.000136,1689.362 1.01436,0"/><path fill="#f17f53" fill-rule="evenodd" d="m 14.500155,1691.3622 0,-1 -1.492879,0 c -0.676161,-0.01 -0.676161,1.0096 0,1 z" color="#000" font-family="sans-serif" font-weight="400" overflow="visible" style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal"/><path fill="#f8b84e" style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal" d="m 4.498874,1682.3518 -0.5,0 -0.0059,5.9918 c 2.8e-5,0.2761 0.223869,0.5 0.5,0.5 l 9.504278,0.017 c 0.428638,-4e-4 0.658155,-0.5046 0.376953,-0.8281 l -4.334356,-5.5195 c -0.09444,-0.1086 -0.231088,-0.1712 -0.375,-0.1719 -2.171834,0 -5.165975,0.011 -5.165975,0.011 z m 0.5,0.9898 4.439453,0 3.455451,4.5176 -7.900763,-0.014 0.0059,-4.5039 z" color="#000" font-family="sans-serif" font-weight="400" overflow="visible"/><path fill="#f8b84e" fill-rule="evenodd" style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal" d="m 7.493015,1682.8611 0,6 1,0 0,-6 z" color="#000" font-family="sans-serif" font-weight="400" overflow="visible"/><path fill="#25b39e" d="m -16.5,1684.4852 0,-5.123 20.5,0 0,13.0001 -6.1621384,0 -2.4543194,0 -7.6811982,0 -4.202344,0 0,-5.1711"/><path fill="#34485c" d="m -14.168175,1694.3623 -2.831825,0 0,-2 4.330756,0 5.8002374,0 7.01425554,0 3.99965936,0 6.1586787,0 4.696413,0 0,2 -3.295236,0 -8.9121551,0 -7.9997522,0 z"/><path fill="#576d7e" d="m 8.000016,1691.3622 a 4,4 0 0 0 -3.86914,3 l 1.30664,0 6.009766,0 0.421875,0 a 4,4 0 0 0 -3.869141,-3 z"/><circle cx="-9" cy="1696.362" r="1" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"/><g transform="translate(1 -1.5)"><circle cx="7" cy="1696.862" r="3" fill="#2b4255"/><circle cx="7" cy="1696.862" r="1" fill="#e9eded"/></g><path fill="#e9eded" d="m -16.5,1685.3652 5.332593,0 0.01467,-0.5029 0.0067,-1.5001 3.3152369,2.9919 -3.3333699,3.0083 0.0067,-1.5 -0.0099,-0.5001 -5.332593,0"/><g transform="translate(-16.5 -.5)"><path fill="#576d7e" d="m 7.500011,1691.8622 a 4,4 0 0 0 -3.86914,3 l 1.30664,0 6.009766,0 0.421875,0 a 4,4 0 0 0 -3.869141,-3 z"/><g transform="translate(.5 -1)"><circle cx="7" cy="1696.862" r="3" fill="#2b4255"/><circle cx="7" cy="1696.862" r="1" fill="#e9eded"/></g></g><path fill="#f17f53" fill-rule="evenodd" style="line-height:normal;text-indent:0;text-align:start;text-decoration-line:none;text-decoration-style:solid;text-decoration-color:#000;text-transform:none;block-progression:tb;isolation:auto;mix-blend-mode:normal" d="m -16.5,1691.3622 0,-1 1.9785,0 a 0.50005,0.50005 0 1 1 0,1 l -1.9785,0 z" color="#000" font-family="sans-serif" font-weight="400" overflow="visible"/></g></svg>    
                                         <h6 class="freight-title title-reset">
@@ -124,7 +124,7 @@
                                             <span class="freight-text">Miễn phí vận chuyển</span>
                                         </div>
                                         <p class="freight-sub-text title-reset">Khi đạt giá trị đơn hàng tối thiểu</p>    
-                                        <div class="freight-body__row mt-10">
+                                        <div class="freight-body__row margin-top10">
                                             <svg class="svg-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 82.83 83.01"><g data-name="Layer 2"><g data-name="Layer 1"><path fill="#d0d3d6" d="M60.41 77.11l-19 5-19-5L0 83.01l6.63-63.27 18.78-5.87 16 5 16-5 18.79 5.87 6.63 63.27-22.42-5.9z"/><path fill="#40b29b" d="M73.42 22.01l-16.01-5-16 5-16-5-16 5-5.99 57 18.99-5 19 5 19-5 19.01 5-6-57z"/><path fill="#40b29b" d="M22.41 74.01l-18.99 5 5.99-57 16-5-3 57z"/><path fill="#30917a" d="M41.41 79.01l-19-5 3-57 16 5v57z"/><path fill="#40b29b" d="M60.41 74.01l-19 5v-57l16-5 3 57z"/><path fill="#30917a" d="M41.67 59.59l17.74-7.74V33.01L41.67 59.59z"/><path fill="#30917a" d="M79.42 79.01l-19.01-5-3-57 16.01 5 6 57z"/><path fill="#eec64a" d="M41.42 0a23.25 23.25 0 0 0-23.26 23.25c0 12.84 20.86 36.58 23.25 36.58s23.26-23.74 23.26-36.58A23.25 23.25 0 0 0 41.42 0zm0 31.67A8.71 8.71 0 1 1 50.13 23a8.71 8.71 0 0 1-8.71 8.67z"/><path fill="#ecf0f1" d="M41.42 11.51A11.45 11.45 0 1 0 52.87 23a11.45 11.45 0 0 0-11.45-11.49zm0 20.17A8.71 8.71 0 1 1 50.13 23a8.71 8.71 0 0 1-8.71 8.67z"/></g></g></svg>
                                             <span class="freight-text">Vận chuyển đến: </span>
                         
@@ -153,7 +153,7 @@
                                     foreach ($productTypeLabelList as $labelType)
                                     {
                                 ?>
-                                    <div class="product-type row mt-20">
+                                    <div class="product-type row margin-top20">
                                         <div class="product-type__header col-3">
                                             <h6 class="type-title title-reset">
                                                 <?php echo $labelType;?>
@@ -182,7 +182,7 @@
                                 <?php
                                     }
                                 ?>
-                                <div class="product-quantity-count row mt-20">
+                                <div class="product-quantity-count row margin-top20">
                                     <div class="product-quantity-count__header col-3">
                                         <h6 class="quantity-title title-reset">Số lượng</h6>
                                     </div>
@@ -204,7 +204,7 @@
                                 <!-- Notification inline -->
                                 <div id="quantity-notification" class="alert alert-danger">
                                 </div>
-                                <div class="product-buy mt-60">
+                                <div class="product-buy margin-top60">
                                     <button id="product-add-cart__btn" class="btn btn-outline-primary">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 64 64"><path d="M20 64c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5zM44 64c-3.859 0-7-3.14-7-7s3.141-7 7-7 7 3.14 7 7-3.141 7-7 7zm0-12c-2.757 0-5 2.243-5 5s2.243 5 5 5 5-2.243 5-5-2.243-5-5-5z"/><path d="M26 56h12v2H26zM13.003 57.073L9.07 3H0V1h10.93l4.067 55.927z"/><path d="M13.069 43.998l-.138-1.996 42.263-2.948L61.74 11H11V9h53.26l-7.454 31.946z"/><path d="M36.707 35.707h-1.414l-8-8 1.414-1.414L36 33.586l7.293-7.293 1.414 1.414z"/><path d="M35 15h2v20h-2z"/></svg> 
                                         Thêm vào giỏ hàng
@@ -228,10 +228,10 @@
                 <div class="product-desc">
                     <div class="row">
                         <div class="col-10">
-                            <div class="layout-split mt-24 p-25">
+                            <div class="layout-split margin-top24 p-25">
                                 <?php require_once './mvc/views/block/product-detail/Desc.php'; ?>
                             </div>
-                            <div class="layout-split mt-24 p-25 mb-20">
+                            <div class="layout-split margin-top24 p-25 mb-20">
                                 <?php require_once './mvc/views/block/product-detail/Rating.php'; ?>
                             </div>
                         </div>
@@ -243,7 +243,7 @@
                             {
                         ?>
                         <div class="col-2">
-                            <div class="layout-split mt-24">
+                            <div class="layout-split margin-top24">
                                 <div class="recommend">
                                 <h3 class="recommend__title title-reset">Sản phẩm bán chạy</h3>
                                     <div class="recommend__list">

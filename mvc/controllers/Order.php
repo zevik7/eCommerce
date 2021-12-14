@@ -12,8 +12,6 @@ class Order extends Controller{
     protected $cartModel;
     protected $orderModel;
     protected $orderDetailModel;
-    //General params
-    protected $productId;
 
     function __construct(){
         $this->productModel = new Product();
