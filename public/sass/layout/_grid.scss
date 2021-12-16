@@ -1,97 +1,195 @@
 .grid{
-    margin: 0 auto;
     padding: 0;
     display: block;
     width: 100%;
 }
+
 .wide{
+    margin: 0 auto;
     max-width: 1200px;
 }
+
 .row{
     display: flex;
     flex-wrap: wrap;
     margin-left: -4px;
     margin-right: -4px;
 }
+
+.row.no-gutters {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.row.no-gutters .col {
+    padding-left: 0;
+    padding-right: 0;
+}
+
 .row-al-center{
     align-items: center;
 }
+
 .col{
     padding-left: 4px;
     padding-right: 4px;
-    &-3{
-        @extend .col;
-        max-width: 25%;
-        flex: 0 0 25%;
-    }
-    &-9{
-        @extend .col;
-        max-width: 75%;
-        flex: 0 0 75%;
-    }
-    &-5{
-        @extend .col;
-        max-width: 41.16666%;
-        flex: 0 0 41.16666%;
-    }
-    &-7{
-        @extend .col;
-        max-width: 58.33333%;
-        flex: 0 0 58.33333%;
-    }
-    &-4{
-        @extend .col;
-        max-width: 33.3333%;
-        flex: 0 0 33.3333%;
-    }
-    &-8{
-        @extend .col;
-        max-width: 66.6666%;
-        flex: 0 0 66.6666%;
-    }
-    &-2{
-        @extend .col;
-        max-width: 16.6667%;
-        flex: 0 0 16.6667%;
-    }
-    &-10-2{
-        @extend .col;
-        max-width: 20%;
-        flex: 0 0 20%;
-    }
-    &-10{
-        @extend .col;
-        max-width: 83.3333%;
-        flex: 0 0 83.3333%;
-    }
 }
 
-/* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) {
-    
-}
 
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) {
-    
+/* Small devices (portrait tablets and large phones, 350px and up) */
+@media only screen and (min-width: 350px) {
+    .sm-0 {
+        display: none;
+    }
+
+    /* Col width */
+    @for $i from 1 through 12 {
+        .sm-#{$i} {
+            display: block;
+            max-width: calc(100% * ($i/12));
+            flex: 0 0 calc(100% * ($i/12));
+        }
+    }
+
+    /* Col offset */
+    @for $i from 1 through 12 {
+        .sm-o-#{$i} {
+            margin-left: calc(100% * ($i/12));
+        }
+    }
+
 }
 
 /* Medium devices (landscape tablets, 768px and up) */
 @media only screen and (min-width: 768px) {
-    
+    .row {
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+
+    .col {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .md-0 {
+        display: none;
+    }
+
+    /* Col width */
+    @for $i from 1 through 12 {
+        .md-#{$i} {
+            display: block;
+            max-width: calc(100% * ($i/12));
+            flex: 0 0 calc(100% * ($i/12));
+        }
+    }
+
+    /* Col offset */
+    @for $i from 1 through 12 {
+        .md-o-#{$i} {
+            margin-left: calc(100% * ($i/12));
+        }
+    }
 }
 
 /* Large devices (laptops/desktops, 992px and up) */
 @media only screen and (min-width: 992px) {
-    
+    .row {
+        margin-left: -10px;
+        margin-right: -10px;
+    }
+
+    .col {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .row.sm-gutter {
+        margin-left: -5px;
+        margin-right: -5px;
+    }
+
+    .row.sm-gutter .col {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+
+    .lg-0 {
+        display: none;
+    }
+
+    /* Col width */
+    @for $i from 1 through 12 {
+        .lg-#{$i} {
+            display: block;
+            max-width: calc(100% * ($i/12));
+            flex: 0 0 calc(100% * ($i/12));
+        }
+    }
+
+    .lg-2-4{
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+
+    /* Col offset */
+    @for $i from 1 through 12 {
+        .lg-o-#{$i} {
+            margin-left: calc(100% * ($i/12));
+        }
+    }
 }
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-    
+    .row {
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+
+    .col {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .row.sm-gutter {
+        margin-left: -8px;
+        margin-right: -8px;
+    }
+
+    .row.sm-gutter .col {
+        padding-left: 8px;
+        padding-right: 8px;
+    }
+
+    .elg-0 {
+        display: none;
+    }
+
+    /* Col width */
+    @for $i from 1 through 12 {
+        .elg-#{$i} {
+            display: block;
+            max-width: calc(100% * ($i/12));
+            flex: 0 0 calc(100% * ($i/12));
+        }
+    }
+
+    .elg-2-4{
+        flex: 0 0 20%;
+        max-width: 20%;
+    }
+
+    /* Col offset */
+    @for $i from 1 through 12 {
+        .elg-o-#{$i} {
+            margin-left: calc(100% * ($i/12));
+        }
+    }
 }
 
-/*Margin top*/
+/* Custom style classes */
 @mixin attr-x($attr, $attr-count: 50, $attr-steps: 1, $unit: 'px') {
     $attr-list: null;
     @for $i from 1 through $attr-count {
@@ -101,14 +199,23 @@
             #{$attr}: #{$attr-value}#{$unit};
         }
 
-        $attr-list: append($attr-list, unquote(".#{$attr}-#{$attr-value}"), comma);
+         $attr-list: append($attr-list, unquote(".#{$attr}#{$attr-value}"), comma);
     }
 
     #{$attr-list} {
         //append style to all classes
+        
     }
 }
-@include attr-x('margin-top', 50, 1, 'px');
 
-/*Padding top*/
-@include attr-x('padding-top', 50, 1, 'px');
+/* Margin top */
+@include attr-x('margin-top', 60, 1, 'px');
+
+/* Padding top */
+@include attr-x('padding-top', 60, 1, 'px');
+
+/* Sub layout */
+.layout-split{
+    background-color: $background-color-white;
+    border-radius: $border-radius;
+}

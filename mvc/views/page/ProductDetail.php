@@ -40,7 +40,7 @@
             <div data-id="<?php echo $product['productId'];?>" class="product-page">
                 <div class="product-detail">
                     <div class="row">
-                        <div class="col-5">
+                        <div class="col lg-5 md-5 sm-12">
                             <div class="product-detail__carousel">
                                 <!--Carousel -->
                                 <?php require_once './mvc/views/block/ImageCarousel.php' ?>
@@ -53,7 +53,7 @@
                                 echo $productImage[0]['imageUrl'];
                             ?>" alt="">
                         </div>
-                        <div class="col-7">
+                        <div class="col lg-7 md-7 sm-12">
                             <div class="product-detail__content">
                                 <div class="product-heading">
                                     <span class="product-title">
@@ -228,10 +228,10 @@
                 <div class="product-desc">
                     <div class="row">
                         <div class="col-10">
-                            <div class="layout-split margin-top24 p-25">
+                            <div class="layout-split margin-top24">
                                 <?php require_once './mvc/views/block/product-detail/Desc.php'; ?>
                             </div>
-                            <div class="layout-split margin-top24 p-25 mb-20">
+                            <div class="layout-split margin-top24 mb-20">
                                 <?php require_once './mvc/views/block/product-detail/Rating.php'; ?>
                             </div>
                         </div>

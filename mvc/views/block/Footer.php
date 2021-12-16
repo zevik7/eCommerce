@@ -1,6 +1,6 @@
-<div class="grid">
+<div class="grid wide">
     <div class="row">
-        <div class="col-10-2">
+        <div class="col lg-2-4">
             <h3 class="footer__heading title-reset">Giới thiệu</h3>
             <ul class="footer__list">
                 <li class="footer__item">
@@ -17,7 +17,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-10-2">
+        <div class="col lg-2-4">
             <h3 class="footer__heading title-reset">Chăm sóc khách hàng</h3>
             <ul class="footer__list">
                 <li class="footer__item">
@@ -31,7 +31,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-10-2">
+        <div class="col lg-2-4">
             <h3 class="footer__heading title-reset">Điều khoản sử dụng</h3>
             <ul class="footer__list">
                 <li class="footer__item">
@@ -48,7 +48,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-10-2">
+        <div class="col lg-2-4">
             <h3 class="footer__heading title-reset">Liên hệ chúng tôi</h3>
             <ul class="footer__list">
                 <li class="footer__item">
@@ -68,7 +68,7 @@
                 </li>
             </ul>
         </div>
-        <div class="col-10-2">
+        <div class="col lg-2-4">
             <h3 class="footer__heading title-reset">Vào của hàng trên ứng dụng</h3>
             <ul class="footer__list">
                 <li class="footer__item">
