@@ -2,14 +2,12 @@
     <div class="bg-transparent">
         <div class="grid wide padding-top20">
             <div class="row"> 
-                <div class="col lg-2 md-2 sm-0">
+                <div class="col lg-2 md-2 sm-0 exsm-0">
                     <?php require_once './mvc/views/block/product-list/Category.php'?>
                 </div>
-                <div class="col lg-10 md-10 sm-12">
-                    <div class="row">
-                        <div class="col lg-12 md-12 sm-0">
-                            <?php require_once './mvc/views/block/product-list/Filter.php'?>
-                        </div>
+                <div class="col lg-10 md-10 sm-12 exsm-12">
+                    <div class="">
+                        <?php require_once './mvc/views/block/product-list/Filter.php'?>
                     </div>
                     <div class="result">
                         <?php
@@ -47,7 +45,7 @@
                                     foreach($decode as $value)
                                     {
                             ?>
-                            <div class="col elg-2-4 lg-3 md-3 sm-6">
+                            <div class="col elg-2-4 lg-3 md-3 sm-4 exsm-6">
                                 <a href="./ProductDetail/<?php echo $value['productId'];?><?php if(isset($_GET['search'])) echo('?search=' . $_GET['search'])?>" class="product__item margin-top10">
                                     <div class="product-item__img" style="background-image: url(<?php echo $value['imageUrl'];?>);"></div>
                                     <div class="product-item__content">
@@ -98,7 +96,7 @@
                             ?>
                         </div>
                     </div>
-                    <?php 
+                    <?php   
                         require_once './mvc/views/block/Pagination.php'
                     ?>
                 </div>

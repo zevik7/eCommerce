@@ -1,5 +1,5 @@
 <div class="grid wide">
-    <div class="nav">
+    <div class="nav hide-on-mobile">
         <ul class="nav__list">
             <li class="nav-list__item item--separate">
                 <a href="" class="nav-list__link">Về chúng tôi</a>

@@ -19,8 +19,8 @@
 @import 'components/modal';
 
 @import 'layout/grid';
-@import 'layout/responsive';
 @import 'layout/header';
+@import 'layout/body';
 @import 'layout/footer';
 @import 'layout/pagination';
 
@@ -30,5 +30,6 @@
 @import 'page/order';
 @import 'page/orderSuccess';
 
+@import 'layout/responsive';
 // @import 'themes/theme';
 // @import 'themes/admin';

@@ -23,7 +23,6 @@
         </div>
         <div class="body">
             <?php
-                
                 require_once './mvc/views/page/'.$data['Page'].'.php';
             ?>
         </div>
