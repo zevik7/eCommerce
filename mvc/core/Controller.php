@@ -16,5 +16,11 @@ class Controller{
                         'message' => $msg,
                         'data' => $data]);
     }
+
+    public function checkAuth()
+    {
+        if (!isset($_SESSION['user']))
+            return sendResponse('error', 'Thất bại');
+    }
 }
 ?>

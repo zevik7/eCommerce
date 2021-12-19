@@ -57,6 +57,7 @@
     }
     
 }
+
 //Select for provinces
 .select[name ~= "fs-select-shipping-provinces"]{
     min-width: 140px;
@@ -100,5 +101,11 @@
         border: none;
         border-top: $border-light;
         border-bottom: $border-light;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .select{
+        padding: 4px 8px;
     }
 }

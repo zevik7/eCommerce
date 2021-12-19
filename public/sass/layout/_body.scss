@@ -2,7 +2,12 @@
     color: $text-color;
     font-size: 1.3rem;
 }
-/* Background color*/
+/* Background color */
 .bg-transparent{
     background-color: $background-color-transparent;
+}
+/* Sub layout */
+.layout-split{
+    background-color: $background-color-white;
+    border-radius: $border-radius;
 }

@@ -366,8 +366,7 @@
             position: absolute;
             top: 100%;
             right: 0;
-            min-width: 200px;
-            max-width: 400px;
+            width: 400px;
             border-radius: $border-radius;
             background-color: $background-color-white;
             animation: fade-in 0.3s ease-in;

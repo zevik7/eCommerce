@@ -23,9 +23,8 @@
     /* Page */
     .product-list-page {
         .grid{
-            padding-top: 5px;
+            padding-top: 8px;
         }
-            
     }
     /* Header */
     $new-headbar-height: $headbar-height - 20px;
@@ -53,6 +52,7 @@
             .head-cart {
                 &__box {
                     position: fixed;
+                    max-width: 350px;
                     top: $new-headbar-height;
                     right: 10px;
                     &::after{
@@ -64,29 +64,32 @@
     }
     /* Filter */
     .filter{
-        padding: 4px 8px;
+        padding: 8px;
         &__title{
             display: none;
         }
         &__list{
             .filter__item{
                 & > a {
-                    padding: 4px 8px;
+                    padding: 6px;
                 }
-            }
-            .select{
-                max-width: 90px;
+                .select {
+                    &__active{
+                        white-space: nowrap;
+                    }
+                    &__list{
+                        right: 0;
+                        left: auto;
+                    }
+                    i{
+                        margin-left: 4px;
+                    }
+                }
             }
         }
         &__switch{
             display: none;
         }
     }
-    .select{
-        padding: 6px;
-        &__list{
-            right: 0;
-            left: auto;
-        }
-    }
+    
 }

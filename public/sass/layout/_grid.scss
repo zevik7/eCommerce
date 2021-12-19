@@ -38,6 +38,10 @@
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) 
 {
+    .wide {
+        max-width: 97%;
+    }
+
     .exsm-0 {
         display: none;
     }
@@ -62,6 +66,10 @@
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) 
 {
+    .wide {
+        max-width: 95%;
+    }
+
     .row {
         margin-left: -4px;
         margin-right: -4px;
@@ -258,9 +266,3 @@
 
 /* Padding top */
 @include attr-x('padding-top', 60, 1, 'px');
-
-/* Sub layout */
-.layout-split{
-    background-color: $background-color-white;
-    border-radius: $border-radius;
-}
