@@ -5,9 +5,8 @@
 }
 
 /*--------Navigation----------*/
-$height-nav: 40px;
 .nav{
-    height: $height-nav;
+    height: $nav-height;
     display: flex;
     justify-content: space-between;
 
@@ -58,8 +57,8 @@ $height-nav: 40px;
 .nav-user{
     &__avatar{
         margin-right: 4px;
-        width: $height-nav - 6;
-        height: $height-nav - 6;
+        width: $nav-height - 6;
+        height: $nav-height - 6;
         object-fit: cover;
         border-radius: 50%;
         border: $border-transparent;
@@ -217,22 +216,28 @@ $height-nav: 40px;
     display:flex;
     justify-content: space-between;
     align-items: center;
+    height: $headbar-height
 }
 .head-bar__logo{
     margin-right: 60px;
+    & > a {
+        display: flex;
+        align-items: center;
+    }
     img{
         object-fit: cover;
-        min-width: 120px;
-        height: 60px;
+        max-width: 120px;
+        height: $headbar-height*0.7;
         border-radius: $border-radius;
     }
 }
 .head-bar__search{
+    margin-right:60px;
     position: relative;
     flex: 1;
     .head-search{
         position: relative;
-        $height-search: 40px;
+        $height-search: $headbar-height*0.5;
         &__text{
             padding-left: 20px;
             padding-right: 100px;
@@ -270,7 +275,7 @@ $height-nav: 40px;
             position: absolute;
             top: 110%;
             left: 0;
-            width: calc(100% - 80px);
+            width: 100%;
             color: $text-color-light;
             background-color: $background-color-white;
             border: $border-light;
@@ -323,9 +328,8 @@ $height-nav: 40px;
         }
     }
 }
-
 .head-bar__cart{
-    margin: 0 70px;
+    margin-right: 60px;
     .head-cart{
         position: relative;
         padding: 15px;
@@ -356,14 +360,14 @@ $height-nav: 40px;
                 pointer-events: none;
             }
         }
-        $width-noti: 400px;
         &__box{
             display: none;
             z-index: 1;           
             position: absolute;
             top: 100%;
             right: 0;
-            width: $width-noti;
+            min-width: 200px;
+            max-width: 400px;
             border-radius: $border-radius;
             background-color: $background-color-white;
             animation: fade-in 0.3s ease-in;
@@ -452,7 +456,7 @@ $height-nav: 40px;
                 }
                 .item-delete{
                     margin-bottom: 4px;
-                    padding: 2px 8px;
+                    padding: 4px 12px;
                 }
             }
             &:first-child{

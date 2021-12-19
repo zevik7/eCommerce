@@ -77,12 +77,12 @@
             }
             .select{
                 border: none;
-                min-width: 140px;
+                max-width: 140px;
                 &.active{
                     background-color: $primary-color;
                     color: $text-color-white;
                 }
-                .select__list{
+                &__list{
                     background-color: $background-color-white;
                     color: $text-color;
                 }

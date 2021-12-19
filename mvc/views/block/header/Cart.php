@@ -1,12 +1,19 @@
+<?php
+    // Parse data
+    if (isset($data['cart']) && !empty($data['cart']))
+        $cart = $data['cart'];
+?>
 <div class="head-bar__cart">
     <div class="head-cart">
         <div class="head-cart__icon">
             <i class="fas fa-shopping-cart"></i>
-            <input class="head-cart__quantity" type="number" disabled
+            <input 
+            class="head-cart__quantity" 
+            type="number" 
+            disabled
             value="<?php
-                if (isset($data['cart'])){
-                    $cartData = json_decode($data['cart'], true);
-                    echo count($cartData);
+                if (isset($cart)){
+                    echo count($cart);
                 }
                 else echo 0;
             ?>">
@@ -15,13 +22,13 @@
             <h3 class="head-cart__title title-reset">Sản phẩm đã thêm</h3>
             <?php
                 // Load cart data
-                if (isset($cartData)) 
+                if (isset($cart)) 
                 {
             ?>
                 <!-- Cart has item -->
                 <ul id="cart-list" class="head-cart__list">
                     <?php
-                        foreach ($cartData as $key => $value) {
+                        foreach ($cart as $key => $value) {
                     ?>
                         <li class="head-cart__item">
                             <div class="item-img">

@@ -93,7 +93,7 @@ function isEmpty( el ){
 }
 const addToCart = $('#product-add-cart__btn');
 
-addToCart.on('click', function () {  
+addToCart.on('click', function () {
     // Get product type
     let productType = $('.list-type__item.active');
     let productTypeId = productType.attr('id');
@@ -115,6 +115,7 @@ addToCart.on('click', function () {
                     }
         fetch(addCartUrl, options)
             .then((response) => {
+                alert(response.text())
                  return response.json();
             })
             .then((data) => {

@@ -69,7 +69,7 @@
         </ul>
     </div>
     <div class="head-bar">
-        <div class="head-bar__logo">
+        <div class="head-bar__logo hide-on-mobile-tablet">
             <a href="#">
                 <img class="head-bar-logoBox__img" src="public/img/system/mainlogo.PNG" alt="Main Logo">
             </a>

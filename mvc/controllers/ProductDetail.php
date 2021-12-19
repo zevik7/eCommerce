@@ -64,6 +64,7 @@ class ProductDetail extends Controller{
     function addCart(){
 
         // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
+        
         $data = json_decode(file_get_contents('php://input'));
         $id = $data->productTypeId;
         $qty = $data->productTypeQty;

@@ -22,7 +22,8 @@ class ProductList extends Controller{
         $this->CategoryModel = new Category();
     }
     function load(){    
-        $productQuantity = $this->productModel->getProductQuantity();
+        $productQuantity = 
+            $this->productModel->getProductQuantity();
         $query =
         " SELECT 
         pd.id as productId, 
@@ -113,7 +114,7 @@ class ProductList extends Controller{
         $productsData = json_encode($this->productModel->select($query));
 
         // Load cart data
-        $cartData = json_encode($this->cartModel->get());
+        $cart = $this->cartModel->get();
         
         // Load category
         $categoryData = json_encode($this->CategoryModel->getCategories());
@@ -123,7 +124,7 @@ class ProductList extends Controller{
             'User' => $this->userModel->getUser(),
             'Product' => $productsData,
             'Pagination' => $this->paginationModel->getPagination(),
-            'cart' => $cartData,
+            'cart' => $cart,
             'category' => $categoryData
         ]);
     }
