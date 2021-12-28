@@ -1,3 +1,5 @@
+@use '../abstracts' as a;
+
 //Personal Sidebar
 .personal-sidebar{
     margin-bottom: 50px;
@@ -6,7 +8,7 @@
         display: flex;
         align-items: center;
         padding: 15px 0;
-        border-bottom: $border-light;
+        border-bottom: a.$border-light;
     }
     &__avatar{
         width: 50px;
@@ -23,7 +25,7 @@
         margin: 0;
         text-decoration: none;
         .username{
-            color: $text-color;
+            color: a.$text;
             font-size: 1.4rem;
             margin: 4px 0;
             text-overflow: ellipsis;
@@ -34,7 +36,7 @@
         }
         .edit{
             font-size: 1.4rem;
-            color: $text-color-light;
+            color: a.$text-light;
             &:hover{
                 cursor: pointer;
             }
@@ -55,7 +57,7 @@
     &__nav{
         font-size: 1.5rem;
         display: block;
-        color: $text-color; 
+        color: a.$text; 
         transition: all 0.2s;
         display: flex;
         flex-wrap: nowrap;
@@ -65,7 +67,7 @@
         transition: right linear 0.2s;
         &:hover{
             cursor: pointer;
-            color: $primary-color;
+            color: a.$primary;
             font-weight: 600;
             right: -6px;
         }
@@ -86,7 +88,7 @@
             transition: right linear 0.2s;
             &:hover{
                 cursor: pointer;
-                color: $primary-color;
+                color: a.$primary;
                 font-weight: 600;
                 right: -6px;
             }
@@ -94,7 +96,7 @@
     }
 }
 .personal-active{ //active navbar when it is clicked
-    color: $primary-color;
+    color: a.$primary;
     font-weight: 600;
 }
 
@@ -108,24 +110,24 @@
 // Tài khoản của tôi
 .account__header-2line{
     padding: 18px 0;
-    border-bottom: $border-light;
+    border-bottom: a.$border-light;
     height: 80px;
     h2{
         font-weight: 500;
         margin: 0;
         padding-bottom: 6px;
         font-size: 1.9rem;
-        color: $text-color;
+        color: a.$text;
     }
     p{
         font-size: 1.5rem;
         margin: 0;
-        color: $text-color;
+        color: a.$text;
     }
 }
 .account__header-1line{
     padding: 18px 0;
-    border-bottom: $border-light;
+    border-bottom: a.$border-light;
     height: 80px;
     display: flex;
     align-items: center;
@@ -135,7 +137,7 @@
         margin: 0;
         padding-bottom: 6px;
         font-size: 1.9rem;
-        color: $text-color;
+        color: a.$text;
     }
     button{
         padding: 0 20px;
@@ -144,10 +146,10 @@
     }     
 }
 .account{
-    background-color: $background-color-white;
+    background-color: a.$background-white;
     padding: 0 30px;
     border-radius: 0.2rem;
-    box-shadow: 0 1px 1px $background-color-disabled;
+    box-shadow: 0 1px 1px a.$background-disabled;
     min-height: 420px;
 }
 
@@ -169,14 +171,14 @@
             min-width: 120px;
             text-align: right;
             margin: 0  20px;
-            color: $text-color-light;
+            color: a.$text-light;
             font-size: 1.5rem;
         }
         .input{
             font-size: 1.5rem;
         }
         &-change{
-            color: $primary-color;
+            color: a.$primary;
             margin: 0;
             margin-left: 8px;
             text-decoration: underline;
@@ -198,7 +200,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        border-left: $border-light;
+        border-left: a.$border-light;
         margin-top: 30px;
         &-img{
             margin: 20px 0;
@@ -222,7 +224,7 @@
                 font-size: 1.4rem;
                 margin: 0;
                 line-height: 20px;
-                color: $text-color-disable;
+                color: a.$text-disable;
             }
         }
     }
@@ -248,7 +250,7 @@
     p{
         margin: 0;
         font-size: 1.5rem;
-        color: $text-color-disable;
+        color: a.$text-disable;
         text-align: right;
     }
     input[type=password], input[type=text]{
@@ -271,12 +273,12 @@
 .wrong-password{
     margin: 4px 0;
     padding-left:30%;
-    color: $red-color;
+    color: a.$red;
     font-size: 1.3rem;
 }
 
 .error-password{
-    color: $red-color;
+    color: a.$red;
     font-size: 1.3rem;
     margin: 4px 0;
     padding-left: calc(22% + 2px);
@@ -298,7 +300,7 @@
         padding-bottom: 20px;
         p{
             font-size: 1.7rem;
-            color: $text-color-light;
+            color: a.$text-light;
             margin: auto;
             font-weight: 500;
         }
@@ -313,13 +315,13 @@
         min-height: 200px;
         p{
             font-size: 1.7rem;
-            color: $text-color-light;
+            color: a.$text-light;
             margin: auto;
             font-weight: 500;
         }
         span{
             font-size: 1.7rem;
-            color: $text-color;
+            color: a.$text;
             margin: auto;
             font-weight: 500;
         }
@@ -340,11 +342,11 @@
         p{
             text-align: right;
             font-size: 1.6rem;
-            color: $text-color-light;
+            color: a.$text-light;
         }
         a{
             font-size: 1.5rem;
-            color: $text-color-light;
+            color: a.$text-light;
         }
         input[type=submit]{
             padding: 0 20px;
@@ -364,8 +366,8 @@
 }
 .user-address{
     width: 500px;
-    background-color: $background-color-white;
-    border-radius: $border-radius;
+    background-color: a.$background-white;
+    border-radius: a.$border-radius;
     position: relative;
     left: 50%;
     transform: translateX(-50%);
@@ -373,12 +375,12 @@
     padding: 30px;
     &__heading{
         font-size: 2rem;
-        color: $text-color;
+        color: a.$text;
         font-weight: 500;
     }
     span{
         font-size: 1.5rem;
-        color: $text-color-light;
+        color: a.$text-light;
     }
     &__box{
         justify-content: space-around;
@@ -394,7 +396,7 @@
         margin: 12px 0;
         padding: 6px 12px;
         font-size: 1.4rem;
-        color: $text-color;
+        color: a.$text;
     }
     &__btn{
         display: flex;
@@ -412,7 +414,7 @@
 }
 // ************Đơn mua************
 .purchase__menu{
-    background-color: $background-color-white;
+    background-color: a.$background-white;
     border-radius: 0.2rem;
     display: flex;
     position: sticky;
@@ -424,7 +426,7 @@
         align-items: center;
         justify-content: center;
         font-size: 1.7rem;
-        color: $text-color;
+        color: a.$text;
         border-bottom: 2px solid #dee2e6;
         &:hover{
             cursor: pointer;
@@ -443,10 +445,10 @@
         display: flex;
         &-icon{
             height: 40px;
-            background-color: $background-color-transparent;
+            background-color: a.$background-transparent;
             width: 60px;
             text-align: center;
-            color: $text-color-disable;
+            color: a.$text-disable;
             i{
                 font-size: 1.8rem;            
                 line-height: 40px;                
@@ -454,13 +456,13 @@
         }
         &-input{
             border: none;
-            background-color: $background-color-transparent;
+            background-color: a.$background-transparent;
             font-size: 1.4rem;
             &:focus{
-                background-color: $background-color-transparent ;
+                background-color: a.$background-transparent ;
             }
             // &:focus ~ .all-purchases__search-icon i{
-            //     color: $text-color;
+            //     color: a.$text;
             // }
         }
     }
@@ -469,8 +471,8 @@
     min-height: 400px;
     border-radius: 0.2rem;
     margin-top: 12px;
-    background-color: $background-color-white;
-    box-shadow: 0 1px 1px $background-color-disabled;
+    background-color: a.$background-white;
+    box-shadow: 0 1px 1px a.$background-disabled;
     padding: 0 20px 30px;
 }
 .purchase__list-header{
@@ -478,7 +480,7 @@
     display: flex;
     align-items: center;
     justify-content:space-between;
-    border-bottom: $border-light;
+    border-bottom: a.$border-light;
     &-item{
         display: flex;
         align-items: center;
@@ -494,23 +496,23 @@
         }
         .shipped{
             font-size: 1.6rem;
-            color: $third-color;
+            color: a.$third;
             margin-left: 8px;
         }
         .help{
            font-size: 1.5rem;
            margin-left: 8px;
-           color: $text-color-light;
+           color: a.$text-light;
         }
         .separation{
             height: 18px;
             width: 1px;
-            background-color: $text-color-disable;
+            background-color: a.$text-disable;
             margin-left: 6px;
         }
         .rated{
             font-size: 1.6rem;
-            color: $red-color;
+            color: a.$red;
             margin-left: 8px;
         }
     }
@@ -519,8 +521,8 @@
     width: 100%;
 }
 .purchases__list-table, .purchases__row{
-    // border-top: $border-light ;
-    border-bottom: $border-light;
+    // border-top: a.$border-light ;
+    border-bottom: a.$border-light;
     border-collapse: collapse;
 }
 .purchases__row{
@@ -547,20 +549,20 @@
     &-title{
         padding-top: 4px;
         font-size: 1.7rem;
-        color: $text-color;
+        color: a.$text;
     }
     &-category{
         font-size: 1.5rem;
-        color: $text-color-light;
+        color: a.$text-light;
     }
     &-quantity{
         font-size: 1.5rem;
-        color: $text-color;
+        color: a.$text;
     }
     &-price{
         text-align: right;
         font-size: 1.5rem;
-        color: $text-color;
+        color: a.$text;
     }
 }
 .purchase__list-total{
@@ -575,13 +577,13 @@
     }
     span{
         font-size: 2rem;
-        color: $red-color;
+        color: a.$red;
     }
     .time{
         justify-self: start;
         margin-right: auto;
         font-size: 1.7rem;
-        color: $blue-color;
+        color: a.$blue;
     }
 }
 .purchase__list-footer{
@@ -590,7 +592,7 @@
     p{
         margin-right: auto;
         font-size: 1.4rem;
-        color: $text-color-light;
+        color: a.$text-light;
     }
     button{
         font-size: 1.5rem;
@@ -622,9 +624,9 @@
     }
     &__body{
         height: 100%;
-        background-color: $background-color-white;
+        background-color: a.$background-white;
         border-radius: 0.2rem;
-        box-shadow: 0 1px 1px $background-color-disabled;
+        box-shadow: 0 1px 1px a.$background-disabled;
     }
     &__empty{
         display: flex;
@@ -646,7 +648,7 @@
 //     width: 500px;
 //     height: 150px;
 //     border-radius: 0.2rem;
-//     background-color: $background-color-white;
+//     background-color: a.$background-white;
 //     position: relative;
 //     top: 30%;
 //     left: 50%;
@@ -662,11 +664,11 @@
 // }
 // .update-success i{
 //     font-size: 4rem;
-//     color: $green-color;
+//     color: a.$green;
 // }
 // .update-failed{
 //     font-size: 4rem;
-//     color: $red-color;
+//     color: a.$red;
 // }
 .purchase-svg-icon{
     width: 20px;

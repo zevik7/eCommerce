@@ -7,11 +7,11 @@
 
             <div class="col-10 pb-50">
                 <?php 
-                    require_once './mvc/views/page/personal/PersonalAccount.php';
-                    require_once './mvc/views/page/personal/PersonalPurchase.php';
-                    require_once './mvc/views/page/personal/PersonalNotify.php';
-                    require_once './mvc/views/page/personal/PersonalVoucher.php';
-                    require_once './mvc/views/page/personal/PersonalCent.php';
+                    require_once './mvc/views/block/personal/PersonalAccount.php';
+                    require_once './mvc/views/block/personal/PersonalPurchase.php';
+                    require_once './mvc/views/block/personal/PersonalNotify.php';
+                    require_once './mvc/views/block/personal/PersonalVoucher.php';
+                    require_once './mvc/views/block/personal/PersonalCent.php';
                 ?>
             </div> 
 

@@ -3,56 +3,27 @@ namespace mvc\core;
 
 class App{
 
-    protected $controller = "mvc\\controllers\\ProductList";
-    protected $action = "load";
+    protected $controller = "mvc\\controllers\\ProductList"; // Default controller
+    protected $action = "load"; // Default method
     protected $params = [];
 
     function __construct(){
-        
         $arr = $this->UrlProcess();
-
-        // If call API
-        if (isset($arr[0]) && $arr[0] == 'api')
-        {
-            $rmFirst = array_shift($arr);
-            $apiType = '';
-            $apiObj = '';
-            $apiParams = [];
-            if (isset($arr[0])) 
-            {
-                $apiType = $arr[0];
-                unset($arr[0]);
-            }
-            if (isset($arr[1])) 
-            {
-                $apiObj = $arr[1];   
-                unset($arr[1]);
-            }
-            $apiParams = $arr ? array_values($arr) : [];
-            $apiFile = 
-                "./mvc/controllers/api/".$apiType."/".$apiObj.".php";
-            if(file_exists($apiFile)){
-                require_once $apiFile;
-                $reflect  = new ReflectionClass($apiObj);
-                $instance = $reflect->newInstanceArgs($apiParams);
-            }
-            else echo 'The methods does not exist';
-
-            die();
-        }
 
         // Controller
         if(isset($arr[0]))
         {
+            // For user page
             if(file_exists("mvc/controllers/".$arr[0].".php")){
                 $this->controller = "mvc\\controllers\\".$arr[0];
                 unset($arr[0]);
             }
+
             // For admin page
             if($arr[0] == "admin"){
-                if(file_exists("mvc/controllers/$arr[0]/".ucfirst($arr[1]).".php")){
+                if(file_exists("mvc/controllers/admin/".ucfirst($arr[1]).".php")){
                     $this->controller = 
-                        "mvc\\controllers\\$arr[0]\\".ucfirst($arr[1]);
+                        "mvc\\controllers\\admin\\".ucfirst($arr[1]);
                     unset($arr[0]);
                     unset($arr[1]);
                 }

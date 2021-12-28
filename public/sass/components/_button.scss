@@ -1,3 +1,5 @@
+@use '../abstracts' as a;
+
 .btn {
     display: inline-flex;
     justify-content: center;
@@ -21,15 +23,15 @@
 }
   
 .btn-primary {
-    background-color: rgba($primary-color, 0.9);
-    color: $text-color-white;
-    border-color: $primary-color;
+    background-color: rgba(a.$primary, 0.9);
+    color: a.$text-white;
+    border-color: a.$primary;
     border-width: 2px;
     &:hover {
-        background-color: $primary-color;
+        background-color: a.$primary;
     }
     &:focus, &.focus {
-        box-shadow: 0 0 0 0.3rem rgba($primary-color, 0.45);
+        box-shadow: 0 0 0 0.3rem rgba(a.$primary, 0.45);
     }
     &.disabled, &:disabled {
         opacity: 0.7;
@@ -39,26 +41,26 @@
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
-        border-color: rgba($third-color, 0.8);
+        border-color: rgba(a.$third, 0.8);
     }
     &:not(:disabled):not(.disabled):active:focus,
     &:not(:disabled):not(.disabled).active:focus,
     .show > &.dropdown-toggle:focus {
-        box-shadow: 0 0 0 0.4rem rgba($primary-color, 0.45);
+        box-shadow: 0 0 0 0.4rem rgba(a.$primary, 0.45);
     }
 }
 
 /*btn-secondary CSS*/
 .btn-second {
-    background-color: $fifth-color;
-    color: $text-color;
-    border-color: $second-color;
+    background-color: a.$fifth;
+    color: a.$text;
+    border-color: a.$second;
 
     &:hover {
-        background-color: rgba($fourth-color, 0.7);
+        background-color: rgba(a.$fourth, 0.7);
     }
     &:focus, &.focus {
-        box-shadow: 0 0 0 0.3rem rgba($fourth-color, 0.7);
+        box-shadow: 0 0 0 0.3rem rgba(a.$fourth, 0.7);
     }
     &.disabled, &:disabled {
         opacity: 0.7;
@@ -68,28 +70,28 @@
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
-        background-color: $fourth-color;
-        border-color: $third-color;
+        background-color: a.$fourth;
+        border-color: a.$third;
     }
     
     &:not(:disabled):not(.disabled):active:focus,
     &:not(:disabled):not(.disabled).active:focus,
     .show > &.dropdown-toggle:focus {
-        box-shadow: 0 0 0 0.4rem rgba($fourth-color, 0.7);
+        box-shadow: 0 0 0 0.4rem rgba(a.$fourth, 0.7);
     }
 }
 
 /*btn-transparent CSS*/
 .btn-third {
-    background-color: $background-color-white;
-    color: $text-color;
-    border: $border-dark;
+    background-color: a.$background-white;
+    color: a.$text;
+    border: a.$border-dark;
 
     &:hover {
-        background-color: $fifth-color;
+        background-color: a.$fifth;
     }
     &:focus, &.focus {
-        box-shadow: 0 0 0 0.3rem rgba($fourth-color, 0.7);
+        box-shadow: 0 0 0 0.3rem rgba(a.$fourth, 0.7);
     }
     &.disabled, &:disabled {
         opacity: 0.7;
@@ -99,27 +101,27 @@
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
-        background-color: $fifth-color;
-        border-color: $fourth-color;
+        background-color: a.$fifth;
+        border-color: a.$fourth;
     }
     
     &:not(:disabled):not(.disabled):active:focus,
     &:not(:disabled):not(.disabled).active:focus,
     .show > &.dropdown-toggle:focus {
-        box-shadow: 0 0 0 0.4rem rgba($fourth-color, 0.7);
+        box-shadow: 0 0 0 0.4rem rgba(a.$fourth, 0.7);
     }
 }
 
 .btn-outline-primary {
-    background-color: $background-color-white;
-    color: $primary-color;
-    border-color: $primary-color;
+    background-color: a.$background-white;
+    color: a.$primary;
+    border-color: a.$primary;
 
     &:hover {
-        background-color: $hover-color-bg;
+        background-color: a.$hover-bg;
     }
     &:focus, &.focus {
-        box-shadow: 0 0 0 0.3rem rgba($primary-color, 0.45);
+        box-shadow: 0 0 0 0.3rem rgba(a.$primary, 0.45);
     }
     &.disabled, &:disabled {
         opacity: 0.7;
@@ -129,13 +131,13 @@
     &:not(:disabled):not(.disabled):active,
     &:not(:disabled):not(.disabled).active,
     .show > &.dropdown-toggle {
-        border-color: rgba($third-color, 0.8);
+        border-color: rgba(a.$third, 0.8);
     }
     
     &:not(:disabled):not(.disabled):active:focus,
     &:not(:disabled):not(.disabled).active:focus,
     .show > &.dropdown-toggle:focus {
-        box-shadow: 0 0 0 0.4rem rgba($primary-color, 0.45);
+        box-shadow: 0 0 0 0.4rem rgba(a.$primary, 0.45);
     }
 }
 

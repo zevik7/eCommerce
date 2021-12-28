@@ -1,8 +1,10 @@
+@use '../abstracts/variables' as a;
+
 /* Footer */
 .footer{   
     padding: 20px;
-    color: $text-color;
-    border-top: $border-dark;
+    color: a.$text;
+    border-top: a.$border-dark;
     &__list{
         list-style: none;
     }
@@ -17,7 +19,7 @@
         font-size: 1.4rem;
         &:hover{
             transform: scale(1.1);
-            color: $primary-color;
+            color: a.$primary;
             font-weight: 500;
             transition: all 0.2s;
         }

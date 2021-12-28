@@ -1,54 +1,55 @@
-//Pure colors
-$white-color:               #fff;
-$red-color:                 #dc3545;
-$orange-color:              #cf822a;
-$blue-color:                #455CA8;
-$yellow-color:              #fff346;
-$gray-color:                #777;
-$green-color:               #26b303;
+// Pure colors
+$white:               #fff;
+$red:                 #dc3545;
+$orange:              #cf822a;
+$blue:                #2c51cc;
+$yellow:              #e0dd29;
+$gray:                #777;
+$green:               #47cc26;
 
-//Customize color
-$primary-color:             #045762;
-$second-color:              #3f6f7e;
-$third-color:               #39A2DB;
-$fourth-color:              #b7d1df;
-$fifth-color:               #f2f8fa;
+// Custom color
+$primary:             #045762;
+$second:              #3f6f7e;
+$third:               #39A2DB;
+$fourth:              #b7d1df;
+$fifth:               #f2f8fa;
 
-$primary-filter-color:      invert(21%) sepia(81%) saturate(1139%) hue-rotate(154deg) brightness(97%) contrast(97%);
+// Filter color, for svg image
+$primary-filter:      invert(21%) sepia(81%) saturate(1139%) hue-rotate(154deg) brightness(97%) contrast(97%);
 
-//Text
-$text-color:                #333;
-$text-color-light:          #666;
-$text-color-black:          #000;
-$text-color-white:          #fff;
-$text-color-disable:        #999;
+// Text
+$text:                #333;
+$text-light:          #666;
+$text-black:          #000;
+$text-white:          #fff;
+$text-disable:        #999;
 
-//Background color
-$background-color-transparent: rgba(0,0,0, 0.03);
-$background-color-white:       #fff;
-$background-color-disabled:    rgba(210, 210, 210);
+// Background color
+$background-transparent: rgba(0,0,0, 0.03);
+$background-white:       #fff;
+$background-disabled:    rgba(210, 210, 210);
 
-//Hover color
-$hover-color-text:          rgb(220, 220, 220);
-$hover-color-bg:            rgba(245, 245, 245);
+// Hover color
+$hover-text:          rgb(220, 220, 220);
+$hover-bg:            rgba(245, 245, 245);
 
-//Shadow
+// Shadow
 $box-shadow:                  0 .5rem 1rem rgba(#000, .15);
 $box-shadow-sm:               0 .125rem .25rem rgba(#000, .075);
 $box-shadow-lg:               0 1rem 3rem rgba(#000, .175);
 $box-shadow-inset:            inset 0 1px 2px rgba(#000, .075);
 
-//Border
+// Border
 $border-transparent:          1px solid rgba(0,0,0,.35);
 $border-light:                1px solid #dee2e6;
 $border-dark:                 1px solid #c7c7c7;
 $border-radius:               2px;
 $border-radius-lg:            4px;
 
-//Social 
+// Social 
 $facebook-color:            #455CA8;
 $google-color:              #F74933;
 
-/* Size */
+// Size
 $nav-height: 40px;
 $headbar-height: 80px;

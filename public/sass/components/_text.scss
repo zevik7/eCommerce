@@ -1,4 +1,6 @@
+@use '../abstracts/variables' as a;
+
 .text-date{
-    color: $text-color-light;
+    color: a.$third;
     font-size: 0.9em;
 }

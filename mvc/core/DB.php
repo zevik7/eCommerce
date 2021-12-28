@@ -39,23 +39,24 @@ class DB{
     function disConnect(){
         $this->con = NULL;
     }
-
-    //Write to database
+ 
+    // Write to database
 	public function writeDB($query, $data = array())
 	{
         try {
             $statement = $this->con->prepare($query);
-            $check = $statement->execute($data);
-            return $check ? true : false;
+            $result = $statement->execute($data);
+            return $result;
         }
         catch(PDOException $e) {
             echo "PDO ERROR !!!";
             // Put error information to txt file
             $this->putErrorToLog($e->getMessage());
         }
+        return false;
 	}
 
-	//Read from database
+	// Read from database
 	public function readDB($query, $data = array())
 	{
         try {
@@ -74,6 +75,7 @@ class DB{
             // Put error information to txt file
             $this->putErrorToLog($e->getMessage());
         }
+        return false;
 	}
 
     public function cleanData(&$data){

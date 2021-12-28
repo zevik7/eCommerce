@@ -1,3 +1,5 @@
+@use '../abstracts' as a;
+
 /* Mobile & tablet */
 @media screen and (max-width: 1223px) {
     // General class
@@ -27,7 +29,7 @@
         }
     }
     /* Header */
-    $new-headbar-height: $headbar-height - 20px;
+    $new-headbar-height: a.$headbar-height - 20px;
     .header{
         z-index: 999;
         position: fixed;

@@ -1,3 +1,6 @@
+@use '../abstracts' as a;
+
+
 .order{
     font-size: 1.4rem;
     .order-header{
@@ -5,21 +8,21 @@
         &__title{
             font-size: 2.8rem;
             font-weight: 400;
-            color: $primary-color;
+            color: a.$primary;
         }
     }
     .order-body{
         padding-top: 10px;
         .order-address{
             padding: 24px;
-            border-radius: $border-radius;
+            border-radius: a.$border-radius;
             &__header{
                 display: flex;
                 margin-bottom: 20px;
             }
             &__title{
                 margin-left: 8px;
-                color: $primary-color;
+                color: a.$primary;
             }
             &__info{
                 display: flex;
@@ -32,14 +35,14 @@
                     margin: 0 10px 0 30px;
                     padding: 5px;
                     outline: none;
-                    border: $border-dark;
-                    border-radius: $border-radius;
+                    border: a.$border-dark;
+                    border-radius: a.$border-radius;
                     text-align: left;
 
                     resize:none;
                     overflow: hidden;
                     &:disabled{
-                        background-color: $background-color-transparent;
+                        background-color: a.$background-transparent;
                         color: #222;
                     }
                 }
@@ -54,7 +57,7 @@
         .order-products{
             padding: 24px 30px;
             padding-bottom: 0;
-            border-bottom: $border-light;
+            border-bottom: a.$border-light;
             border-bottom-style: dashed;
             &__row{
                 display: flex;
@@ -105,7 +108,7 @@
                 font-weight: 500;
             }
             &__sub-title{
-                color: $text-color-light;
+                color: a.$text-light;
             }
             &__shop-info{
                 display: flex;
@@ -130,7 +133,7 @@
                 }
                 .order-voucer-heading__show-list{
                     margin-left: 160px;
-                    color: $blue-color;
+                    color: a.$blue;
                     font-weight: 500;
                 }
             }
@@ -141,10 +144,10 @@
                 top: 100%;
                 right: 0;
                 transition: opacity ease-in-out 0.5s;
-                box-shadow: $box-shadow;
-                border: $border-light;
-                background-color: $background-color-white;
-                border-radius: $border-radius-lg;
+                box-shadow: a.$box-shadow;
+                border: a.$border-light;
+                background-color: a.$background-white;
+                border-radius: a.$border-radius-lg;
                 &:after{
                     content:"";
                     border: 20px solid;
@@ -157,19 +160,19 @@
                     display: flex;
                     justify-content: space-evenly;
                     padding: 14px 18px;
-                    background-color: $background-color-transparent;
+                    background-color: a.$background-transparent;
                     input{
                         flex: 1;
                         margin-right: 8px;
                         padding-left: 8px;
-                        border: $border-light;
+                        border: a.$border-light;
                         outline: none;
                     }
                 }
                 &__error{
                     padding: 4px 18px;
                     text-align: right;
-                    color: $red-color;
+                    color: a.$red;
                 }
                 &__list{
                     .voucher-box-list__item{
@@ -182,7 +185,7 @@
                             font-weight: 400;
                         }
                         .voucher-box-list-item__code{
-                            color: $text-color-light;
+                            color: a.$text-light;
                         }
                     }
                 }
@@ -194,7 +197,7 @@
             align-items: center;
             justify-content: space-between;
             padding: 14px 30px;
-            border: $border-light;
+            border: a.$border-light;
             border-style: dashed;
             &__header{
                 display: flex;
@@ -211,16 +214,16 @@
                 display: flex;
                 .order-method__item{
                     margin: 0 10px;
-                    color: $text-color;
-                    border: $border-dark;
+                    color: a.$text;
+                    border: a.$border-dark;
                     &:hover:not(.active){
-                        background-color: $background-color-transparent ;
+                        background-color: a.$background-transparent ;
                     }
                     &.active{
                         pointer-events: none;
                         transition: color ease-in 0.2s;
-                        color: $primary-color;
-                        border-color: $primary-color;
+                        color: a.$primary;
+                        border-color: a.$primary;
                     }
                 }
             }
@@ -229,7 +232,7 @@
             padding: 30px;
             background-color:rgb(4, 87, 98, 0.01);
             font-size: 1.5rem;
-            border-bottom: $border-light;
+            border-bottom: a.$border-light;
             &__list{
                 display: flex;
                 flex-direction: column;
@@ -251,7 +254,7 @@
             background-color:rgb(4, 87, 98, 0.01);
             &__law{
                 & > a{
-                    color: $blue-color;
+                    color: a.$blue;
                 }
             }
             &__btn{

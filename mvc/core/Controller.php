@@ -7,12 +7,11 @@ class Controller{
         require_once "./mvc/views/".$view.".php";
     }
 
-    // Send response json
+    // Send json response
     public function sendResponse($status = 'success', 
                     $msg = 'Thành công', $data = []) 
     {
-        return 
-            json_encode(['status' => $status, 
+        return json_encode(['status' => $status, 
                         'message' => $msg,
                         'data' => $data]);
     }
@@ -20,7 +19,7 @@ class Controller{
     public function checkAuth()
     {
         if (!isset($_SESSION['user']))
-            return sendResponse('error', 'Thất bại');
+            echo $this->sendResponse('not authorized', 'Bạn chưa đăng nhập.');
     }
 }
 ?>

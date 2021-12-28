@@ -1,12 +1,15 @@
+@use '../abstracts' as a;
+
+
 .header{
-    background-color: $primary-color;
-    color: $text-color-white;
+    background-color: a.$primary;
+    color: a.$text-white;
     font-size: 1.4rem;
 }
 
 /*--------Navigation----------*/
 .nav{
-    height: $nav-height;
+    height: a.$nav-height;
     display: flex;
     justify-content: space-between;
 
@@ -28,7 +31,7 @@
         align-items: center;
         height: 100%;
         text-decoration: none;
-        color: $text-color-white;
+        color: a.$text-white;
         i{
             margin-left: 4px;
         }
@@ -40,7 +43,7 @@
     &__signup-btn:hover,
     &__signin-btn:hover{
         cursor: pointer;
-        color:  $hover-color-text;
+        color:  a.$hover-text;
     }
 }
 .item--separate::after{
@@ -57,11 +60,11 @@
 .nav-user{
     &__avatar{
         margin-right: 4px;
-        width: $nav-height - 6;
-        height: $nav-height - 6;
+        width: a.$nav-height - 6;
+        height: a.$nav-height - 6;
         object-fit: cover;
         border-radius: 50%;
-        border: $border-transparent;
+        border: a.$border-transparent;
     }
     &__name{
         font-weight: 600;
@@ -74,22 +77,22 @@
         top: 100%;
         right: 0;
         list-style: none;
-        background-color: $background-color-white;
-        border: $border-light;
-        box-shadow: $box-shadow;
-        border-radius: $border-radius; 
+        background-color: a.$background-white;
+        border: a.$border-light;
+        box-shadow: a.$box-shadow;
+        border-radius: a.$border-radius; 
         
         ::after{
             content:"";
             border: 10px solid;
-            border-color: transparent transparent  $white-color transparent;
+            border-color: transparent transparent  a.$white transparent;
             position: absolute;
             right: 20%;
             top: -20px;
         }
     }
     &:hover{
-        color: $hover-color-text;
+        color: a.$hover-text;
     }
     &:hover > &__menu{
         display: block;
@@ -98,10 +101,10 @@
         display: block;
         padding: 6px 10px;
         text-decoration: none;
-        color: $text-color;
+        color: a.$text;
     }
     &-menu__link:hover{
-        background-color: $hover-color-bg;
+        background-color: a.$hover-bg;
     }
 }
 /*Notification*/
@@ -114,16 +117,16 @@
     z-index: 1;
     animation: slide-top-right ease-in 0.2s;
     will-change: opacity, transform;
-    background-color: $background-color-white;
-    color: $text-color;
-    border: $border-light;
-    box-shadow: $box-shadow-lg;
-    border-radius: $border-radius;
+    background-color: a.$background-white;
+    color: a.$text;
+    border: a.$border-light;
+    box-shadow: a.$box-shadow-lg;
+    border-radius: a.$border-radius;
    
     &::before{
         content:"";
         border: 10px solid;
-        border-color: transparent transparent $background-color-white transparent;
+        border-color: transparent transparent a.$background-white transparent;
         position: absolute;
         right: 5%;
         top: -20px;
@@ -140,25 +143,25 @@
     &__title-main{
         padding: 6px 0;
         text-align: center;
-        color: $text-color-light;
-        border-bottom: $border-light;
+        color: a.$text-light;
+        border-bottom: a.$border-light;
     }
     $height-item: 60px;
     &__link{
         height: $height-item;
         display: flex;
         text-decoration: none;
-        color: $text-color;
+        color: a.$text;
 
         &:hover{
-            background-color: $hover-color-bg;
+            background-color: a.$hover-bg;
         }
     }
     &__img{
         object-fit: contain;
         height: 100%;
         width: 60px;
-        background-color: $gray-color;
+        background-color: a.$gray;
     }
     &__infor{
         width: calc(100% - 60px);
@@ -180,13 +183,13 @@
         height: $height-item*0.3;
         font-size: 1.3rem;
         line-height: $height-item*0.3;
-        color: $text-color-light;
+        color: a.$text-light;
         overflow:hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
     }
     &__footer{
-        border-top: $border-light;
+        border-top: a.$border-light;
         .more{
             display: block;
             margin: 0;
@@ -195,16 +198,16 @@
             font-size: 1.5rem;
             text-align: center;
             text-decoration: none;
-            color: $second-color;
+            color: a.$second;
             &:hover{
-                background-color: $hover-color-bg;
+                background-color: a.$hover-bg;
             }
         }
     }
 }
 .nav-list__noti-button:hover{
     .nav-list__link{
-        color: $hover-color-text;
+        color: a.$hover-text;
     }
     > .nav-noti{
         display: block;
@@ -216,7 +219,7 @@
     display:flex;
     justify-content: space-between;
     align-items: center;
-    height: $headbar-height
+    height: a.$headbar-height;
 }
 .head-bar__logo{
     margin-right: 60px;
@@ -227,8 +230,8 @@
     img{
         object-fit: cover;
         max-width: 120px;
-        height: $headbar-height*0.7;
-        border-radius: $border-radius;
+        height: a.$headbar-height*0.7;
+        border-radius: a.$border-radius;
     }
 }
 .head-bar__search{
@@ -237,7 +240,7 @@
     flex: 1;
     .head-search{
         position: relative;
-        $height-search: $headbar-height*0.5;
+        $height-search: a.$headbar-height*0.5;
         &__text{
             padding-left: 20px;
             padding-right: 100px;
@@ -245,7 +248,7 @@
             letter-spacing: 1px;
             height: $height-search;
             &~.underline{
-                background-color: $fourth-color;
+                background-color: a.$fourth;
                 height: 2px;
                 bottom: -2px;
             }
@@ -276,15 +279,15 @@
             top: 110%;
             left: 0;
             width: 100%;
-            color: $text-color-light;
-            background-color: $background-color-white;
-            border: $border-light;
-            border-radius: $border-radius;
-            box-shadow: $box-shadow-lg;
+            color: a.$text-light;
+            background-color: a.$background-white;
+            border: a.$border-light;
+            border-radius: a.$border-radius;
+            box-shadow: a.$box-shadow-lg;
             animation: slide-down 0.4s;
 
             &__title{
-                color: $text-color-light;
+                color: a.$text-light;
                 padding-top: 6px;
                 padding-left: 10px;
                 font-size: 1.5rem;
@@ -298,7 +301,7 @@
                     padding: 5px 10px;
                     cursor: pointer;
                     &:hover{
-                        background-color: $hover-color-bg;
+                        background-color: a.$hover-bg;
                     }
                 }
             }
@@ -318,10 +321,10 @@
                     height: 30px;
                     padding: 0 10px;
                     line-height: 30px;
-                    color: $text-color;
+                    color: a.$text;
                     text-decoration: none;
                     &:hover{
-                        background-color: $hover-color-bg;
+                        background-color: a.$hover-bg;
                     }
                 }
             }
@@ -354,9 +357,9 @@
                 font-weight: 600;
                 text-align: center;
                 border-radius: 10px;
-                border: $border-transparent;
-                background-color: $background-color-white;
-                color: $primary-color;
+                border: a.$border-transparent;
+                background-color: a.$background-white;
+                color: a.$primary;
                 pointer-events: none;
             }
         }
@@ -367,12 +370,12 @@
             top: 100%;
             right: 0;
             width: 400px;
-            border-radius: $border-radius;
-            background-color: $background-color-white;
+            border-radius: a.$border-radius;
+            background-color: a.$background-white;
             animation: fade-in 0.3s ease-in;
-            color: $text-color;
-            border: $border-light;
-            box-shadow: $box-shadow-lg;
+            color: a.$text;
+            border: a.$border-light;
+            box-shadow: a.$box-shadow-lg;
 
             &::after{
                 content:"";
@@ -380,7 +383,7 @@
                 right: 5%;
                 top: -20px;
                 border: 10px solid;
-                border-color: transparent transparent  $background-color-white transparent;
+                border-color: transparent transparent  a.$background-white transparent;
             }
             &::before{
                 content: "";
@@ -392,7 +395,7 @@
             }
             .head-cart__title{
                 text-align: center;
-                color: $text-color-light;
+                color: a.$text-light;
             }
             .head-cart__list{
                 width: 100%;
@@ -402,12 +405,12 @@
                     display: block;
                     padding: 8px;
                     text-align: center;
-                    color: $primary-color;
+                    color: a.$primary;
                     text-decoration: none;
                     font-weight: 500;
                     font-size: 1.5rem;
                     &:hover{
-                        background-color: $hover-color-bg;
+                        background-color: a.$hover-bg;
                     }
                 }
             }
@@ -417,7 +420,7 @@
             width: 100%;
             height: $height-item;
             display: flex;
-            border-bottom: 1px solid $third-color;
+            border-bottom: 1px solid a.$third;
             cursor: pointer;
             .item-img{
                 img{
@@ -441,7 +444,7 @@
                     font-size: 1.5rem;
                 }
                 &__price{
-                    color: $primary-color;
+                    color: a.$primary;
                 }
                 &__body{
                     display: flex;
@@ -451,7 +454,7 @@
                 }
                 &__type{
                     font-style: italic;
-                    color: $text-color-light;
+                    color: a.$text-light;
                 }
                 .item-delete{
                     margin-bottom: 4px;
@@ -459,20 +462,20 @@
                 }
             }
             &:first-child{
-                border-top: $border-light;
+                border-top: a.$border-light;
             }
             &:last-child{
-                border-bottom: $border-light;
+                border-bottom: a.$border-light;
             }
             &:hover{
-                background-color: $hover-color-bg;
+                background-color: a.$hover-bg;
             }
         }
         &:hover {
             .head-cart__icon{
-                color: $hover-color-text;
+                color: a.$hover-text;
                 .head-cart__quantity{
-                    background-color: $hover-color-text;
+                    background-color: a.$hover-text;
                 }
             }
             > .head-cart__box{

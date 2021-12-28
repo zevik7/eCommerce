@@ -1,3 +1,5 @@
+@use '../abstracts/variables' as a;
+
 
 /* selection */
 .select{
@@ -6,9 +8,9 @@
     align-items: center;
     justify-content: space-between;
     padding: 6px 12px;
-    border-radius: $border-radius;
-    border: $border-light;
-    background-color: $background-color-white;
+    border-radius: a.$border-radius;
+    border: a.$border-light;
+    background-color: a.$background-white;
     i{
         margin-left: 8px;
         padding-bottom: 5px;
@@ -35,9 +37,9 @@
         left: 0;
         list-style: none;
         background-color: inherit;
-        box-shadow: $box-shadow-sm;
-        border-radius: $border-radius;
-        border: $border-light;
+        box-shadow: a.$box-shadow-sm;
+        border-radius: a.$border-radius;
+        border: a.$border-light;
         animation: slide-down 0.3s;
         &--show{
             display: block;
@@ -51,7 +53,7 @@
                 padding: 8px 16px;
             }
             &:hover{
-                background-color: $hover-color-bg;
+                background-color: a.$hover-bg;
             }
         }
     }
@@ -66,8 +68,8 @@
         overflow-y: scroll;
         &::-webkit-scrollbar-track
         {
-            border-radius: $border-radius;
-            -webkit-box-shadow: $box-shadow-inset;
+            border-radius: a.$border-radius;
+            -webkit-box-shadow: a.$box-shadow-inset;
             background-color: #f5f5f5;
         }
 
@@ -77,9 +79,9 @@
         }
         &::-webkit-scrollbar-thumb
         {
-            border-radius: $border-radius;
-            -webkit-box-shadow: $box-shadow-inset;
-            background-color: $second-color;
+            border-radius: a.$border-radius;
+            -webkit-box-shadow: a.$box-shadow-inset;
+            background-color: a.$second;
         }
     }
 }
@@ -88,10 +90,10 @@
     font-size: 1.1em;
     &__plus, &__minus{
         padding: 5px 10px;
-        border: $border-light;
+        border: a.$border-light;
         cursor: pointer;
         &:hover{
-            background-color: $background-color-transparent;
+            background-color: a.$background-transparent;
         }
     }
     &__number{
@@ -99,8 +101,8 @@
         outline: none;
         text-align: center;
         border: none;
-        border-top: $border-light;
-        border-bottom: $border-light;
+        border-top: a.$border-light;
+        border-bottom: a.$border-light;
     }
 }
 

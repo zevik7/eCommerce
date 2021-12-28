@@ -1,4 +1,5 @@
-//General class for animation
+@use '../abstracts' as a;
+
 .animated{
     -webkit-animation-duration: 1s;
         -moz-animation-duration: 1s;
@@ -9,7 +10,7 @@
             -o-animation-fill-mode: both;
                 animation-fill-mode: both;
 }
-/*Shake animation*/
+/* Shake animation */
 @-webkit-keyframes shake {
     0%, 100% {-webkit-transform: translateX(0);}
     10%, 30%, 50%, 70%, 90% {-webkit-transform: translateX(-10px);}
@@ -39,7 +40,7 @@
     -o-animation-name: shake;
     animation-name: shake;
 }
-/*Slide down*/
+/* Slide down */
 @-webkit-keyframes slide-down {
     0% {  
         opacity: 0;
@@ -50,7 +51,7 @@
         -webkit-transform: translateY(0); 
     }
 }
-/*Slide from top and right*/
+/* Slide from top and right */
 @keyframes slide-top-right{
     0%{
         transform-origin: top right;
@@ -62,7 +63,7 @@
         transform: scale(1);
     }
 }
-/*Fade in*/
+/* Fade in */
 @keyframes fade-in{
     0%{
         opacity: 0.5;
@@ -71,16 +72,16 @@
         opacity: 1;
     }
 }
-/*Modal animation*/
+
+/* Modal animation */
 @keyframes zoom-center {
     0%{
         transform: scale(0.5);
         opacity: 0.5;
-        background-color: $third-color;
+        background-color: a.$third;
     }
     100%{
         transform: scale(1);
         opacity: 1;
-       
     }
 }

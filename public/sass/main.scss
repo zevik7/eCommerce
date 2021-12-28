@@ -1,35 +1,11 @@
-@import 'abstracts/variables';
-//@import 'abstracts/functions';
-//@import 'abstracts/mixins';
+@charset 'utf-8';
 
-@import 'base/reset';
-@import 'base/typography';
-@import 'base/animation';
-@import 'base/custom';
+@use 'abstracts';
 
-@import 'components/title';
-@import 'components/select';
-@import 'components/button';
-// @import 'components/carousel';
-@import 'components/slider';
-@import 'components/input';
-@import 'components/notification';
-@import 'components/svg';
-@import 'components/text';
-@import 'components/modal';
+@use 'base';
 
-@import 'layout/grid';
-@import 'layout/header';
-@import 'layout/body';
-@import 'layout/footer';
-@import 'layout/pagination';
+@use 'components';
 
-@import 'page/productList';
-@import 'page/productDetail';
-@import 'page/personal';
-@import 'page/order';
-@import 'page/orderSuccess';
+@use 'layout';
 
-@import 'layout/responsive';
-// @import 'themes/theme';
-// @import 'themes/admin';
+@use 'page';

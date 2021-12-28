@@ -1,3 +1,5 @@
+@use '../abstracts' as a;
+
 /* Pagination */
 .pagination{
     display: flex;
@@ -11,20 +13,20 @@
         padding: 8px 16px;
         font-size: 1.5rem;
         text-decoration: none;
-        color: $text-color;
-        border-radius: $border-radius;
+        color: a.$text;
+        border-radius: a.$border-radius;
         cursor: default;
         &:hover:not(.disabled):not(.active){
-            background: $hover-color-text;
+            background: a.$hover-text;
             cursor: pointer;
         }
         &.active{
-            background: $primary-color;
-            color: $background-color-white;
+            background: a.$primary;
+            color: a.$background-white;
             pointer-events: none;
         }
         &.disabled{
-            color: $text-color-disable;
+            color: a.$text-disable;
             pointer-events: none;
         }
     }

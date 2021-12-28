@@ -1,3 +1,6 @@
+@use '../abstracts' as a;
+
+
 /* Modal Popup */
 .modal{
     position: fixed;
@@ -25,19 +28,19 @@
 .modal-body__form{
     padding: 25px;
     font-size: 1.4rem;
-    border-radius: $border-radius;
-    background-color: $background-color-white;
+    border-radius: a.$border-radius;
+    background-color: a.$background-white;
 }
 .modal-form__header{
     margin-bottom: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border-bottom: 1px solid $hover-color-text;
+    border-bottom: 1px solid a.$hover-text;
 
     .switch{
         padding: 10px;
-        color: $primary-color;
+        color: a.$primary;
         text-decoration: none;
         cursor: pointer;
         font-size: 1.5rem;
@@ -67,16 +70,16 @@
         margin: 0 10px;
         font-size: 2rem;
         text-decoration: none;
-        border-radius: $border-radius;
+        border-radius: a.$border-radius;
     }
     .facebook-auth, .google-auth{
-        color: $text-color-white;
+        color: a.$text-white;
     }
     .facebook-auth{
-        background-color: $facebook-color;
+        background-color: a.$facebook-color;
     }
     .google-auth{
-        background-color: $google-color;
+        background-color: a.$google-color;
     }
    
 }
@@ -85,7 +88,7 @@
     a{
         display: block;
         text-decoration: none;
-        color: $primary-color;
+        color: a.$primary;
         &:hover{
             font-weight: 500;
         }
@@ -97,7 +100,7 @@
         display: block;
         text-align: center;
         text-decoration: none;
-        color: $primary-color;
+        color: a.$primary;
     }
 }
 // Show password

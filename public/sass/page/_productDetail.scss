@@ -1,16 +1,18 @@
+@use '../abstracts' as a;
+
 .product-page{
    
 }
 .product-detail{
     padding: 15px;
-    background-color: $background-color-white;
-    border-radius: $border-radius;
+    background-color: a.$background-white;
+    border-radius: a.$border-radius;
     font-size: 1.4rem;
     &__content{
         padding: 10px;
         .product-title{
             $base: 2.2rem;
-            color: $text-color;
+            color: a.$text;
             font-size: $base;
             max-height: $base*3 + 1.5rem;
             line-height: $base + 0.5rem;
@@ -25,15 +27,15 @@
                 vertical-align: top;
                 border-radius: 2px;
                 font-size: 1.3rem;
-                color: $text-color-white;
-                background-color:$primary-color;
+                color: a.$text-white;
+                background-color:a.$primary;
             }
         }
         .product-statis{
             display: flex;
             .statis-item{
                 padding: 0 10px;
-                border-right: $border-dark;
+                border-right: a.$border-dark;
                 &:last-child{
                     border-right: none;
                 }
@@ -50,27 +52,27 @@
                 font-weight: 500;
             }
             &__icon{
-                color: $text-color-light;
+                color: a.$text-light;
             }
         }
         .product-rating{
             display: flex;
             align-items: center;
             i{
-                color: $yellow-color;
+                color: a.$yellow;
             }
         }
         .product-price{
             padding: 10px;
             font-size: 3rem;
-            color: $primary-color;
-            background-color: $background-color-transparent;
+            color: a.$primary;
+            background-color: a.$background-transparent;
         }
         .product-freight{
             &__header{
                 display: flex;
                 align-items: center;
-                border-right: $border-light;
+                border-right: a.$border-light;
                 .freight-icon{
                     margin-right: 4px;
                 }
@@ -95,7 +97,7 @@
                 }
                 .freight-sub-text{
                     margin-left: 36px;
-                    color: $text-color-light;
+                    color: a.$text-light;
                     // &:first-of-type{
                     //     margin-top: 0;
                     // }
@@ -107,7 +109,7 @@
             &__header{
                 display: flex;
                 align-items: center;
-                border-right: $border-light;
+                border-right: a.$border-light;
                 .type-title{
                     font-size: inherit;
                 }
@@ -142,7 +144,7 @@
                     margin-right: 5px;
                 }
                 .product-quantity-count__text{
-                    color: $text-color-light;
+                    color: a.$text-light;
                 }
             }
         }
@@ -154,7 +156,7 @@
                 font-size: 1.8rem;
                 svg{
                     margin-right: 4px;
-                    filter: $primary-filter-color;
+                    filter: a.$primary-filter;
                 }
             }
         }
@@ -164,7 +166,7 @@
     .banner-header{
         display: flex;
         align-items: center;
-        border-right: $border-light;
+        border-right: a.$border-light;
         &__avt{
             margin-right: 20px;
             width: 80px;
@@ -178,7 +180,7 @@
             }
             .content-date{
                 margin: 5px 0;
-                color: $text-color-light;
+                color: a.$text-light;
             }
             .content-btn{
                 margin-right: 8px;
@@ -197,11 +199,11 @@
         &__item{
             display: flex;
             align-items: center;
-            color: $text-color-light;
+            color: a.$text-light;
             padding: 10px;
             .data{
                 margin-left: 4px;
-                color: $primary-color;
+                color: a.$primary;
                 font-weight: 500;
                 font-size: 1.6rem;
             }
@@ -216,7 +218,7 @@
             text-transform: uppercase;
             font-weight: 500;
             font-size: 1.6rem;
-            background-color: $background-color-transparent;
+            background-color: a.$background-transparent;
         }
         .desc__box{
             padding: 20px 15px;
@@ -230,7 +232,7 @@
                 }
                 .row-title{
                     width: 20%;
-                    color: $text-color-light;
+                    color: a.$text-light;
                 }
             }
         }
@@ -246,14 +248,14 @@
     &__overview{
         display: flex;
         padding: 25px;
-        border: $border-dark;
-        border-radius: $border-radius;
-        background-color: $fifth-color;
+        border: a.$border-dark;
+        border-radius: a.$border-radius;
+        background-color: a.$fifth;
         .product-rating-overview__header{
             margin-right: 20px;
             .overview-title{
                 margin-top: 0;
-                color: $primary-color;
+                color: a.$primary;
                 font-weight: 500;
                 font-size: 1.6rem;
                 text-align: center;
@@ -264,7 +266,7 @@
             }
             .overview-star{
                 white-space: nowrap;
-                color: $yellow-color;
+                color: a.$yellow;
             }
         }
         .product-rating-overview__filter{
@@ -274,16 +276,16 @@
                 min-width: 120px;
                 margin-right: 5px;
                 margin-bottom: 5px;
-                border: $border-light;
-                background-color: $background-color-white;
+                border: a.$border-light;
+                background-color: a.$background-white;
                 &.active{
-                    color: $primary-color;
-                    border-color: $primary-color;
+                    color: a.$primary;
+                    border-color: a.$primary;
                     pointer-events: none;
                     font-weight: 500;
                 }
                 &:hover{
-                    border-color: $primary-color;
+                    border-color: a.$primary;
                 }
                 &__star-count{
                     margin-left: 4px;
@@ -295,7 +297,7 @@
         display: flex;
         padding: 0 20px;
         &:not(:last-of-type){
-            border-bottom: $border-light;
+            border-bottom: a.$border-light;
         }
         .product-rating-box__header{
             width: 40px;
@@ -304,12 +306,12 @@
             flex: 1;
             padding: 0 10px;
             .rating-product-star{
-                color: $yellow-color;
+                color: a.$yellow;
                 margin-top: 5px;
             }
             .rating-product-type{
                 margin-top: 0;
-                color: $text-color-light;
+                color: a.$text-light;
             }
         }
     }
@@ -319,12 +321,12 @@
         margin: 0;
         padding: 20px;
         padding-bottom: 10px;
-        color: $text-color-light;
+        color: a.$text-light;
     }
     &-list__item{
         display: block;
         padding: 20px;
-        border-bottom: $border-light;
+        border-bottom: a.$border-light;
         &:first-of-type{
             padding-top: 0;
         }
@@ -333,7 +335,7 @@
         }
         .price{
             margin-top: 5px;
-            color: $primary-color;
+            color: a.$primary;
             font-size: 1.6rem;
             font-weight: 500;
         }
@@ -347,7 +349,7 @@
         font-size: 1.7rem;
         margin-left: 6px;
         span{
-            color: $primary-color;
+            color: a.$primary;
             font-weight: 500;
         }
     }

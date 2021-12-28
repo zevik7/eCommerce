@@ -1,19 +1,20 @@
-// Place error massage Register and Login
+@use '../abstracts' as a;
+
 .error-label{
     display: block;
     margin-top: 5px;
-    color: $red-color;
+    color: a.$red;
     font-size: 1.3rem;
 }
 .error-input{
-    border-color: $red-color;
+    border-color: a.$red;
 }
 .alert{
     display: none;
     margin-top: 12px;
     padding: 12px 16px;
-    border-radius: $border-radius;
-    border: $border-light;
+    border-radius: a.$border-radius;
+    border: a.$border-light;
     font-size: 1.6rem;
     text-align: center;
 }
@@ -53,9 +54,9 @@
         max-width: 400px;
         padding: 10px;
         font-size: 2rem;
-        color: $text-color;
-        background-color: $background-color-white;
-        border-radius: $border-radius;
+        color: a.$text;
+        background-color: a.$background-white;
+        border-radius: a.$border-radius;
         .icon-success, .icon-error{
             margin-right: 8px;
             font-size: 4rem;
@@ -65,7 +66,7 @@
             top: 0;
             right: 0;
             padding: 10px;
-            color: $text-color-light;
+            color: a.$text-light;
             font-size: 2rem;
             cursor: pointer;
         }

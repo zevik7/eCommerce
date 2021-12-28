@@ -1,19 +1,21 @@
+@use '../abstracts' as a;
+
 .input{
     width: 100%;
     height: 40px;
     padding: 0 10px;
     vertical-align: middle;
-    border-radius: $border-radius !important;
-    border: $border-light;
-    color: $text-color;
-    background-color: $background-color-white;
+    border-radius: a.$border-radius !important;
+    border: a.$border-light;
+    color: a.$text;
+    background-color: a.$background-white;
 
     &:hover{
-        background-color: $hover-color-bg;
+        background-color: a.$hover-bg;
     }
     &:focus{
         outline: none;
-        background-color: $white-color;
+        background-color: a.$white;
     }
     & ~ .underline {
         position: absolute;
@@ -21,7 +23,7 @@
         left: 0;
         width: 0;
         height: 1px;
-        background-color: $primary-color;
+        background-color: a.$primary;
     }
     &:focus:not(.error-input) ~ .underline {
         width: 100%;

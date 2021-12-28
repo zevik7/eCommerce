@@ -1,3 +1,6 @@
+@use '../abstracts' as a;
+
+
 .grid{
     padding: 0;
     display: block;
@@ -36,8 +39,7 @@
 }
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (max-width: 600px) 
-{
+@media only screen and (max-width: 600px) {
     .wide {
         max-width: 97%;
     }
@@ -64,8 +66,7 @@
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
-@media only screen and (min-width: 600px) 
-{
+@media only screen and (min-width: 600px) {
     .wide {
         max-width: 95%;
     }
@@ -242,27 +243,8 @@
     }
 }
 
-/* Custom style classes */
-@mixin attr-x($attr, $attr-count: 50, $attr-steps: 1, $unit: 'px') {
-    $attr-list: null;
-    @for $i from 1 through $attr-count {
-        $attr-value: $attr-steps * $i;
-
-        .#{$attr}#{$attr-value} {
-            #{$attr}: #{$attr-value}#{$unit};
-        }
-
-         $attr-list: append($attr-list, unquote(".#{$attr}#{$attr-value}"), comma);
-    }
-
-    #{$attr-list} {
-        //append style to all classes
-        
-    }
-}
-
 /* Margin top */
-@include attr-x('margin-top', 60, 1, 'px');
+@include a.attr-x('margin-top', 60, 1, 'px');
 
 /* Padding top */
-@include attr-x('padding-top', 60, 1, 'px');
+@include a.attr-x('padding-top', 60, 1, 'px');
