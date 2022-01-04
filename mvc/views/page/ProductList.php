@@ -3,11 +3,11 @@
         <div class="grid wide padding-top20">
             <div class="row"> 
                 <div class="col lg-2 md-2 sm-0 exsm-0">
-                    <?php require_once './mvc/views/block/product-list/Category.php'?>
+                    <?php require_once '../mvc/views/block/product-list/Category.php'?>
                 </div>
                 <div class="col lg-10 md-10 sm-12 exsm-12">
                     <div class="">
-                        <?php require_once './mvc/views/block/product-list/Filter.php'?>
+                        <?php require_once '../mvc/views/block/product-list/Filter.php'?>
                     </div>
                     <div class="result">
                         <?php
@@ -97,7 +97,7 @@
                         </div>
                     </div>
                     <?php   
-                        require_once './mvc/views/block/Pagination.php'
+                        require_once '../mvc/views/block/Pagination.php'
                     ?>
                 </div>
             </div>

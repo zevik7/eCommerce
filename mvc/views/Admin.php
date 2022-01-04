@@ -7,8 +7,8 @@
     <title>Admin's Page</title>
     <base href="http://<?php echo BASE_URL;?>"/>
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="public/fontawesome/css/all.min.css" type="text/css" crossorigin="anonymous"/>
-    <link rel="stylesheet" href="public/css/main.css" type="text/css">
+    <link rel="stylesheet" href="fontawesome/css/all.min.css" type="text/css" crossorigin="anonymous"/>
+    <link rel="stylesheet" href="css/main.css" type="text/css">
 </head>
 <body>
     <h1>Admin page</h1>

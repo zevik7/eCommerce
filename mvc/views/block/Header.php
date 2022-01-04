@@ -104,7 +104,7 @@
         </div>
         <?php
             // Cart block
-            require_once './mvc/views/block/header/Cart.php';
+            require_once '../mvc/views/block/header/Cart.php';
         ?>
     </div>
 </div>
