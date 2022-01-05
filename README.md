@@ -3,10 +3,11 @@
 	nginx >= 1.19.10
 	mariadb >= 5.7.33
 	PHP >= 7.4
-3. Config in:  
+2. DB:
+	db.sql
+4. Config file:  
 	configs.php
-5. Setup composer:  
+	nginx.conf
+5. Setup package:  
 	composer dump-autoload
-5. Compile css:  
-	sass sass/main.scss css/main.css
-
+	npm run install
