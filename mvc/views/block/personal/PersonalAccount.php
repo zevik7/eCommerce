@@ -14,7 +14,7 @@
                                     <p class="profile__edit-title">Tên Đăng Nhập</p>
                                 </div>
                                 <div class="col-8">
-                                    <input type="text" name="profile-username" class="input" value="<?php echo $_SESSION['user']['name'];?>">
+                                    <input type="text" name="profile-username" class="input" value="<?= $_SESSION['user']['name'];?>">
                                 </div>
 
                                 <div class="col-4">
@@ -22,7 +22,7 @@
                                 </div>
                                 <div class="col-8"> 
                                     <div style="display: flex;">
-                                        <p class="js-get-email profile__edit-email"><?php echo $_SESSION['user']['email'];?></p>
+                                        <p class="js-get-email profile__edit-email"><?= $_SESSION['user']['email'];?></p>
                                         <p id="profile__edit-change" class="profile__edit-change" href=".update-email">Thay Đổi</p>
                                     </div>
                                 </div>
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="col-8"> 
                                     <div style="display: flex;">
-                                        <p class="js-get-phone profile__edit-phone"><?php echo $_SESSION['user']['phone'];?></p>
+                                        <p class="js-get-phone profile__edit-phone"><?= $_SESSION['user']['phone'];?></p>
                                         <p id="profile__edit-change-2" class="profile__edit-change" href=".update-phone">Thay Đổi</p>
                                     </div>
                                 </div>
@@ -49,7 +49,7 @@
                     
                     <div class="col-4">
                         <div class="profile__avatar">
-                            <img src="<?php echo $_SESSION['user']['avatar'];?>" alt="" id="personal-avatar" class="profile__avatar-img">
+                            <img src="<?= $_SESSION['user']['avatar'];?>" alt="" id="personal-avatar" class="profile__avatar-img">
                             <label class="profile__avatar-label btn btn-second" for="avatar-upload">Chọn Ảnh</label>
                             <input id="avatar-upload" name="personal-image" type="file" class="profile__avatar-upload">
                             <div class="profile__avatar-note">
@@ -102,7 +102,7 @@
                         <p>Địa Chỉ Hộp Thư</p>
                     </div>
                     <div class="col-8"> 
-                        <span><?php echo $_SESSION['user']['email'];?></span>
+                        <span><?= $_SESSION['user']['email'];?></span>
                     </div>
                 </div>
 
@@ -164,7 +164,7 @@
                         <p>Số Điện Thoại</p>
                     </div>
                     <div class="col-8"> 
-                        <span><?php echo $_SESSION['user']['phone'];?></span>
+                        <span><?= $_SESSION['user']['phone'];?></span>
                     </div>
                 </div>
                 <form  class="update-phone__form-change">
@@ -224,8 +224,8 @@
                         <p style="text-align: right;">Địa chỉ của bạn: </p>
                     </div>
                     <div class="col-4"> 
-                        <span><?php  echo substr($str, 0, $index);?></span> <br>
-                        <span><?php  echo substr($str, $index + 1);?></span>
+                        <span><?= substr($str, 0, $index);?></span> <br>
+                        <span><?= substr($str, $index + 1);?></span>
                     </div>
                     <div class="col-4">
                         <button id="js-update-address" class="btn btn-primary">Sửa</button>

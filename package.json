@@ -4,7 +4,10 @@
   "description": "This is a ecommerce website with PHP MVC, JS",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format-php": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix mvc --path-mode=intersection",
+    "watch": "sass --watch public/scss/main.scss public/css/main.css",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
@@ -15,5 +18,13 @@
   "bugs": {
     "url": "https://github.com/Zevik07/eCommerce/issues"
   },
-  "homepage": "https://github.com/Zevik07/eCommerce#readme"
+  "homepage": "https://github.com/Zevik07/eCommerce#readme",
+  "devDependencies": {
+    "husky": "^7.0.4",
+    "lint-staged": "^12.1.5",
+    "prettier": "2.5.1"
+  },
+  "lint-staged": {
+    "{public,__{tests,mocks}__}/**/*.{scss,js,json}": "prettier --single-quote --trailing-comma all --write"
+  }
 }

@@ -39,17 +39,17 @@
         for ($i = 0; $i < count($numShows); $i++) {
             ?>
                 <li class="pagination__item">
-                    <a href="<?php echo replaceUrlParams('pageNumber', $numShows[$i]); ?>"
+                    <a href="<?= replaceUrlParams('pageNumber', $numShows[$i]); ?>"
                     class="pagination__link <?php if ($numShows[$i] == $currentPage) {
                 echo 'active';
             } ?>">
-                        <?php echo $numShows[$i]; ?>
+                        <?= $numShows[$i]; ?>
                     </a>
                 </li>
             <?php
         } ?>
         <li class="pagination__item">
-            <a href="<?php echo replaceUrlParams('pageNumber', $currentPage + 1); ?>" 
+            <a href="<?= replaceUrlParams('pageNumber', $currentPage + 1); ?>" 
             class="pagination__link 
             <?php if ($currentPage == $totalPages) {
             echo "disabled";

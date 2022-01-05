@@ -35,7 +35,7 @@ class Personal extends Controller
 
             $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
-            $allowtypes    = array('jpg', 'png', 'jpeg', 'gif','JPG', 'PNG', 'JPEG', 'GIF');
+            $allowtypes    = ['jpg', 'png', 'jpeg', 'gif','JPG', 'PNG', 'JPEG', 'GIF'];
 
             $maxfilesize   = 1048576;
 

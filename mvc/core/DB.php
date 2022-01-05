@@ -43,7 +43,7 @@ class DB
     }
 
     // Write to database
-    public function writeDB($query, $data = array())
+    public function writeDB($query, $data = [])
     {
         try {
             $statement = $this->con->prepare($query);
@@ -58,7 +58,7 @@ class DB
     }
 
     // Read from database
-    public function readDB($query, $data = array())
+    public function readDB($query, $data = [])
     {
         try {
             $statement = $this->con->prepare($query);
@@ -82,7 +82,7 @@ class DB
         return htmlspecialchars(strip_tags($data));
     }
 
-    public function cleanDatas(&$data = array())
+    public function cleanDatas(&$data = [])
     {
         // return htmlspecialchars(strip_tags($data));
     }

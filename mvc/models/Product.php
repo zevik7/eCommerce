@@ -43,7 +43,7 @@ class Product extends DB
         GROUP BY pd.id
         LIMIT ?, ?";
 
-        $result = $this->readDB($query, array($offset, $productsQuantity));
+        $result = $this->readDB($query, [$offset, $productsQuantity]);
         return json_encode($result);
     }
 
@@ -92,7 +92,7 @@ class Product extends DB
         $productTypeResult = $this->readDB($productTypeQuery);
         $productImageResult = $this->readDB($productImageQuery);
 
-        $allResult = array();
+        $allResult = [];
         if ($productResult !== false) {
             $allResult['product'] = $productResult;
         }
@@ -144,7 +144,7 @@ class Product extends DB
             from products pd
             WHERE pd.product_category_id = ?";
 
-        $result = $this->readDB($query, array($categoryId));
+        $result = $this->readDB($query, [$categoryId]);
 
         if ($result !== false) {
             return count($result);
@@ -195,7 +195,7 @@ class Product extends DB
         ORDER BY pd.sold DESC
         LIMIT ?,?";
 
-        $result = $this->readDB($query, array($offset,$productsQuantity));
+        $result = $this->readDB($query, [$offset,$productsQuantity]);
 
         return $result;
     }

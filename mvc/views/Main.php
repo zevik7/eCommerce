@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hevy Shop</title>
     
-    <base href="http://<?php echo BASE_URL;?>"/>
+    <base href="http://<?= BASE_URL;?>"/>
 
     <!-- CSS -->
     <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon">

@@ -1,0 +1,281 @@
+@use '../abstracts' as a;
+
+.order {
+  font-size: 1.4rem;
+  .order-header {
+    padding: 15px;
+    &__title {
+      font-size: 2.8rem;
+      font-weight: 400;
+      color: a.$primary;
+    }
+  }
+  .order-body {
+    padding-top: 10px;
+    .order-address {
+      padding: 24px;
+      border-radius: a.$border-radius;
+      &__header {
+        display: flex;
+        margin-bottom: 20px;
+      }
+      &__title {
+        margin-left: 8px;
+        color: a.$primary;
+      }
+      &__info {
+        display: flex;
+        font-size: 1.6rem;
+        .order-address__user {
+          font-weight: 500;
+        }
+        .order-address__text {
+          flex: 1;
+          margin: 0 10px 0 30px;
+          padding: 5px;
+          outline: none;
+          border: a.$border-dark;
+          border-radius: a.$border-radius;
+          text-align: left;
+
+          resize: none;
+          overflow: hidden;
+          &:disabled {
+            background-color: a.$background-transparent;
+            color: #222;
+          }
+        }
+        .order-address__change-btn {
+        }
+        .order-address__change-submit-btn {
+          display: none;
+        }
+      }
+    }
+    .order-products {
+      padding: 24px 30px;
+      padding-bottom: 0;
+      border-bottom: a.$border-light;
+      border-bottom-style: dashed;
+      &__row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 1.5rem;
+        &-block {
+          flex: 1;
+          text-align: center;
+          &.block1 {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex: 5;
+            overflow: hidden;
+          }
+          &.block4 {
+            text-align: right;
+          }
+        }
+        h4,
+        p {
+          margin-top: 0;
+          margin-bottom: 0;
+          font-weight: 400;
+        }
+        // Custom classes
+        &-product-img {
+          width: 55px;
+          object-fit: contain;
+        }
+        &-product-name {
+          padding: 0 40px 0 20px;
+          flex: 2;
+        }
+        &-product-type {
+          margin-right: 40px;
+          flex: 1;
+        }
+        &-product-name,
+        &-product-type {
+          text-overflow: ellipsis;
+          overflow: hidden;
+          white-space: nowrap;
+        }
+      }
+      &__title {
+        font-size: 1.8rem;
+        font-weight: 500;
+      }
+      &__sub-title {
+        color: a.$text-light;
+      }
+      &__shop-info {
+        display: flex;
+        margin-bottom: 20px;
+        .shop-name {
+          margin-left: 10px;
+          text-transform: uppercase;
+        }
+      }
+    }
+    .order-voucher {
+      position: relative;
+      display: flex;
+      justify-content: flex-end;
+      padding: 18px 30px;
+      &__heading {
+        display: flex;
+        align-items: center;
+        .order-voucer-heading__icon {
+          // width: 32px;
+          // height: 32px;
+        }
+        .order-voucer-heading__show-list {
+          margin-left: 160px;
+          color: a.$blue;
+          font-weight: 500;
+        }
+      }
+      .voucher-box {
+        display: none;
+        position: absolute;
+        min-width: 400px;
+        top: 100%;
+        right: 0;
+        transition: opacity ease-in-out 0.5s;
+        box-shadow: a.$box-shadow;
+        border: a.$border-light;
+        background-color: a.$background-white;
+        border-radius: a.$border-radius-lg;
+        &:after {
+          content: '';
+          border: 20px solid;
+          border-color: transparent transparent #dee2e6 transparent;
+          position: absolute;
+          right: 10%;
+          top: -40px;
+        }
+        &__header {
+          display: flex;
+          justify-content: space-evenly;
+          padding: 14px 18px;
+          background-color: a.$background-transparent;
+          input {
+            flex: 1;
+            margin-right: 8px;
+            padding-left: 8px;
+            border: a.$border-light;
+            outline: none;
+          }
+        }
+        &__error {
+          padding: 4px 18px;
+          text-align: right;
+          color: a.$red;
+        }
+        &__list {
+          .voucher-box-list__item {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            padding: 7px 18px;
+            .voucher-box-list-item__title {
+              font-weight: 400;
+            }
+            .voucher-box-list-item__code {
+              color: a.$text-light;
+            }
+          }
+        }
+      }
+    }
+    .order-method {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 30px;
+      border: a.$border-light;
+      border-style: dashed;
+      &__header {
+        display: flex;
+        align-items: center;
+        font-size: 1.8rem;
+        font-weight: 500;
+        .order-method-header__icon {
+          margin-right: 10px;
+          width: 28px;
+          height: 28px;
+        }
+      }
+      &__list {
+        display: flex;
+        .order-method__item {
+          margin: 0 10px;
+          color: a.$text;
+          border: a.$border-dark;
+          &:hover:not(.active) {
+            background-color: a.$background-transparent;
+          }
+          &.active {
+            pointer-events: none;
+            transition: color ease-in 0.2s;
+            color: a.$primary;
+            border-color: a.$primary;
+          }
+        }
+      }
+    }
+    .order-info {
+      padding: 30px;
+      background-color: rgb(4, 87, 98, 0.01);
+      font-size: 1.5rem;
+      border-bottom: a.$border-light;
+      &__list {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        .order-info__item {
+          display: flex;
+          justify-content: space-between;
+          padding: 10px 20px;
+          min-width: 300px;
+        }
+      }
+    }
+    .order-submit {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 30px;
+      background-color: rgb(4, 87, 98, 0.01);
+      &__law {
+        & > a {
+          color: a.$blue;
+        }
+      }
+      &__btn {
+        font-size: 2rem;
+        min-width: 210px;
+      }
+    }
+  }
+}
+.letter-line {
+  height: 3px;
+  width: 100%;
+  background-position-x: -30px;
+  background-size: 116px 3px;
+  background-image: repeating-linear-gradient(
+    45deg,
+    #6fa6d6,
+    #6fa6d6 33px,
+    transparent 0,
+    transparent 41px,
+    #f18d9b 0,
+    #f18d9b 74px,
+    transparent 0,
+    transparent 82px
+  );
+}

@@ -21,10 +21,10 @@
                         </div>
                         <div class="order-address__info">
                             <div class="order-address__user title-reset">
-                                <div class="order-address__name"><?php echo $_SESSION['user']['name'] ?></div>
-                                <div class="order-address__phone"><?php echo $_SESSION['user']['phone'] ?></div>
+                                <div class="order-address__name"><?= $_SESSION['user']['name'] ?></div>
+                                <div class="order-address__phone"><?= $_SESSION['user']['phone'] ?></div>
                             </div>
-                            <textarea disabled class="order-address__text" type="text"><?php echo $_SESSION['user']['address'] ?></textarea>
+                            <textarea disabled class="order-address__text" type="text"><?= $_SESSION['user']['address'] ?></textarea>
                             <button class="btn btn-second order-address__change-btn">
                                 Thay đổi
                             </button>
@@ -68,12 +68,12 @@
                         ?>
                         <div class="order-products__row">
                             <div class="order-products__row-block block1">
-                                <img class="order-products__row-product-img" src="<?php echo $value['imageUrl']?> " alt="">
+                                <img class="order-products__row-product-img" src="<?= $value['imageUrl']?> " alt="">
                                 <h4 class="order-products__row-product-name">
-                                    <?php echo $value['productName']?> 
+                                    <?= $value['productName']?> 
                                 </h4>
                                 <p class="order-products__row-product-type order-products__sub-title">
-                                    <?php echo $value['productTypeName']?> 
+                                    <?= $value['productTypeName']?> 
                                 </p>
                             </div>
                             <div class="order-products__row-block block2">
@@ -84,8 +84,7 @@
                             </div>
                             <div class="order-products__row-block block3">
                                 <div class="order-products__row-product-quantity">
-                                    <?php
-                                        echo $value['cartQuantity']
+                                    <?= $value['cartQuantity']
                                     ?> 
                                 </div>
                             </div>
@@ -151,7 +150,7 @@
                                     Tổng tiền hàng
                                 </span>
                                 <span class="order-info-item__content">
-                                    <?php echo viPrice($totalOrder, 'đ');?> 
+                                    <?= viPrice($totalOrder, 'đ');?> 
                                 </span>
                             </li>
                             <li class="order-info__item">
@@ -159,7 +158,7 @@
                                     Phí vận chuyển
                                 </span>
                                 <span class="order-info-item__content">
-                                    <?php echo viPrice($totalFreight, 'đ');?> 
+                                    <?= viPrice($totalFreight, 'đ');?> 
                                 </span>
                             </li>
                             <li class="order-info__item">
@@ -167,7 +166,7 @@
                                     Tổng thanh toán:
                                 </span>
                                 <span class="order-info-item__content order-info-item__content--total-price">
-                                <?php echo viPrice($totalFreight + $totalOrder, 'đ');?> 
+                                <?= viPrice($totalFreight + $totalOrder, 'đ');?> 
                                 </span>
                             </li>
                         </ul>

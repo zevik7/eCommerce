@@ -1,0 +1,27 @@
+@use '../abstracts/variables' as a;
+
+/* Footer */
+.footer {
+  padding: 20px;
+  color: a.$text;
+  border-top: a.$border-dark;
+  &__list {
+    list-style: none;
+  }
+  &__heading {
+    margin: 10px 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+  }
+  &__link {
+    display: block;
+    padding: 10px;
+    font-size: 1.4rem;
+    &:hover {
+      transform: scale(1.1);
+      color: a.$primary;
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+  }
+}

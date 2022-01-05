@@ -14,7 +14,7 @@
     echo "active";
 }?>">
             <a class="" 
-            href="<?php echo replaceUrlParams('filter', 'newest'); ?>">
+            href="<?= replaceUrlParams('filter', 'newest'); ?>">
                 Mới nhất
             </a>
         </li>
@@ -23,7 +23,7 @@
     echo "active";
 }?>">
             <a class="" 
-            href="<?php echo replaceUrlParams('filter', 'selling'); ?>">
+            href="<?= replaceUrlParams('filter', 'selling'); ?>">
                 Bán chạy
             </a>
         </li>
@@ -72,8 +72,8 @@
                             } ?>
                     <li class="">
                         <a class="" 
-                        href="<?php echo replaceUrlParams('filter', $value); ?>">
-                            <?php echo $selectTxts[$key]; ?>
+                        href="<?= replaceUrlParams('filter', $value); ?>">
+                            <?= $selectTxts[$key]; ?>
                         </a>
                     </li>
                     <?php
@@ -90,20 +90,20 @@
             $currentPage = intval($pagination->currentPage); ?>
         <div class="filter__switch">
             <span id="filter-switch__current" class="">
-                <?php echo $currentPage; ?>
+                <?= $currentPage; ?>
             </span>
             <span>/</span>
             <span id="filter-switch__total">
-                <?php echo $totalPages; ?>
+                <?= $totalPages; ?>
             </span>
             <div class="filter-switch__control">
-                <a href="<?php echo replaceUrlParams('pageNumber', $currentPage - 1); ?>" 
+                <a href="<?= replaceUrlParams('pageNumber', $currentPage - 1); ?>" 
                 class="<?php if ($currentPage == 1) {
                 echo "disabled";
             } ?>">
                     <i class="fas fa-angle-left"></i>
                 </a>
-                <a href="<?php echo replaceUrlParams('pageNumber', $currentPage + 1); ?>" class="
+                <a href="<?= replaceUrlParams('pageNumber', $currentPage + 1); ?>" class="
                 <?php if ($currentPage == $totalPages) {
                 echo "disabled";
             } ?>">

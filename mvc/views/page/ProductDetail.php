@@ -19,7 +19,7 @@
         if (!empty($product) || !empty($productType) || !empty($productImage)) {
             // Flat 1 level
             $product =
-            array_reduce($product, 'array_merge', array());
+            array_reduce($product, 'array_merge', []);
 
             // Array filter without callback remove falsy value
             $productTypePrice =
@@ -33,7 +33,7 @@
             array_unique(array_column($productType, 'productTypeLabel')); ?>
     <div class="bg-transparent">
         <div class="grid wide padding-top20">
-            <div data-id="<?php echo $product['productId']; ?>" class="product-page">
+            <div data-id="<?= $product['productId']; ?>" class="product-page">
                 <div class="product-detail">
                     <div class="row">
                         <div class="col lg-5 md-5 sm-12">
@@ -45,8 +45,7 @@
                             </div>
                             <!--Thumb images for add cart -->
                             <img id="product-image-thumb" style="display:none" 
-                            src="<?php
-                                echo $productImage[0]['imageUrl']; ?>" alt="">
+                            src="<?= $productImage[0]['imageUrl']; ?>" alt="">
                         </div>
                         <div class="col lg-7 md-7 sm-12">
                             <div class="product-detail__content">
@@ -56,14 +55,14 @@
                                             Yêu thích
                                         </span>
                                         <span class="product-title__txt">
-                                            <?php echo $product['productName']; ?>
+                                            <?= $product['productName']; ?>
                                         </span>
                                     </span> 
                                 </div>
                                 <div class="product-statis margin-top20">
                                     <div class="statis-item product-rating">
                                         <span class="product-rating__number">
-                                            <?php echo $product['productRating']; ?>
+                                            <?= $product['productRating']; ?>
                                         </span>
                                         <span class="product-rating__star">
                                             <?php
@@ -74,7 +73,7 @@
                                         <?php
                                             if (!empty($productRating)) {
                                                 ?>
-                                            <span class="product-vote__number"><?php echo count($productRating); ?></span>
+                                            <span class="product-vote__number"><?= count($productRating); ?></span>
                                         <?php
                                             } ?>
                                         <span class="product-vote__icon">Đánh giá</span>
@@ -82,7 +81,7 @@
                                     
                                     <div class="statis-item product-sold">
                                         <span class="product-sold__number">
-                                            <?php echo $product['productSold']; ?>
+                                            <?= $product['productSold']; ?>
                                         </span>
                                         <span class="product-sold__icon">Đã bán</span>
                                     </div>
@@ -91,14 +90,14 @@
                                     <?php
                                         if ($minPrice==$maxPrice) {
                                             ?>
-                                        <span class="product-price__from"><?php echo viPrice($minPrice, 'VND'); ?></span>
+                                        <span class="product-price__from"><?= viPrice($minPrice, 'VND'); ?></span>
                                     <?php
                                         } else {
                                             ?>
-                                        <span class="product-price__from"><?php echo viPrice($minPrice, 'VND'); ?></span>
+                                        <span class="product-price__from"><?= viPrice($minPrice, 'VND'); ?></span>
                                         <span> - </span>
                                         <span class="product-price__to">
-                                            <?php echo viPrice($maxPrice, 'VND'); ?>
+                                            <?= viPrice($maxPrice, 'VND'); ?>
                                         </span>
                                     <?php
                                         } ?>
@@ -147,7 +146,7 @@
                                     <div class="product-type row margin-top20">
                                         <div class="product-type__header col lg-3 md-3 sm-3 exsm-3">
                                             <h6 class="type-title title-reset">
-                                                <?php echo $labelType; ?>
+                                                <?= $labelType; ?>
                                             </h6>
                                         </div>
                                         <div class="product-type__body col lg-9 md-9 sm-9 exsm-9">
@@ -164,10 +163,10 @@
                                                         <?php if ($type['productTypeQuantity'] == 0) {
                                                             echo 'disabled';
                                                         } ?>" 
-                                                        id="<?php echo $type['productTypeId']; ?>" 
-                                                        price="<?php echo $type['productTypePrice']; ?>"
-                                                        quantity="<?php echo $type['productTypeQuantity']; ?>">
-                                                        <?php echo $type['productTypeName']; ?>
+                                                        id="<?= $type['productTypeId']; ?>" 
+                                                        price="<?= $type['productTypePrice']; ?>"
+                                                        quantity="<?= $type['productTypeQuantity']; ?>">
+                                                        <?= $type['productTypeName']; ?>
                                                     </li>
                                                 <?php
                                                     } ?>
@@ -189,7 +188,7 @@
                                         <span class="quantity-count__text">
                                             Còn 
                                             <span class="number-quantity">
-                                                <?php echo $product['productQuantity']; ?>
+                                                <?= $product['productQuantity']; ?>
                                             </span>
                                             sản phẩm
                                         </span>
@@ -245,8 +244,8 @@
                                                     continue;
                                                 } ?>
                                             <a href="#" class="recommend-list__item">
-                                                <img src="<?php echo $recommend['imageUrl']; ?>" alt="">
-                                                <h3 class="title-reset"><?php echo $recommend['productName']; ?></h3>
+                                                <img src="<?= $recommend['imageUrl']; ?>" alt="">
+                                                <h3 class="title-reset"><?= $recommend['productName']; ?></h3>
                                                 <p class="price title-reset">
                                                     <?php
                                                         if (isset($recommend['productTypePrice'])) {

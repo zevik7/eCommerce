@@ -1,0 +1,29 @@
+@use '../abstracts/variables' as a;
+
+.order-success {
+  font-size: 1.5rem;
+  &__header {
+    padding: 15px;
+  }
+  &__title {
+    font-size: 2.8rem;
+    font-weight: 400;
+    color: a.$primary;
+  }
+  &__body {
+    padding-top: 10px;
+    padding-bottom: 70px;
+    text-align: center;
+    .order-success-body__title {
+      font-size: 2.4rem;
+    }
+  }
+  &__info {
+    padding-top: 20px;
+  }
+  &__redirect {
+    & > button {
+      margin: 20px;
+    }
+  }
+}

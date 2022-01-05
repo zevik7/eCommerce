@@ -19,7 +19,7 @@ class User extends DB
             $account = $_SESSION['user']['email'];
             $query =
                 "SELECT * FROM users WHERE email = ?";
-            $param = array($account);
+            $param = [$account];
             $result = $this->readDB($query, $param);
             if ($result != false) {
                 return json_encode($result);
@@ -36,7 +36,7 @@ class User extends DB
             "SELECT id 
             FROM users
             WHERE email = ? or phone = ?";
-        $param = array($userAccount, $userAccount);
+        $param = [$userAccount, $userAccount];
         $result = $this->readDB($query, $param);
         if ($result != false) {
             return true;
@@ -50,7 +50,7 @@ class User extends DB
             "INSERT INTO 
                 users (email, phone, password, name)  
             VALUES (?, ?, ?, ?)";
-        $param = array($userEmail, $userPhone, $userPassword, $userName);
+        $param = [$userEmail, $userPhone, $userPassword, $userName];
         $result = $this->writeDB($query, $param);
         if ($result) {
             return true;
@@ -76,7 +76,7 @@ class User extends DB
             AND img.imageable_type = 'user'
             AND img.type = 'avatar'
             LIMIT 1";
-        $param = array($userAccount, $userAccount, $userPassword);
+        $param = [$userAccount, $userAccount, $userPassword];
         $result = $this->readDB($query, $param);
         return $result[0];
     }
@@ -84,7 +84,7 @@ class User extends DB
     {
         $query =
             " UPDATE users SET name = ? ";
-        $param = array($userName);
+        $param = [$userName];
         // if($userAvatar != ''){
         //     $query = $query . ", avatar = ? ";
         //     array_push($param, $userAvatar);
@@ -104,7 +104,7 @@ class User extends DB
         if ($userEmail != '' && $userPhone == '') {
             $query =
                 "UPDATE users SET email = ? WHERE phone = ?";
-            $param = array($userEmail, $userAccount);
+            $param = [$userEmail, $userAccount];
             $result = $this->writeDB($query, $param);
             if ($result) {
                 return true;
@@ -115,7 +115,7 @@ class User extends DB
         if ($userEmail == '' && $userPhone != '') {
             $query =
                 "UPDATE users SET phone = ? WHERE email = ?";
-            $param = array($userPhone, $userAccount);
+            $param = [$userPhone, $userAccount];
             $result = $this->writeDB($query, $param);
             if ($result) {
                 return true;
@@ -128,7 +128,7 @@ class User extends DB
     {
         $query =
             "UPDATE users SET password = ? WHERE email = ? OR  phone = ?";
-        $param = array($new_userPassword, $userAccount, $userAccount);
+        $param = [$new_userPassword, $userAccount, $userAccount];
         $result = $this->writeDB($query, $param);
         if ($result) {
             return true;
@@ -140,7 +140,7 @@ class User extends DB
     {
         $query =
             "UPDATE users SET address = ? WHERE email = ?";
-        $param = array($userAddress, $userAccount);
+        $param = [$userAddress, $userAccount];
         $result = $this->writeDB($query, $param);
         if ($result) {
             return true;

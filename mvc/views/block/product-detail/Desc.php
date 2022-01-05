@@ -5,7 +5,7 @@
             <div class="desc__row">
                 <h3 class="row-title">Danh mục</h3>
                 <p class="row-text">
-                    <?php echo $product['productCategoryName'];?>
+                    <?= $product['productCategoryName'];?>
                 </p>
             </div>
             <div class="desc__row">
@@ -13,21 +13,20 @@
                     Kho hàng
                 </h3>
                 <p class="row-text">
-                    <?php
-                        echo $product['productQuantity'];
+                    <?= $product['productQuantity'];
                     ?>
                 </p>
             </div>
             <div class="desc__row">
                 <h3 class="row-title">
-                    <?php echo $product['productSendFrom'];?>
+                    <?= $product['productSendFrom'];?>
                 </h3>
                 <p class="row-text">Hồ Chí Minh</p>
             </div>
             <div class="desc__row">
                 <h3 class="row-title">Thương hiệu</h3>
                 <p class="row-text">
-                    <?php echo $product['productBrand'];?>
+                    <?= $product['productBrand'];?>
                 </p>
             </div>
         </div> 
@@ -36,7 +35,7 @@
         <div class="desc__title">Mô tả sản phầm</div>
         <div class="desc__box">
             <p class="desc__content">
-                <?php echo $product['productDescription'];?>
+                <?= $product['productDescription'];?>
             </p>
         </div>
     </div>

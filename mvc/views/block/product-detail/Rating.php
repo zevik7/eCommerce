@@ -53,37 +53,37 @@
                 <li class="overview-filter-item btn">
                     5 sao
                     <span class="overview-filter-item__star-count">
-                        (<?php echo $starCount[4];?>)
+                        (<?= $starCount[4];?>)
                     </span>
                 </li>
                 <li class="overview-filter-item btn">
                     4 sao
                     <span class="overview-filter-item__star-count">
-                        (<?php echo $starCount[3];?>)
+                        (<?= $starCount[3];?>)
                     </span>
                 </li>
                 <li class="overview-filter-item btn">
                     3 sao
                     <span class="overview-filter-item__star-count">
-                        (<?php echo $starCount[2];?>)
+                        (<?= $starCount[2];?>)
                     </span>
                 </li>
                 <li class="overview-filter-item btn">
                     2 sao
                     <span class="overview-filter-item__star-count">
-                        (<?php echo $starCount[1];?>)
+                        (<?= $starCount[1];?>)
                     </span>
                 </li>
                 <li class="overview-filter-item btn">
                     1 sao
                     <span class="overview-filter-item__star-count">
-                        (<?php echo $starCount[0];?>)
+                        (<?= $starCount[0];?>)
                     </span>
                 </li>
                 <li class="overview-filter-item btn">
                     Có hình ảnh/video
                     <span class="overview-filter-item__star-count">
-                        (<?php echo $ratingMediaCount;?>)
+                        (<?= $ratingMediaCount;?>)
                     </span>
                 </li>
             </ul>
@@ -96,11 +96,11 @@
                     ?>
         <div class="product-rating__box mt-20">
             <div class="product-rating-box__header">
-                <img src="<?php echo $rating['image_url']; ?>" alt="" class="user-avatar-sm">
+                <img src="<?= $rating['image_url']; ?>" alt="" class="user-avatar-sm">
             </div>
             <div class="product-rating-box__body">
                 <a href="#" class="user-name-sm">
-                    <?php echo $rating['userName']; ?>
+                    <?= $rating['userName']; ?>
                 </a>
                 <div class="rating-product-star">
                     <?php
@@ -108,13 +108,13 @@
                 </div>
                 <p class="rating-product-type">
                     Phân loại hàng: 
-                    <?php echo $rating['productTypeName']; ?>
+                    <?= $rating['productTypeName']; ?>
                 </p>
                 <p class="rating-product-text">
-                    <?php echo $rating['productRatingComment']; ?>
+                    <?= $rating['productRatingComment']; ?>
                 </p>
                 <p class="text-date">
-                    <?php echo $rating['productRatingDate']; ?>
+                    <?= $rating['productRatingDate']; ?>
                 </p>
             </div>
         </div>

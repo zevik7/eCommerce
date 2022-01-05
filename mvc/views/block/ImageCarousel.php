@@ -5,7 +5,7 @@
                 foreach ($productImage as $value) {
                     ?>
                 <li>
-                    <img src="<?php echo $value['imageUrl']; ?>" alt=""  title="" data-description="" />
+                    <img src="<?= $value['imageUrl']; ?>" alt=""  title="" data-description="" />
                 </li>
             <?php
                 }
@@ -16,7 +16,7 @@
                 foreach ($productImage as $value) {
                     ?>
                 <li>
-                    <img src="<?php echo $value['imageUrl']; ?>" alt=""  title=""/>
+                    <img src="<?= $value['imageUrl']; ?>" alt=""  title=""/>
                 </li>
             <?php
                 }

@@ -1,0 +1,97 @@
+@use '../abstracts' as a;
+
+.error-label {
+  display: block;
+  margin-top: 5px;
+  color: a.$red;
+  font-size: 1.3rem;
+}
+.error-input {
+  border-color: a.$red;
+}
+.alert {
+  display: none;
+  margin-top: 12px;
+  padding: 12px 16px;
+  border-radius: a.$border-radius;
+  border: a.$border-light;
+  font-size: 1.6rem;
+  text-align: center;
+}
+
+.alert.alert-success {
+  background-color: rgba(227, 253, 235, 1);
+  border-color: rgba(38, 179, 3, 1);
+  color: rgba(60, 118, 61, 1);
+}
+
+.alert.alert-info {
+  background-color: rgba(217, 237, 247, 1);
+  color: rgba(49, 112, 143, 1);
+  border-color: rgba(126, 182, 193, 1);
+}
+
+.alert.alert-warning {
+  background-color: rgba(252, 248, 227, 1);
+  border-color: rgba(177, 161, 129, 1);
+  color: rgba(138, 109, 59, 1);
+}
+
+.alert.alert-danger {
+  background-color: rgba(248, 215, 218, 1);
+  border-color: rgba(220, 53, 69, 1);
+  color: rgba(114, 28, 36, 1);
+}
+
+// modal success & failed alert
+.modal-noti {
+  display: none;
+  .modal-body {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-width: 400px;
+    padding: 10px;
+    font-size: 2rem;
+    color: a.$text;
+    background-color: a.$background-white;
+    border-radius: a.$border-radius;
+    .icon-success,
+    .icon-error {
+      margin-right: 8px;
+      font-size: 4rem;
+    }
+    &__close-button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 10px;
+      color: a.$text-light;
+      font-size: 2rem;
+      cursor: pointer;
+    }
+  }
+  &--success {
+    .modal-body {
+      color: rgba(38, 179, 3, 1);
+      .icon-success {
+        display: block;
+      }
+      .icon-error {
+        display: none;
+      }
+    }
+  }
+  &--error {
+    .modal-body {
+      color: rgba(220, 53, 69, 1);
+      .icon-success {
+        display: none;
+      }
+      .icon-error {
+        display: block;
+      }
+    }
+  }
+}

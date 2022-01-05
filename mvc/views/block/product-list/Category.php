@@ -27,11 +27,11 @@
                 <?php if (isset($_GET['category']) && $_GET['category'] == $value->id) {
                         echo "active";
                     } ?>"
-                href="<?php echo replaceUrlParams('category', $value->id) ?>"> 
+                href="<?= replaceUrlParams('category', $value->id) ?>"> 
 
-                    <?php echo $value->svg_icon; ?>
+                    <?= $value->svg_icon; ?>
                     <span> 
-                        <?php echo $value->name; ?>
+                        <?= $value->name; ?>
                     </span> 
                 </a>
             </li>

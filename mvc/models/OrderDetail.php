@@ -32,8 +32,8 @@ class OrderDetail extends DB
         "INSERT INTO order_details ( order_id, product_type_id, quantity, price) 
         VALUE( ?, ?, ?, ?);";
         $param =
-        array($id, $buyNowData[0]['productTypeId'], $productTypeQty,
-            $buyNowData[0]['productTypePrice'] * (1 - $buyNowData[0]['productDiscount']));
+        [$id, $buyNowData[0]['productTypeId'], $productTypeQty,
+            $buyNowData[0]['productTypePrice'] * (1 - $buyNowData[0]['productDiscount'])];
 
         $this->writeDB($query, $param);
     }

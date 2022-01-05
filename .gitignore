@@ -1,3 +1,6 @@
 vendor/
+node_modules/
 serverLog/
 public/css/*
+tools/
+.husky/

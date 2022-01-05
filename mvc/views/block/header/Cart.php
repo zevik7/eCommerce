@@ -33,27 +33,26 @@
                             ?>
                         <li class="head-cart__item">
                             <div class="item-img">
-                                <img src="<?php echo $value['imageUrl']; ?>" alt="">
+                                <img src="<?= $value['imageUrl']; ?>" alt="">
                             </div>
                             <div class="item-info">
                                 <div class="item-info__header">
                                     <h5 class="item-info__title title-reset">
-                                        <?php echo $value['productName']; ?>
+                                        <?= $value['productName']; ?>
                                     </h5>
                                     <span class="item-info__price">
                                         Giá: 
-                                        <?php
-                                            echo viPrice($value['productTypePrice'] * (1 - $value['productDiscount']), 'VND'); ?>
+                                        <?= viPrice($value['productTypePrice'] * (1 - $value['productDiscount']), 'VND'); ?>
                                     </span>
                                     <span class="item-info__quantity">
-                                        x <?php echo $value['cartQuantity']; ?>
+                                        x <?= $value['cartQuantity']; ?>
                                     </span>
                                 </div>
                                 <div class="item-info__body">
                                     <span class="item-info__type">
-                                        Phân loại hàng: <?php echo $value['productTypeName']; ?>
+                                        Phân loại hàng: <?= $value['productTypeName']; ?>
                                     </span>
-                                    <input data-id=<?php echo $value['cartId']; ?> class="item-delete btn btn-third" type="button" value="Xoá">
+                                    <input data-id=<?= $value['cartId']; ?> class="item-delete btn btn-third" type="button" value="Xoá">
                                 </div>
                             </div>
                         </li>

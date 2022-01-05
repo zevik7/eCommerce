@@ -9,10 +9,10 @@ class Order extends DB
 {
     public function addToOrder($user_id)
     {
-        $query = 
+        $query =
             "INSERT INTO orders 
             ( orders.user_id, orders.date, orders.`status`) 
-            VALUE( $user_id , NOW(), 'waiting');";
+            VALUE( $user_id , NOW(), 'waiting')";
         $result = $this->writeDB($query);
         return $result;
     }

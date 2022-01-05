@@ -2,9 +2,9 @@
     <nav class="personal-sidebar">
 
         <div class="personal-sidebar__header">
-            <img src="<?php echo $_SESSION['user']['avatar'];?>" alt="" class="personal-sidebar__avatar js-trigger-profile" >
+            <img src="<?= $_SESSION['user']['avatar'];?>" alt="" class="personal-sidebar__avatar js-trigger-profile" >
             <div class="personal-sidebar__profile"  >
-                <h3 class="username"><?php echo $_SESSION['user']['name'];?></h3>
+                <h3 class="username"><?= $_SESSION['user']['name'];?></h3>
                 <div class="edit js-trigger-profile"><i class="fas fa-pen"></i> Sửa Hồ Sơ</div>
             </div>
         </div>
