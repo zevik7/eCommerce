@@ -1,28 +1,33 @@
 <?php
-namespace mvc\controllers;
-use mvc\core\Controller;
-use mvc\models\Pagination; 
-use mvc\models\Product; 
-use mvc\models\User; 
-use mvc\models\Cart; 
-use mvc\models\Category; 
 
-class ProductList extends Controller{
+namespace mvc\controllers;
+
+use mvc\core\Controller;
+use mvc\models\Pagination;
+use mvc\models\Product;
+use mvc\models\User;
+use mvc\models\Cart;
+use mvc\models\Category;
+
+class ProductList extends Controller
+{
     protected $userModel;
     protected $productModel;
     protected $paginationModel;
     protected $cartModel;
     protected $categoryModel;
 
-    function __construct(){
+    public function __construct()
+    {
         $this->userModel = new User();
         $this->productModel = new Product();
         $this->paginationModel = new Pagination();
         $this->cartModel = new Cart();
         $this->CategoryModel = new Category();
     }
-    function load(){    
-        $productQuantity = 
+    public function load()
+    {
+        $productQuantity =
             $this->productModel->getProductQuantity();
         $query =
         " SELECT 
@@ -48,23 +53,20 @@ class ProductList extends Controller{
         AND img.imageable_id = pd.id";
 
         // Search /url?search
-        if (isset($_GET['search']))
-        {
+        if (isset($_GET['search'])) {
             $keyword = $_GET['search'];
             $productQuantity = $this->productModel->getProductQuantityByName($keyword);
-            if( $productQuantity > 0){
+            if ($productQuantity > 0) {
                 $_SESSION['search'] = 'found';
                 $query = $query . " AND pd.name LIKE '%$keyword%' ";
-            }
-            else {
+            } else {
                 $productQuantity = $this->productModel->getProductQuantity();
                 $_SESSION['search'] = 404;
             }
         }
 
         //Filter category
-        if (isset($_GET['category']))
-        {
+        if (isset($_GET['category'])) {
             $categoryId = $_GET['category'];
             $query = $query . " AND pc.id = $categoryId ";
             $productQuantity = $this->productModel->getProductQuantityByCategory($categoryId);
@@ -74,8 +76,7 @@ class ProductList extends Controller{
         $query = $query . " GROUP BY pd.id ";
 
         // Filter
-        if (isset($_GET['filter']))
-        {
+        if (isset($_GET['filter'])) {
             $filter = $_GET['filter'];
             switch ($filter) {
                 case 'newest':
@@ -85,14 +86,14 @@ class ProductList extends Controller{
                     $query = $query . " ORDER BY pd.sold DESC ";
                     break;
                 case 'price-asc':
-                    $query = 
+                    $query =
                         $query . " ORDER BY pt.price ASC";
                     break;
                 case 'price-desc':
-                    $query = 
+                    $query =
                         $query . " ORDER BY pt.price DESC";
                     break;
-                
+
                 default:
                     # code...
                     break;
@@ -105,21 +106,21 @@ class ProductList extends Controller{
         }
         // Calculate pagination limit
         $this->paginationModel->calPagination($productQuantity);
-        
-        $query = $query . " LIMIT " 
+
+        $query = $query . " LIMIT "
             . $this->paginationModel->offset
             . " , "
             .$this->paginationModel->perPage;
-        
+
         $productsData = json_encode($this->productModel->select($query));
 
         // Load cart data
         $cart = $this->cartModel->get();
-        
+
         // Load category
         $categoryData = json_encode($this->CategoryModel->getCategories());
-        
-        $this->view('Main',[
+
+        $this->view('Main', [
             'Page' => 'ProductList',
             'User' => $this->userModel->getUser(),
             'Product' => $productsData,

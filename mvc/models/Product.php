@@ -1,20 +1,22 @@
 <?php
+
 namespace mvc\models;
+
 use mvc\core\DB;
 
-class Product extends DB{
-
-    function select($query, $params = [])
+class Product extends DB
+{
+    public function select($query, $params = [])
     {
         $result = $this->readDB($query, $params);
-        if ($result !== false)
-        {
+        if ($result !== false) {
             return $result;
         }
         return false;
     }
 
-    public function getProducts($offset = 0, $productsQuantity = 0){
+    public function getProducts($offset = 0, $productsQuantity = 0)
+    {
         $query =
         "SELECT 
         pd.id as productId, 
@@ -45,8 +47,9 @@ class Product extends DB{
         return json_encode($result);
     }
 
-    public function getProduct($productId){
-        $productQuery = 
+    public function getProduct($productId)
+    {
+        $productQuery =
             "SELECT 
             pd.id as productId, 
             pd.name as productName,
@@ -64,7 +67,7 @@ class Product extends DB{
             ON pd.product_category_id = pc.id
             WHERE pd.id = '$productId'";
 
-        $productTypeQuery = 
+        $productTypeQuery =
             "SELECT 
             id as productTypeId, 
             label as productTypeLabel,
@@ -75,7 +78,7 @@ class Product extends DB{
             FROM product_types
             WHERE product_id = '$productId'";
 
-        $productImageQuery = 
+        $productImageQuery =
             "SELECT 
             img.id as imageId,
             img.type as imageType,
@@ -88,14 +91,14 @@ class Product extends DB{
         $productResult = $this->readDB($productQuery);
         $productTypeResult = $this->readDB($productTypeQuery);
         $productImageResult = $this->readDB($productImageQuery);
-        
+
         $allResult = array();
         if ($productResult !== false) {
             $allResult['product'] = $productResult;
         }
         if ($productTypeResult !== false) {
             $allResult['productType'] = $productTypeResult;
-        }          
+        }
         if ($productImageResult !== false) {
             $allResult['productImage'] = $productImageResult;
         }
@@ -103,15 +106,15 @@ class Product extends DB{
         return $allResult !== false ? $allResult : [];
     }
 
-    public function getProductQuantity(){
-        $query = 
+    public function getProductQuantity()
+    {
+        $query =
             "SELECT 
             product_id as productId 
             FROM product_types 
             GROUP BY product_id";
         $result = $this->readDB($query);
-        if ($result !== false)
-        {
+        if ($result !== false) {
             return count($result);
         }
         return 0;
@@ -119,7 +122,7 @@ class Product extends DB{
 
     public function getCategoryId($productId)
     {
-        $query = 
+        $query =
             "SELECT 
             product_category_id as productCategoryId 
             FROM products
@@ -127,8 +130,7 @@ class Product extends DB{
             LIMIT 1";
 
         $result = $this->readDB($query);
-        if ($result !== false)
-        {
+        if ($result !== false) {
             return $result[0]["productCategoryId"];
         }
         return '';
@@ -144,27 +146,29 @@ class Product extends DB{
 
         $result = $this->readDB($query, array($categoryId));
 
-        if($result !== false){
+        if ($result !== false) {
             return count($result);
         }
         return 0;
     }
 
-    public function getProductQuantityByName($keyword = ''){
-        $query = 
+    public function getProductQuantityByName($keyword = '')
+    {
+        $query =
         "SELECT 
         quantity as productQuantity 
         FROM products 
         WHERE name 
             LIKE '%$keyword%'
         GROUP BY id";
-        
+
         $result = $this->readDB($query);
         return $result !== false ? count($result) : 0;
     }
 
-    public function getProductListByCategory($productCategoryId, $offset = 0, $productsQuantity = 0){
-        $query= 
+    public function getProductListByCategory($productCategoryId, $offset = 0, $productsQuantity = 0)
+    {
+        $query=
         "SELECT
         pd.id as productId, 
         pd.name as productName,
@@ -190,10 +194,9 @@ class Product extends DB{
         GROUP BY pd.id
         ORDER BY pd.sold DESC
         LIMIT ?,?";
-        
+
         $result = $this->readDB($query, array($offset,$productsQuantity));
-        
+
         return $result;
     }
 }
-?>

@@ -6,7 +6,7 @@
             ?>
 
             <div class="col-10 pb-50">
-                <?php 
+                <?php
                     require_once './mvc/views/block/personal/PersonalAccount.php';
                     require_once './mvc/views/block/personal/PersonalPurchase.php';
                     require_once './mvc/views/block/personal/PersonalNotify.php';

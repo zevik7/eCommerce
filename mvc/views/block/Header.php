@@ -36,7 +36,7 @@
                 </div>
             </li>
             
-            <?php 
+            <?php
                 if (isset($_SESSION['user'])):
             ?>
                 <li class="nav-list__item nav-user">
@@ -82,7 +82,9 @@
                     oninput="setCustomValidity('')"
                     autocomplete="off"
                     required placeholder="Bạn cần tìm gì ?"
-                    value="<?php if(isset($_GET['search'])) echo $_GET['search']?>">
+                    value="<?php if (isset($_GET['search'])) {
+                echo $_GET['search'];
+            }?>">
                     <span class="underline"></span>
                     <button type="submit" class="head-search__btn btn btn-primary js-head-search__btn btn btn-primary">
                         <i class="fas fa-search"></i>

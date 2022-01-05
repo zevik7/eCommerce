@@ -21,7 +21,9 @@
                         </p>
                         <p class="order-success-body__status">
                             Mã số đơn hàng của bạn là: 
-                            <?php if(isset($_COOKIE['orderID'])) echo $_COOKIE['orderID'];?>
+                            <?php if (isset($_COOKIE['orderID'])) {
+    echo $_COOKIE['orderID'];
+}?>
                         </p>
                         <p class="order-success-body__status">
                             Cảm ơn bạn đã lựa chọn chúng tôi

@@ -1,15 +1,18 @@
 <?php
+
 namespace mvc\models;
+
 use mvc\core\DB;
 
-class Pagination extends DB{
+class Pagination extends DB
+{
     public $perPage;
     public $offset;
     public $totalItems;
     public $totalPages;
     public $currentPage;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
         //Default setting
@@ -18,14 +21,16 @@ class Pagination extends DB{
         $this->offset = 0;
     }
 
-    function calPagination($totalItems){    
+    public function calPagination($totalItems)
+    {
         $this->cleanData($this->currentPage);
         $this->totalItems = $totalItems;
         $this->totalPages = ceil($this->totalItems / $this->perPage);
         $this->offset = ($this->currentPage - 1) * ($this->perPage);
     }
-    
-    function getPagination(){
+
+    public function getPagination()
+    {
         return json_encode(["currentPage" => $this->currentPage, "totalPages" => $this->totalPages]);
     }
 }

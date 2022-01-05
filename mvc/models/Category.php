@@ -1,11 +1,15 @@
 <?php
+
 namespace mvc\models;
+
 use mvc\models\traits\Filter;
 use mvc\core\DB;
 
-class Category extends DB{
-    public function getCategories(){
-        $query = 
+class Category extends DB
+{
+    public function getCategories()
+    {
+        $query =
             "SELECT
             id,
             name,

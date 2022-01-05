@@ -210,13 +210,13 @@
             <button id="js-user-address__add" class="btn btn-primary"><i class="fas fa-plus"></i> &nbsp; Thêm Địa Chỉ Mới</button>
         </div>
         <div class="address__body mt-10">
-            <?php if($_SESSION['user']['address'] == ""): ?>
+            <?php if ($_SESSION['user']['address'] == ""): ?>
               <p>Bạn chưa có địa chỉ</p>
 
             <?php
-                else: 
+                else:
                     $str = $_SESSION['user']['address'];
-                    $index = strpos($str,".");
+                    $index = strpos($str, ".");
             ?>
             <div class="grid">
                 <div class="row mt-24">
@@ -224,7 +224,7 @@
                         <p style="text-align: right;">Địa chỉ của bạn: </p>
                     </div>
                     <div class="col-4"> 
-                        <span><?php  echo substr($str, 0, $index );?></span> <br>
+                        <span><?php  echo substr($str, 0, $index);?></span> <br>
                         <span><?php  echo substr($str, $index + 1);?></span>
                     </div>
                     <div class="col-4">

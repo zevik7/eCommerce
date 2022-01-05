@@ -17,30 +17,30 @@
         <?php
             $starCount = [0, 0, 0, 0, 0];
             $ratingMediaCount = 0;
-            if (isset($productRating)){
-                $starCount[0] = 
-                count(array_filter($productRating, function($element) {
+            if (isset($productRating)) {
+                $starCount[0] =
+                count(array_filter($productRating, function ($element) {
                     return $element['productRatingStar'] == 1;
                 }));
-                $starCount[1] = 
-                count(array_filter($productRating, function($element) {
+                $starCount[1] =
+                count(array_filter($productRating, function ($element) {
                     return $element['productRatingStar'] == 2;
                 }));
-                $starCount[2] = 
-                count(array_filter($productRating, function($element) {
+                $starCount[2] =
+                count(array_filter($productRating, function ($element) {
                     return $element['productRatingStar'] == 3;
                 }));
-                $starCount[3] = 
-                count(array_filter($productRating, function($element) {
+                $starCount[3] =
+                count(array_filter($productRating, function ($element) {
                     return $element['productRatingStar'] == 4;
                 }));
-                $starCount[4] = 
-                count(array_filter($productRating, function($element) {
+                $starCount[4] =
+                count(array_filter($productRating, function ($element) {
                     return $element['productRatingStar'] == 5;
                 }));
 
-                $ratingMediaCount = 
-                count(array_filter($productRating, function($element) {
+                $ratingMediaCount =
+                count(array_filter($productRating, function ($element) {
                     return $element['productRatingType'] == 'Media';
                 }));
             }
@@ -91,37 +91,36 @@
     </div>
     <div class="product-rating__body">
         <?php
-            if (isset($productRating))
-                foreach ($productRating as $rating)
-                {
-        ?>
+            if (isset($productRating)) {
+                foreach ($productRating as $rating) {
+                    ?>
         <div class="product-rating__box mt-20">
             <div class="product-rating-box__header">
-                <img src="<?php echo $rating['image_url'];?>" alt="" class="user-avatar-sm">
+                <img src="<?php echo $rating['image_url']; ?>" alt="" class="user-avatar-sm">
             </div>
             <div class="product-rating-box__body">
                 <a href="#" class="user-name-sm">
-                    <?php echo $rating['userName'];?>
+                    <?php echo $rating['userName']; ?>
                 </a>
                 <div class="rating-product-star">
                     <?php
-                        displayStar($rating['productRatingStar']);
-                    ?>
+                        displayStar($rating['productRatingStar']); ?>
                 </div>
                 <p class="rating-product-type">
                     Phân loại hàng: 
-                    <?php echo $rating['productTypeName'];?>
+                    <?php echo $rating['productTypeName']; ?>
                 </p>
                 <p class="rating-product-text">
-                    <?php echo $rating['productRatingComment'];?>
+                    <?php echo $rating['productRatingComment']; ?>
                 </p>
                 <p class="text-date">
-                    <?php echo $rating['productRatingDate'];?>
+                    <?php echo $rating['productRatingDate']; ?>
                 </p>
             </div>
         </div>
         <?php
                 }
+            }
         ?>
     </div>
 </div>

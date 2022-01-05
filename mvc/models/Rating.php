@@ -1,13 +1,15 @@
 <?php
+
 namespace mvc\models;
+
 use mvc\models\traits\Filter;
 use mvc\core\DB;
 
-class Rating extends DB{
-
-    public function get($productId, $starFillter = 'all'){
-
-        $query = 
+class Rating extends DB
+{
+    public function get($productId, $starFillter = 'all')
+    {
+        $query =
             "SELECT
             pr.id as productRatingId,
             pr.product_type_id as productTypeId,
@@ -30,9 +32,8 @@ class Rating extends DB{
             WHERE pt.product_id = ?
             AND img.imageable_type = 'user'
             AND img.type ='avatar' ";
-        
-        if ($starFillter !== 'all' && in_array($starFillter, [1,2,3,4,5]))
-        {
+
+        if ($starFillter !== 'all' && in_array($starFillter, [1,2,3,4,5])) {
             $query .= " AND pr.star = $starFillter ";
         }
 
@@ -41,4 +42,3 @@ class Rating extends DB{
         return $result;
     }
 }
-?>

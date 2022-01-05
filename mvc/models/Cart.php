@@ -1,27 +1,28 @@
 <?php
+
 namespace mvc\models;
+
 use mvc\models\traits\Filter;
 use mvc\core\DB;
 
-class Cart extends DB{
-
+class Cart extends DB
+{
     protected $userId;
 
-    function __construct()
+    public function __construct()
     {
         parent::__construct();
 
         $this->userId = -999;
 
-        if (isset($_SESSION['user']['id']))
-        {
+        if (isset($_SESSION['user']['id'])) {
             $this->userId = $_SESSION['user']['id'];
         }
     }
 
-    public function get(){
-
-        $query = 
+    public function get()
+    {
+        $query =
             "SELECT
             ca.id as cartId,
             ca.product_type_id as productTypeId, 
@@ -51,8 +52,7 @@ class Cart extends DB{
 
     public function add($typeId, $quantity)
     {
-
-        $query = 
+        $query =
         "INSERT INTO 
         carts
         (user_id, product_type_id, quantity)
@@ -65,7 +65,7 @@ class Cart extends DB{
 
     public function delete($id)
     {
-        $query = 
+        $query =
         "DELETE FROM carts
         WHERE id=?;";
 
@@ -75,7 +75,7 @@ class Cart extends DB{
 
     public function getQty($typeId)
     {
-        $query = 
+        $query =
         "SELECT 
         count(id) as count
         FROM carts c
@@ -87,4 +87,3 @@ class Cart extends DB{
         return $result[0]['count'];
     }
 }
-?>

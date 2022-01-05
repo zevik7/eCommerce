@@ -1,24 +1,32 @@
 <?php
+
 namespace mvc\models;
+
 use mvc\models\traits\Filter;
 use mvc\core\DB;
 
-class Order extends DB{
-   
-    public function addToOrder($user_id){
-        $query = "INSERT INTO orders ( orders.user_id, orders.date, orders.`status`) VALUE( $user_id , NOW(), 'waiting');";
+class Order extends DB
+{
+    public function addToOrder($user_id)
+    {
+        $query = 
+            "INSERT INTO orders 
+            ( orders.user_id, orders.date, orders.`status`) 
+            VALUE( $user_id , NOW(), 'waiting');";
         $result = $this->writeDB($query);
         return $result;
     }
 
-    public function getOrderID(){
+    public function getOrderID()
+    {
         $query = "SELECT MAX(orders.id) as order_id FROM orders WHERE orders.user_id = " . $_SESSION['user']['id'];
         $result = $this->readDB($query);
         return $result;
     }
 
-    public function getProductBuy($productTypeId){
-        $query = 
+    public function getProductBuy($productTypeId)
+    {
+        $query =
             "SELECT
             pt.id as productTypeId,
             pt.price as productTypePrice,
@@ -38,6 +46,4 @@ class Order extends DB{
         $result = $this->readDB($query, [$productTypeId]);
         return $result;
     }
-
 }
-?>

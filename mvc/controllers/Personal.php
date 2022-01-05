@@ -1,155 +1,152 @@
 <?php
+
 namespace mvc\controllers;
+
 use mvc\core\Controller;
-use mvc\models\Purchase; 
+use mvc\models\Purchase;
 use mvc\models\User;
 
-class Personal extends Controller{
+class Personal extends Controller
+{
     protected $userModel;
 
-    function __construct(){
+    public function __construct()
+    {
         $this->userModel = new User();
     }
 
-    public function load(){
-        $this->view('Main',[
+    public function load()
+    {
+        $this->view('Main', [
             'Page' => 'Personal',
         ]);
     }
 
-    public function Edit(){
-            $target_file = '';
-            if ($_FILES['personal-image']['name'] != NULL && $_FILES['personal-image']['name'] != '')
-            {
-                if ($_FILES["personal-image"]['error'] != 0)
-                {
-                    return json_encode(['status'=>'error', 'message'=>'Hình ảnh upload bị lỗi']);
-                }
-                $target_dir    = "./public/img/user/";
-            
-                $target_file   = $target_dir . basename($_FILES["personal-image"]["name"]);
+    public function Edit()
+    {
+        $target_file = '';
+        if ($_FILES['personal-image']['name'] != null && $_FILES['personal-image']['name'] != '') {
+            if ($_FILES["personal-image"]['error'] != 0) {
+                return json_encode(['status'=>'error', 'message'=>'Hình ảnh upload bị lỗi']);
+            }
+            $target_dir    = "./public/img/user/";
 
-                $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
+            $target_file   = $target_dir . basename($_FILES["personal-image"]["name"]);
 
-                $allowtypes    = array('jpg', 'png', 'jpeg', 'gif','JPG', 'PNG', 'JPEG', 'GIF');
+            $imageFileType = pathinfo($target_file, PATHINFO_EXTENSION);
 
-                $maxfilesize   = 1048576;
+            $allowtypes    = array('jpg', 'png', 'jpeg', 'gif','JPG', 'PNG', 'JPEG', 'GIF');
 
-                $allowUpload   = true;
+            $maxfilesize   = 1048576;
 
-                $check = getimagesize($_FILES["personal-image"]["tmp_name"]);
+            $allowUpload   = true;
 
-                if ($check == false)
-                {
-                    //Không phải file ảnh
-                    $allowUpload = false;
-                    return json_encode(["status"=>"error","message"=>"File upload không phải là file ảnh !!!"]);
-                }
-                if ($_FILES["personal-image"]["size"] > $maxfilesize)
-                {
-                    $allowUpload = false;
-                    return json_encode(["status"=>"error","message"=>"File bạn upload Vượt quá 1MB !!!"]);
-                }
-                if (!in_array($imageFileType,$allowtypes))
-                {
-                    $allowUpload = false;
-                    return json_encode(["status"=>"error","message"=>"File ảnh của bạn không phù hợp"]);
-                }
+            $check = getimagesize($_FILES["personal-image"]["tmp_name"]);
 
-                if ($allowUpload)
-                {
-                    if (!move_uploaded_file($_FILES["personal-image"]["tmp_name"], $target_file))
-                    {
+            if ($check == false) {
+                //Không phải file ảnh
+                $allowUpload = false;
+                return json_encode(["status"=>"error","message"=>"File upload không phải là file ảnh !!!"]);
+            }
+            if ($_FILES["personal-image"]["size"] > $maxfilesize) {
+                $allowUpload = false;
+                return json_encode(["status"=>"error","message"=>"File bạn upload Vượt quá 1MB !!!"]);
+            }
+            if (!in_array($imageFileType, $allowtypes)) {
+                $allowUpload = false;
+                return json_encode(["status"=>"error","message"=>"File ảnh của bạn không phù hợp"]);
+            }
+
+            if ($allowUpload) {
+                if (!move_uploaded_file($_FILES["personal-image"]["tmp_name"], $target_file)) {
                     return json_encode(["status"=>"error","message"=>"Không thể di chuyển ra thư mục cần lưu trữ"]);
-                    }
                 }
             }
+        }
 
-            $userName       =   $_POST["profile-username"];
-            $userAvatar     =   $target_file;
-            $userAccount    =   $_SESSION['user']['email'];
-            $result = $this->userModel->editProfile($userName, $userAvatar, $userAccount);
-            if ($result) {
-                echo json_encode(['status' => 'success', 'message' => 'Đã cập nhật thành công']);
-            }
-            else{
-                echo json_encode(['status' => 'error', 'message' => 'Lỗi khi thêm vào cơ sở dữ liệu']);
-            }
-            die();
-            // echo json_encode(['status' => 'success', 'message' => 'Lỗi khi thêm vào cơ sở dữ liệu']);
-        
+        $userName       =   $_POST["profile-username"];
+        $userAvatar     =   $target_file;
+        $userAccount    =   $_SESSION['user']['email'];
+        $result = $this->userModel->editProfile($userName, $userAvatar, $userAccount);
+        if ($result) {
+            echo json_encode(['status' => 'success', 'message' => 'Đã cập nhật thành công']);
+        } else {
+            echo json_encode(['status' => 'error', 'message' => 'Lỗi khi thêm vào cơ sở dữ liệu']);
+        }
+        die();
+        // echo json_encode(['status' => 'success', 'message' => 'Lỗi khi thêm vào cơ sở dữ liệu']);
     }
 
-    public function UpdateConfirm(){
+    public function UpdateConfirm()
+    {
         $userAccount    =   $_SESSION['user']['email'];
         $userPassword   =   $_POST['password-confirm'];
         $result         = $this->userModel->loginCheck($userAccount, $userPassword);
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Đã xác thực']);
-        }
-        else{
+        } else {
             echo json_encode(['status' => 'error', 'message' => 'Mật khẩu chưa chính xác!!']);
         }
     }
 
-    public function UpdateEmail(){
+    public function UpdateEmail()
+    {
         $userAccount    =    $_SESSION['user']['phone'];
         $userEmail      =   $_POST['update-email'];
-        $result         = $this->userModel->updateAccount($userEmail, '' , $userAccount);
+        $result         = $this->userModel->updateAccount($userEmail, '', $userAccount);
         if ($result) {
             $_SESSION['user']['email'] =  $userEmail;
             echo json_encode(['status' => 'success', 'message' => 'Thay đổi thành công']);
-        }
-        else{
+        } else {
             echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
         }
     }
 
-    public function UpdatePhone(){
+    public function UpdatePhone()
+    {
         $userAccount    =   $_SESSION['user']['email'];
         $userPhone      = $_POST['update-phone'];
-        $result         = $this->userModel->updateAccount('', $userPhone , $userAccount);
+        $result         = $this->userModel->updateAccount('', $userPhone, $userAccount);
         if ($result) {
             $_SESSION['user']['phone'] =  $userPhone;
             echo json_encode(['status' => 'success', 'message' => 'Thay đổi thành công']);
-        }
-        else{
+        } else {
             echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
         }
     }
 
-    public function UpdatePassword(){
+    public function UpdatePassword()
+    {
         $userAccount            =   $_SESSION['user']['email'];
         $old_userPassword       =   $_POST['old-password'];
         $new_userPassword       =   $_POST['new-password'];
-        $check                  =   $this->userModel->loginCheck( $userAccount , $old_userPassword );
+        $check                  =   $this->userModel->loginCheck($userAccount, $old_userPassword);
         if ($check) {
-            $result         = $this->userModel->updatePassword($new_userPassword , $userAccount);
+            $result         = $this->userModel->updatePassword($new_userPassword, $userAccount);
             if ($result) {
                 echo json_encode(['status' => 'success', 'message' => 'Đổi mật khẩu thành công']);
-            }
-            else{
+            } else {
                 echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công']);
             }
-        }
-        else{
+        } else {
             echo json_encode(['status' => 'error', 'message' => 'Sai mật khẩu!!']);
         }
     }
 
-    public function setAddress(){
+    public function setAddress()
+    {
         $userAccount   =   $_SESSION['user']['email'];
         $userAddress =  trim($_POST['user-detail']). '. ' . $_POST['user-address'] ;
-        $result = $this->userModel->updateAddress($userAddress , $userAccount);
+        $result = $this->userModel->updateAddress($userAddress, $userAccount);
         if ($result) {
             echo json_encode(['status' => 'success', 'message' => 'Cap nhat dia chi thanh cong']);
-        }
-        else{
+        } else {
             echo json_encode(['status' => 'error', 'message' => 'Thay đổi không thành công!!']);
         }
     }
 
-    function purchase(){
+    public function purchase()
+    {
         $query =
             "SELECT 
             od.order_id as orderId, 
@@ -172,10 +169,9 @@ class Personal extends Controller{
             INNER JOIN images img
             ON img.imageable_id = pd.id
             WHERE img.`type` = 'thumb'";
-       
+
         // // Order Status
-        if (isset($_GET['status']))
-        {
+        if (isset($_GET['status'])) {
             $status = $_GET['status'];
             $query = $query . " AND o.status = '$status'";
         }
@@ -184,13 +180,10 @@ class Personal extends Controller{
 
         $purchaseData = json_encode($this->userModel->select($query));
 
-        $this->view('Main',[
+        $this->view('Main', [
             'Page' => 'Personal',
             'User' => $this->userModel->getUser(),
             'Purchase' => $purchaseData
         ]);
     }
-
-    
 }
-?>

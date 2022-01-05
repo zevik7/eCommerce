@@ -10,7 +10,8 @@ function replaceUrlParams($param, $value)
     return $query_result;
 }
 //Return vietnamese money
-function viPrice($value, $label = ''){
+function viPrice($value, $label = '')
+{
     return number_format($value, 0, '', '.')
             . ' ' . $label;
 }

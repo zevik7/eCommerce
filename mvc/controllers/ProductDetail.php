@@ -1,43 +1,46 @@
 <?php
+
 namespace mvc\controllers;
+
 use mvc\core\Controller;
 use mvc\models\Product;
 use mvc\models\Cart;
 use mvc\models\Rating;
 
-class ProductDetail extends Controller{
+class ProductDetail extends Controller
+{
     protected $productModel;
     protected $cartModel;
     protected $ratingModel;
 
-    function __construct(){
+    public function __construct()
+    {
         $this->productModel = new Product();
         $this->cartModel = new Cart();
         $this->ratingModel = new Rating();
     }
 
-    function load($params){
-
+    public function load($params)
+    {
         $productId = current($params);
 
         if ($productId !== false) {
-
-            $productCategoryId = 
+            $productCategoryId =
                 $this->productModel->getCategoryId($productId);
 
-            $productsRecommend = 
+            $productsRecommend =
                 json_encode($this->productModel->getProductListByCategory($productCategoryId, 0, 5));
-                
-            $product = 
+
+            $product =
                 json_encode($this->productModel->getProduct($productId));
 
-            $cart = 
+            $cart =
                 json_encode($this->cartModel->get());
 
-            $rating = 
+            $rating =
                 json_encode($this->ratingModel->get($productId));
 
-            $this->view('Main',[
+            $this->view('Main', [
                 'Page' => 'ProductDetail',
                 'productData' => $product,
                 'productsRecommend' => $productsRecommend,
@@ -47,58 +50,55 @@ class ProductDetail extends Controller{
         }
     }
 
-    function getRating() {
-
+    public function getRating()
+    {
         $data = json_decode(file_get_contents('php://input'));
         $star = $data->star;
         $productId = $data->id;
 
         $result = $this->ratingModel->get($productId, $star);
 
-        if ($result !== false)
-        {
+        if ($result !== false) {
             echo $this->sendResponse('success', 'Thành công', $result);
         }
     }
 
-    function addCart(){
+    public function addCart()
+    {
         $this->checkAuth();
         // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
         $data = json_decode(file_get_contents('php://input'));
         $id = $data->productTypeId;
         $qty = $data->productTypeQty;
-        
+
         // Check if item exists
-        if ($this->cartModel->getQty($id) > 0)
-        {
+        if ($this->cartModel->getQty($id) > 0) {
             echo $this->sendResponse('error', 'Sản phẩm đã tồn tại');
             return;
         }
 
-        $addResult = 
+        $addResult =
             $this->cartModel->add($id, $qty);
 
-        if ($addResult)
-        {
+        if ($addResult) {
             echo $this->sendResponse();
-        }
-        else
+        } else {
             echo $this->sendResponse('error', 'Thêm sản phẩm thất bại');
+        }
     }
 
-    function rmCart(){
+    public function rmCart()
+    {
         // PHP chỉ nhận biến $_POST khi gửi bằng application/x-www-form-urlencoded
         $data = json_decode(file_get_contents('php://input'));
-        
-        $addResult = 
+
+        $addResult =
             $this->cartModel->delete($data->id);
 
-        if ($addResult)
-        {
+        if ($addResult) {
             echo $this->sendResponse('success', 'Xóa sản phẩm thành công !');
-        }
-        else
+        } else {
             echo $this->sendResponse('erorr', 'Xóa sản phẩm thất bại !');
+        }
     }
 }
-?>
