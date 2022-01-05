@@ -4,8 +4,9 @@
   "description": "This is a ecommerce website with PHP MVC, JS",
   "main": "index.js",
   "scripts": {
-    "format-php": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix mvc --path-mode=intersection",
-    "watch": "sass --watch public/scss/main.scss public/css/main.css",
+    "php-formatter": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix mvc --path-mode=intersection",
+    "prettier": "prettier --single-quote --trailing-comma all --write {public,__{tests,mocks}__}/**/*.{scss,js,json}",
+    "sass": "sass public/scss/main.scss public/css/main.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
   },
@@ -13,7 +14,7 @@
     "type": "git",
     "url": "git+https://github.com/Zevik07/eCommerce.git"
   },
-  "author": "",
+  "author": "Zevik07",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Zevik07/eCommerce/issues"
@@ -26,5 +27,8 @@
   },
   "lint-staged": {
     "{public,__{tests,mocks}__}/**/*.{scss,js,json}": "prettier --single-quote --trailing-comma all --write"
+  },
+  "dependencies": {
+    "sass": "^1.45.2"
   }
 }

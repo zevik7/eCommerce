@@ -11,4 +11,7 @@ class Bridge
         include_once(__DIR__.'/../configs.php');
         $app = new App();
     }
+    function abc    (){
+            $x = 90;  
+    }
 }
