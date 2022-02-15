@@ -1,0 +1,73 @@
+<?php
+
+namespace src\controllers;
+
+use src\core\Controller;
+use src\models\Product;
+use src\models\Shop;
+use src\models\Cart;
+use src\models\Order as OrderModel;
+use src\models\OrderDetail;
+
+class Order extends Controller
+{
+    protected $productModel;
+    protected $cartModel;
+    protected $orderModel;
+    protected $orderDetailModel;
+
+    public function __construct()
+    {
+        $this->productModel = new Product();
+        $this->cartModel = new Cart();
+        $this->orderModel = new OrderModel();
+        $this->orderDetailModel = new OrderDetail();
+    }
+
+    public function load($params)
+    {
+        // Product buy data
+        if ($params) {
+            $productTypeId = current($params);
+            $cart = json_encode($this->orderModel->getProductBuy($productTypeId));
+        }
+        // Cart data
+        else {
+            $cart = json_encode($this->cartModel->get());
+        }
+
+        $this->view('Main', [
+                            'Page' => 'Order',
+                            'cart' => $cart,
+                            'params' => $params
+                        ]);
+    }
+
+    public function order()
+    {
+        $this->orderModel
+            ->addToOrder($_SESSION['user']['id']);
+        $order_id = $this->orderModel->getOrderID();
+        $id = $order_id[0]['order_id'];
+        $cart = json_encode($this->cartModel->get());
+        $this->orderModel->addToOrderDetail($cart, $id);
+
+        setcookie('orderID', $id, time() + 30, "/");
+        header('Location: http://' . BASE_URL . '/OrderSuccess');
+        die();
+    }
+
+    public function buyNow($params)
+    {
+        $productTypeId = current($params);
+        $this->orderModel->addToOrder($_SESSION['user']['id']);
+        $order_id = $this->orderModel->getOrderID();
+        $id = $order_id[0]['order_id'];
+        $buyNowData =$this->orderModel->getProductBuy($productTypeId);
+        $this->orderDetailModel->buyNowOrderDetail($id, $buyNowData, $_GET['productTypeQty']);
+
+        setcookie('orderID', $id, time() + 30, "/");
+        header('Location: http://' . BASE_URL . '/OrderSuccess');
+        die();
+    }
+}

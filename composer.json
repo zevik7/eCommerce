@@ -1,17 +1,17 @@
 {
-    "name": "vendor/ecommerce",
-    "description": "Ecommerce web",
-    "authors": [
-        {
-            "name": "JC Naty",
-            "email": "monnatyz@gmail.com"
-        }
-    ],
-    "autoload": {
-        "psr-4": {
-            "mvc\\": "mvc/"
-        }
-    },
-    "minimum-stability": "dev",
-    "require": {}
+  "name": "vendor/ecommerce",
+  "description": "Ecommerce web",
+  "authors": [
+    {
+      "name": "JC Naty",
+      "email": "monnatyz@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "src\\": "src/"
+    }
+  },
+  "minimum-stability": "dev",
+  "require": {}
 }

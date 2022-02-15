@@ -4,8 +4,8 @@
   "description": "This is a ecommerce website with PHP MVC, JS",
   "main": "index.js",
   "scripts": {
-    "php-formatter": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix mvc --path-mode=intersection",
-    "prettier": "prettier --single-quote --trailing-comma all --write {public,__{tests,mocks}__}/**/*.{scss,js,json}",
+    "php-format": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix mvc --path-mode=intersection",
+    "prettier-all": "prettier --write *.{scss,js,json}",
     "sass": "sass public/scss/main.scss public/css/main.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "prepare": "husky install"
@@ -26,7 +26,7 @@
     "prettier": "2.5.1"
   },
   "lint-staged": {
-    "{public,__{tests,mocks}__}/**/*.{scss,js,json}": "prettier --single-quote --trailing-comma all --write"
+    "*.{scss,js,json}": "prettier --write"
   },
   "dependencies": {
     "sass": "^1.45.2"
