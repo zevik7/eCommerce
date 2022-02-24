@@ -12,24 +12,19 @@
             class="head-cart__quantity" 
             type="number" 
             disabled
-            value="<?php
-                if (isset($cart)) {
-                    echo count($cart);
-                } else {
-                    echo 0;
-                }
+            value="<?= 0;
             ?>">
         </div>
         <div class="head-cart__box">
             <h3 class="head-cart__title title-reset">Sản phẩm đã thêm</h3>
             <?php
                 // Load cart data
-                if (isset($cart)) {
+                if (!empty($cart)) {
                     ?>
                 <!-- Cart has item -->
                 <ul id="cart-list" class="head-cart__list">
                     <?php
-                        foreach ($cart as $key => $value) {
+                        foreach ([] as $key => $value) {
                             ?>
                         <li class="head-cart__item">
                             <div class="item-img">

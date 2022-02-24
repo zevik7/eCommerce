@@ -4,7 +4,7 @@
   "description": "This is a ecommerce website with PHP MVC, JS",
   "main": "index.js",
   "scripts": {
-    "php-format": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix mvc --path-mode=intersection",
+    "php-format": "tools/php-cs-fixer/vendor/bin/php-cs-fixer fix src/controllers --path-mode=intersection",
     "prettier-all": "prettier --write *.{scss,js,json}",
     "sass": "sass public/scss/main.scss public/css/main.css",
     "test": "echo \"Error: no test specified\" && exit 1",

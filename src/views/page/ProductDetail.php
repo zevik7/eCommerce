@@ -39,7 +39,7 @@
                         <div class="col lg-5 md-5 sm-12">
                             <div class="product-detail__carousel">
                                 <!--Carousel -->
-                                <?php require_once './src/views/block/ImageCarousel.php' ?>
+                                <?php require_once '../src/views/block/ImageCarousel.php' ?>
                                 <!-- end of carousel -->
 
                             </div>
@@ -222,10 +222,10 @@
                     <div class="row">
                         <div class="col lg-10 md-10 sm-12 exsm-12">
                             <div class="layout-split margin-top24">
-                                <?php require_once './src/views/block/product-detail/Desc.php'; ?>
+                                <?php require_once '../src/views/block/product-detail/Desc.php'; ?>
                             </div>
                             <div class="layout-split margin-top24 mb-20">
-                                <?php require_once './src/views/block/product-detail/Rating.php'; ?>
+                                <?php require_once '../src/views/block/product-detail/Rating.php'; ?>
                             </div>
                         </div>
                         <?php

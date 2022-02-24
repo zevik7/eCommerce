@@ -10,4 +10,3 @@
 	nginx.conf
 5. Setup package:  
 	composer dump-autoload
-	npm run install

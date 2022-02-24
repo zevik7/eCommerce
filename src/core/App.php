@@ -15,14 +15,14 @@ class App
         // Controller
         if (isset($arr[0])) {
             // For user page
-            if (file_exists("mvc/controllers/".$arr[0].".php")) {
+            if (file_exists("../src/controllers/".$arr[0].".php")) {
                 $this->controller = "src\\controllers\\".$arr[0];
                 unset($arr[0]);
             }
 
             // For admin page
             if ($arr[0] == "admin") {
-                if (file_exists("mvc/controllers/admin/".ucfirst($arr[1]).".php")) {
+                if (file_exists("src/controllers/admin/".ucfirst($arr[1]).".php")) {
                     $this->controller =
                         "src\\controllers\\admin\\".ucfirst($arr[1]);
                     unset($arr[0]);
